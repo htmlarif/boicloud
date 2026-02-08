@@ -82,6 +82,7 @@
       .no-scrollbar::-webkit-scrollbar { display: none; }
       .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
       
+      /* পূর্বের Hero Background Gradient এক্সাক্টলি ফিরিয়ে আনা হয়েছে */
       .hero-gradient {
         background: linear-gradient(to bottom, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.8));
       }
@@ -130,6 +131,17 @@
       .dark ::-webkit-scrollbar-thumb:hover {
         background: #64748b;
       }
+      
+      /* Custom animations for background */
+      @keyframes slow-zoom {
+        0% { transform: scale(1) translate(0, 0); }
+        100% { transform: scale(1.1) translate(-2%, -1%); }
+      }
+      
+      .animate-slow-zoom {
+        animation: slow-zoom 20s infinite alternate;
+        animation-timing-function: ease-in-out;
+      }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 antialiased overflow-x-hidden">
@@ -156,7 +168,7 @@
           title: 'হিমুর হাতে কয়েকটি নীল পদ্ম', 
           author: 'হুমায়ূন আহমেদ', 
           category: 'উপন্যাস', 
-          coverImage: 'https://ibb.co.com/DcgJ3jd/image.jpg', 
+          coverImage: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=1000', 
           readLink: '#', 
           downloadLink: '#', 
           description: 'হিমু সিরিজের এক জনপ্রিয় রহস্যময় উপন্যাস।' 
@@ -265,6 +277,8 @@
       
       const CATEGORIES = ['সবগুলো', 'উপন্যাস', 'থ্রিলার', 'কবিতা', 'ইসলামিক', 'সায়েন্স ফিকশন', 'সাহিত্য'];
       const LOGO_URL = "https://api.dicebear.com/7.x/initials/svg?seed=BC&backgroundColor=10b981&textColor=ffffff";
+      
+      // **পূর্বের সেই Background Image টি ফিরিয়ে আনা হয়েছে**
       const HERO_BG = "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=2000";
       
       // Check if dark mode should be enabled
@@ -387,7 +401,7 @@
         const filtered = BOOKS_DATA.filter(book => {
           const matchesSearch = book.title.toLowerCase().includes(searchQuery) || 
                                book.author.toLowerCase().includes(searchQuery) ||
-                               book.description.toLowerCase().includes(searchQuery);
+                               (book.description && book.description.toLowerCase().includes(searchQuery));
           const matchesCategory = selectedCategory === 'সবগুলো' || book.category === selectedCategory;
           
           return matchesSearch && matchesCategory;
@@ -465,7 +479,9 @@
           const panel = document.getElementById('ai-assistant-panel');
           if (panel) {
             panel.classList.toggle('hidden');
-            panel.classList.toggle('animate-in');
+            if (!panel.classList.contains('hidden')) {
+              panel.classList.add('animate-in');
+            }
           }
         });
         
@@ -645,30 +661,32 @@
     </header>
 
     <main class="flex-grow">
-      <!-- Hero Section -->
+      <!-- Hero Section - Background Animation সহ -->
       <section class="relative h-[50vh] sm:h-[70vh] flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
+          <!-- পূর্বের সেই Background Image টি -->
           <img 
             src="${HERO_BG}" 
             alt="Library Background" 
             class="w-full h-full object-cover animate-slow-zoom" 
           />
+          <!-- পূর্বের সেই Gradient Overlay -->
           <div class="absolute inset-0 hero-gradient"></div>
         </div>
         
-        <div class="relative z-10 max-w-7xl mx-auto px-6 text-center animate-fade-in-up">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 backdrop-blur-md text-brand-300 text-[10px] sm:text-xs font-medium mb-6 border border-white/10">
+        <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 backdrop-blur-md text-brand-300 text-[10px] sm:text-xs font-medium mb-6 border border-white/10 animate-fade-in-up">
             <i data-lucide="sparkles" class="w-4 h-4"></i> 
             <span>আপনার প্রিয় বইয়ের নতুন ডিজিটাল ঠিকানা</span>
           </div>
-          <h2 class="text-3xl sm:text-6xl lg:text-8xl font-black text-white mb-6 leading-tight drop-shadow-2xl">
+          <h2 class="text-3xl sm:text-6xl lg:text-8xl font-black text-white mb-6 leading-tight drop-shadow-2xl animate-fade-in-up">
             <i data-lucide="book-open" class="w-12 h-12 sm:w-20 sm:h-20 inline mr-4 align-middle"></i>
             বইয়ের জগতে আপনাকে স্বাগতম
           </h2>
-          <p class="text-sm sm:text-xl text-slate-200 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+          <p class="text-sm sm:text-xl text-slate-200 max-w-2xl mx-auto mb-10 leading-relaxed font-light animate-fade-in-up">
             BoiCloud এ আপনি পাবেন হাজার হাজার বাংলা ও ইংরেজি বইয়ের বিশাল সংগ্রহ। সম্পূর্ণ ফ্রি-তে অনলাইনে পড়ুন অথবা ডাউনলোড করুন আজই।
           </p>
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up">
             <button 
               id="explore-books-btn"
               class="w-full sm:w-auto px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white rounded-2xl font-bold text-base sm:text-lg transition-all shadow-xl shadow-brand-500/30 active:scale-95 flex items-center justify-center gap-2"
@@ -722,7 +740,7 @@
         
         <div class="mt-16 flex justify-center">
           <button 
-            onclick="renderBooks(BOOKS_DATA)" 
+            onclick="renderBooks(BOOKS_DATA); document.querySelectorAll('.category-btn')[0].click();" 
             class="group px-10 py-4 bg-white dark:bg-slate-900 border dark:border-slate-800 rounded-2xl font-black text-slate-800 dark:text-white flex items-center gap-3 hover:border-brand-600 hover:text-brand-600 transition-all shadow-sm active:scale-95"
           >
             <i data-lucide="rotate-cw" class="w-5 h-5"></i>
