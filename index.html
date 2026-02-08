@@ -154,18 +154,19 @@
       // Book data - Simple JavaScript array
       const BOOKS_DATA = [
         { 
-          id: '8', 
-  title: 'অগ্নিপক্ষ (আত্মজীবনী)', 
-  author: 'এ পি জে আব্দুল কালাম', 
-  category: 'জীবনী', 
-  coverImage: 'https://allbanglaboi.com/wp-content/uploads/2020/04/Agni-Pakkha-Atmajibani-by-APJ-Abdul-Kalam.jpg', 
-  // Read Link: Manush click korle Drive-e boiti open hobe
-  readLink: 'https://drive.google.com/file/d/1LCTZMavEB59_a6e13S5aN3cqCmn9Jl3H/view?usp=sharing', 
-  // Download Link: Manush click korle sorasori download shuru hobe
-  downloadLink: 'https://drive.google.com/uc?export=download&id=1LCTZMavEB59_a6e13S5aN3cqCmn9Jl3H', 
-  description: 'ভারতের প্রাক্তন রাষ্ট্রপতি এ পি জে আব্দুল কালামের অনুপ্রেরণামূলক আত্মজীবনী।' 
+          id: '1', 
+  title: 'আর রাহীকুল মাখতূম', 
+  author: 'আল্লামা সফিউর রহমান মোবারকপুরী', 
+  category:'ইসলামিক', // আপনি চাইলে 'জীবনী' ক্যাটাগরি থাকলে সেটিও দিতে পারেন
+  coverImage: 'https://media.kitabghor.com/products/1022/24070/voqjr1678513345czycjt1.jpg', 
+  // ড্রাইভ রিড লিঙ্ক
+  readLink: 'https://drive.google.com/file/d/19HyjCsZ6cT6pd15ksGfuahRbSx3iWQ9a/view?usp=sharing', 
+  // ড্রাইভ ডিরেক্ট ডাউনলোড লিঙ্ক
+  downloadLink: 'https://drive.google.com/uc?export=download&id=19HyjCsZ6cT6pd15ksGfuahRbSx3iWQ9a', 
+  description: 'বিশ্বনন্দিত সীরাত গ্রন্থ, যেখানে নবী করীম (সা.)-এর পবিত্র জীবন আখ্যান বিস্তারিতভাবে বর্ণিত হয়েছে।'
+             
  
-        },
+      },
         { 
          id: '2', 
   title: 'হিমুর হাতে কয়েকটি নীল পদ্ম', 
@@ -239,16 +240,16 @@
   description: 'বাঙালি মুসলিম সমাজের ধর্মীয় অন্ধবিশ্বাস ও শোষণের এক গভীর জীবনধর্মী উপন্যাস।'
         },
         { 
-          id: '1', 
-  title: 'আর রাহীকুল মাখতূম', 
-  author: 'আল্লামা সফিউর রহমান মোবারকপুরী', 
-  category:'ইসলামিক', // আপনি চাইলে 'জীবনী' ক্যাটাগরি থাকলে সেটিও দিতে পারেন
-  coverImage: 'https://media.kitabghor.com/products/1022/24070/voqjr1678513345czycjt1.jpg', 
-  // ড্রাইভ রিড লিঙ্ক
-  readLink: 'https://drive.google.com/file/d/19HyjCsZ6cT6pd15ksGfuahRbSx3iWQ9a/view?usp=sharing', 
-  // ড্রাইভ ডিরেক্ট ডাউনলোড লিঙ্ক
-  downloadLink: 'https://drive.google.com/uc?export=download&id=19HyjCsZ6cT6pd15ksGfuahRbSx3iWQ9a', 
-  description: 'বিশ্বনন্দিত সীরাত গ্রন্থ, যেখানে নবী করীম (সা.)-এর পবিত্র জীবন আখ্যান বিস্তারিতভাবে বর্ণিত হয়েছে।'
+          id: '8', 
+  title: 'অগ্নিপক্ষ (আত্মজীবনী)', 
+  author: 'এ পি জে আব্দুল কালাম', 
+  category: 'জীবনী', 
+  coverImage: 'https://allbanglaboi.com/wp-content/uploads/2020/04/Agni-Pakkha-Atmajibani-by-APJ-Abdul-Kalam.jpg', 
+  // Read Link: Manush click korle Drive-e boiti open hobe
+  readLink: 'https://drive.google.com/file/d/1LCTZMavEB59_a6e13S5aN3cqCmn9Jl3H/view?usp=sharing', 
+  // Download Link: Manush click korle sorasori download shuru hobe
+  downloadLink: 'https://drive.google.com/uc?export=download&id=1LCTZMavEB59_a6e13S5aN3cqCmn9Jl3H', 
+  description: 'ভারতের প্রাক্তন রাষ্ট্রপতি এ পি জে আব্দুল কালামের অনুপ্রেরণামূলক আত্মজীবনী।'
         },
         { 
           id: '9', 
@@ -576,15 +577,16 @@
       
       <div class="flex items-center gap-3 cursor-pointer group" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
         <div class="relative flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
-          <svg class="w-10 h-10 sm:w-12 sm:h-12 transition-transform duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17.5 19C20.5376 19 23 16.5376 23 13.5C23 10.4624 20.5376 8 17.5 8C17.2282 8 16.9632 8.01977 16.7042 8.05791C15.6841 5.64243 13.284 4 10.5 4C6.91015 4 4 6.91015 4 10.5C4 10.742 4.0133 10.9809 4.03914 11.2158C2.26425 12.0232 1 13.8152 1 15.9C1 18.7167 3.28335 21 6.1 21H17.5V19Z" class="fill-blue-50/50 stroke-blue-500 dark:fill-blue-900/20 dark:stroke-blue-400" stroke-width="1.5"/>
-            <path d="M8 13.5C8 12.9477 8.44772 12.5 9 12.5H12V16.5H9C8.44772 16.5 8 16.0523 8 15.5V13.5Z" class="fill-blue-600 dark:fill-blue-500"/>
-            <path d="M16 13.5C16 12.9477 15.5523 12.5 15 12.5H12V16.5H15C15.5523 16.5 16 16.0523 16 15.5V13.5Z" class="fill-blue-400 dark:fill-blue-300"/>
+          <svg class="w-10 h-10 sm:w-12 sm:h-12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.5 19C20.5376 19 23 16.5376 23 13.5C23 10.4624 20.5376 8 17.5 8C17.2282 8 16.9632 8.01977 16.7042 8.05791C15.6841 5.64243 13.284 4 10.5 4C6.91015 4 4 6.91015 4 10.5C4 10.742 4.0133 10.9809 4.03914 11.2158C2.26425 12.0232 1 13.8152 1 15.9C1 18.7167 3.28335 21 6.1 21H17.5V19Z" class="fill-brand-50/50 stroke-brand-500 dark:fill-brand-700/20 dark:stroke-brand-500" stroke-width="1.5"/>
+            
+            <path d="M8 13.5C8 12.9477 8.44772 12.5 9 12.5H12V16.5H9C8.44772 16.5 8 16.0523 8 15.5V13.5Z" class="fill-brand-600 dark:fill-brand-500"/>
+            <path d="M16 13.5C16 12.9477 15.5523 12.5 15 12.5H12V16.5H15C15.5523 16.5 16 16.0523 16 15.5V13.5Z" class="fill-teal-400 dark:fill-teal-300"/>
           </svg>
         </div>
         
         <h1 class="text-xl sm:text-3xl font-black tracking-tighter">
-          <span class="text-slate-800 dark:text-white">Boi</span><span class="text-blue-500 dark:text-blue-400">Cloud</span>
+          <span class="text-slate-800 dark:text-white">Boi</span><span class="bg-gradient-to-r from-brand-600 to-teal-500 bg-clip-text text-transparent">Cloud</span>
         </h1>
       </div>
           
