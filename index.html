@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="bn" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -13,10 +13,10 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- React, ReactDOM, Babel & Lucide Icons -->
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <script>
@@ -39,6 +39,7 @@
             animation: {
               'slow-zoom': 'slow-zoom 20s infinite alternate',
               'fade-in-up': 'fade-in-up 0.8s ease-out forwards',
+              'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             },
             keyframes: {
               'slow-zoom': {
@@ -85,452 +86,792 @@
         background: linear-gradient(to bottom, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.8));
       }
       
-      /* Loading animation */
-      @keyframes pulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.5; }
+      /* Custom animations */
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
       }
       
-      .animate-pulse {
-        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      .animate-float {
+        animation: float 3s ease-in-out infinite;
       }
       
-      .animate-in {
-        animation-duration: 300ms;
-        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      /* Smooth transitions */
+      * {
+        transition: background-color 0.3s ease, border-color 0.3s ease;
       }
       
-      .fade-in {
-        animation-name: fadeIn;
+      /* Scrollbar styling */
+      ::-webkit-scrollbar {
+        width: 10px;
       }
       
-      @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
       }
       
-      .slide-in-from-bottom-5 {
-        animation-name: slideInFromBottom;
+      .dark ::-webkit-scrollbar-track {
+        background: #1e293b;
       }
       
-      @keyframes slideInFromBottom {
-        from { transform: translateY(20px); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
+      ::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 5px;
       }
       
-      .line-clamp-1 {
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 1;
+      .dark ::-webkit-scrollbar-thumb {
+        background: #475569;
       }
       
-      .selection\\:bg-brand-500\\/30 ::selection {
-        background-color: rgba(16, 185, 129, 0.3);
+      ::-webkit-scrollbar-thumb:hover {
+        background: #a1a1a1;
       }
       
-      .scroll-mt-20 {
-        scroll-margin-top: 5rem;
-      }
-      
-      /* For older browsers */
-      .backdrop-blur-md {
-        backdrop-filter: blur(12px);
-      }
-      
-      .backdrop-blur-sm {
-        backdrop-filter: blur(4px);
-      }
-      
-      .shadow-brand-500\\/20 {
-        box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.2), 0 4px 6px -2px rgba(16, 185, 129, 0.1);
-      }
-      
-      .shadow-brand-500\\/30 {
-        box-shadow: 0 20px 25px -5px rgba(16, 185, 129, 0.3), 0 10px 10px -5px rgba(16, 185, 129, 0.1);
+      .dark ::-webkit-scrollbar-thumb:hover {
+        background: #64748b;
       }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 antialiased overflow-x-hidden">
     <div id="root"></div>
 
-    <script type="text/babel">
-      const { useState, useEffect, useMemo, useRef } = React;
-
-      // --- Constants & Data ---
-      const Category = {
-        ALL: 'সবগুলো',
-        NOVEL: 'উপন্যাস',
-        THRILLER: 'থ্রিলার',
-        POETRY: 'কবিতা',
-        ISLAMIC: 'ইসলামিক',
-        SCI_FI: 'সায়েন্স ফিকশন',
-        LITERATURE: 'সাহিত্য'
-      };
-
+    <script>
+      // Initialize Lucide icons
+      lucide.createIcons();
+      
+      // Book data - Simple JavaScript array
       const BOOKS_DATA = [
-        { id: '1', title: 'পথের পাঁচালী', author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', category: Category.LITERATURE, coverImage: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=1000', readLink: '#', downloadLink: '#', description: 'বাংলার গ্রামীণ জীবনের এক অনন্য আখ্যান।' },
-        { id: '2', title: 'হিমুর হাতে কয়েকটি নীল পদ্ম', author: 'হুমায়ূন আহমেদ', category: Category.NOVEL, coverImage: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=1000', readLink: '#', downloadLink: '#', description: 'হিমু সিরিজের এক জনপ্রিয় রহস্যময় উপন্যাস।' },
-        { id: '3', title: 'অন্ধকারে একাকী', author: 'অরিজিৎ ঘোষ', category: Category.THRILLER, coverImage: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=1000', readLink: '#', downloadLink: '#', description: 'একটি শিহরণ জাগানিয়া থ্রিলার গল্প।' },
-        { id: '4', title: 'অগ্নিবীণা', author: 'কাজী নজরুল ইসলাম', category: Category.POETRY, coverImage: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1000', readLink: '#', downloadLink: '#', description: 'বিদ্রোহী কবির কালজয়ী অগ্নিঝরা কাব্যগ্রন্থ।' },
-        { id: '5', title: 'মঙ্গলে প্রথম অভিযান', author: 'সায়েন্স রাইটার', category: Category.SCI_FI, coverImage: 'https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?q=80&w=1000', readLink: '#', downloadLink: '#', description: 'ভবিষ্যতের রহস্যময় মহাকাশ যাত্রা নিয়ে সায়েন্স ফিকশন।' },
-        { id: '6', title: 'ক্রীতদাসের হাসি', author: 'শওকত ওসমান', category: Category.LITERATURE, coverImage: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=1000', readLink: '#', downloadLink: '#', description: 'স্বৈরাচারের বিরুদ্ধে এক বলিষ্ঠ শৈল্পিক প্রতিবাদ।' },
-        { id: '7', title: 'লালসালু', author: 'সৈয়দ ওয়ালীউল্লাহ', category: Category.LITERATURE, coverImage: 'https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=1000', readLink: '#', downloadLink: '#', description: 'ধর্মীয় ভণ্ডামির বিরুদ্ধে এক সমাজসচেতন কালজয়ী উপন্যাস।' },
-        { id: '8', title: 'গল্পগুচ্ছ', author: 'রবীন্দ্রনাথ ঠাকুর', category: Category.LITERATURE, coverImage: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=1000', readLink: '#', downloadLink: '#', description: 'বিশ্বকবির শ্রেষ্ঠ ছোটগল্পের অমূল্য সংকলন।' },
-        { id: '9', title: 'ফেলুদা সমগ্র', author: 'সত্যজিৎ রায়', category: Category.THRILLER, coverImage: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=1000', readLink: '#', downloadLink: '#', description: 'প্রদোষ চন্দ্র মিত্রের বুদ্ধির লড়াই আর রহস্য অভিযান।' },
-        { id: '10', title: 'বুলবুল', author: 'কাজী নজরুল ইসলাম', category: Category.POETRY, coverImage: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1000', readLink: '#', downloadLink: '#', description: 'নজরুলের প্রেমের কবিতার অনন্য সংকলন।' },
-        { id: '11', title: 'শঙ্খনীল কারাগার', author: 'হুমায়ূন আহমেদ', category: Category.NOVEL, coverImage: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=1000', readLink: '#', downloadLink: '#', description: 'মধ্যবিত্ত জীবনের আবেগ ও অনুভূতির গল্প।' },
-        { id: '12', title: 'চাঁদের পাহাড়', author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', category: Category.THRILLER, coverImage: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=1000', readLink: '#', downloadLink: '#', description: 'আফ্রিকার গহিন অরণ্যে রোমাঞ্চকর অ্যাডভেঞ্চার।' }
+        { 
+          id: '1', 
+          title: 'পথের পাঁচালী', 
+          author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+          category: 'সাহিত্য', 
+          coverImage: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=1000', 
+          readLink: '#', 
+          downloadLink: '#', 
+          description: 'বাংলার গ্রামীণ জীবনের এক অনন্য আখ্যান।' 
+        },
+        { 
+          id: '2', 
+          title: 'হিমুর হাতে কয়েকটি নীল পদ্ম', 
+          author: 'হুমায়ূন আহমেদ', 
+          category: 'উপন্যাস', 
+          coverImage: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=1000', 
+          readLink: '#', 
+          downloadLink: '#', 
+          description: 'হিমু সিরিজের এক জনপ্রিয় রহস্যময় উপন্যাস।' 
+        },
+        { 
+          id: '3', 
+          title: 'অন্ধকারে একাকী', 
+          author: 'অরিজিৎ ঘোষ', 
+          category: 'থ্রিলার', 
+          coverImage: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=1000', 
+          readLink: '#', 
+          downloadLink: '#', 
+          description: 'একটি শিহরণ জাগানিয়া থ্রিলার গল্প।' 
+        },
+        { 
+          id: '4', 
+          title: 'অগ্নিবীণা', 
+          author: 'কাজী নজরুল ইসলাম', 
+          category: 'কবিতা', 
+          coverImage: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1000', 
+          readLink: '#', 
+          downloadLink: '#', 
+          description: 'বিদ্রোহী কবির কালজয়ী অগ্নিঝরা কাব্যগ্রন্থ।' 
+        },
+        { 
+          id: '5', 
+          title: 'মঙ্গলে প্রথম অভিযান', 
+          author: 'সায়েন্স রাইটার', 
+          category: 'সায়েন্স ফিকশন', 
+          coverImage: 'https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?q=80&w=1000', 
+          readLink: '#', 
+          downloadLink: '#', 
+          description: 'ভবিষ্যতের রহস্যময় মহাকাশ যাত্রা নিয়ে সায়েন্স ফিকশন।' 
+        },
+        { 
+          id: '6', 
+          title: 'ক্রীতদাসের হাসি', 
+          author: 'শওকত ওসমান', 
+          category: 'সাহিত্য', 
+          coverImage: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=1000', 
+          readLink: '#', 
+          downloadLink: '#', 
+          description: 'স্বৈরাচারের বিরুদ্ধে এক বলিষ্ঠ শৈল্পিক প্রতিবাদ।' 
+        },
+        { 
+          id: '7', 
+          title: 'লালসালু', 
+          author: 'সৈয়দ ওয়ালীউল্লাহ', 
+          category: 'সাহিত্য', 
+          coverImage: 'https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=1000', 
+          readLink: '#', 
+          downloadLink: '#', 
+          description: 'ধর্মীয় ভণ্ডামির বিরুদ্ধে এক সমাজসচেতন কালজয়ী উপন্যাস।' 
+        },
+        { 
+          id: '8', 
+          title: 'গল্পগুচ্ছ', 
+          author: 'রবীন্দ্রনাথ ঠাকুর', 
+          category: 'সাহিত্য', 
+          coverImage: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=1000', 
+          readLink: '#', 
+          downloadLink: '#', 
+          description: 'বিশ্বকবির শ্রেষ্ঠ ছোটগল্পের অমূল্য সংকলন।' 
+        },
+        { 
+          id: '9', 
+          title: 'ফেলুদা সমগ্র', 
+          author: 'সত্যজিৎ রায়', 
+          category: 'থ্রিলার', 
+          coverImage: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=1000', 
+          readLink: '#', 
+          downloadLink: '#', 
+          description: 'প্রদোষ চন্দ্র মিত্রের বুদ্ধির লড়াই আর রহস্য অভিযান।' 
+        },
+        { 
+          id: '10', 
+          title: 'বুলবুল', 
+          author: 'কাজী নজরুল ইসলাম', 
+          category: 'কবিতা', 
+          coverImage: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1000', 
+          readLink: '#', 
+          downloadLink: '#', 
+          description: 'নজরুলের প্রেমের কবিতার অনন্য সংকলন।' 
+        },
+        { 
+          id: '11', 
+          title: 'শঙ্খনীল কারাগার', 
+          author: 'হুমায়ূন আহমেদ', 
+          category: 'উপন্যাস', 
+          coverImage: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=1000', 
+          readLink: '#', 
+          downloadLink: '#', 
+          description: 'মধ্যবিত্ত জীবনের আবেগ ও অনুভূতির গল্প।' 
+        },
+        { 
+          id: '12', 
+          title: 'চাঁদের পাহাড়', 
+          author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+          category: 'থ্রিলার', 
+          coverImage: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=1000', 
+          readLink: '#', 
+          downloadLink: '#', 
+          description: 'আফ্রিকার গহিন অরণ্যে রোমাঞ্চকর অ্যাডভেঞ্চার।' 
+        }
       ];
-
+      
+      const CATEGORIES = ['সবগুলো', 'উপন্যাস', 'থ্রিলার', 'কবিতা', 'ইসলামিক', 'সায়েন্স ফিকশন', 'সাহিত্য'];
       const LOGO_URL = "https://api.dicebear.com/7.x/initials/svg?seed=BC&backgroundColor=10b981&textColor=ffffff";
       const HERO_BG = "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=2000";
-
-      // --- UI Components ---
-      const LucideIcon = ({ name, size = 20, className = "" }) => {
-        const iconRef = useRef(null);
-        useEffect(() => {
-          if (iconRef.current && window.lucide) {
-            const lucideIcon = window.lucide.icons[name];
-            if (lucideIcon) {
-              window.lucide.createIcons({ icons: { [name]: lucideIcon }, nameAttr: 'data-lucide' });
-            }
+      
+      // Check if dark mode should be enabled
+      function initializeDarkMode() {
+        const savedTheme = localStorage.getItem('boicloud-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        // Start with dark mode by default
+        if (savedTheme === null) {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('boicloud-theme', 'dark');
+          return true;
+        }
+        
+        const isDark = savedTheme === 'dark';
+        document.documentElement.classList.toggle('dark', isDark);
+        return isDark;
+      }
+      
+      // Toggle dark mode
+      function toggleDarkMode() {
+        const html = document.documentElement;
+        const isDark = html.classList.contains('dark');
+        
+        if (isDark) {
+          html.classList.remove('dark');
+          localStorage.setItem('boicloud-theme', 'light');
+        } else {
+          html.classList.add('dark');
+          localStorage.setItem('boicloud-theme', 'dark');
+        }
+        
+        // Update toggle button icon
+        updateDarkModeToggle(!isDark);
+        return !isDark;
+      }
+      
+      // Update dark mode toggle button
+      function updateDarkModeToggle(isDark) {
+        const toggleBtn = document.getElementById('dark-mode-toggle');
+        if (toggleBtn) {
+          if (isDark) {
+            toggleBtn.innerHTML = '<i data-lucide="sun" class="w-5 h-5 text-yellow-300"></i>';
+          } else {
+            toggleBtn.innerHTML = '<i data-lucide="moon" class="w-5 h-5 text-slate-700"></i>';
           }
-        }, [name]);
-        return <i data-lucide={name} style={{ width: size, height: size }} className={`flex items-center justify-center ${className}`}></i>;
-      };
-
-      const Header = ({ searchQuery, setSearchQuery, isDarkMode, toggleDarkMode }) => (
-        <header className="sticky top-0 z-50 glass-effect border-b border-slate-200 dark:border-slate-800">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-16 sm:h-20">
-              <div className="flex items-center gap-2 cursor-pointer group" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl overflow-hidden group-hover:scale-110 transition-transform duration-300">
-                  <img src={LOGO_URL} alt="Logo" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.src = 'https://api.dicebear.com/7.x/initials/svg?seed=BC&backgroundColor=10b981'; }} />
-                </div>
-                <h1 className="text-xl sm:text-2xl font-bold tracking-tight bg-gradient-to-r from-brand-600 to-teal-500 bg-clip-text text-transparent">BoiCloud</h1>
+          lucide.createIcons();
+        }
+      }
+      
+      // Render book cards
+      function renderBooks(books) {
+        const container = document.getElementById('books-container');
+        if (!container) return;
+        
+        if (books.length === 0) {
+          container.innerHTML = `
+            <div class="col-span-full text-center py-16">
+              <div class="w-20 h-20 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i data-lucide="search-x" class="w-10 h-10 text-slate-400"></i>
+              </div>
+              <h3 class="text-2xl font-bold dark:text-white mb-2">কোনো বই পাওয়া যায়নি</h3>
+              <p class="text-slate-500 dark:text-slate-400">অন্য কোনো নাম দিয়ে সার্চ করুন অথবা ক্যাটাগরি পরিবর্তন করুন।</p>
+            </div>
+          `;
+          lucide.createIcons();
+          return;
+        }
+        
+        container.innerHTML = books.map(book => `
+          <div class="group relative bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 hover-lift book-card-shadow flex flex-col h-full transition-all duration-300">
+            <div class="aspect-[2/3] overflow-hidden relative bg-slate-100 dark:bg-slate-800 shrink-0">
+              <img src="${book.coverImage}" alt="${book.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
+              
+              <div class="absolute top-3 left-3 z-10">
+                <span class="px-3 py-1 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm text-brand-600 text-[10px] font-bold rounded-full border border-slate-100 dark:border-slate-800 shadow-sm">${book.category}</span>
               </div>
               
-              <div className="hidden md:flex flex-1 max-w-md mx-8 relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                  <LucideIcon name="Search" size={18} />
-                </div>
-                <input 
-                  type="text" 
-                  placeholder="বই অথবা লেখকের নাম খুঁজুন..." 
-                  className="block w-full pl-10 pr-3 py-2 border border-slate-200 dark:border-slate-700 rounded-full bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/50 transition-all text-sm" 
-                  value={searchQuery} 
-                  onChange={(e) => setSearchQuery(e.target.value)} 
-                />
-              </div>
-
-              <div className="flex items-center gap-2 sm:gap-4">
-                <button onClick={toggleDarkMode} className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-400">
-                  <LucideIcon name={isDarkMode ? "Sun" : "Moon"} size={20} />
-                </button>
-                <button className="bg-brand-600 hover:bg-brand-700 text-white px-4 sm:px-6 py-2 rounded-full font-medium transition-all shadow-lg shadow-brand-500/20 active:scale-95 text-xs sm:text-base">লগইন</button>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                <a href="${book.readLink}" class="p-3.5 bg-brand-600 text-white rounded-full shadow-lg hover:scale-110 transition-transform" title="অনলাইনে পড়ুন">
+                  <i data-lucide="book-open" class="w-5 h-5"></i>
+                </a>
+                <a href="${book.downloadLink}" class="p-3.5 bg-white text-slate-900 rounded-full shadow-lg hover:scale-110 transition-transform" title="ডাউনলোড">
+                  <i data-lucide="download" class="w-5 h-5"></i>
+                </a>
               </div>
             </div>
             
-            <div className="md:hidden pb-4">
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400"><LucideIcon name="Search" size={16} /></div>
-                <input 
-                  type="text" 
-                  placeholder="বই অথবা লেখকের নাম..." 
-                  className="block w-full pl-9 pr-3 py-2 border border-slate-200 dark:border-slate-700 rounded-full bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/50 transition-all text-sm" 
-                  value={searchQuery} 
-                  onChange={(e) => setSearchQuery(e.target.value)} 
-                />
-              </div>
-            </div>
-          </div>
-        </header>
-      );
-
-      const Hero = () => (
-        <section className="relative h-[50vh] sm:h-[70vh] flex items-center justify-center overflow-hidden">
-          <div className="absolute inset-0 z-0">
-            <img 
-              src={HERO_BG} 
-              alt="Library Background" 
-              className="w-full h-full object-cover animate-slow-zoom" 
-            />
-            <div className="absolute inset-0 hero-gradient"></div>
-          </div>
-          
-          <div className="relative z-10 max-w-7xl mx-auto px-6 text-center animate-fade-in-up">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 backdrop-blur-md text-brand-300 text-[10px] sm:text-xs font-medium mb-6 border border-white/10">
-              <LucideIcon name="Sparkles" size={14} /> <span>আপনার প্রিয় বইয়ের নতুন ডিজিটাল ঠিকানা</span>
-            </div>
-            <h2 className="text-3xl sm:text-6xl lg:text-8xl font-black text-white mb-6 leading-tight drop-shadow-2xl">বইয়ের জগতে আপনাকে স্বাগতম</h2>
-            <p className="text-sm sm:text-xl text-slate-200 max-w-2xl mx-auto mb-10 leading-relaxed font-light">BoiCloud এ আপনি পাবেন হাজার হাজার বাংলা ও ইংরেজি বইয়ের বিশাল সংগ্রহ। সম্পূর্ণ ফ্রি-তে অনলাইনে পড়ুন অথবা ডাউনলোড করুন আজই।</p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button 
-                onClick={() => document.getElementById('books-grid').scrollIntoView({ behavior: 'smooth' })} 
-                className="w-full sm:w-auto px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white rounded-2xl font-bold text-base sm:text-lg transition-all shadow-xl shadow-brand-500/30 active:scale-95"
-              >
-                পড়া শুরু করুন
-              </button>
-              <a 
-                href="mailto:html.arif@gmail.com" 
-                className="w-full sm:w-auto px-8 py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-2xl font-bold text-base sm:text-lg transition-all hover:bg-white/20 active:scale-95"
-              >
-                বই জমা দিন
-              </a>
-            </div>
-          </div>
-        </section>
-      );
-
-      const BookCard = ({ book }) => {
-        const [coverSrc, setCoverSrc] = useState(book.coverImage);
-        const [isGenerating, setIsGenerating] = useState(false);
-
-        return (
-          <div className="group relative bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 hover-lift book-card-shadow flex flex-col h-full transition-all duration-300">
-            <div className="aspect-[2/3] overflow-hidden relative bg-slate-100 dark:bg-slate-800 shrink-0">
-              {coverSrc ? (
-                <img src={coverSrc} alt={book.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
-              ) : (
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-400 opacity-20"><LucideIcon name="Image" size={40} /></div>
-              )}
-              
-              <div className="absolute top-3 left-3 z-10">
-                <span className="px-3 py-1 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm text-brand-600 text-[10px] font-bold rounded-full border border-slate-100 dark:border-slate-800 shadow-sm">{book.category}</span>
-              </div>
-              
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                <a href={book.readLink} className="p-3.5 bg-brand-600 text-white rounded-full shadow-lg hover:scale-110 transition-transform" title="অনলাইনে পড়ুন"><LucideIcon name="BookOpen" size={20} /></a>
-                <a href={book.downloadLink} className="p-3.5 bg-white text-slate-900 rounded-full shadow-lg hover:scale-110 transition-transform" title="ডাউনলোড"><LucideIcon name="Download" size={20} /></a>
-              </div>
-            </div>
-            
-            <div className="p-5 flex flex-col flex-grow">
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white line-clamp-1 mb-0.5 group-hover:text-brand-600 transition-colors">{book.title}</h3>
-              <p className="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">{book.author}</p>
-              {book.description && (
-                <p className="text-slate-400 dark:text-slate-500 text-xs italic line-clamp-1 mb-4 cursor-help" title={book.description}>
-                  {book.description}
-                </p>
-              )}
-              <div className="mt-auto flex items-center gap-2">
-                <a href={book.readLink} className="flex-[2] text-center py-2.5 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold rounded-xl transition-all shadow-md shadow-brand-500/20 active:scale-95">পড়ুন</a>
-                <a href={book.downloadLink} className="flex-1 flex justify-center py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"><LucideIcon name="Download" size={14} /></a>
-              </div>
-            </div>
-          </div>
-        );
-      };
-
-      const AIAssistant = () => {
-        const [isOpen, setIsOpen] = useState(false);
-        const [input, setInput] = useState('');
-        const [messages, setMessages] = useState([{ role: 'assistant', content: 'নমস্কার! আমি BoiCloud এর এআই সহকারী। আপনি কী ধরনের বই খুঁজছেন? আমি আপনাকে পছন্দের বই খুঁজে পেতে সাহায্য করতে পারি।' }]);
-        const [isLoading, setIsLoading] = useState(false);
-        const scrollRef = useRef(null);
-
-        useEffect(() => { 
-          if (scrollRef.current) {
-            scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-          }
-        }, [messages, isOpen]);
-
-        const handleSend = async () => {
-          if (!input.trim() || isLoading) return;
-          const userMsg = input.trim(); 
-          setInput('');
-          setMessages(prev => [...prev, { role: 'user', content: userMsg }]);
-          setIsLoading(true);
-          
-          // Simulate AI response (replace with actual AI call)
-          setTimeout(() => {
-            const responses = [
-              "আপনার জন্য কিছু সুপারিশ: 'পথের পাঁচালী' - বিভূতিভূষণ বন্দ্যোপাধ্যায়, 'হিমুর হাতে কয়েকটি নীল পদ্ম' - হুমায়ূন আহমেদ, 'অগ্নিবীণা' - কাজী নজরুল ইসলাম।",
-              "আপনি যদি রহস্য উপন্যাস পছন্দ করেন, তাহলে 'ফেলুদা সমগ্র' - সত্যজিৎ রায় এবং 'অন্ধকারে একাকী' - অরিজিৎ ঘোষ পড়তে পারেন।",
-              "কবিতার জন্য 'অগ্নিবীণা' - কাজী নজরুল ইসলাম এবং 'বুলবুল' - কাজী নজরুল ইসলাম অসাধারণ পছন্দ হবে।"
-            ];
-            const response = responses[Math.floor(Math.random() * responses.length)];
-            setMessages(prev => [...prev, { role: 'assistant', content: response }]);
-            setIsLoading(false);
-          }, 1000);
-        };
-
-        return (
-          <div className="fixed bottom-4 right-4 z-[100]">
-            {!isOpen && (
-              <button onClick={() => setIsOpen(true)} className="bg-brand-600 text-white p-4 rounded-full shadow-2xl transition-all hover:scale-110 flex items-center gap-2 active:scale-90">
-                <LucideIcon name="MessageCircle" size={24} /> 
-                <span className="hidden sm:inline font-bold">এআই সহকারী</span>
-              </button>
-            )}
-            {isOpen && (
-              <div className="bg-white dark:bg-slate-900 w-[calc(100vw-2rem)] sm:w-[380px] h-[500px] rounded-3xl shadow-2xl border dark:border-slate-800 flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-300">
-                <div className="bg-brand-600 p-4 text-white flex justify-between items-center shadow-lg">
-                  <div className="flex items-center gap-2"><LucideIcon name="Bot" size={20} /> <h3 className="font-bold">বইক্লাউড এআই</h3></div>
-                  <button onClick={() => setIsOpen(false)} className="hover:bg-white/20 p-1 rounded-lg"><LucideIcon name="X" size={20} /></button>
-                </div>
-                <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50 dark:bg-slate-950 no-scrollbar">
-                  {messages.map((m, i) => (
-                    <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                      <div className={`max-w-[85%] p-3.5 rounded-2xl text-[13px] leading-relaxed shadow-sm ${m.role === 'user' ? 'bg-brand-600 text-white rounded-tr-none' : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-tl-none border dark:border-slate-700'}`}>{m.content}</div>
-                    </div>
-                  ))}
-                  {isLoading && <div className="flex justify-start"><div className="bg-white dark:bg-slate-800 p-3 rounded-2xl animate-pulse"><LucideIcon name="Loader2" size={16} className="animate-spin text-brand-600" /></div></div>}
-                </div>
-                <div className="p-4 border-t dark:border-slate-800 flex gap-2 bg-white dark:bg-slate-900">
-                  <input 
-                    type="text" 
-                    placeholder="বলুন..." 
-                    className="flex-1 bg-slate-50 dark:bg-slate-950 border dark:border-slate-800 rounded-xl px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-500/30 transition-all" 
-                    value={input} 
-                    onChange={(e) => setInput(e.target.value)} 
-                    onKeyDown={(e) => e.key === 'Enter' && handleSend()} 
-                  />
-                  <button onClick={handleSend} className="bg-brand-600 text-white p-2.5 rounded-xl hover:bg-brand-700 shadow-md active:scale-90 transition-transform"><LucideIcon name="Send" size={20} /></button>
-                </div>
-              </div>
-            )}
-          </div>
-        );
-      };
-
-      const Footer = () => (
-        <footer className="bg-white dark:bg-slate-900 border-t dark:border-slate-800 py-16">
-          <div className="max-w-7xl mx-auto px-8 grid md:grid-cols-4 gap-12 text-center md:text-left">
-            <div className="col-span-1 md:col-span-2">
-              <div className="flex items-center justify-center md:justify-start gap-3 mb-6">
-                <img src={LOGO_URL} className="w-10 h-10 rounded-xl" alt="BoiCloud" />
-                <h2 className="text-2xl font-bold bg-gradient-to-r from-brand-600 to-teal-500 bg-clip-text text-transparent">BoiCloud</h2>
-              </div>
-              <p className="text-slate-500 dark:text-slate-400 text-sm max-w-sm mx-auto md:mx-0 leading-relaxed">
-                আমাদের লক্ষ্য পাঠকদের জন্য একটি উন্মুক্ত প্ল্যাটফর্ম তৈরি করা যেখানে জ্ঞান এবং কল্পনার কোনো সীমানা নেই। বই পড়ুন, জ্ঞান বৃদ্ধি করুন।
+            <div class="p-5 flex flex-col flex-grow">
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white line-clamp-1 mb-0.5 group-hover:text-brand-600 transition-colors">${book.title}</h3>
+              <p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">
+                <i data-lucide="user" class="w-3 h-3 inline mr-1"></i> ${book.author}
               </p>
-              <div className="flex justify-center md:justify-start gap-4 mt-8">
-                {['Facebook', 'Twitter', 'Instagram', 'Github'].map(icon => (
-                  <button key={icon} className="p-2.5 bg-slate-100 dark:bg-slate-800 rounded-xl text-slate-500 hover:bg-brand-600 hover:text-white transition-all active:scale-90"><LucideIcon name={icon} size={20} /></button>
-                ))}
+              ${book.description ? `
+                <p class="text-slate-400 dark:text-slate-500 text-xs italic line-clamp-2 mb-4 cursor-help" title="${book.description}">
+                  <i data-lucide="info" class="w-3 h-3 inline mr-1"></i> ${book.description}
+                </p>
+              ` : ''}
+              <div class="mt-auto flex items-center gap-2">
+                <a href="${book.readLink}" class="flex-[2] text-center py-2.5 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold rounded-xl transition-all shadow-md shadow-brand-500/20 active:scale-95 flex items-center justify-center gap-1">
+                  <i data-lucide="book-open" class="w-3 h-3"></i> পড়ুন
+                </a>
+                <a href="${book.downloadLink}" class="flex-1 flex justify-center py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                  <i data-lucide="download" class="w-4 h-4"></i>
+                </a>
               </div>
             </div>
-            
-            <div>
-              <h3 className="font-bold text-slate-900 dark:text-white mb-6 text-lg">প্রয়োজনীয় লিংক</h3>
-              <ul className="text-sm text-slate-500 dark:text-slate-400 space-y-4">
-                <li className="hover:text-brand-600 cursor-pointer transition-colors flex items-center gap-2 justify-center md:justify-start"><LucideIcon name="ExternalLink" size={14} /> হোম</li>
-                <li className="hover:text-brand-600 cursor-pointer transition-colors flex items-center gap-2 justify-center md:justify-start"><LucideIcon name="ExternalLink" size={14} /> বইয়ের তালিকা</li>
-                <li className="hover:text-brand-600 cursor-pointer transition-colors flex items-center gap-2 justify-center md:justify-start"><LucideIcon name="ExternalLink" size={14} /> ক্যাটাগরি</li>
-                <li className="hover:text-brand-600 cursor-pointer transition-colors flex items-center gap-2 justify-center md:justify-start"><LucideIcon name="ExternalLink" size={14} /> যোগাযোগ</li>
-              </ul>
+          </div>
+        `).join('');
+        
+        lucide.createIcons();
+      }
+      
+      // Filter books based on search and category
+      function filterBooks() {
+        const searchQuery = document.getElementById('search-input')?.value.toLowerCase() || '';
+        const selectedCategory = document.querySelector('.category-btn.active')?.dataset.category || 'সবগুলো';
+        const bookCountElement = document.getElementById('book-count');
+        
+        const filtered = BOOKS_DATA.filter(book => {
+          const matchesSearch = book.title.toLowerCase().includes(searchQuery) || 
+                               book.author.toLowerCase().includes(searchQuery) ||
+                               book.description.toLowerCase().includes(searchQuery);
+          const matchesCategory = selectedCategory === 'সবগুলো' || book.category === selectedCategory;
+          
+          return matchesSearch && matchesCategory;
+        });
+        
+        renderBooks(filtered);
+        
+        if (bookCountElement) {
+          bookCountElement.textContent = filtered.length;
+        }
+        
+        // Show/hide no results message
+        const noResults = document.getElementById('no-results');
+        if (noResults) {
+          noResults.style.display = filtered.length === 0 ? 'block' : 'none';
+        }
+      }
+      
+      // Initialize category buttons
+      function initializeCategoryButtons() {
+        const container = document.getElementById('category-buttons');
+        if (!container) return;
+        
+        container.innerHTML = CATEGORIES.map(category => `
+          <button class="category-btn px-6 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all active:scale-95 ${category === 'সবগুলো' ? 'active bg-brand-600 text-white shadow-xl shadow-brand-500/30' : 'bg-white dark:bg-slate-900 text-slate-500 border dark:border-slate-800 hover:border-brand-500/50'}" 
+                  data-category="${category}">
+            ${category === 'সবগুলো' ? '<i data-lucide="grid" class="w-4 h-4 inline mr-2"></i>' : ''}
+            ${category}
+          </button>
+        `).join('');
+        
+        // Add event listeners
+        document.querySelectorAll('.category-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            filterBooks();
+          });
+        });
+        
+        lucide.createIcons();
+      }
+      
+      // AI Assistant functionality
+      function initializeAIAssistant() {
+        const toggleBtn = document.getElementById('ai-assistant-toggle');
+        const closeBtn = document.getElementById('ai-close-btn');
+        const sendBtn = document.getElementById('ai-send-btn');
+        const inputField = document.getElementById('ai-input');
+        const messagesContainer = document.getElementById('ai-messages');
+        
+        if (!toggleBtn) return;
+        
+        const aiResponses = [
+          "আপনার জন্য কিছু সুপারিশ: 'পথের পাঁচালী' - বিভূতিভূষণ বন্দ্যোপাধ্যায়, 'হিমুর হাতে কয়েকটি নীল পদ্ম' - হুমায়ূন আহমেদ, 'অগ্নিবীণা' - কাজী নজরুল ইসলাম।",
+          "আপনি যদি রহস্য উপন্যাস পছন্দ করেন, তাহলে 'ফেলুদা সমগ্র' - সত্যজিৎ রায় এবং 'অন্ধকারে একাকী' - অরিজিৎ ঘোষ পড়তে পারেন।",
+          "কবিতার জন্য 'অগ্নিবীণা' - কাজী নজরুল ইসলাম এবং 'বুলবুল' - কাজী নজরুল ইসলাম অসাধারণ পছন্দ হবে।",
+          "সায়েন্স ফিকশনের জন্য 'মঙ্গলে প্রথম অভিযান' - সায়েন্স রাইটার পড়তে পারেন।",
+          "শ্রেষ্ঠ সাহিত্যের জন্য 'পথের পাঁচালী', 'লালসালু' এবং 'গল্পগুচ্ছ' পড়ুন।"
+        ];
+        
+        // Initial message
+        if (messagesContainer) {
+          messagesContainer.innerHTML = `
+            <div class="flex justify-start">
+              <div class="max-w-[85%] p-3.5 rounded-2xl text-[13px] leading-relaxed shadow-sm bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-tl-none border dark:border-slate-700">
+                <i data-lucide="bot" class="w-4 h-4 inline mr-2 text-brand-600"></i>
+                নমস্কার! আমি BoiCloud এর এআই সহকারী। আপনি কী ধরনের বই খুঁজছেন? আমি আপনাকে পছন্দের বই খুঁজে পেতে সাহায্য করতে পারি।
+              </div>
             </div>
+          `;
+        }
+        
+        toggleBtn.addEventListener('click', () => {
+          const panel = document.getElementById('ai-assistant-panel');
+          if (panel) {
+            panel.classList.toggle('hidden');
+            panel.classList.toggle('animate-in');
+          }
+        });
+        
+        closeBtn?.addEventListener('click', () => {
+          const panel = document.getElementById('ai-assistant-panel');
+          if (panel) {
+            panel.classList.add('hidden');
+          }
+        });
+        
+        function sendMessage() {
+          const message = inputField.value.trim();
+          if (!message) return;
+          
+          // Add user message
+          if (messagesContainer) {
+            messagesContainer.innerHTML += `
+              <div class="flex justify-end">
+                <div class="max-w-[85%] p-3.5 rounded-2xl text-[13px] leading-relaxed shadow-sm bg-brand-600 text-white rounded-tr-none">
+                  ${message}
+                </div>
+              </div>
+            `;
+          }
+          
+          inputField.value = '';
+          
+          // Show typing indicator
+          if (messagesContainer) {
+            messagesContainer.innerHTML += `
+              <div class="flex justify-start">
+                <div class="max-w-[85%] p-3.5 rounded-2xl text-[13px] leading-relaxed shadow-sm bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-tl-none border dark:border-slate-700">
+                  <i data-lucide="loader-2" class="w-4 h-4 inline mr-2 animate-spin text-brand-600"></i>
+                  চিন্তা করছি...
+                </div>
+              </div>
+            `;
             
-            <div>
-              <h3 className="font-bold text-slate-900 dark:text-white mb-6 text-lg">সাবস্ক্রাইব</h3>
-              <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">নতুন বইয়ের খবরের জন্য যোগ দিন।</p>
-              <div className="flex gap-2">
-                <input type="email" placeholder="ইমেইল..." className="bg-slate-50 dark:bg-slate-950 border dark:border-slate-800 rounded-xl px-4 py-2 text-xs w-full focus:ring-1 focus:ring-brand-500 outline-none" />
-                <button className="bg-brand-600 text-white p-2.5 rounded-xl"><LucideIcon name="Mail" size={18} /></button>
+            // Scroll to bottom
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+          }
+          
+          // Simulate AI response after delay
+          setTimeout(() => {
+            if (messagesContainer) {
+              // Remove typing indicator
+              const lastChild = messagesContainer.lastElementChild;
+              if (lastChild) lastChild.remove();
+              
+              // Add AI response
+              const randomResponse = aiResponses[Math.floor(Math.random() * aiResponses.length)];
+              messagesContainer.innerHTML += `
+                <div class="flex justify-start">
+                  <div class="max-w-[85%] p-3.5 rounded-2xl text-[13px] leading-relaxed shadow-sm bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-tl-none border dark:border-slate-700">
+                    <i data-lucide="bot" class="w-4 h-4 inline mr-2 text-brand-600"></i>
+                    ${randomResponse}
+                  </div>
+                </div>
+              `;
+              
+              // Scroll to bottom
+              messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+          }, 1500);
+        }
+        
+        sendBtn?.addEventListener('click', sendMessage);
+        
+        inputField?.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') sendMessage();
+        });
+        
+        lucide.createIcons();
+      }
+      
+      // Initialize the entire application
+      function initializeApp() {
+        // Initialize dark mode
+        const isDarkMode = initializeDarkMode();
+        updateDarkModeToggle(isDarkMode);
+        
+        // Set up dark mode toggle
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        if (darkModeToggle) {
+          darkModeToggle.addEventListener('click', () => {
+            const newMode = toggleDarkMode();
+            updateDarkModeToggle(newMode);
+          });
+        }
+        
+        // Initialize category buttons
+        initializeCategoryButtons();
+        
+        // Set up search functionality
+        const searchInput = document.getElementById('search-input');
+        if (searchInput) {
+          searchInput.addEventListener('input', filterBooks);
+        }
+        
+        // Initial render of all books
+        renderBooks(BOOKS_DATA);
+        
+        // Initialize AI Assistant
+        initializeAIAssistant();
+        
+        // Update book count
+        const bookCountElement = document.getElementById('book-count');
+        if (bookCountElement) {
+          bookCountElement.textContent = BOOKS_DATA.length;
+        }
+        
+        // Scroll to books section
+        const exploreBtn = document.getElementById('explore-books-btn');
+        if (exploreBtn) {
+          exploreBtn.addEventListener('click', () => {
+            document.getElementById('books-grid').scrollIntoView({ behavior: 'smooth' });
+          });
+        }
+        
+        // Refresh Lucide icons
+        setTimeout(() => lucide.createIcons(), 100);
+      }
+      
+      // Initialize when DOM is loaded
+      document.addEventListener('DOMContentLoaded', initializeApp);
+    </script>
+
+    <!-- Main HTML Structure -->
+    <header class="sticky top-0 z-50 glass-effect border-b border-slate-200 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16 sm:h-20">
+          <div class="flex items-center gap-2 cursor-pointer group" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl overflow-hidden group-hover:scale-110 transition-transform duration-300">
+              <img src="${LOGO_URL}" alt="Logo" class="w-full h-full object-cover" onerror="this.src='https://api.dicebear.com/7.x/initials/svg?seed=BC&backgroundColor=10b981';" />
+            </div>
+            <h1 class="text-xl sm:text-2xl font-bold tracking-tight bg-gradient-to-r from-brand-600 to-teal-500 bg-clip-text text-transparent">
+              <i data-lucide="cloud" class="w-6 h-6 inline mr-1"></i> BoiCloud
+            </h1>
+          </div>
+          
+          <div class="hidden md:flex flex-1 max-w-md mx-8 relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+              <i data-lucide="search" class="w-5 h-5"></i>
+            </div>
+            <input 
+              type="text" 
+              id="search-input"
+              placeholder="বই অথবা লেখকের নাম খুঁজুন..." 
+              class="block w-full pl-10 pr-3 py-2 border border-slate-200 dark:border-slate-700 rounded-full bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/50 transition-all text-sm" 
+            />
+          </div>
+
+          <div class="flex items-center gap-2 sm:gap-4">
+            <button id="dark-mode-toggle" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-400">
+              <!-- Icon will be set by JavaScript -->
+            </button>
+            <button class="bg-brand-600 hover:bg-brand-700 text-white px-4 sm:px-6 py-2 rounded-full font-medium transition-all shadow-lg shadow-brand-500/20 active:scale-95 text-xs sm:text-base flex items-center gap-2">
+              <i data-lucide="log-in" class="w-4 h-4"></i> লগইন
+            </button>
+          </div>
+        </div>
+        
+        <div class="md:hidden pb-4">
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+              <i data-lucide="search" class="w-4 h-4"></i>
+            </div>
+            <input 
+              type="text" 
+              id="search-input-mobile"
+              placeholder="বই অথবা লেখকের নাম..." 
+              class="block w-full pl-9 pr-3 py-2 border border-slate-200 dark:border-slate-700 rounded-full bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/50 transition-all text-sm" 
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-grow">
+      <!-- Hero Section -->
+      <section class="relative h-[50vh] sm:h-[70vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+          <img 
+            src="${HERO_BG}" 
+            alt="Library Background" 
+            class="w-full h-full object-cover animate-slow-zoom" 
+          />
+          <div class="absolute inset-0 hero-gradient"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-6 text-center animate-fade-in-up">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 backdrop-blur-md text-brand-300 text-[10px] sm:text-xs font-medium mb-6 border border-white/10">
+            <i data-lucide="sparkles" class="w-4 h-4"></i> 
+            <span>আপনার প্রিয় বইয়ের নতুন ডিজিটাল ঠিকানা</span>
+          </div>
+          <h2 class="text-3xl sm:text-6xl lg:text-8xl font-black text-white mb-6 leading-tight drop-shadow-2xl">
+            <i data-lucide="book-open" class="w-12 h-12 sm:w-20 sm:h-20 inline mr-4 align-middle"></i>
+            বইয়ের জগতে আপনাকে স্বাগতম
+          </h2>
+          <p class="text-sm sm:text-xl text-slate-200 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+            BoiCloud এ আপনি পাবেন হাজার হাজার বাংলা ও ইংরেজি বইয়ের বিশাল সংগ্রহ। সম্পূর্ণ ফ্রি-তে অনলাইনে পড়ুন অথবা ডাউনলোড করুন আজই।
+          </p>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button 
+              id="explore-books-btn"
+              class="w-full sm:w-auto px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white rounded-2xl font-bold text-base sm:text-lg transition-all shadow-xl shadow-brand-500/30 active:scale-95 flex items-center justify-center gap-2"
+            >
+              <i data-lucide="compass" class="w-5 h-5"></i> পড়া শুরু করুন
+            </button>
+            <a 
+              href="mailto:html.arif@gmail.com" 
+              class="w-full sm:w-auto px-8 py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-2xl font-bold text-base sm:text-lg transition-all hover:bg-white/20 active:scale-95 flex items-center justify-center gap-2"
+            >
+              <i data-lucide="upload" class="w-5 h-5"></i> বই জমা দিন
+            </a>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Books Section -->
+      <section id="books-grid" class="max-w-7xl mx-auto px-4 py-12 sm:py-20 scroll-mt-20">
+        <div class="mb-12 flex flex-col gap-8">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+              <div class="p-3 bg-brand-500/10 rounded-2xl text-brand-600 shadow-sm">
+                <i data-lucide="library" class="w-8 h-8"></i>
+              </div>
+              <div>
+                <h2 class="text-2xl sm:text-3xl font-black dark:text-white">বইয়ের সংগ্রহ</h2>
+                <p class="text-slate-500 text-xs sm:text-sm uppercase tracking-widest font-bold">
+                  <i data-lucide="book" class="w-4 h-4 inline mr-1"></i>
+                  মোট <span id="book-count">0</span>টি বই পাওয়া গেছে
+                </p>
               </div>
             </div>
           </div>
           
-          <div className="mt-16 pt-8 border-t dark:border-slate-800 text-center text-xs text-slate-400 px-8">
-            <p>© {new Date().getFullYear()} <span className="font-bold text-brand-600">BoiCloud</span>. All rights reserved.</p>
-            <p className="mt-1">Powered by <span className="text-slate-600 dark:text-slate-200 font-medium">AriFicial</span></p>
+          <div id="category-buttons" class="flex gap-3 overflow-x-auto pb-4 no-scrollbar scroll-smooth px-1">
+            <!-- Category buttons will be inserted by JavaScript -->
           </div>
-        </footer>
-      );
+        </div>
 
-      const App = () => {
-        const [searchQuery, setSearchQuery] = useState('');
-        const [selectedCategory, setSelectedCategory] = useState(Category.ALL);
-        const [visibleCount, setVisibleCount] = useState(8);
-        const [isDarkMode, setIsDarkMode] = useState(() => {
-          // Check localStorage and system preference
-          const savedTheme = localStorage.getItem('theme');
-          if (savedTheme) return savedTheme === 'dark';
-          return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        <div id="no-results" class="hidden text-center py-16">
+          <div class="w-20 h-20 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i data-lucide="search-x" class="w-10 h-10 text-slate-400"></i>
+          </div>
+          <h3 class="text-2xl font-bold dark:text-white mb-2">কোনো বই পাওয়া যায়নি</h3>
+          <p class="text-slate-500 dark:text-slate-400">অন্য কোনো নাম দিয়ে সার্চ করুন অথবা ক্যাটাগরি পরিবর্তন করুন।</p>
+        </div>
+
+        <div id="books-container" class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-10">
+          <!-- Books will be inserted by JavaScript -->
+        </div>
+        
+        <div class="mt-16 flex justify-center">
+          <button 
+            onclick="renderBooks(BOOKS_DATA)" 
+            class="group px-10 py-4 bg-white dark:bg-slate-900 border dark:border-slate-800 rounded-2xl font-black text-slate-800 dark:text-white flex items-center gap-3 hover:border-brand-600 hover:text-brand-600 transition-all shadow-sm active:scale-95"
+          >
+            <i data-lucide="rotate-cw" class="w-5 h-5"></i>
+            সব বই দেখুন 
+            <i data-lucide="chevron-down" class="w-5 h-5 group-hover:translate-y-1 transition-transform"></i>
+          </button>
+        </div>
+      </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-slate-900 border-t dark:border-slate-800 pt-16 pb-8">
+      <div class="max-w-7xl mx-auto px-8 grid md:grid-cols-4 gap-12 text-center md:text-left">
+        <div class="col-span-1 md:col-span-2">
+          <div class="flex items-center justify-center md:justify-start gap-3 mb-6">
+            <img src="${LOGO_URL}" class="w-10 h-10 rounded-xl" alt="BoiCloud" />
+            <h2 class="text-2xl font-bold bg-gradient-to-r from-brand-600 to-teal-500 bg-clip-text text-transparent">
+              <i data-lucide="cloud" class="w-6 h-6 inline mr-1"></i> BoiCloud
+            </h2>
+          </div>
+          <p class="text-slate-500 dark:text-slate-400 text-sm max-w-sm mx-auto md:mx-0 leading-relaxed">
+            <i data-lucide="target" class="w-4 h-4 inline mr-1"></i>
+            আমাদের লক্ষ্য পাঠকদের জন্য একটি উন্মুক্ত প্ল্যাটফর্ম তৈরি করা যেখানে জ্ঞান এবং কল্পনার কোনো সীমানা নেই। বই পড়ুন, জ্ঞান বৃদ্ধি করুন।
+          </p>
+          <div class="flex justify-center md:justify-start gap-4 mt-8">
+            <a href="#" class="p-2.5 bg-slate-100 dark:bg-slate-800 rounded-xl text-slate-500 hover:bg-blue-600 hover:text-white transition-all active:scale-90">
+              <i class="fab fa-facebook-f text-lg"></i>
+            </a>
+            <a href="#" class="p-2.5 bg-slate-100 dark:bg-slate-800 rounded-xl text-slate-500 hover:bg-blue-400 hover:text-white transition-all active:scale-90">
+              <i class="fab fa-twitter text-lg"></i>
+            </a>
+            <a href="#" class="p-2.5 bg-slate-100 dark:bg-slate-800 rounded-xl text-slate-500 hover:bg-pink-600 hover:text-white transition-all active:scale-90">
+              <i class="fab fa-instagram text-lg"></i>
+            </a>
+            <a href="#" class="p-2.5 bg-slate-100 dark:bg-slate-800 rounded-xl text-slate-500 hover:bg-gray-800 hover:text-white transition-all active:scale-90">
+              <i class="fab fa-github text-lg"></i>
+            </a>
+            <a href="#" class="p-2.5 bg-slate-100 dark:bg-slate-800 rounded-xl text-slate-500 hover:bg-red-600 hover:text-white transition-all active:scale-90">
+              <i class="fab fa-youtube text-lg"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="font-bold text-slate-900 dark:text-white mb-6 text-lg">
+            <i data-lucide="link" class="w-5 h-5 inline mr-2"></i> প্রয়োজনীয় লিংক
+          </h3>
+          <ul class="text-sm text-slate-500 dark:text-slate-400 space-y-4">
+            <li class="hover:text-brand-600 cursor-pointer transition-colors flex items-center gap-2 justify-center md:justify-start">
+              <i data-lucide="home" class="w-4 h-4"></i> হোম
+            </li>
+            <li class="hover:text-brand-600 cursor-pointer transition-colors flex items-center gap-2 justify-center md:justify-start">
+              <i data-lucide="book-open" class="w-4 h-4"></i> বইয়ের তালিকা
+            </li>
+            <li class="hover:text-brand-600 cursor-pointer transition-colors flex items-center gap-2 justify-center md:justify-start">
+              <i data-lucide="grid" class="w-4 h-4"></i> ক্যাটাগরি
+            </li>
+            <li class="hover:text-brand-600 cursor-pointer transition-colors flex items-center gap-2 justify-center md:justify-start">
+              <i data-lucide="phone" class="w-4 h-4"></i> যোগাযোগ
+            </li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="font-bold text-slate-900 dark:text-white mb-6 text-lg">
+            <i data-lucide="mail" class="w-5 h-5 inline mr-2"></i> সাবস্ক্রাইব
+          </h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">
+            <i data-lucide="bell" class="w-4 h-4 inline mr-1"></i>
+            নতুন বইয়ের খবরের জন্য যোগ দিন।
+          </p>
+          <div class="flex gap-2">
+            <input type="email" placeholder="ইমেইল..." class="bg-slate-50 dark:bg-slate-950 border dark:border-slate-800 rounded-xl px-4 py-2 text-xs w-full focus:ring-1 focus:ring-brand-500 outline-none" />
+            <button class="bg-brand-600 text-white p-2.5 rounded-xl hover:bg-brand-700 transition-colors">
+              <i data-lucide="send" class="w-5 h-5"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-16 pt-8 border-t dark:border-slate-800 text-center text-xs text-slate-400 px-8">
+        <p>
+          <i data-lucide="copyright" class="w-3 h-3 inline mr-1"></i>
+          © <span id="current-year">2023</span> 
+          <span class="font-bold text-brand-600">BoiCloud</span>. All rights reserved.
+        </p>
+        <p class="mt-1">
+          Powered by <span class="text-slate-600 dark:text-slate-200 font-medium">
+            <i data-lucide="heart" class="w-3 h-3 inline mr-1 text-red-500"></i> AriFicial
+          </span>
+        </p>
+      </div>
+    </footer>
+    
+    <!-- AI Assistant -->
+    <div class="fixed bottom-4 right-4 z-[100]">
+      <button id="ai-assistant-toggle" class="bg-brand-600 text-white p-4 rounded-full shadow-2xl transition-all hover:scale-110 flex items-center gap-2 active:scale-90 animate-float">
+        <i data-lucide="message-circle" class="w-6 h-6"></i> 
+        <span class="hidden sm:inline font-bold">এআই সহকারী</span>
+      </button>
+      
+      <div id="ai-assistant-panel" class="hidden bg-white dark:bg-slate-900 w-[calc(100vw-2rem)] sm:w-[380px] h-[500px] rounded-3xl shadow-2xl border dark:border-slate-800 flex flex-col overflow-hidden">
+        <div class="bg-brand-600 p-4 text-white flex justify-between items-center shadow-lg">
+          <div class="flex items-center gap-2">
+            <i data-lucide="bot" class="w-5 h-5"></i> 
+            <h3 class="font-bold">বইক্লাউড এআই</h3>
+          </div>
+          <button id="ai-close-btn" class="hover:bg-white/20 p-1 rounded-lg">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+        <div id="ai-messages" class="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50 dark:bg-slate-950 no-scrollbar">
+          <!-- Messages will be inserted here -->
+        </div>
+        <div class="p-4 border-t dark:border-slate-800 flex gap-2 bg-white dark:bg-slate-900">
+          <input 
+            type="text" 
+            id="ai-input"
+            placeholder="আপনার পছন্দের বই সম্পর্কে বলুন..." 
+            class="flex-1 bg-slate-50 dark:bg-slate-950 border dark:border-slate-800 rounded-xl px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-500/30 transition-all" 
+          />
+          <button id="ai-send-btn" class="bg-brand-600 text-white p-2.5 rounded-xl hover:bg-brand-700 shadow-md active:scale-90 transition-transform">
+            <i data-lucide="send" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+      // Set current year in footer
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+      
+      // Link mobile search with main search
+      const mobileSearch = document.getElementById('search-input-mobile');
+      const mainSearch = document.getElementById('search-input');
+      
+      if (mobileSearch && mainSearch) {
+        mobileSearch.addEventListener('input', function() {
+          mainSearch.value = this.value;
+          filterBooks();
         });
-
-        useEffect(() => {
-          document.documentElement.classList.toggle('dark', isDarkMode);
-          localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-        }, [isDarkMode]);
-
-        useEffect(() => { setVisibleCount(8); }, [searchQuery, selectedCategory]);
-
-        const filtered = useMemo(() => 
-          BOOKS_DATA.filter(b => 
-            (b.title.toLowerCase().includes(searchQuery.toLowerCase()) || b.author.toLowerCase().includes(searchQuery.toLowerCase())) && 
-            (selectedCategory === Category.ALL || b.category === selectedCategory)
-          ), [searchQuery, selectedCategory]);
-
-        return (
-          <div className="min-h-screen flex flex-col selection:bg-brand-500/30 font-bengali">
-            <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} isDarkMode={isDarkMode} toggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
-            
-            <main className="flex-grow">
-              <Hero />
-              
-              <section id="books-grid" className="max-w-7xl mx-auto px-4 py-12 sm:py-20 scroll-mt-20">
-                <div className="mb-12 flex flex-col gap-8">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div className="flex items-center gap-4">
-                      <div className="p-3 bg-brand-500/10 rounded-2xl text-brand-600 shadow-sm"><LucideIcon name="LayoutGrid" size={28} /></div>
-                      <div>
-                        <h2 className="text-2xl sm:text-3xl font-black dark:text-white">বইয়ের সংগ্রহ</h2>
-                        <p className="text-slate-500 text-xs sm:text-sm uppercase tracking-widest font-bold">মোট {filtered.length}টি বই পাওয়া গেছে</p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="flex gap-3 overflow-x-auto pb-4 no-scrollbar scroll-smooth px-1">
-                    {Object.values(Category).map(cat => (
-                      <button 
-                        key={cat} 
-                        onClick={() => setSelectedCategory(cat)} 
-                        className={`px-6 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all active:scale-95 ${selectedCategory === cat ? 'bg-brand-600 text-white shadow-xl shadow-brand-500/30' : 'bg-white dark:bg-slate-900 text-slate-500 border dark:border-slate-800 hover:border-brand-500/50'}`}
-                      >
-                        {cat}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {filtered.length > 0 ? (
-                  <>
-                    <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-10">
-                      {filtered.slice(0, visibleCount).map(b => <BookCard key={b.id} book={b} />)}
-                    </div>
-                    {visibleCount < filtered.length && (
-                      <div className="mt-16 flex justify-center">
-                        <button 
-                          onClick={() => setVisibleCount(v => v + 4)} 
-                          className="group px-10 py-4 bg-white dark:bg-slate-900 border dark:border-slate-800 rounded-2xl font-black text-slate-800 dark:text-white flex items-center gap-3 hover:border-brand-600 hover:text-brand-600 transition-all shadow-sm active:scale-95"
-                        >
-                          আরো দেখুন 
-                          <LucideIcon name="ChevronDown" size={20} className="group-hover:translate-y-1 transition-transform" />
-                        </button>
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <div className="text-center py-32">
-                    <div className="w-20 h-20 bg-slate-100 dark:bg-slate-900 rounded-full flex items-center justify-center mx-auto mb-6 text-slate-300"><LucideIcon name="AlertCircle" size={40} /></div>
-                    <h3 className="text-2xl font-bold dark:text-white mb-2">কোনো বই পাওয়া যায়নি</h3>
-                    <p className="text-slate-500">অন্য কোনো নাম দিয়ে সার্চ করুন অথবা ক্যাটাগরি পরিবর্তন করুন।</p>
-                  </div>
-                )}
-              </section>
-            </main>
-            
-            <Footer />
-            <AIAssistant />
-          </div>
-        );
-      };
-
-      const root = ReactDOM.createRoot(document.getElementById('root'));
-      root.render(<App />);
+        
+        mainSearch.addEventListener('input', function() {
+          mobileSearch.value = this.value;
+        });
+      }
+      
+      // Reinitialize icons periodically to catch any missing ones
+      setInterval(() => lucide.createIcons(), 2000);
     </script>
 </body>
 </html>
