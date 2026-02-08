@@ -347,18 +347,17 @@
           lucide.createIcons();
           return;
         }
-        
         container.innerHTML = books.map(book => `
-          <div class="group relative bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 hover-lift book-card-shadow flex flex-col h-full transition-all duration-300">
-            <div class="aspect-[2/3] overflow-hidden relative bg-slate-100 dark:bg-slate-800 shrink-0">
-              <img src="${book.coverImage}" alt="${book.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
+          <div class="group bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-lg flex flex-col h-full hover:-translate-y-2 transition-all duration-300">
+            <div class="aspect-[2/3] relative overflow-hidden">
+              <img src="${book.coverImage}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
               
               <div class="absolute top-3 left-3 z-10">
                 <span class="px-3 py-1 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm text-brand-600 text-[10px] font-bold rounded-full border border-slate-100 dark:border-slate-800 shadow-sm">${book.category}</span>
               </div>
               
               <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                <a href="${book.readLink}" class="p-3.5 bg-brand-600 text-white rounded-full shadow-lg hover:scale-110 transition-transform" title="অনলাইনে পড়ুন">
+                <a href="${book.readLink}" class="p-3.5 bg-brand-600 text-white rounded-full shadow-lg hover:scale-110 transition-transform" title="অনলাইনে পড়ুন">
                   <i data-lucide="book-open" class="w-5 h-5"></i>
                 </a>
                 <a href="${book.downloadLink}" class="p-3.5 bg-white text-slate-900 rounded-full shadow-lg hover:scale-110 transition-transform" title="ডাউনলোড">
@@ -379,7 +378,7 @@
               ` : ''}
               <div class="mt-auto flex items-center gap-2">
                 <a href="${book.readLink}" class="flex-[2] text-center py-2.5 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold rounded-xl transition-all shadow-md shadow-brand-500/20 active:scale-95 flex items-center justify-center gap-1">
-                  <i data-lucide="book-open" class="w-3 h-3"></i> পড়ুন
+                  <i data-lucide="book-open" class="w-3 h-3"></i> পড়ুন
                 </a>
                 <a href="${book.downloadLink}" class="flex-1 flex justify-center py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
                   <i data-lucide="download" class="w-4 h-4"></i>
@@ -392,10 +391,10 @@
         lucide.createIcons();
       }
       
-      // Filter books based on search and category
       function filterBooks() {
         const searchQuery = document.getElementById('search-input')?.value.toLowerCase() || '';
-        const selectedCategory = document.querySelector('.category-btn.active')?.dataset.category || 'সবগুলো';
+        const activeBtn = document.querySelector('.category-btn.active');
+        const selectedCategory = activeBtn ? activeBtn.dataset.category : 'সবগুলো';
         const bookCountElement = document.getElementById('book-count');
         
         const filtered = BOOKS_DATA.filter(book => {
@@ -413,14 +412,12 @@
           bookCountElement.textContent = filtered.length;
         }
         
-        // Show/hide no results message
         const noResults = document.getElementById('no-results');
         if (noResults) {
           noResults.style.display = filtered.length === 0 ? 'block' : 'none';
         }
       }
       
-      // Initialize category buttons
       function initializeCategoryButtons() {
         const container = document.getElementById('category-buttons');
         if (!container) return;
@@ -433,11 +430,14 @@
           </button>
         `).join('');
         
-        // Add event listeners
         document.querySelectorAll('.category-btn').forEach(btn => {
           btn.addEventListener('click', function() {
-            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
+            document.querySelectorAll('.category-btn').forEach(b => {
+                b.classList.remove('active', 'bg-brand-600', 'text-white', 'shadow-xl', 'shadow-brand-500/30');
+                b.classList.add('bg-white', 'dark:bg-slate-900', 'text-slate-500', 'border', 'dark:border-slate-800');
+            });
+            this.classList.add('active', 'bg-brand-600', 'text-white', 'shadow-xl', 'shadow-brand-500/30');
+            this.classList.remove('bg-white', 'dark:bg-slate-900', 'text-slate-500', 'border', 'dark:border-slate-800');
             filterBooks();
           });
         });
@@ -445,7 +445,6 @@
         lucide.createIcons();
       }
       
-      // AI Assistant functionality
       function initializeAIAssistant() {
         const toggleBtn = document.getElementById('ai-assistant-toggle');
         const closeBtn = document.getElementById('ai-close-btn');
@@ -456,14 +455,13 @@
         if (!toggleBtn) return;
         
         const aiResponses = [
-          "আপনার জন্য কিছু সুপারিশ: 'পথের পাঁচালী' - বিভূতিভূষণ বন্দ্যোপাধ্যায়, 'হিমুর হাতে কয়েকটি নীল পদ্ম' - হুমায়ূন আহমেদ, 'অগ্নিবীণা' - কাজী নজরুল ইসলাম।",
-          "আপনি যদি রহস্য উপন্যাস পছন্দ করেন, তাহলে 'ফেলুদা সমগ্র' - সত্যজিৎ রায় এবং 'অন্ধকারে একাকী' - অরিজিৎ ঘোষ পড়তে পারেন।",
+          "আপনার জন্য কিছু সুপারিশ: 'পথের পাঁচালী' - বিভূতিভূষণ বন্দ্যোপাধ্যায়, 'হিমুর হাতে কয়েকটি নীল পদ্ম' - হুমায়ূন আহমেদ, 'অগ্নিবীণা' - কাজী নজরুল ইসলাম।",
+          "আপনি যদি রহস্য উপন্যাস পছন্দ করেন, তাহলে 'ফেলুদা সমগ্র' - সত্যজিৎ রায় এবং 'অন্ধকারে একাকী' - অরিজিৎ ঘোষ পড়তে পারেন।",
           "কবিতার জন্য 'অগ্নিবীণা' - কাজী নজরুল ইসলাম এবং 'বুলবুল' - কাজী নজরুল ইসলাম অসাধারণ পছন্দ হবে।",
-          "সায়েন্স ফিকশনের জন্য 'মঙ্গলে প্রথম অভিযান' - সায়েন্স রাইটার পড়তে পারেন।",
-          "শ্রেষ্ঠ সাহিত্যের জন্য 'পথের পাঁচালী', 'লালসালু' এবং 'গল্পগুচ্ছ' পড়ুন।"
+          "সায়েন্স ফিকশনের জন্য 'মঙ্গলে প্রথম অভিযান' - সায়েন্স রাইটার পড়তে পারেন।",
+          "শ্রেষ্ঠ সাহিত্যের জন্য 'পথের পাঁচালী', 'লালসালু' এবং 'গল্পগুচ্ছ' পড়ুন।"
         ];
         
-        // Initial message
         if (messagesContainer) {
           messagesContainer.innerHTML = `
             <div class="flex justify-start">
@@ -479,91 +477,52 @@
           const panel = document.getElementById('ai-assistant-panel');
           if (panel) {
             panel.classList.toggle('hidden');
-            if (!panel.classList.contains('hidden')) {
-              panel.classList.add('animate-in');
-            }
           }
         });
         
         closeBtn?.addEventListener('click', () => {
-          const panel = document.getElementById('ai-assistant-panel');
-          if (panel) {
-            panel.classList.add('hidden');
-          }
+          document.getElementById('ai-assistant-panel')?.classList.add('hidden');
         });
         
         function sendMessage() {
           const message = inputField.value.trim();
-          if (!message) return;
+          if (!message || !messagesContainer) return;
           
-          // Add user message
-          if (messagesContainer) {
-            messagesContainer.innerHTML += `
-              <div class="flex justify-end">
-                <div class="max-w-[85%] p-3.5 rounded-2xl text-[13px] leading-relaxed shadow-sm bg-brand-600 text-white rounded-tr-none">
-                  ${message}
-                </div>
+          messagesContainer.innerHTML += `
+            <div class="flex justify-end">
+              <div class="max-w-[85%] p-3.5 rounded-2xl text-[13px] leading-relaxed shadow-sm bg-brand-600 text-white rounded-tr-none">
+                ${message}
               </div>
-            `;
-          }
+            </div>
+          `;
           
           inputField.value = '';
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
           
-          // Show typing indicator
-          if (messagesContainer) {
+          setTimeout(() => {
+            const randomResponse = aiResponses[Math.floor(Math.random() * aiResponses.length)];
             messagesContainer.innerHTML += `
               <div class="flex justify-start">
                 <div class="max-w-[85%] p-3.5 rounded-2xl text-[13px] leading-relaxed shadow-sm bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-tl-none border dark:border-slate-700">
-                  <i data-lucide="loader-2" class="w-4 h-4 inline mr-2 animate-spin text-brand-600"></i>
-                  চিন্তা করছি...
+                  <i data-lucide="bot" class="w-4 h-4 inline mr-2 text-brand-600"></i>
+                  ${randomResponse}
                 </div>
               </div>
             `;
-            
-            // Scroll to bottom
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
-          }
-          
-          // Simulate AI response after delay
-          setTimeout(() => {
-            if (messagesContainer) {
-              // Remove typing indicator
-              const lastChild = messagesContainer.lastElementChild;
-              if (lastChild) lastChild.remove();
-              
-              // Add AI response
-              const randomResponse = aiResponses[Math.floor(Math.random() * aiResponses.length)];
-              messagesContainer.innerHTML += `
-                <div class="flex justify-start">
-                  <div class="max-w-[85%] p-3.5 rounded-2xl text-[13px] leading-relaxed shadow-sm bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-tl-none border dark:border-slate-700">
-                    <i data-lucide="bot" class="w-4 h-4 inline mr-2 text-brand-600"></i>
-                    ${randomResponse}
-                  </div>
-                </div>
-              `;
-              
-              // Scroll to bottom
-              messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            }
-          }, 1500);
+            lucide.createIcons();
+          }, 1000);
         }
         
         sendBtn?.addEventListener('click', sendMessage);
-        
-        inputField?.addEventListener('keypress', (e) => {
-          if (e.key === 'Enter') sendMessage();
-        });
-        
+        inputField?.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
         lucide.createIcons();
       }
       
-      // Initialize the entire application
       function initializeApp() {
-        // Initialize dark mode
         const isDarkMode = initializeDarkMode();
         updateDarkModeToggle(isDarkMode);
         
-        // Set up dark mode toggle
         const darkModeToggle = document.getElementById('dark-mode-toggle');
         if (darkModeToggle) {
           darkModeToggle.addEventListener('click', () => {
@@ -572,44 +531,28 @@
           });
         }
         
-        // Initialize category buttons
         initializeCategoryButtons();
-        
-        // Set up search functionality
         const searchInput = document.getElementById('search-input');
-        if (searchInput) {
-          searchInput.addEventListener('input', filterBooks);
-        }
+        if (searchInput) searchInput.addEventListener('input', filterBooks);
         
-        // Initial render of all books
         renderBooks(BOOKS_DATA);
-        
-        // Initialize AI Assistant
         initializeAIAssistant();
         
-        // Update book count
         const bookCountElement = document.getElementById('book-count');
-        if (bookCountElement) {
-          bookCountElement.textContent = BOOKS_DATA.length;
-        }
+        if (bookCountElement) bookCountElement.textContent = BOOKS_DATA.length;
         
-        // Scroll to books section
         const exploreBtn = document.getElementById('explore-books-btn');
         if (exploreBtn) {
           exploreBtn.addEventListener('click', () => {
             document.getElementById('books-grid').scrollIntoView({ behavior: 'smooth' });
           });
         }
-        
-        // Refresh Lucide icons
         setTimeout(() => lucide.createIcons(), 100);
       }
       
-      // Initialize when DOM is loaded
       document.addEventListener('DOMContentLoaded', initializeApp);
     </script>
 
-    <!-- Main HTML Structure -->
   <header class="sticky top-0 z-50 glass-effect border-b border-slate-200 dark:border-slate-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16 sm:h-20">
@@ -677,17 +620,17 @@
           </div>
           <h2 class="text-3xl sm:text-6xl lg:text-8xl font-black text-white mb-6 leading-tight drop-shadow-2xl animate-fade-in-up">
             <i data-lucide="book-open" class="w-12 h-12 sm:w-20 sm:h-20 inline mr-4 align-middle"></i>
-            বইয়ের জগতে আপনাকে স্বাগতম
+            বইয়ের জগতে আপনাকে স্বাগতম
           </h2>
           <p class="text-sm sm:text-xl text-slate-200 max-w-2xl mx-auto mb-10 leading-relaxed font-light animate-fade-in-up">
-            BoiCloud এ আপনি পাবেন হাজার হাজার বাংলা ও ইংরেজি বইয়ের বিশাল সংগ্রহ। সম্পূর্ণ ফ্রি-তে অনলাইনে পড়ুন অথবা ডাউনলোড করুন আজই।
+            BoiCloud এ আপনি পাবেন হাজার হাজার বাংলা ও ইংরেজি বইয়ের বিশাল সংগ্রহ। সম্পূর্ণ ফ্রি-তে অনলাইনে পড়ুন অথবা ডাউনলোড করুন আজই।
           </p>
           <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up">
             <button 
               id="explore-books-btn"
               class="w-full sm:w-auto px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white rounded-2xl font-bold text-base sm:text-lg transition-all shadow-xl shadow-brand-500/30 active:scale-95 flex items-center justify-center gap-2"
             >
-              <i data-lucide="compass" class="w-5 h-5"></i> পড়া শুরু করুন
+              <i data-lucide="compass" class="w-5 h-5"></i> পড়া শুরু করুন
             </button>
             <a 
               href="mailto:html.arif@gmail.com" 
@@ -699,7 +642,6 @@
         </div>
       </section>
       
-      <!-- Books Section -->
       <section id="books-grid" class="max-w-7xl mx-auto px-4 py-12 sm:py-20 scroll-mt-20">
         <div class="mb-12 flex flex-col gap-8">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -708,17 +650,16 @@
                 <i data-lucide="library" class="w-8 h-8"></i>
               </div>
               <div>
-                <h2 class="text-2xl sm:text-3xl font-black dark:text-white">বইয়ের সংগ্রহ</h2>
+                <h2 class="text-2xl sm:text-3xl font-black dark:text-white">বইয়ের সংগ্রহ</h2>
                 <p class="text-slate-500 text-xs sm:text-sm uppercase tracking-widest font-bold">
                   <i data-lucide="book" class="w-4 h-4 inline mr-1"></i>
-                  মোট <span id="book-count">0</span>টি বই পাওয়া গেছে
+                  মোট <span id="book-count">0</span>টি বই পাওয়া গেছে
                 </p>
               </div>
             </div>
           </div>
           
           <div id="category-buttons" class="flex gap-3 overflow-x-auto pb-4 no-scrollbar scroll-smooth px-1">
-            <!-- Category buttons will be inserted by JavaScript -->
           </div>
         </div>
 
@@ -726,12 +667,11 @@
           <div class="w-20 h-20 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6">
             <i data-lucide="search-x" class="w-10 h-10 text-slate-400"></i>
           </div>
-          <h3 class="text-2xl font-bold dark:text-white mb-2">কোনো বই পাওয়া যায়নি</h3>
-          <p class="text-slate-500 dark:text-slate-400">অন্য কোনো নাম দিয়ে সার্চ করুন অথবা ক্যাটাগরি পরিবর্তন করুন।</p>
+          <h3 class="text-2xl font-bold dark:text-white mb-2">কোনো বই পাওয়া যায়নি</h3>
+          <p class="text-slate-500 dark:text-slate-400">অন্য কোনো নাম দিয়ে সার্চ করুন অথবা ক্যাটাগরি পরিবর্তন করুন।</p>
         </div>
 
         <div id="books-container" class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-10">
-          <!-- Books will be inserted by JavaScript -->
         </div>
         
         <div class="mt-16 flex justify-center">
@@ -746,6 +686,8 @@
         </div>
       </section>
     </main>
+              
+
     
     <!-- Footer -->
     <footer class="bg-white dark:bg-slate-900 border-t dark:border-slate-800 pt-16 pb-8">
