@@ -1,741 +1,871 @@
 <!DOCTYPE html>
 <html lang="bn" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BoiCloud | বইক্লাউড - প্রিমিয়াম অনলাইন লাইব্রেরি</title>
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>BoiCloud | বইক্লাউড - প্রিমিয়াম অনলাইন লাইব্রেরি</title>
 
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            fontFamily: {
-              bengali: ['"Hind Siliguri"', 'sans-serif'],
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          screens: { xs: '480px' },
+          fontFamily: { bengali: ['"Hind Siliguri"', 'sans-serif'] },
+          colors: {
+            brand: { 50:'#f0fdf4', 100:'#dcfce7', 500:'#10b981', 600:'#059669', 700:'#047857' }
+          },
+          animation: {
+            'slow-zoom':'slow-zoom 20s infinite alternate',
+            'fade-in-up':'fade-in-up 0.8s ease-out forwards',
+            'pulse-slow':'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'blink-soft':'blink-soft 1.2s ease-in-out infinite',
+            'pop-in':'pop-in .18s ease-out forwards',
+          },
+          keyframes: {
+            'slow-zoom': {
+              '0%': { transform: 'scale(1) translate(0, 0)' },
+              '100%': { transform: 'scale(1.1) translate(-2%, -1%)' },
             },
-            colors: {
-              brand: {
-                50: '#f0fdf4',
-                100: '#dcfce7',
-                500: '#10b981',
-                600: '#059669',
-                700: '#047857',
-              }
+            'fade-in-up': {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
             },
-            animation: {
-              'slow-zoom': 'slow-zoom 20s infinite alternate',
-              'fade-in-up': 'fade-in-up 0.8s ease-out forwards',
-              'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'blink-soft': {
+              '0%,100%': { filter: 'brightness(1)', transform: 'translateY(0px)' },
+              '50%': { filter: 'brightness(1.12)', transform: 'translateY(-1px)' },
             },
-            keyframes: {
-              'slow-zoom': {
-                '0%': { transform: 'scale(1) translate(0, 0)' },
-                '100%': { transform: 'scale(1.1) translate(-2%, -1%)' },
-              },
-              'fade-in-up': {
-                '0%': { opacity: '0', transform: 'translateY(20px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
-              },
-            }
+            'pop-in': {
+              '0%': { opacity: '0', transform: 'translateY(8px) scale(.98)' },
+              '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+            },
           }
         }
       }
-    </script>
-    
-    <style>
-      body {
-        font-family: 'Hind Siliguri', sans-serif;
-        -webkit-tap-highlight-color: transparent;
-      }
-      .glass-effect {
-        backdrop-filter: blur(12px);
-        background: rgba(255, 255, 255, 0.8);
-      }
-      .dark .glass-effect {
-        background: rgba(15, 23, 42, 0.8);
-      }
-      .book-card-shadow {
-        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
-      }
-      .hover-lift {
-        transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-      }
-      @media (min-width: 768px) {
-        .hover-lift:hover {
-          transform: translateY(-8px);
-        }
-      }
-      .no-scrollbar::-webkit-scrollbar { display: none; }
-      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-      
-      /* পূর্বের Hero Background Gradient এক্সাক্টলি ফিরিয়ে আনা হয়েছে */
-      .hero-gradient {
-        background: linear-gradient(to bottom, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.8));
-      }
-      
-      /* Custom animations */
-      @keyframes float {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
-      }
-      
-      .animate-float {
-        animation: float 3s ease-in-out infinite;
-      }
-      
-      /* Smooth transitions */
-      * {
-        transition: background-color 0.3s ease, border-color 0.3s ease;
-      }
-      
-      /* Scrollbar styling */
-      ::-webkit-scrollbar {
-        width: 10px;
-      }
-      
-      ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-      }
-      
-      .dark ::-webkit-scrollbar-track {
-        background: #1e293b;
-      }
-      
-      ::-webkit-scrollbar-thumb {
-        background: #c1c1c1;
-        border-radius: 5px;
-      }
-      
-      .dark ::-webkit-scrollbar-thumb {
-        background: #475569;
-      }
-      
-      ::-webkit-scrollbar-thumb:hover {
-        background: #a1a1a1;
-      }
-      
-      .dark ::-webkit-scrollbar-thumb:hover {
-        background: #64748b;
-      }
-      
-      /* Custom animations for background */
-      @keyframes slow-zoom {
-        0% { transform: scale(1) translate(0, 0); }
-        100% { transform: scale(1.1) translate(-2%, -1%); }
-      }
-      
-      .animate-slow-zoom {
-        animation: slow-zoom 20s infinite alternate;
-        animation-timing-function: ease-in-out;
-      }
-    </style>
+    }
+  </script>
+
+  <style>
+    body { font-family: 'Hind Siliguri', sans-serif; -webkit-tap-highlight-color: transparent; }
+    .glass-effect { backdrop-filter: blur(12px); background: rgba(255, 255, 255, 0.8); }
+    .dark .glass-effect { background: rgba(15, 23, 42, 0.8); }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Hero Gradient */
+    .hero-gradient {
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.8));
+    }
+
+    * { transition: background-color 0.3s ease, border-color 0.3s ease; }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    .dark ::-webkit-scrollbar-track { background: #1e293b; }
+    ::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 5px; }
+    .dark ::-webkit-scrollbar-thumb { background: #475569; }
+    ::-webkit-scrollbar-thumb:hover { background: #a1a1a1; }
+    .dark ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+    @keyframes slow-zoom {
+      0% { transform: scale(1) translate(0, 0); }
+      100% { transform: scale(1.1) translate(-2%, -1%); }
+    }
+    .animate-slow-zoom { animation: slow-zoom 20s infinite alternate; animation-timing-function: ease-in-out; }
+
+    /* Category hover blink */
+    .category-btn:hover { box-shadow: 0 12px 30px -16px rgba(16,185,129,.45); }
+    .category-btn:hover:not(.active) {
+      animation: blink-soft 1.2s ease-in-out infinite;
+      border-color: rgba(16,185,129,.45) !important;
+    }
+
+    /* Search suggestion dropdown */
+    .suggestions {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0; right: 0;
+      z-index: 60;
+      border-radius: 16px;
+      overflow: hidden;
+      transform-origin: top;
+    }
+    mark { padding: 0 2px; border-radius: 4px; background: rgba(16,185,129,.18); color: inherit; }
+    .dark mark { background: rgba(16,185,129,.22); }
+
+    /* Toast */
+    .toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: 22px; z-index: 999; max-width: 92vw; }
+  </style>
 </head>
-<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 antialiased overflow-x-hidden">
-    <div id="root"></div>
 
-    <script>
-      // Initialize Lucide icons
-      lucide.createIcons();
-      
-      // Book data - Simple JavaScript array
-      const BOOKS_DATA = [
-        { 
-          id: '1', 
-  title: 'আর রাহীকুল মাখতূম', 
-  author: 'আল্লামা সফিউর রহমান মোবারকপুরী', 
-  category:'ইসলামিক', // আপনি চাইলে 'জীবনী' ক্যাটাগরি থাকলে সেটিও দিতে পারেন
-  coverImage: 'https://media.kitabghor.com/products/1022/24070/voqjr1678513345czycjt1.jpg', 
-  // ড্রাইভ রিড লিঙ্ক
-  readLink: 'https://drive.google.com/file/d/19HyjCsZ6cT6pd15ksGfuahRbSx3iWQ9a/view?usp=sharing', 
-  // ড্রাইভ ডিরেক্ট ডাউনলোড লিঙ্ক
-  downloadLink: 'https://drive.google.com/uc?export=download&id=19HyjCsZ6cT6pd15ksGfuahRbSx3iWQ9a', 
-  description: 'বিশ্বনন্দিত সীরাত গ্রন্থ, যেখানে নবী করীম (সা.)-এর পবিত্র জীবন আখ্যান বিস্তারিতভাবে বর্ণিত হয়েছে।'
-             
- 
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 antialiased overflow-x-hidden">
+  <div id="root"></div>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    /* ======================================================================
+      ✅ বই যোগ করার জায়গা (শুধু এই অংশে কাজ করবেন)
+      ----------------------------------------------------------------------
+      1) নতুন বই যোগ করতে: BOOKS_DATA array এর ভেতরে নতুন { ... } object যোগ করুন।
+      2) Cover Image: coverImage এ সরাসরি ইমেজ লিংক দিন (https://...jpg/png/webp)।
+      3) Drive Read Link:
+         - Drive file খুলে Share → Copy link → সাধারণত এমন হয়:
+           https://drive.google.com/file/d/FILE_ID/view?usp=sharing
+      4) Drive Direct Download Link:
+         - এই format ব্যবহার করুন:
+           https://drive.google.com/uc?export=download&id=FILE_ID
+      5) এক বইকে বহু ক্যাটাগরিতে রাখতে চাইলে:
+         - categories: ['উপন্যাস','থ্রিলার','সাহিত্য']
+         - (পুরোনো code এর মতো শুধু category দিলেও চলবে)
+    ====================================================================== */
+
+    const BOOKS_DATA = [
+      {
+        id: '1',
+        title: 'আর রাহীকুল মাখতূম',
+        author: 'আল্লামা সফিউর রহমান মোবারকপুরী',
+        category: 'ইসলামিক',
+        // categories: ['ইসলামিক','জীবনী'],  // ✅ বহু ক্যাটাগরি চাইলে এভাবে দিন (optional)
+        coverImage: 'https://media.kitabghor.com/products/1022/24070/voqjr1678513345czycjt1.jpg',
+        readLink: 'https://drive.google.com/file/d/19HyjCsZ6cT6pd15ksGfuahRbSx3iWQ9a/view?usp=sharing',
+        downloadLink: 'https://drive.google.com/uc?export=download&id=19HyjCsZ6cT6pd15ksGfuahRbSx3iWQ9a',
+        description: 'বিশ্বনন্দিত সীরাত গ্রন্থ, যেখানে নবী করীম (সা.)-এর পবিত্র জীবন আখ্যান বিস্তারিতভাবে বর্ণিত হয়েছে।'
       },
-        { 
-         id: '2', 
-  title: 'হিমুর হাতে কয়েকটি নীল পদ্ম', 
-  author: 'হুমায়ূন আহমেদ', 
-  category: 'উপন্যাস', 
-  // আপনার দেওয়া নতুন ইমেজ লিঙ্ক
-  coverImage: 'https://bengaliebook.com/wp-content/uploads/2022/02/%E0%A6%B9%E0%A6%BF%E0%A6%AE%E0%A7%81%E0%A6%B0-%E0%A6%B9%E0%A6%BE%E0%A6%A4%E0%A7%87-%E0%A6%95%E0%A6%AF%E0%A6%BC%E0%A7%87%E0%A6%95%E0%A6%9F%E0%A6%BF-%E0%A6%A8%E0%A7%80%E0%A6%B2%E0%A6%AA%E0%A6%A6%E0%A7%8D%E0%A6%AE-1086x1536.jpg', 
-  // ড্রাইভ রিড লিঙ্ক
-  readLink: 'https://drive.google.com/file/d/127a_Z71ZCS6dgimTg0IeB6ist2rL6vmp/view?usp=sharing', 
-  // ড্রাইভ ডিরেক্ট ডাউনলোড লিঙ্ক
-  downloadLink: 'https://drive.google.com/uc?export=download&id=127a_Z71ZCS6dgimTg0IeB6ist2rL6vmp', 
-  description: 'হিমু সিরিজের এক জনপ্রিয় রহস্যময় উপন্যাস।' 
-        },
-        { 
-          id: '3', 
-  title: 'লোকরহস্য', 
-  author: 'বঙ্কিমচন্দ্র চট্টোপাধ্যায়', 
-  category: 'অন্যান্য', 
-  // আপনার দেওয়া নতুন ইমেজ লিঙ্ক
-  coverImage: 'https://rokbucket.rokomari.io/ProductNew20190903/260X372/Lokarahasya-Bankimacandro_Chattopadhay_-d4b06-445513.jpg', 
-  // ড্রাইভ রিড লিঙ্ক
-  readLink: 'https://drive.google.com/file/d/1G0OYqLvpUIyShsYDL2N3HXXa3UUMMFD_/view?usp=sharing', 
-  // ড্রাইভ ডিরেক্ট ডাউনলোড লিঙ্ক
-  downloadLink: 'https://drive.google.com/uc?export=download&id=1G0OYqLvpUIyShsYDL2N3HXXa3UUMMFD_', 
-  description: 'বঙ্কিমচন্দ্র চট্টোপাধ্যায়ের একটি চমৎকার সামাজিক ও ব্যঙ্গাত্মক প্রবন্ধ সংকলন।'
-        },
-        { 
-          id: '4', 
-  title: 'প্রফেসর শঙ্কু সমগ্র', 
-  author: 'সত্যজিৎ রায়', 
-  category: 'সায়েন্স ফিকশন', // অথবা আপনি চাইলে 'সায়েন্স ফিকশন' ক্যাটাগরি খুলে সেখানে দিতে পারেন
-  coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1698947761i/670686.jpg', 
-  readLink: 'https://drive.google.com/file/d/1UGmXVI8LswS40A8QbP9Ugr_2Bs_11Hcr/view?usp=sharing', 
-  downloadLink: 'https://drive.google.com/uc?export=download&id=1UGmXVI8LswS40A8QbP9Ugr_2Bs_11Hcr', 
-  description: 'বিশ্বখ্যাত বিজ্ঞানী প্রফেসর ত্রিলোকেশ্বর শঙ্কুর অদ্ভুত সব আবিষ্কার ও অভিযানের রোমাঞ্চকর কাহিনী।'
-        },
-        { 
-          id: '5', 
-  title: 'ফেলুদা সমগ্র ১', 
-  author: 'সত্যজিৎ রায়', 
-  category: 'থ্রিলার', 
-  coverImage: 'https://www.versoz.com/cdn/shop/files/8V2GCB9KIWPU-1_750x.jpg?v=1724593671', 
-  readLink: 'https://drive.google.com/file/d/127NUgpcPQrm55ppdUhDDlTtte2mChTO7/view?usp=sharing', 
-  downloadLink: 'https://drive.google.com/uc?export=download&id=127NUgpcPQrm55ppdUhDDlTtte2mChTO7', 
-  description: 'ফেলুদা সিরিজের প্রথম খণ্ড, যেখানে প্রদোষ চন্দ্র মিত্রের রোমাঞ্চকর সব গোয়েন্দা কাহিনী সংকলিত হয়েছে।'
-        },
-        { 
-         id: '6', 
-  title: 'ফেলুদা সমগ্র ২', 
-  author: 'সত্যজিৎ রায়', 
-  category: 'থ্রিলার', 
-  // Apnar deya image link
-  coverImage: 'https://www.amarbooks.org/thumbs/1467711379.jpg', 
-  // Drive read link
-  readLink: 'https://drive.google.com/file/d/1wTsIDZd5O5G3oBs9w4H9NKTUHG2LKeSj/view?usp=sharing', 
-  // Drive direct download link
-  downloadLink: 'https://drive.google.com/uc?export=download&id=1wTsIDZd5O5G3oBs9w4H9NKTUHG2LKeSj', 
-  description: 'ফেলুদা সিরিজের দ্বিতীয় খণ্ড, যেখানে প্রদোষ চন্দ্র মিত্রের আরও কিছু শ্বাসরুদ্ধকর গোয়েন্দা কাহিনী রয়েছে।'
-        },
-        { 
-          id: '7', 
-  title: 'লালসালু', 
-  author: 'সৈয়দ ওয়ালীউল্লাহ্', 
-  category: 'উপন্যাস', 
-  // আপনার দেওয়া ইমেজ লিঙ্ক
-  coverImage: 'https://www.amarbooks.org/thumbs/1468163668.jpg', 
-  // ড্রাইভ রিড লিঙ্ক
-  readLink: 'https://drive.google.com/file/d/1C9LPULtTbq5uWqQZLdPfNFKee0XsKZoE/view?usp=sharing', 
-  // ড্রাইভ ডিরেক্ট ডাউনলোড লিঙ্ক
-  downloadLink: 'https://drive.google.com/uc?export=download&id=1C9LPULtTbq5uWqQZLdPfNFKee0XsKZoE', 
-  description: 'বাঙালি মুসলিম সমাজের ধর্মীয় অন্ধবিশ্বাস ও শোষণের এক গভীর জীবনধর্মী উপন্যাস।'
-        },
-        { 
-          id: '8', 
-  title: 'অগ্নিপক্ষ (আত্মজীবনী)', 
-  author: 'এ পি জে আব্দুল কালাম', 
-  category: 'জীবনী', 
-  coverImage: 'https://allbanglaboi.com/wp-content/uploads/2020/04/Agni-Pakkha-Atmajibani-by-APJ-Abdul-Kalam.jpg', 
-  // Read Link: Manush click korle Drive-e boiti open hobe
-  readLink: 'https://drive.google.com/file/d/1LCTZMavEB59_a6e13S5aN3cqCmn9Jl3H/view?usp=sharing', 
-  // Download Link: Manush click korle sorasori download shuru hobe
-  downloadLink: 'https://drive.google.com/uc?export=download&id=1LCTZMavEB59_a6e13S5aN3cqCmn9Jl3H', 
-  description: 'ভারতের প্রাক্তন রাষ্ট্রপতি এ পি জে আব্দুল কালামের অনুপ্রেরণামূলক আত্মজীবনী।'
-        },
-        { 
-          id: '9', 
-          title: 'ফেলুদা সমগ্র', 
-          author: 'সত্যজিৎ রায়', 
-          category: 'থ্রিলার', 
-          coverImage: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=1000', 
-          readLink: '#', 
-          downloadLink: '#', 
-          description: 'প্রদোষ চন্দ্র মিত্রের বুদ্ধির লড়াই আর রহস্য অভিযান।' 
-        },
-        { 
-          id: '10', 
-          title: 'বুলবুল', 
-          author: 'কাজী নজরুল ইসলাম', 
-          category: 'কবিতা', 
-          coverImage: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1000', 
-          readLink: '#', 
-          downloadLink: '#', 
-          description: 'নজরুলের প্রেমের কবিতার অনন্য সংকলন।' 
-        },
-        { 
-          id: '11', 
-          title: 'শঙ্খনীল কারাগার', 
-          author: 'হুমায়ূন আহমেদ', 
-          category: 'উপন্যাস', 
-          coverImage: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=1000', 
-          readLink: '#', 
-          downloadLink: '#', 
-          description: 'মধ্যবিত্ত জীবনের আবেগ ও অনুভূতির গল্প।' 
-        },
-        { 
-          id: '12', 
-          title: 'চাঁদের পাহাড়', 
-          author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
-          category: 'থ্রিলার', 
-          coverImage: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=1000', 
-          readLink: '#', 
-          downloadLink: '#', 
-          description: 'আফ্রিকার গহিন অরণ্যে রোমাঞ্চকর অ্যাডভেঞ্চার।' 
-        }
-      ];
-      
-      const CATEGORIES = ['সবগুলো', 'উপন্যাস', 'থ্রিলার', 'কবিতা', 'ইসলামিক', 'সায়েন্স ফিকশন', 'সাহিত্য', 'ভৌতিক', 'জীবনী', 'অন্যান্য'];
-      const LOGO_URL = "https://api.dicebear.com/7.x/initials/svg?seed=BC&backgroundColor=10b981&textColor=ffffff";
-      
-      // **পূর্বের সেই Background Image টি ফিরিয়ে আনা হয়েছে**
-      const HERO_BG = "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=2000";
-      
-      // Check if dark mode should be enabled
-      function initializeDarkMode() {
-        const savedTheme = localStorage.getItem('boicloud-theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        // Start with dark mode by default
-        if (savedTheme === null) {
-          document.documentElement.classList.add('dark');
-          localStorage.setItem('boicloud-theme', 'dark');
-          return true;
-        }
-        
-        const isDark = savedTheme === 'dark';
-        document.documentElement.classList.toggle('dark', isDark);
-        return isDark;
+      {
+        id: '2',
+        title: 'হিমুর হাতে কয়েকটি নীল পদ্ম',
+        author: 'হুমায়ূন আহমেদ',
+        category: 'উপন্যাস',
+        coverImage: 'https://bengaliebook.com/wp-content/uploads/2022/02/%E0%A6%B9%E0%A6%BF%E0%A6%AE%E0%A7%81%E0%A6%B0-%E0%A6%B9%E0%A6%BE%E0%A6%A4%E0%A7%87-%E0%A6%95%E0%A6%AF%E0%A6%BC%E0%A7%87%E0%A6%95%E0%A6%9F%E0%A6%BF-%E0%A6%A8%E0%A7%80%E0%A6%B2%E0%A6%AA%E0%A6%A6%E0%A7%8D%E0%A6%AE-1086x1536.jpg',
+        readLink: 'https://drive.google.com/file/d/127a_Z71ZCS6dgimTg0IeB6ist2rL6vmp/view?usp=sharing',
+        downloadLink: 'https://drive.google.com/uc?export=download&id=127a_Z71ZCS6dgimTg0IeB6ist2rL6vmp',
+        description: 'হিমু সিরিজের এক জনপ্রিয় রহস্যময় উপন্যাস।'
+      },
+      {
+        id: '3',
+        title: 'লোকরহস্য',
+        author: 'বঙ্কিমচন্দ্র চট্টোপাধ্যায়',
+        category: 'অন্যান্য',
+        coverImage: 'https://rokbucket.rokomari.io/ProductNew20190903/260X372/Lokarahasya-Bankimacandro_Chattopadhay_-d4b06-445513.jpg',
+        readLink: 'https://drive.google.com/file/d/1G0OYqLvpUIyShsYDL2N3HXXa3UUMMFD_/view?usp=sharing',
+        downloadLink: 'https://drive.google.com/uc?export=download&id=1G0OYqLvpUIyShsYDL2N3HXXa3UUMMFD_',
+        description: 'বঙ্কিমচন্দ্র চট্টোপাধ্যায়ের একটি চমৎকার সামাজিক ও ব্যঙ্গাত্মক প্রবন্ধ সংকলন।'
+      },
+      {
+        id: '4',
+        title: 'প্রফেসর শঙ্কু সমগ্র',
+        author: 'সত্যজিৎ রায়',
+        category: 'সায়েন্স ফিকশন',
+        coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1698947761i/670686.jpg',
+        readLink: 'https://drive.google.com/file/d/1UGmXVI8LswS40A8QbP9Ugr_2Bs_11Hcr/view?usp=sharing',
+        downloadLink: 'https://drive.google.com/uc?export=download&id=1UGmXVI8LswS40A8QbP9Ugr_2Bs_11Hcr',
+        description: 'বিশ্বখ্যাত বিজ্ঞানী প্রফেসর ত্রিলোকেশ্বর শঙ্কুর অদ্ভুত সব আবিষ্কার ও অভিযানের রোমাঞ্চকর কাহিনী।'
+      },
+      {
+        id: '5',
+        title: 'ফেলুদা সমগ্র ১',
+        author: 'সত্যজিৎ রায়',
+        category: 'থ্রিলার',
+        coverImage: 'https://www.versoz.com/cdn/shop/files/8V2GCB9KIWPU-1_750x.jpg?v=1724593671',
+        readLink: 'https://drive.google.com/file/d/127NUgpcPQrm55ppdUhDDlTtte2mChTO7/view?usp=sharing',
+        downloadLink: 'https://drive.google.com/uc?export=download&id=127NUgpcPQrm55ppdUhDDlTtte2mChTO7',
+        description: 'ফেলুদা সিরিজের প্রথম খণ্ড, যেখানে প্রদোষ চন্দ্র মিত্রের রোমাঞ্চকর সব গোয়েন্দা কাহিনী সংকলিত হয়েছে।'
+      },
+      {
+        id: '6',
+        title: 'ফেলুদা সমগ্র ২',
+        author: 'সত্যজিৎ রায়',
+        category: 'থ্রিলার',
+        coverImage: 'https://www.amarbooks.org/thumbs/1467711379.jpg',
+        readLink: 'https://drive.google.com/file/d/1wTsIDZd5O5G3oBs9w4H9NKTUHG2LKeSj/view?usp=sharing',
+        downloadLink: 'https://drive.google.com/uc?export=download&id=1wTsIDZd5O5G3oBs9w4H9NKTUHG2LKeSj',
+        description: 'ফেলুদা সিরিজের দ্বিতীয় খণ্ড, যেখানে প্রদোষ চন্দ্র মিত্রের আরও কিছু শ্বাসরুদ্ধকর গোয়েন্দা কাহিনী রয়েছে।'
+      },
+      {
+        id: '7',
+        title: 'লালসালু',
+        author: 'সৈয়দ ওয়ালীউল্লাহ্',
+        category: 'উপন্যাস',
+        coverImage: 'https://www.amarbooks.org/thumbs/1468163668.jpg',
+        readLink: 'https://drive.google.com/file/d/1C9LPULtTbq5uWqQZLdPfNFKee0XsKZoE/view?usp=sharing',
+        downloadLink: 'https://drive.google.com/uc?export=download&id=1C9LPULtTbq5uWqQZLdPfNFKee0XsKZoE',
+        description: 'বাঙালি মুসলিম সমাজের ধর্মীয় অন্ধবিশ্বাস ও শোষণের এক গভীর জীবনধর্মী উপন্যাস।'
+      },
+      {
+        id: '8',
+        title: 'অগ্নিপক্ষ (আত্মজীবনী)',
+        author: 'এ পি জে আব্দুল কালাম',
+        category: 'জীবনী',
+        coverImage: 'https://allbanglaboi.com/wp-content/uploads/2020/04/Agni-Pakkha-Atmajibani-by-APJ-Abdul-Kalam.jpg',
+        readLink: 'https://drive.google.com/file/d/1LCTZMavEB59_a6e13S5aN3cqCmn9Jl3H/view?usp=sharing',
+        downloadLink: 'https://drive.google.com/uc?export=download&id=1LCTZMavEB59_a6e13S5aN3cqCmn9Jl3H',
+        description: 'ভারতের প্রাক্তন রাষ্ট্রপতি এ পি জে আব্দুল কালামের অনুপ্রেরণামূলক আত্মজীবনী।'
+      },
+      {
+        id: '9',
+        title: 'ফেলুদা সমগ্র',
+        author: 'সত্যজিৎ রায়',
+        category: 'থ্রিলার',
+        coverImage: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=1000',
+        readLink: '#',      // ⚠️ এখানে # থাকলে ক্লিক করলে toast দেখাবে (লিংক আপডেট হয়নি)
+        downloadLink: '#',  // ⚠️ এখানে # থাকলে ক্লিক করলে toast দেখাবে
+        description: 'প্রদোষ চন্দ্র মিত্রের বুদ্ধির লড়াই আর রহস্য অভিযান।'
+      },
+      {
+        id: '10',
+        title: 'বুলবুল',
+        author: 'কাজী নজরুল ইসলাম',
+        category: 'কবিতা',
+        coverImage: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1000',
+        readLink: '#',
+        downloadLink: '#',
+        description: 'নজরুলের প্রেমের কবিতার অনন্য সংকলন।'
+      },
+      {
+        id: '11',
+        title: 'শঙ্খনীল কারাগার',
+        author: 'হুমায়ূন আহমেদ',
+        category: 'উপন্যাস',
+        coverImage: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=1000',
+        readLink: '#',
+        downloadLink: '#',
+        description: 'মধ্যবিত্ত জীবনের আবেগ ও অনুভূতির গল্প।'
+      },
+      {
+        id: '12',
+        title: 'চাঁদের পাহাড়',
+        author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়',
+        category: 'থ্রিলার',
+        coverImage: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=1000',
+        readLink: '#',
+        downloadLink: '#',
+        description: 'আফ্রিকার গহিন অরণ্যে রোমাঞ্চকর অ্যাডভেঞ্চার।'
       }
-      
-      // Toggle dark mode
-      function toggleDarkMode() {
-        const html = document.documentElement;
-        const isDark = html.classList.contains('dark');
-        
-        if (isDark) {
-          html.classList.remove('dark');
-          localStorage.setItem('boicloud-theme', 'light');
-        } else {
-          html.classList.add('dark');
-          localStorage.setItem('boicloud-theme', 'dark');
-        }
-        
-        // Update toggle button icon
-        updateDarkModeToggle(!isDark);
-        return !isDark;
-      }
-      
-      // Update dark mode toggle button
-      function updateDarkModeToggle(isDark) {
-        const toggleBtn = document.getElementById('dark-mode-toggle');
-        if (toggleBtn) {
-          if (isDark) {
-            toggleBtn.innerHTML = '<i data-lucide="sun" class="w-5 h-5 text-yellow-300"></i>';
-          } else {
-            toggleBtn.innerHTML = '<i data-lucide="moon" class="w-5 h-5 text-slate-700"></i>';
-          }
-          lucide.createIcons();
-        }
-      }
-      
-      // Render book cards
-      function renderBooks(books) {
-        const container = document.getElementById('books-container');
-        if (!container) return;
-        
-        if (books.length === 0) {
-          container.innerHTML = `
-            <div class="col-span-full text-center py-16">
-              <div class="w-20 h-20 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6">
-                <i data-lucide="search-x" class="w-10 h-10 text-slate-400"></i>
-              </div>
-              <h3 class="text-2xl font-bold dark:text-white mb-2">কোনো বই পাওয়া যায়নি</h3>
-              <p class="text-slate-500 dark:text-slate-400">অন্য কোনো নাম দিয়ে সার্চ করুন অথবা ক্যাটাগরি পরিবর্তন করুন।</p>
+    ];
+
+    /* ======================================================================
+      ✅ ক্যাটাগরি যোগ করার জায়গা
+      ----------------------------------------------------------------------
+      নতুন ক্যাটাগরি চাইলে CATEGORIES array তে যোগ করুন।
+      উদাহরণ: 'রোমান্টিক', 'ইতিহাস' ইত্যাদি
+    ====================================================================== */
+    const CATEGORIES = ['সবগুলো', 'উপন্যাস', 'থ্রিলার', 'কবিতা', 'ইসলামিক', 'সায়েন্স ফিকশন', 'সাহিত্য', 'ভৌতিক', 'জীবনী', 'অন্যান্য'];
+
+    const LOGO_URL = "https://api.dicebear.com/7.x/initials/svg?seed=BC&backgroundColor=10b981&textColor=ffffff";
+    const HERO_BG = "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=2000";
+
+    // ---------- Helpers ----------
+    const escapeHtml = (s) => String(s ?? '')
+      .replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')
+      .replaceAll('"','&quot;').replaceAll("'",'&#039;');
+
+    function showToast(message, type='info') {
+      const old = document.getElementById('toast');
+      if (old) old.remove();
+
+      const toast = document.createElement('div');
+      toast.id = 'toast';
+      toast.className = 'toast animate-pop-in';
+      toast.innerHTML = `
+        <div class="px-4 py-3 rounded-2xl shadow-xl border backdrop-blur-md
+          ${type==='error'
+            ? 'bg-red-500/10 border-red-500/30 text-slate-900 dark:text-red-100'
+            : 'bg-brand-500/10 border-brand-500/30 text-slate-900 dark:text-slate-100'}">
+          <div class="flex items-start gap-3">
+            <div class="mt-0.5">
+              ${type==='error'
+                ? '<i data-lucide="alert-triangle" class="w-5 h-5 text-red-400"></i>'
+                : '<i data-lucide="sparkles" class="w-5 h-5 text-brand-500"></i>'}
             </div>
-          `;
-          lucide.createIcons();
-          return;
+            <div class="text-sm leading-relaxed">${escapeHtml(message)}</div>
+            <button class="ml-2 opacity-70 hover:opacity-100" aria-label="Close">
+              <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(toast);
+      lucide.createIcons();
+      toast.querySelector('button')?.addEventListener('click', () => toast.remove());
+      setTimeout(() => toast.remove(), 2600);
+    }
+
+    function debounce(fn, delay=160) {
+      let t;
+      return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), delay); };
+    }
+
+    function highlight(text, q) {
+      if (!q) return escapeHtml(text);
+      const safe = escapeHtml(text);
+      const query = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      try {
+        const re = new RegExp(`(${query})`, 'gi');
+        return safe.replace(re, '<mark>$1</mark>');
+      } catch { return safe; }
+    }
+
+    function isValidLink(url) {
+      if (!url) return false;
+      const u = url.trim();
+      return !(u === '#' || u === '');
+    }
+
+    // ✅ Multi-category support (আপনি শুধু category দিলেও চলবে, code নিজে থেকে categories বানাবে)
+    function normalizeBooks(list) {
+      return (list || []).map(b => {
+        const book = { ...b };
+        if (!book.categories || !Array.isArray(book.categories) || book.categories.length === 0) {
+          if (book.category && typeof book.category === 'string') book.categories = [book.category];
+          else book.categories = ['অন্যান্য'];
         }
-        container.innerHTML = books.map(book => `
+        book.category = book.categories[0] || 'অন্যান্য';
+        return book;
+      });
+    }
+
+    function scrollToEl(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // ---------- Theme ----------
+    function initializeDarkMode() {
+      const savedTheme = localStorage.getItem('boicloud-theme');
+      if (savedTheme === null) {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('boicloud-theme', 'dark');
+        return true;
+      }
+      const isDark = savedTheme === 'dark';
+      document.documentElement.classList.toggle('dark', isDark);
+      return isDark;
+    }
+
+    function toggleDarkMode() {
+      const html = document.documentElement;
+      const isDark = html.classList.contains('dark');
+
+      if (isDark) {
+        html.classList.remove('dark');
+        localStorage.setItem('boicloud-theme', 'light');
+      } else {
+        html.classList.add('dark');
+        localStorage.setItem('boicloud-theme', 'dark');
+      }
+      updateDarkModeToggle(!isDark);
+      return !isDark;
+    }
+
+    function updateDarkModeToggle(isDark) {
+      const toggleBtn = document.getElementById('dark-mode-toggle');
+      if (toggleBtn) {
+        toggleBtn.innerHTML = isDark
+          ? '<i data-lucide="sun" class="w-5 h-5 text-yellow-300"></i>'
+          : '<i data-lucide="moon" class="w-5 h-5 text-slate-700"></i>';
+        lucide.createIcons();
+      }
+    }
+
+    // ---------- Render ----------
+    let ALL_BOOKS = normalizeBooks(BOOKS_DATA);
+
+    function renderBooks(books, searchQuery='') {
+      const container = document.getElementById('books-container');
+      if (!container) return;
+
+      if (books.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full text-center py-16">
+            <div class="w-20 h-20 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6">
+              <i data-lucide="search-x" class="w-10 h-10 text-slate-400"></i>
+            </div>
+            <h3 class="text-2xl font-bold dark:text-white mb-2">কোনো বই পাওয়া যায়নি</h3>
+            <p class="text-slate-500 dark:text-slate-400">অন্য কোনো নাম দিয়ে সার্চ করুন অথবা ক্যাটাগরি পরিবর্তন করুন।</p>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      container.innerHTML = books.map(book => {
+        const catLabel = book.categories?.length > 1
+          ? `${book.categories[0]} +${book.categories.length - 1}`
+          : (book.categories?.[0] || book.category || 'অন্যান্য');
+
+        const readOk = isValidLink(book.readLink);
+        const downOk = isValidLink(book.downloadLink);
+
+        return `
           <div class="group bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-lg flex flex-col h-full hover:-translate-y-2 transition-all duration-300">
             <div class="aspect-[2/3] relative overflow-hidden">
-              <img src="${book.coverImage}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
-              
+              <img src="${book.coverImage}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" alt="${escapeHtml(book.title)}" />
+
               <div class="absolute top-3 left-3 z-10">
-                <span class="px-3 py-1 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm text-brand-600 text-[10px] font-bold rounded-full border border-slate-100 dark:border-slate-800 shadow-sm">${book.category}</span>
+                <span class="px-3 py-1 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm text-brand-600 text-[10px] font-bold rounded-full border border-slate-100 dark:border-slate-800 shadow-sm">
+                  ${escapeHtml(catLabel)}
+                </span>
               </div>
-              
+
               <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                <a href="${book.readLink}" class="p-3.5 bg-brand-600 text-white rounded-full shadow-lg hover:scale-110 transition-transform" title="অনলাইনে পড়ুন">
+                <a href="${readOk ? book.readLink : 'javascript:void(0)'}"
+                   class="book-action-read p-3.5 bg-brand-600 text-white rounded-full shadow-lg hover:scale-110 transition-transform ${readOk ? '' : 'opacity-60 cursor-not-allowed'}"
+                   data-ok="${readOk}" title="অনলাইনে পড়ুন">
                   <i data-lucide="book-open" class="w-5 h-5"></i>
                 </a>
-                <a href="${book.downloadLink}" class="p-3.5 bg-white text-slate-900 rounded-full shadow-lg hover:scale-110 transition-transform" title="ডাউনলোড">
+                <a href="${downOk ? book.downloadLink : 'javascript:void(0)'}"
+                   class="book-action-download p-3.5 bg-white text-slate-900 rounded-full shadow-lg hover:scale-110 transition-transform ${downOk ? '' : 'opacity-60 cursor-not-allowed'}"
+                   data-ok="${downOk}" title="ডাউনলোড">
                   <i data-lucide="download" class="w-5 h-5"></i>
                 </a>
               </div>
             </div>
-            
+
             <div class="p-5 flex flex-col flex-grow">
-              <h3 class="text-lg font-bold text-slate-900 dark:text-white line-clamp-1 mb-0.5 group-hover:text-brand-600 transition-colors">${book.title}</h3>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white line-clamp-1 mb-0.5 group-hover:text-brand-600 transition-colors">${highlight(book.title, searchQuery)}</h3>
               <p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">
-                <i data-lucide="user" class="w-3 h-3 inline mr-1"></i> ${book.author}
+                <i data-lucide="user" class="w-3 h-3 inline mr-1"></i> ${highlight(book.author, searchQuery)}
               </p>
+
               ${book.description ? `
-                <p class="text-slate-400 dark:text-slate-500 text-xs italic line-clamp-2 mb-4 cursor-help" title="${book.description}">
-                  <i data-lucide="info" class="w-3 h-3 inline mr-1"></i> ${book.description}
+                <p class="text-slate-400 dark:text-slate-500 text-xs italic line-clamp-2 mb-4 cursor-help" title="${escapeHtml(book.description)}">
+                  <i data-lucide="info" class="w-3 h-3 inline mr-1"></i> ${highlight(book.description, searchQuery)}
                 </p>
               ` : ''}
+
               <div class="mt-auto flex items-center gap-2">
-                <a href="${book.readLink}" class="flex-[2] text-center py-2.5 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold rounded-xl transition-all shadow-md shadow-brand-500/20 active:scale-95 flex items-center justify-center gap-1">
+                <a href="${readOk ? book.readLink : 'javascript:void(0)'}"
+                   class="book-action-read flex-[2] text-center py-2.5 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold rounded-xl transition-all shadow-md shadow-brand-500/20 active:scale-95 flex items-center justify-center gap-1 ${readOk ? '' : 'opacity-60 cursor-not-allowed'}"
+                   data-ok="${readOk}">
                   <i data-lucide="book-open" class="w-3 h-3"></i> পড়ুন
                 </a>
-                <a href="${book.downloadLink}" class="flex-1 flex justify-center py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                <a href="${downOk ? book.downloadLink : 'javascript:void(0)'}"
+                   class="book-action-download flex-1 flex justify-center py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors ${downOk ? '' : 'opacity-60 cursor-not-allowed'}"
+                   data-ok="${downOk}">
                   <i data-lucide="download" class="w-4 h-4"></i>
                 </a>
               </div>
             </div>
           </div>
-        `).join('');
-        
-        lucide.createIcons();
-      }
-      
-      function filterBooks() {
-        const searchQuery = document.getElementById('search-input')?.value.toLowerCase() || '';
-        const activeBtn = document.querySelector('.category-btn.active');
-        const selectedCategory = activeBtn ? activeBtn.dataset.category : 'সবগুলো';
-        const bookCountElement = document.getElementById('book-count');
-        
-        const filtered = BOOKS_DATA.filter(book => {
-          const matchesSearch = book.title.toLowerCase().includes(searchQuery) || 
-                               book.author.toLowerCase().includes(searchQuery) ||
-                               (book.description && book.description.toLowerCase().includes(searchQuery));
-          const matchesCategory = selectedCategory === 'সবগুলো' || book.category === selectedCategory;
-          
-          return matchesSearch && matchesCategory;
-        });
-        
-        renderBooks(filtered);
-        
-        if (bookCountElement) {
-          bookCountElement.textContent = filtered.length;
-        }
-        
-        const noResults = document.getElementById('no-results');
-        if (noResults) {
-          noResults.style.display = filtered.length === 0 ? 'block' : 'none';
-        }
-      }
-      
-      function initializeCategoryButtons() {
-        const container = document.getElementById('category-buttons');
-        if (!container) return;
-        
-        container.innerHTML = CATEGORIES.map(category => `
-          <button class="category-btn px-6 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all active:scale-95 ${category === 'সবগুলো' ? 'active bg-brand-600 text-white shadow-xl shadow-brand-500/30' : 'bg-white dark:bg-slate-900 text-slate-500 border dark:border-slate-800 hover:border-brand-500/50'}" 
-                  data-category="${category}">
-            ${category === 'সবগুলো' ? '<i data-lucide="grid" class="w-4 h-4 inline mr-2"></i>' : ''}
-            ${category}
-          </button>
-        `).join('');
-        
-        document.querySelectorAll('.category-btn').forEach(btn => {
-          btn.addEventListener('click', function() {
-            document.querySelectorAll('.category-btn').forEach(b => {
-                b.classList.remove('active', 'bg-brand-600', 'text-white', 'shadow-xl', 'shadow-brand-500/30');
-                b.classList.add('bg-white', 'dark:bg-slate-900', 'text-slate-500', 'border', 'dark:border-slate-800');
-            });
-            this.classList.add('active', 'bg-brand-600', 'text-white', 'shadow-xl', 'shadow-brand-500/30');
-            this.classList.remove('bg-white', 'dark:bg-slate-900', 'text-slate-500', 'border', 'dark:border-slate-800');
-            filterBooks();
-          });
-        });
-        
-        lucide.createIcons();
-      }
-      
-      function initializeAIAssistant() {
-        const toggleBtn = document.getElementById('ai-assistant-toggle');
-        const closeBtn = document.getElementById('ai-close-btn');
-        const sendBtn = document.getElementById('ai-send-btn');
-        const inputField = document.getElementById('ai-input');
-        const messagesContainer = document.getElementById('ai-messages');
-        
-        if (!toggleBtn) return;
-        
-        const aiResponses = [
-          "আপনার জন্য কিছু সুপারিশ: 'পথের পাঁচালী' - বিভূতিভূষণ বন্দ্যোপাধ্যায়, 'হিমুর হাতে কয়েকটি নীল পদ্ম' - হুমায়ূন আহমেদ, 'অগ্নিবীণা' - কাজী নজরুল ইসলাম।",
-          "আপনি যদি রহস্য উপন্যাস পছন্দ করেন, তাহলে 'ফেলুদা সমগ্র' - সত্যজিৎ রায় এবং 'অন্ধকারে একাকী' - অরিজিৎ ঘোষ পড়তে পারেন।",
-          "কবিতার জন্য 'অগ্নিবীণা' - কাজী নজরুল ইসলাম এবং 'বুলবুল' - কাজী নজরুল ইসলাম অসাধারণ পছন্দ হবে।",
-          "সায়েন্স ফিকশনের জন্য 'মঙ্গলে প্রথম অভিযান' - সায়েন্স রাইটার পড়তে পারেন।",
-          "শ্রেষ্ঠ সাহিত্যের জন্য 'পথের পাঁচালী', 'লালসালু' এবং 'গল্পগুচ্ছ' পড়ুন।"
-        ];
-        
-        if (messagesContainer) {
-          messagesContainer.innerHTML = `
-            <div class="flex justify-start">
-              <div class="max-w-[85%] p-3.5 rounded-2xl text-[13px] leading-relaxed shadow-sm bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-tl-none border dark:border-slate-700">
-                <i data-lucide="bot" class="w-4 h-4 inline mr-2 text-brand-600"></i>
-                নমস্কার! আমি BoiCloud এর এআই সহকারী। আপনি কী ধরনের বই খুঁজছেন? আমি আপনাকে পছন্দের বই খুঁজে পেতে সাহায্য করতে পারি।
-              </div>
-            </div>
-          `;
-        }
-        
-        toggleBtn.addEventListener('click', () => {
-          const panel = document.getElementById('ai-assistant-panel');
-          if (panel) {
-            panel.classList.toggle('hidden');
+        `;
+      }).join('');
+
+      lucide.createIcons();
+
+      // ✅ Invalid link হলে toast দেখাবে (ভাঙা লিংক মনে হবে না)
+      container.querySelectorAll('.book-action-read, .book-action-download').forEach(a => {
+        a.addEventListener('click', (e) => {
+          const ok = a.getAttribute('data-ok') === 'true';
+          if (!ok) {
+            e.preventDefault();
+            showToast('দুঃখিত! এই বইয়ের লিংক এখনো আপডেট করা হয়নি।', 'error');
           }
         });
-        
-        closeBtn?.addEventListener('click', () => {
-          document.getElementById('ai-assistant-panel')?.classList.add('hidden');
+      });
+    }
+
+    function getSelectedCategory() {
+      const activeBtn = document.querySelector('.category-btn.active');
+      return activeBtn ? activeBtn.dataset.category : 'সবগুলো';
+    }
+
+    function filterBooks() {
+      const q = (document.getElementById('search-input')?.value || '').trim().toLowerCase();
+      const selectedCategory = getSelectedCategory();
+
+      const filtered = ALL_BOOKS.filter(book => {
+        const hay = [
+          book.title, book.author, book.description || '',
+          (book.categories || []).join(' ')
+        ].join(' ').toLowerCase();
+
+        const matchesSearch = !q || hay.includes(q);
+        const matchesCategory = selectedCategory === 'সবগুলো' || (book.categories || []).includes(selectedCategory);
+
+        return matchesSearch && matchesCategory;
+      });
+
+      renderBooks(filtered, q);
+      const bookCountElement = document.getElementById('book-count');
+      if (bookCountElement) bookCountElement.textContent = filtered.length;
+
+      const noResults = document.getElementById('no-results');
+      if (noResults) noResults.style.display = filtered.length === 0 ? 'block' : 'none';
+
+      renderSuggestions(q, filtered);
+    }
+
+    const filterBooksDebounced = debounce(filterBooks, 140);
+
+    // ---------- Category Buttons ----------
+    function initializeCategoryButtons() {
+      const container = document.getElementById('category-buttons');
+      if (!container) return;
+
+      container.innerHTML = CATEGORIES.map(category => `
+        <button class="category-btn px-6 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all active:scale-95
+          ${category === 'সবগুলো'
+            ? 'active bg-brand-600 text-white shadow-xl shadow-brand-500/30'
+            : 'bg-white dark:bg-slate-900 text-slate-500 border dark:border-slate-800 hover:border-brand-500/50'}"
+          data-category="${escapeHtml(category)}">
+          ${category === 'সবগুলো' ? '<i data-lucide="grid" class="w-4 h-4 inline mr-2"></i>' : ''}
+          ${escapeHtml(category)}
+        </button>
+      `).join('');
+
+      document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.category-btn').forEach(b => {
+            b.classList.remove('active', 'bg-brand-600', 'text-white', 'shadow-xl', 'shadow-brand-500/30');
+            b.classList.add('bg-white', 'dark:bg-slate-900', 'text-slate-500', 'border', 'dark:border-slate-800');
+          });
+          this.classList.add('active', 'bg-brand-600', 'text-white', 'shadow-xl', 'shadow-brand-500/30');
+          this.classList.remove('bg-white', 'dark:bg-slate-900', 'text-slate-500', 'border', 'dark:border-slate-800');
+          filterBooks();
         });
-        
-        function sendMessage() {
-          const message = inputField.value.trim();
-          if (!message || !messagesContainer) return;
-          
-          messagesContainer.innerHTML += `
-            <div class="flex justify-end">
-              <div class="max-w-[85%] p-3.5 rounded-2xl text-[13px] leading-relaxed shadow-sm bg-brand-600 text-white rounded-tr-none">
-                ${message}
-              </div>
+      });
+
+      lucide.createIcons();
+    }
+
+    // ---------- Suggestions ----------
+    function renderSuggestions(q, filteredBooks) {
+      const wrap = document.getElementById('suggestions-wrap');
+      const box = document.getElementById('suggestions-box');
+      if (!wrap || !box) return;
+
+      if (!q) {
+        wrap.classList.add('hidden');
+        box.innerHTML = '';
+        return;
+      }
+
+      const top = filteredBooks.slice(0, 6);
+      const items = top.map(b => `
+        <button class="w-full text-left px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors flex gap-3 items-center">
+          <img src="${b.coverImage}" class="w-10 h-14 object-cover rounded-lg border border-slate-200 dark:border-slate-700" alt="">
+          <div class="min-w-0">
+            <div class="text-sm font-bold text-slate-900 dark:text-white line-clamp-1">${highlight(b.title, q)}</div>
+            <div class="text-xs text-slate-500 dark:text-slate-400 line-clamp-1">
+              ${highlight(b.author, q)} • <span class="text-brand-600">${escapeHtml((b.categories?.[0] || b.category || 'অন্যান্য'))}</span>
             </div>
-          `;
-          
-          inputField.value = '';
-          messagesContainer.scrollTop = messagesContainer.scrollHeight;
-          
-          setTimeout(() => {
-            const randomResponse = aiResponses[Math.floor(Math.random() * aiResponses.length)];
-            messagesContainer.innerHTML += `
-              <div class="flex justify-start">
-                <div class="max-w-[85%] p-3.5 rounded-2xl text-[13px] leading-relaxed shadow-sm bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-tl-none border dark:border-slate-700">
-                  <i data-lucide="bot" class="w-4 h-4 inline mr-2 text-brand-600"></i>
-                  ${randomResponse}
-                </div>
-              </div>
-            `;
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            lucide.createIcons();
-          }, 1000);
+          </div>
+          <div class="ml-auto opacity-60">
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </div>
+        </button>
+      `).join('');
+
+      box.innerHTML = `
+        <div class="suggestions bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-slate-200 dark:border-slate-700 shadow-2xl">
+          <div class="px-4 py-2 text-[10px] uppercase tracking-[3px] text-slate-500 dark:text-slate-400 flex items-center justify-between">
+            <span>সার্চ রেজাল্ট (${filteredBooks.length})</span>
+            <span class="text-brand-600 font-bold">ESC = Close</span>
+          </div>
+          <div class="max-h-80 overflow-auto">
+            ${items || `<div class="px-4 py-6 text-sm text-slate-500 dark:text-slate-400">কোনো সাজেশন নেই</div>`}
+          </div>
+        </div>
+      `;
+      wrap.classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeSuggestions() {
+      document.getElementById('suggestions-wrap')?.classList.add('hidden');
+    }
+
+    // ---------- Search UX (Mobile + Desktop Sync) ----------
+    function bindSearchUX() {
+      const mobileSearch = document.getElementById('search-input-mobile');
+      const mainSearch = document.getElementById('search-input');
+
+      const clearMain = document.getElementById('search-clear');
+      const clearMobile = document.getElementById('search-clear-mobile');
+
+      const sync = (from, to) => { if (from && to) to.value = from.value; };
+
+      const onInput = () => {
+        const q = (mainSearch?.value || '').trim();
+        clearMain?.classList.toggle('hidden', !q);
+        clearMobile?.classList.toggle('hidden', !q);
+        filterBooksDebounced();
+      };
+
+      mainSearch?.addEventListener('input', () => { sync(mainSearch, mobileSearch); onInput(); });
+      mobileSearch?.addEventListener('input', () => { sync(mobileSearch, mainSearch); onInput(); });
+
+      clearMain?.addEventListener('click', () => {
+        if (!mainSearch) return;
+        mainSearch.value = '';
+        if (mobileSearch) mobileSearch.value = '';
+        onInput();
+        mainSearch.focus();
+        closeSuggestions();
+      });
+
+      clearMobile?.addEventListener('click', () => {
+        if (!mobileSearch) return;
+        mobileSearch.value = '';
+        if (mainSearch) mainSearch.value = '';
+        onInput();
+        mobileSearch.focus();
+        closeSuggestions();
+      });
+
+      // "/" to focus search, ESC to close suggestions
+      document.addEventListener('keydown', (e) => {
+        if (e.key === '/' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+          const tag = (document.activeElement?.tagName || '').toLowerCase();
+          if (tag === 'input' || tag === 'textarea') return;
+          e.preventDefault();
+          if (window.innerWidth >= 768) mainSearch?.focus();
+          else mobileSearch?.focus();
         }
-        
-        sendBtn?.addEventListener('click', sendMessage);
-        inputField?.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
-        lucide.createIcons();
-      }
-      
-      function initializeApp() {
-        const isDarkMode = initializeDarkMode();
-        updateDarkModeToggle(isDarkMode);
-        
-        const darkModeToggle = document.getElementById('dark-mode-toggle');
-        if (darkModeToggle) {
-          darkModeToggle.addEventListener('click', () => {
-            const newMode = toggleDarkMode();
-            updateDarkModeToggle(newMode);
-          });
-        }
-        
-        initializeCategoryButtons();
-        const searchInput = document.getElementById('search-input');
-        if (searchInput) searchInput.addEventListener('input', filterBooks);
-        
-        renderBooks(BOOKS_DATA);
-        initializeAIAssistant();
-        
-        const bookCountElement = document.getElementById('book-count');
-        if (bookCountElement) bookCountElement.textContent = BOOKS_DATA.length;
-        
-        const exploreBtn = document.getElementById('explore-books-btn');
-        if (exploreBtn) {
-          exploreBtn.addEventListener('click', () => {
-            document.getElementById('books-grid').scrollIntoView({ behavior: 'smooth' });
-          });
-        }
-        setTimeout(() => lucide.createIcons(), 100);
-      }
-      
-      document.addEventListener('DOMContentLoaded', initializeApp);
-    </script>
+        if (e.key === 'Escape') closeSuggestions();
+      });
+
+      // click outside closes suggestions
+      document.addEventListener('click', (e) => {
+        const wrap = document.getElementById('suggestions-wrap');
+        const area = document.getElementById('search-area');
+        if (!wrap || wrap.classList.contains('hidden')) return;
+        if (area && area.contains(e.target)) return;
+        closeSuggestions();
+      });
+    }
+
+    // ---------- Footer links work (Home/Books/Category/Contact) ----------
+    function bindFooterLinks() {
+      document.getElementById('link-home')?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+      document.getElementById('link-books')?.addEventListener('click', () => scrollToEl('books-grid'));
+      document.getElementById('link-category')?.addEventListener('click', () => scrollToEl('category-buttons'));
+      document.getElementById('link-contact')?.addEventListener('click', () => {
+        // ✅ Gmail compose open with your email
+        window.location.href = "https://mail.google.com/mail/?view=cm&fs=1&to=html.arif@gmail.com";
+      });
+    }
+
+    function initializeApp() {
+      const isDarkMode = initializeDarkMode();
+      updateDarkModeToggle(isDarkMode);
+
+      document.getElementById('dark-mode-toggle')?.addEventListener('click', () => {
+        const newMode = toggleDarkMode();
+        updateDarkModeToggle(newMode);
+      });
+
+      initializeCategoryButtons();
+
+      bindSearchUX();
+      bindFooterLinks();
+
+      renderBooks(ALL_BOOKS);
+      document.getElementById('book-count').textContent = ALL_BOOKS.length;
+
+      document.getElementById('explore-books-btn')?.addEventListener('click', () => {
+        document.getElementById('books-grid').scrollIntoView({ behavior: 'smooth' });
+      });
+
+      // Year fix (আগের কোডে id ছিল না)
+      const y = document.getElementById('current-year');
+      if (y) y.textContent = new Date().getFullYear();
+
+      setTimeout(() => lucide.createIcons(), 100);
+    }
+
+    document.addEventListener('DOMContentLoaded', initializeApp);
+  </script>
+
+  <!-- ========================= YOUR ORIGINAL UI (same theme) ========================= -->
 
   <header class="sticky top-0 z-50 glass-effect border-b border-slate-200 dark:border-slate-800">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center h-16 sm:h-20">
-      
-      <div class="flex items-center gap-3 cursor-pointer group" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-        <div class="relative flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
-          <svg class="w-10 h-10 sm:w-12 sm:h-12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17.5 19C20.5376 19 23 16.5376 23 13.5C23 10.4624 20.5376 8 17.5 8C17.2282 8 16.9632 8.01977 16.7042 8.05791C15.6841 5.64243 13.284 4 10.5 4C6.91015 4 4 6.91015 4 10.5C4 10.742 4.0133 10.9809 4.03914 11.2158C2.26425 12.0232 1 13.8152 1 15.9C1 18.7167 3.28335 21 6.1 21H17.5V19Z" class="fill-brand-50/50 stroke-brand-500 dark:fill-brand-700/20 dark:stroke-brand-500" stroke-width="1.5"/>
-            
-            <path d="M8 13.5C8 12.9477 8.44772 12.5 9 12.5H12V16.5H9C8.44772 16.5 8 16.0523 8 15.5V13.5Z" class="fill-brand-600 dark:fill-brand-500"/>
-            <path d="M16 13.5C16 12.9477 15.5523 12.5 15 12.5H12V16.5H15C15.5523 16.5 16 16.0523 16 15.5V13.5Z" class="fill-teal-400 dark:fill-teal-300"/>
-          </svg>
-        </div>
-        
-        <h1 class="text-xl sm:text-3xl font-black tracking-tighter">
-          <span class="text-slate-800 dark:text-white">Boi</span><span class="bg-gradient-to-r from-brand-600 to-teal-500 bg-clip-text text-transparent">Cloud</span>
-        </h1>
-      </div>
-          
-          <div class="hidden md:flex flex-1 max-w-md mx-8 relative">
-            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-              <i data-lucide="search" class="w-5 h-5"></i>
-            </div>
-            <input 
-              type="text" 
-              id="search-input"
-              placeholder="বই অথবা লেখকের নাম খুঁজুন..." 
-              class="block w-full pl-10 pr-3 py-2 border border-slate-200 dark:border-slate-700 rounded-full bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/50 transition-all text-sm" 
-            />
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="search-area">
+      <div class="flex justify-between items-center h-16 sm:h-20">
+
+        <div class="flex items-center gap-3 cursor-pointer group" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+          <div class="relative flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
+            <svg class="w-10 h-10 sm:w-12 sm:h-12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.5 19C20.5376 19 23 16.5376 23 13.5C23 10.4624 20.5376 8 17.5 8C17.2282 8 16.9632 8.01977 16.7042 8.05791C15.6841 5.64243 13.284 4 10.5 4C6.91015 4 4 6.91015 4 10.5C4 10.742 4.0133 10.9809 4.03914 11.2158C2.26425 12.0232 1 13.8152 1 15.9C1 18.7167 3.28335 21 6.1 21H17.5V19Z" class="fill-brand-50/50 stroke-brand-500 dark:fill-brand-700/20 dark:stroke-brand-500" stroke-width="1.5"/>
+              <path d="M8 13.5C8 12.9477 8.44772 12.5 9 12.5H12V16.5H9C8.44772 16.5 8 16.0523 8 15.5V13.5Z" class="fill-brand-600 dark:fill-brand-500"/>
+              <path d="M16 13.5C16 12.9477 15.5523 12.5 15 12.5H12V16.5H15C15.5523 16.5 16 16.0523 16 15.5V13.5Z" class="fill-teal-400 dark:fill-teal-300"/>
+            </svg>
           </div>
 
-          <div class="flex items-center gap-2 sm:gap-4">
-            <button id="dark-mode-toggle" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-400">
-              </button>
-
-            <!-- ✅ Login button removed -->
-          </div>
+          <h1 class="text-xl sm:text-3xl font-black tracking-tighter">
+            <span class="text-slate-800 dark:text-white">Boi</span><span class="bg-gradient-to-r from-brand-600 to-teal-500 bg-clip-text text-transparent">Cloud</span>
+          </h1>
         </div>
-        
-        <div class="md:hidden pb-4">
-          <div class="relative">
-            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-              <i data-lucide="search" class="w-4 h-4"></i>
-            </div>
-            <input 
-              type="text" 
-              id="search-input-mobile"
-              placeholder="বই অথবা লেখকের নাম..." 
-              class="block w-full pl-9 pr-3 py-2 border border-slate-200 dark:border-slate-700 rounded-full bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/50 transition-all text-sm" 
-            />
-          </div>
-        </div>
-      </div>
-    </header>
 
-    <main class="flex-grow">
-      <section class="relative h-[50vh] sm:h-[70vh] flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=2000" 
-            alt="Library Background" 
-            class="w-full h-full object-cover animate-slow-zoom" 
+        <!-- Desktop search -->
+        <div class="hidden md:flex flex-1 max-w-md mx-8 relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+            <i data-lucide="search" class="w-5 h-5"></i>
+          </div>
+
+          <input
+            type="text"
+            id="search-input"
+            placeholder="বই / লেখক / ক্যাটাগরি সার্চ করুন... ( / চাপলে ফোকাস )"
+            class="block w-full pl-10 pr-10 py-2 border border-slate-200 dark:border-slate-700 rounded-full bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/50 transition-all text-sm"
+            autocomplete="off"
           />
-          <div class="absolute inset-0 hero-gradient"></div>
-        </div>
-        
-        <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 backdrop-blur-md text-brand-300 text-[10px] sm:text-xs font-medium mb-6 border border-white/10 animate-fade-in-up">
-            <i data-lucide="sparkles" class="w-4 h-4"></i> 
-            <span>আপনার প্রিয় বইয়ের নতুন ডিজিটাল ঠিকানা</span>
-          </div>
-          <h2 class="text-3xl sm:text-6xl lg:text-8xl font-black text-white mb-6 leading-tight drop-shadow-2xl animate-fade-in-up">
-            <i data-lucide="book-open" class="w-12 h-12 sm:w-20 sm:h-20 inline mr-4 align-middle"></i>
-            বইয়ের জগতে আপনাকে স্বাগতম
-          </h2>
-          <p class="text-sm sm:text-xl text-slate-200 max-w-2xl mx-auto mb-10 leading-relaxed font-light animate-fade-in-up">
-            BoiCloud এ আপনি পাবেন হাজার হাজার বাংলা ও ইংরেজি বইয়ের বিশাল সংগ্রহ। সম্পূর্ণ ফ্রি-তে অনলাইনে পড়ুন অথবা ডাউনলোড করুন আজই।
-          </p>
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up">
-            <button 
-              id="explore-books-btn"
-              class="w-full sm:w-auto px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white rounded-2xl font-bold text-base sm:text-lg transition-all shadow-xl shadow-brand-500/30 active:scale-95 flex items-center justify-center gap-2"
-            >
-              <i data-lucide="compass" class="w-5 h-5"></i> পড়া শুরু করুন
-            </button>
-            <a 
-              href="mailto:html.arif@gmail.com" 
-              class="w-full sm:w-auto px-8 py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-2xl font-bold text-base sm:text-lg transition-all hover:bg-white/20 active:scale-95 flex items-center justify-center gap-2"
-            >
-              <i data-lucide="upload" class="w-5 h-5"></i> বই জমা দিন
-            </a>
-          </div>
-        </div>
-      </section>
-      
-      <section id="books-grid" class="max-w-7xl mx-auto px-4 py-12 sm:py-20 scroll-mt-20">
-        <div class="mb-12 flex flex-col gap-8">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div class="flex items-center gap-4">
-              <div class="p-3 bg-brand-500/10 rounded-2xl text-brand-600 shadow-sm">
-                <i data-lucide="library" class="w-8 h-8"></i>
-              </div>
-              <div>
-                <h2 class="text-2xl sm:text-3xl font-black dark:text-white">বইয়ের সংগ্রহ</h2>
-                <p class="text-slate-500 text-xs sm:text-sm uppercase tracking-widest font-bold">
-                  <i data-lucide="book" class="w-4 h-4 inline mr-1"></i>
-                  মোট <span id="book-count">0</span>টি বই পাওয়া গেছে
-                </p>
-              </div>
-            </div>
-          </div>
-          
-          <div id="category-buttons" class="flex gap-3 overflow-x-auto pb-4 no-scrollbar scroll-smooth px-1">
+
+          <button id="search-clear" class="hidden absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">
+            <i data-lucide="x-circle" class="w-5 h-5"></i>
+          </button>
+
+          <div id="suggestions-wrap" class="hidden absolute left-0 right-0 top-full mt-2">
+            <div id="suggestions-box"></div>
           </div>
         </div>
 
-        <div id="no-results" class="hidden text-center py-16">
-          <div class="w-20 h-20 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6">
-            <i data-lucide="search-x" class="w-10 h-10 text-slate-400"></i>
-          </div>
-          <h3 class="text-2xl font-bold dark:text-white mb-2">কোনো বই পাওয়া যায়নি</h3>
-          <p class="text-slate-500 dark:text-slate-400">অন্য কোনো নাম দিয়ে সার্চ করুন অথবা ক্যাটাগরি পরিবর্তন করুন।</p>
+        <div class="flex items-center gap-2 sm:gap-4">
+          <button id="dark-mode-toggle" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-400"></button>
         </div>
+      </div>
 
-        <div id="books-container" class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-10">
-        </div>
-        
-        <div class="mt-16 flex justify-center">
-          <button 
-            onclick="renderBooks(BOOKS_DATA); document.querySelectorAll('.category-btn')[0].click();" 
-            class="group px-10 py-4 bg-white dark:bg-slate-900 border dark:border-slate-800 rounded-2xl font-black text-slate-800 dark:text-white flex items-center gap-3 hover:border-brand-600 hover:text-brand-600 transition-all shadow-sm active:scale-95"
-          >
-            <i data-lucide="rotate-cw" class="w-5 h-5"></i>
-            সব বই দেখুন 
-            <i data-lucide="chevron-down" class="w-5 h-5 group-hover:translate-y-1 transition-transform"></i>
+      <!-- Mobile search -->
+      <div class="md:hidden pb-4">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+            <i data-lucide="search" class="w-4 h-4"></i>
+          </div>
+          <input
+            type="text"
+            id="search-input-mobile"
+            placeholder="বই / লেখক / ক্যাটাগরি..."
+            class="block w-full pl-9 pr-10 py-2 border border-slate-200 dark:border-slate-700 rounded-full bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/50 transition-all text-sm"
+            autocomplete="off"
+          />
+          <button id="search-clear-mobile" class="hidden absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">
+            <i data-lucide="x-circle" class="w-5 h-5"></i>
           </button>
         </div>
-      </section>
-    </main>
-              
-
-    
-    <!-- Footer -->
-    <footer class="bg-white dark:bg-slate-900 border-t dark:border-slate-800 pt-16 pb-8">
-      <div class="max-w-7xl mx-auto px-8 grid md:grid-cols-4 gap-12 text-center md:text-left">
-        <div class="col-span-1 md:col-span-2">
-          <div class="flex flex-col items-start gap-4">
-  <div class="flex items-center gap-3 group cursor-pointer">
-    <div class="relative flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
-      <svg class="w-12 h-12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M17.5 19C20.5376 19 23 16.5376 23 13.5C23 10.4624 20.5376 8 17.5 8C17.2282 8 16.9632 8.01977 16.7042 8.05791C15.6841 5.64243 13.284 4 10.5 4C6.91015 4 4 6.91015 4 10.5C4 10.742 4.0133 10.9809 4.03914 11.2158C2.26425 12.0232 1 13.8152 1 15.9C1 18.7167 3.28335 21 6.1 21H17.5V19Z" class="fill-brand-50/50 stroke-brand-500 dark:fill-brand-700/20 dark:stroke-brand-500" stroke-width="1.5"/>
-        
-        <path d="M8 13.5C8 12.9477 8.44772 12.5 9 12.5H12V16.5H9C8.44772 16.5 8 16.0523 8 15.5V13.5Z" class="fill-brand-600 dark:fill-brand-500"/>
-        <path d="M16 13.5C16 12.9477 15.5523 12.5 15 12.5H12V16.5H15C15.5523 16.5 16 16.0523 16 15.5V13.5Z" class="fill-teal-400 dark:fill-teal-300"/>
-      </svg>
+      </div>
     </div>
+  </header>
 
-    <h2 class="text-3xl font-black tracking-tighter">
-      <span class="text-slate-800 dark:text-white">Boi</span><span class="bg-gradient-to-r from-brand-600 to-teal-500 bg-clip-text text-transparent">Cloud</span>
-    </h2>
-  </div>
-  
-  <p class="text-slate-500 dark:text-slate-400 max-w-xs text-sm leading-relaxed">
-    আমাদের লক্ষ্য পাঠকদের জন্য একটি উন্মুক্ত প্ল্যাটফর্ম তৈরি করা যেখানে জ্ঞান এবং কল্পনার কোনো সীমানা নেই। বই পড়ুন, জ্ঞান বৃদ্ধি করুন।
-  </p>
+  <main class="flex-grow">
+    <section class="relative h-[50vh] sm:h-[70vh] flex items-center justify-center overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=2000"
+             alt="Library Background"
+             class="w-full h-full object-cover animate-slow-zoom" />
+        <div class="absolute inset-0 hero-gradient"></div>
+      </div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 backdrop-blur-md text-brand-300 text-[10px] sm:text-xs font-medium mb-6 border border-white/10 animate-fade-in-up">
+          <i data-lucide="sparkles" class="w-4 h-4"></i>
+          <span>আপনার প্রিয় বইয়ের নতুন ডিজিটাল ঠিকানা</span>
+        </div>
+
+        <h2 class="text-3xl sm:text-6xl lg:text-8xl font-black text-white mb-6 leading-tight drop-shadow-2xl animate-fade-in-up">
+          <i data-lucide="book-open" class="w-12 h-12 sm:w-20 sm:h-20 inline mr-4 align-middle"></i>
+          বইয়ের জগতে আপনাকে স্বাগতম
+        </h2>
+
+        <p class="text-sm sm:text-xl text-slate-200 max-w-2xl mx-auto mb-10 leading-relaxed font-light animate-fade-in-up">
+          BoiCloud এ আপনি পাবেন হাজার হাজার বাংলা ও ইংরেজি বইয়ের বিশাল সংগ্রহ। সম্পূর্ণ ফ্রি-তে অনলাইনে পড়ুন অথবা ডাউনলোড করুন আজই।
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up">
+          <button id="explore-books-btn"
+                  class="w-full sm:w-auto px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white rounded-2xl font-bold text-base sm:text-lg transition-all shadow-xl shadow-brand-500/30 active:scale-95 flex items-center justify-center gap-2">
+            <i data-lucide="compass" class="w-5 h-5"></i> পড়া শুরু করুন
+          </button>
+
+          <!-- ✅ Click করলে Gmail compose open হবে -->
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=html.arif@gmail.com"
+             class="w-full sm:w-auto px-8 py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-2xl font-bold text-base sm:text-lg transition-all hover:bg-white/20 active:scale-95 flex items-center justify-center gap-2">
+            <i data-lucide="mail" class="w-5 h-5"></i> যোগাযোগ / বই জমা দিন
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="books-grid" class="max-w-7xl mx-auto px-4 py-12 sm:py-20 scroll-mt-20">
+      <div class="mb-12 flex flex-col gap-8">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="flex items-center gap-4">
+            <div class="p-3 bg-brand-500/10 rounded-2xl text-brand-600 shadow-sm">
+              <i data-lucide="library" class="w-8 h-8"></i>
+            </div>
+            <div>
+              <h2 class="text-2xl sm:text-3xl font-black dark:text-white">বইয়ের সংগ্রহ</h2>
+              <p class="text-slate-500 text-xs sm:text-sm uppercase tracking-widest font-bold">
+                <i data-lucide="book" class="w-4 h-4 inline mr-1"></i>
+                মোট <span id="book-count">0</span>টি বই পাওয়া গেছে
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div id="category-buttons" class="flex gap-3 overflow-x-auto pb-4 no-scrollbar scroll-smooth px-1"></div>
+      </div>
+
+      <div id="no-results" class="hidden text-center py-16">
+        <div class="w-20 h-20 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6">
+          <i data-lucide="search-x" class="w-10 h-10 text-slate-400"></i>
+        </div>
+        <h3 class="text-2xl font-bold dark:text-white mb-2">কোনো বই পাওয়া যায়নি</h3>
+        <p class="text-slate-500 dark:text-slate-400">অন্য কোনো নাম দিয়ে সার্চ করুন অথবা ক্যাটাগরি পরিবর্তন করুন।</p>
+      </div>
+
+      <div id="books-container" class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-10"></div>
+
+      <div class="mt-16 flex justify-center">
+        <button onclick="document.querySelectorAll('.category-btn')[0]?.click();"
+                class="group px-10 py-4 bg-white dark:bg-slate-900 border dark:border-slate-800 rounded-2xl font-black text-slate-800 dark:text-white flex items-center gap-3 hover:border-brand-600 hover:text-brand-600 transition-all shadow-sm active:scale-95">
+          <i data-lucide="rotate-cw" class="w-5 h-5"></i>
+          সব বই দেখুন
+          <i data-lucide="chevron-down" class="w-5 h-5 group-hover:translate-y-1 transition-transform"></i>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-white dark:bg-slate-900 border-t dark:border-slate-800 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-8 grid md:grid-cols-4 gap-12 text-center md:text-left">
+      <div class="col-span-1 md:col-span-2">
+        <div class="flex flex-col items-start gap-4">
+          <div class="flex items-center gap-3 group cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <div class="relative flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
+              <svg class="w-12 h-12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.5 19C20.5376 19 23 16.5376 23 13.5C23 10.4624 20.5376 8 17.5 8C17.2282 8 16.9632 8.01977 16.7042 8.05791C15.6841 5.64243 13.284 4 10.5 4C6.91015 4 4 6.91015 4 10.5C4 10.742 4.0133 10.9809 4.03914 11.2158C2.26425 12.0232 1 13.8152 1 15.9C1 18.7167 3.28335 21 6.1 21H17.5V19Z" class="fill-brand-50/50 stroke-brand-500 dark:fill-brand-700/20 dark:stroke-brand-500" stroke-width="1.5"/>
+                <path d="M8 13.5C8 12.9477 8.44772 12.5 9 12.5H12V16.5H9C8.44772 16.5 8 16.0523 8 15.5V13.5Z" class="fill-brand-600 dark:fill-brand-500"/>
+                <path d="M16 13.5C16 12.9477 15.5523 12.5 15 12.5H12V16.5H15C15.5523 16.5 16 16.0523 16 15.5V13.5Z" class="fill-teal-400 dark:fill-teal-300"/>
+              </svg>
+            </div>
+
+            <h2 class="text-3xl font-black tracking-tighter">
+              <span class="text-slate-800 dark:text-white">Boi</span><span class="bg-gradient-to-r from-brand-600 via-teal-400 to-brand-600 bg-clip-text text-transparent">Cloud</span>
+            </h2>
+          </div>
+
+          <p class="text-slate-500 dark:text-slate-400 max-w-xs text-sm leading-relaxed">
+            আমাদের লক্ষ্য পাঠকদের জন্য একটি উন্মুক্ত প্ল্যাটফর্ম তৈরি করা যেখানে জ্ঞান এবং কল্পনার কোনো সীমানা নেই। বই পড়ুন, জ্ঞান বৃদ্ধি করুন।
+          </p>
+
           <div class="flex justify-center md:justify-start gap-4 mt-8">
             <a href="#" class="p-2.5 bg-slate-100 dark:bg-slate-800 rounded-xl text-slate-500 hover:bg-blue-600 hover:text-white transition-all active:scale-90">
               <i class="fab fa-facebook-f text-lg"></i>
@@ -754,94 +884,71 @@
             </a>
           </div>
         </div>
+      </div>
+
+      <div>
+        <h3 class="font-bold text-slate-900 dark:text-white mb-6 text-lg">
+          <i data-lucide="link" class="w-5 h-5 inline mr-2"></i> প্রয়োজনীয় লিংক
+        </h3>
+        <ul class="text-sm text-slate-500 dark:text-slate-400 space-y-4">
+          <li id="link-home" class="hover:text-brand-600 cursor-pointer transition-colors flex items-center gap-2 justify-center md:justify-start">
+            <i data-lucide="home" class="w-4 h-4"></i> হোম
+          </li>
+          <li id="link-books" class="hover:text-brand-600 cursor-pointer transition-colors flex items-center gap-2 justify-center md:justify-start">
+            <i data-lucide="book-open" class="w-4 h-4"></i> বইয়ের তালিকা
+          </li>
+          <li id="link-category" class="hover:text-brand-600 cursor-pointer transition-colors flex items-center gap-2 justify-center md:justify-start">
+            <i data-lucide="grid" class="w-4 h-4"></i> ক্যাটাগরি
+          </li>
+          <li id="link-contact" class="hover:text-brand-600 cursor-pointer transition-colors flex items-center gap-2 justify-center md:justify-start">
+            <i data-lucide="mail" class="w-4 h-4"></i> যোগাযোগ
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-bold text-slate-900 dark:text-white mb-6 text-lg">
+          <i data-lucide="mail" class="w-5 h-5 inline mr-2"></i> সাবস্ক্রাইব
+        </h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">
+          <i data-lucide="bell" class="w-4 h-4 inline mr-1"></i>
+          নতুন বইয়ের খবরের জন্য যোগ দিন।
+        </p>
+        <div class="flex gap-2">
+          <input type="email" placeholder="ইমেইল..." class="bg-slate-50 dark:bg-slate-950 border dark:border-slate-800 rounded-xl px-4 py-2 text-xs w-full focus:ring-1 focus:ring-brand-500 outline-none" />
+          <button class="bg-brand-600 text-white p-2.5 rounded-xl hover:bg-brand-700 transition-colors" onclick="showToast('ধন্যবাদ! (ডেমো)')">
+            <i data-lucide="send" class="w-5 h-5"></i>
+          </button>
         </div>
-        <div>
-          <h3 class="font-bold text-slate-900 dark:text-white mb-6 text-lg">
-            <i data-lucide="link" class="w-5 h-5 inline mr-2"></i> প্রয়োজনীয় লিংক
-          </h3>
-          <ul class="text-sm text-slate-500 dark:text-slate-400 space-y-4">
-            <li class="hover:text-brand-600 cursor-pointer transition-colors flex items-center gap-2 justify-center md:justify-start">
-              <i data-lucide="home" class="w-4 h-4"></i> হোম
-            </li>
-            <li class="hover:text-brand-600 cursor-pointer transition-colors flex items-center gap-2 justify-center md:justify-start">
-              <i data-lucide="book-open" class="w-4 h-4"></i> বইয়ের তালিকা
-            </li>
-            <li class="hover:text-brand-600 cursor-pointer transition-colors flex items-center gap-2 justify-center md:justify-start">
-              <i data-lucide="grid" class="w-4 h-4"></i> ক্যাটাগরি
-            </li>
-            <li class="hover:text-brand-600 cursor-pointer transition-colors flex items-center gap-2 justify-center md:justify-start">
-              <i data-lucide="phone" class="w-4 h-4"></i> যোগাযোগ
-            </li>
-          </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-slate-200 dark:border-slate-800 mt-12 py-8">
+      <div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 font-medium">
+          <span>&copy; <span id="current-year">2026</span></span>
+          <span class="text-slate-900 dark:text-white font-bold tracking-tight bg-gradient-to-r from-brand-600 to-teal-400 bg-clip-text text-transparent">BoiCloud</span>
+          <span class="hidden md:inline">•</span>
+          <span>All rights reserved.</span>
         </div>
-        
-        <div>
-          <h3 class="font-bold text-slate-900 dark:text-white mb-6 text-lg">
-            <i data-lucide="mail" class="w-5 h-5 inline mr-2"></i> সাবস্ক্রাইব
-          </h3>
-          <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">
-            <i data-lucide="bell" class="w-4 h-4 inline mr-1"></i>
-            নতুন বইয়ের খবরের জন্য যোগ দিন।
-          </p>
-          <div class="flex gap-2">
-            <input type="email" placeholder="ইমেইল..." class="bg-slate-50 dark:bg-slate-950 border dark:border-slate-800 rounded-xl px-4 py-2 text-xs w-full focus:ring-1 focus:ring-brand-500 outline-none" />
-            <button class="bg-brand-600 text-white p-2.5 rounded-xl hover:bg-brand-700 transition-colors">
-              <i data-lucide="send" class="w-5 h-5"></i>
-            </button>
+
+        <!-- ✅ Developed by -> Powered by (logo+color same vibe) -->
+        <div class="group flex items-center gap-2 cursor-pointer transition-all duration-300">
+          <span class="text-[10px] uppercase tracking-[3px] text-slate-400 dark:text-slate-500 font-bold">Powered by</span>
+          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 group-hover:border-brand-500/50 transition-colors shadow-sm">
+            <i data-lucide="sparkles" class="w-4 h-4 text-brand-600 dark:text-brand-500 group-hover:scale-110 transition-transform"></i>
+            <span class="text-sm font-black tracking-tight">
+              <span class="text-slate-800 dark:text-slate-200">Arif</span><span class="bg-gradient-to-r from-brand-600 to-teal-500 bg-clip-text text-transparent">icial</span>
+            </span>
           </div>
         </div>
       </div>
-      
-     <div class="border-t border-slate-200 dark:border-slate-800 mt-12 py-8">
-  <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-    
-    <div class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 font-medium">
-      <span>&copy; 2026</span>
-      <span class="text-slate-900 dark:text-white font-bold tracking-tight">BoiCloud</span>
-      <span class="hidden md:inline">•</span>
-      <span>All rights reserved.</span>
     </div>
+  </footer>
 
-    <div class="group flex items-center gap-2 cursor-pointer transition-all duration-300">
-      <span class="text-[10px] uppercase tracking-[3px] text-slate-400 dark:text-slate-500 font-bold">Developed by</span>
-      
-      <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 group-hover:border-brand-500/50 transition-colors shadow-sm">
-        <i data-lucide="sparkles" class="w-4 h-4 text-brand-600 dark:text-brand-500 group-hover:scale-110 transition-transform"></i>
-        
-        <span class="text-sm font-black tracking-tight">
-          <span class="text-slate-800 dark:text-slate-200">Arif</span><span class="bg-gradient-to-r from-brand-600 to-teal-500 bg-clip-text text-transparent">icial</span>
-        </span>
-      </div>
-    </div>
-
-  </div>
-</div>
-    </footer>
-    
-    
-
-    
-    <script>
-      // Set current year in footer
-      document.getElementById('current-year').textContent = new Date().getFullYear();
-      
-      // Link mobile search with main search
-      const mobileSearch = document.getElementById('search-input-mobile');
-      const mainSearch = document.getElementById('search-input');
-      
-      if (mobileSearch && mainSearch) {
-        mobileSearch.addEventListener('input', function() {
-          mainSearch.value = this.value;
-          filterBooks();
-        });
-        
-        mainSearch.addEventListener('input', function() {
-          mobileSearch.value = this.value;
-        });
-      }
-      
-      // Reinitialize icons periodically to catch any missing ones
-      setInterval(() => lucide.createIcons(), 2000);
-    </script>
+  <script>
+    // Reinitialize icons periodically to catch any missing ones
+    setInterval(() => lucide.createIcons(), 2000);
+  </script>
 </body>
 </html>
