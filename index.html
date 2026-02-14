@@ -923,28 +923,27 @@
       </div>
     </div>
 
-   <div class="border-t border-slate-200 dark:border-slate-800 mt-12">
-
-  <!-- ✅ একটু কম padding দিলে mobile neat লাগে -->
+ <!-- ✅ FOOTER BOTTOM BAR (FINAL: MOBILE + PC PERFECT, NO WORD BREAK) -->
+<div class="border-t border-slate-200 dark:border-slate-800 mt-12">
   <div class="max-w-7xl mx-auto px-4 sm:px-8 py-6">
 
-    <!-- ✅ Mobile → column | Desktop → row -->
-    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+    <!-- Mobile: stacked center | Desktop: left-right -->
+    <div class="flex flex-col md:flex-row items-center md:justify-between justify-center gap-4">
 
-      <!-- ================= LEFT ================= -->
-      <div class="flex flex-col items-center md:items-start text-center md:text-left gap-1 text-sm text-slate-500 dark:text-slate-400">
+      <!-- ================= LEFT: Copyright + Brand ================= -->
+      <div class="flex flex-col items-center md:items-start text-center md:text-left gap-1 text-sm text-slate-500 dark:text-slate-400 font-medium">
 
         <div class="flex items-center gap-2 flex-wrap justify-center md:justify-start">
           <span>&copy; <span id="current-year">2026</span></span>
 
-          <!-- ✅ Premium BoiCloud -->
-          <span class="relative inline-flex items-center">
+          <!-- ✅ Premium Brand Badge: "Boi" white + "Cloud" gradient (NEVER BREAKS) -->
+          <span class="relative inline-flex items-center min-w-fit">
             <span class="absolute -inset-1 rounded-xl bg-gradient-to-r from-brand-600/30 via-teal-400/20 to-brand-600/30 blur-md opacity-60"></span>
 
-            <span class="relative px-3 py-1 rounded-xl border border-brand-500/20
-                         bg-white/70 dark:bg-slate-900/60 backdrop-blur-md shadow-sm">
+            <span class="relative px-3 py-1 rounded-xl border border-brand-500/20 dark:border-brand-500/20
+                         bg-white/70 dark:bg-slate-900/60 backdrop-blur-md shadow-sm min-w-fit">
 
-              <span class="font-black tracking-tight">
+              <span class="font-black tracking-tight whitespace-nowrap">
                 <span class="text-white">Boi</span>
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 via-teal-400 to-brand-600">
                   Cloud
@@ -953,30 +952,33 @@
 
             </span>
           </span>
+
+          <span class="hidden md:inline">•</span>
         </div>
 
         <span class="text-xs md:text-sm">All rights reserved.</span>
       </div>
 
-      <!-- ================= RIGHT ================= -->
-      <div class="flex justify-center md:justify-end w-full md:w-auto">
+      <!-- ================= RIGHT: Powered by ================= -->
+      <div class="flex justify-center md:justify-end">
+        <div class="group flex items-center gap-2 cursor-pointer select-none">
 
-        <div class="group flex items-center gap-1.5 cursor-pointer">
-
-          <span class="text-[9px] md:text-[10px] uppercase tracking-[2.5px]
-                       text-slate-400 dark:text-slate-500 font-bold">
+          <span class="text-[9px] md:text-[10px] uppercase tracking-[2.5px] md:tracking-[3px]
+                       text-slate-400 dark:text-slate-500 font-bold whitespace-nowrap">
             Powered by
           </span>
 
-          <div class="flex items-center gap-1 px-2.5 md:px-3 py-1 md:py-1.5 rounded-lg
+          <!-- ✅ Badge (NEVER BREAKS) -->
+          <div class="flex items-center gap-1 px-2.5 md:px-3 py-1 md:py-1.5 rounded-lg min-w-fit
                       bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800
-                      shadow-sm">
+                      shadow-sm group-hover:border-brand-500/50 transition-colors">
 
             <i data-lucide="sparkles"
-               class="w-3.5 h-3.5 md:w-4 md:h-4 text-brand-600 dark:text-brand-500">
+               class="w-3.5 h-3.5 md:w-4 md:h-4 text-brand-600 dark:text-brand-500
+                      group-hover:scale-110 transition-transform">
             </i>
 
-            <span class="text-[13px] md:text-sm font-black whitespace-nowrap">
+            <span class="text-[13px] md:text-sm font-black tracking-tight whitespace-nowrap">
               <span class="text-slate-800 dark:text-slate-200">Arif</span>
               <span class="bg-gradient-to-r from-brand-600 to-teal-500 bg-clip-text text-transparent">
                 icial
@@ -985,18 +987,17 @@
 
           </div>
         </div>
-
       </div>
 
     </div>
   </div>
 </div>
 
-  </footer>
+<!-- ✅ YEAR AUTO UPDATE (Footer-এর একদম শেষে রাখুন) -->
+<script>
+  const y = document.getElementById('current-year');
+  if (y) y.textContent = new Date().getFullYear();
+</script>
 
-  <script>
-    // Reinitialize icons periodically to catch any missing ones
-    setInterval(() => lucide.createIcons(), 2000);
-  </script>
 </body>
 </html>
