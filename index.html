@@ -81,7 +81,7 @@
       - Smooth & NATURAL feel (slightly slower easing)
     ========================================================= */
     .slider{
-      scroll-snap-type: x proximity;   /* softer snap */
+      scroll-snap-type: x proximity;
       scroll-padding-left: 20px;
       scroll-padding-right: 20px;
       -webkit-overflow-scrolling: touch;
@@ -99,13 +99,11 @@
         transform .45s cubic-bezier(0.22, 1, 0.36, 1);
       will-change: transform;
     }
-    /* smaller cards on mobile */
     .slide-w { width: 132px; }
     @media (min-width: 480px){ .slide-w { width: 150px; } }
     @media (min-width: 768px){ .slide-w { width: 170px; } }
     @media (min-width: 1024px){ .slide-w { width: 185px; } }
 
-    /* Optional: gentle hover (desktop only) */
     @media (hover:hover){
       .slide-card:hover{ transform: translateY(-2px); }
     }
@@ -234,7 +232,6 @@
 
     /* =========================================================
       ✅ Slider Card (smooth + stable)
-      ✅ Click anywhere -> book.html?id=...
     ========================================================= */
     function bookCardHTML(book, q='') {
       const catLabel = book.categories?.[0] || book.category || 'অন্যান্য';
@@ -272,9 +269,12 @@
     }
 
     /* =========================
-      Grid Title helpers
+      ✅ Sticky Grid Header (Title + Back)
+      - category grid + all books grid + search grid: all share same header
     ========================= */
-    const DEFAULT_GRID_TITLE_HTML = `<i data-lucide="layout-grid" class="w-5 h-5 text-brand-600"></i> সব বই (Grid)`;
+    const DEFAULT_GRID_TITLE_HTML = `<i data-lucide="layout-grid" class="w-5 h-5 text-brand-600"></i> সব বই`;
+
+    let GRID_BACK_TARGET_ID = 'row-samprotik';
 
     function setGridTitle(html) {
       const t = document.getElementById('grid-title');
@@ -282,15 +282,19 @@
       lucide.createIcons();
     }
 
-    /* =========================
-      ✅ Category "সব দেখুন"
-      - row hide, grid show
-      - only that category books
-    ========================= */
-    function showCategoryGrid(category) {
+    function closeGridAndBack() {
+      document.getElementById('grid-area')?.classList.add('hidden');
+      document.getElementById('rows-area')?.classList.remove('hidden');
+      setGridTitle(DEFAULT_GRID_TITLE_HTML);
+      scrollToEl(GRID_BACK_TARGET_ID || 'row-samprotik');
+    }
+
+    function openGridWith(books, titleHtml, backTargetId='row-samprotik', qForHighlight='') {
       const gridArea = document.getElementById('grid-area');
       const rowsArea = document.getElementById('rows-area');
       if (!gridArea || !rowsArea) return;
+
+      GRID_BACK_TARGET_ID = backTargetId;
 
       // clear search (if any)
       const mainSearch = document.getElementById('search-input');
@@ -306,14 +310,26 @@
       rowsArea.classList.add('hidden');
       gridArea.classList.remove('hidden');
 
-      const filtered = ALL_BOOKS.filter(b => (b.categories || []).includes(category));
-      setGridTitle(`<i data-lucide="layout-grid" class="w-5 h-5 text-brand-600"></i> ${escapeHtml(category)} বই`);
-      renderAllBooksGrid(filtered, '');
+      setGridTitle(titleHtml);
+      renderAllBooksGrid(books, qForHighlight);
       scrollToEl('grid-area');
     }
 
     /* =========================
-      Search (যখন search করবে, তখন নিচের “All Books Grid” দেখাবে)
+      ✅ Category "সব দেখুন"
+    ========================= */
+    function showCategoryGrid(category) {
+      const filtered = ALL_BOOKS.filter(b => (b.categories || []).includes(category));
+      openGridWith(
+        filtered,
+        `<i data-lucide="layout-grid" class="w-5 h-5 text-brand-600"></i> ${escapeHtml(category)}`,
+        `row-${category}`,
+        ''
+      );
+    }
+
+    /* =========================
+      Grid renderer
     ========================= */
     function renderAllBooksGrid(books, q='') {
       const container = document.getElementById('books-container');
@@ -406,15 +422,12 @@
 
       if (!q) {
         rowsArea?.classList.remove('hidden');
-        // grid আগের মতো hidden থাকতে পারে (user open করলে থাকবে)
         renderSuggestions('', []);
         if (countEl) countEl.textContent = ALL_BOOKS.length;
         return;
       }
 
-      rowsArea?.classList.add('hidden');
-      gridArea?.classList.remove('hidden');
-
+      // search active -> open grid with sticky header
       const filtered = ALL_BOOKS.filter(book => {
         const hay = [book.title, book.author, book.description || '', (book.categories || []).join(' ')].join(' ').toLowerCase();
         return hay.includes(q);
@@ -422,7 +435,10 @@
 
       if (countEl) countEl.textContent = filtered.length;
 
-      setGridTitle(`<i data-lucide="layout-grid" class="w-5 h-5 text-brand-600"></i> সার্চ রেজাল্ট`);
+      GRID_BACK_TARGET_ID = 'row-samprotik';
+      rowsArea?.classList.add('hidden');
+      gridArea?.classList.remove('hidden');
+      setGridTitle(`<i data-lucide="search" class="w-5 h-5 text-brand-600"></i> সার্চ রেজাল্ট`);
       renderAllBooksGrid(filtered, q);
       renderSuggestions(q, filtered);
       scrollToEl('grid-area');
@@ -582,16 +598,18 @@
         scrollToEl('row-samprotik');
       });
 
+      // ✅ All books grid -> uses same sticky header + back
       document.getElementById('show-all-grid-btn')?.addEventListener('click', () => {
-        const gridArea = document.getElementById('grid-area');
-        const rowsArea = document.getElementById('rows-area');
-        rowsArea?.classList.add('hidden');
-        gridArea?.classList.remove('hidden');
-
-        setGridTitle(DEFAULT_GRID_TITLE_HTML);
-        renderAllBooksGrid(ALL_BOOKS, '');
-        scrollToEl('grid-area');
+        openGridWith(
+          ALL_BOOKS,
+          DEFAULT_GRID_TITLE_HTML,
+          'row-samprotik',
+          ''
+        );
       });
+
+      // back button (sticky header)
+      document.getElementById('grid-back-btn')?.addEventListener('click', closeGridAndBack);
 
       const y = document.getElementById('current-year');
       if (y) y.textContent = new Date().getFullYear();
@@ -869,23 +887,30 @@
       </div>
     </section>
 
-    <!-- ✅ Grid Area -->
+    <!-- ✅ Grid Area (UPDATED: Sticky Title + Back always visible) -->
     <section id="grid-area" class="hidden max-w-7xl mx-auto px-4 pb-16 scroll-mt-24">
-      <div class="mb-6 flex items-center justify-between">
-        <h3 id="grid-title" class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
-          <i data-lucide="layout-grid" class="w-5 h-5 text-brand-600"></i> সব বই (Grid)
-        </h3>
-        <button class="text-xs font-black text-slate-500 hover:text-brand-600 transition-colors"
-                onclick="
-                  document.getElementById('grid-area').classList.add('hidden');
-                  document.getElementById('rows-area').classList.remove('hidden');
-                  (function(){ try{ setGridTitle(DEFAULT_GRID_TITLE_HTML); }catch(e){} })();
-                ">
-          Close
-        </button>
+      <!-- ✅ Sticky header inside grid -->
+      <div class="sticky top-[72px] md:top-[88px] z-40 -mx-4 px-4 py-3 glass-effect border-b border-slate-200 dark:border-slate-800">
+        <div class="flex items-center justify-between gap-3">
+          <div class="min-w-0">
+            <h3 id="grid-title" class="text-base sm:text-lg font-black text-slate-900 dark:text-white inline-flex items-center gap-2 truncate">
+              <i data-lucide="layout-grid" class="w-5 h-5 text-brand-600"></i> সব বই
+            </h3>
+            <div class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 font-bold mt-0.5">
+              স্ক্রল করলেও উপরে থাকবে
+            </div>
+          </div>
+
+          <button id="grid-back-btn"
+                  class="shrink-0 px-4 py-2 rounded-xl font-black text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500/50 hover:text-brand-600 transition-colors active:scale-95 inline-flex items-center gap-2">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Back
+          </button>
+        </div>
       </div>
 
-      <div id="books-container" class="grid grid-cols-2 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6"></div>
+      <div class="pt-4">
+        <div id="books-container" class="grid grid-cols-2 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6"></div>
+      </div>
     </section>
   </main>
 
