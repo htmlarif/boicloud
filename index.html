@@ -2,27 +2,19 @@
 <html lang="bn" class="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <!-- ✅ FIX: accessibility-friendly viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BoiCloud | বইক্লাউড - প্রিমিয়াম অনলাইন লাইব্রেরি</title>
-<link rel="icon" type="image/svg+xml"
-href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M17.5 19C20.5376 19 23 16.5376 23 13.5C23 10.4624 20.5376 8 17.5 8C17.2282 8 16.9632 8.01977 16.7042 8.05791C15.6841 5.64243 13.284 4 10.5 4C6.91015 4 4 6.91015 4 10.5C4 10.742 4.0133 10.9809 4.03914 11.2158C2.26425 12.0232 1 13.8152 1 15.9C1 18.7167 3.28335 21 6.1 21H17.5V19Z' fill='%2310b981'/%3E%3Cpath d='M8 13.5C8 12.9477 8.44772 12.5 9 12.5H12V16.5H9C8.44772 16.5 8 16.0523 8 15.5V13.5Z' fill='%23059669'/%3E%3Cpath d='M16 13.5C16 12.9477 15.5523 12.5 15 12.5H12V16.5H15C15.5523 16.5 16 16.0523 16 15.5V13.5Z' fill='%232dd4bf'/%3E%3C/svg%3E">
 
-
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M17.5 19C20.5376 19 23 16.5376 23 13.5C23 10.4624 20.5376 8 17.5 8C17.2282 8 16.9632 8.01977 16.7042 8.05791C15.6841 5.64243 13.284 4 10.5 4C6.91015 4 4 6.91015 4 10.5C4 10.742 4.0133 10.9809 4.03914 11.2158C2.26425 12.0232 1 13.8152 1 15.9C1 18.7167 3.28335 21 6.1 21H17.5V19Z' fill='%2310b981'/%3E%3Cpath d='M8 13.5C8 12.9477 8.44772 12.5 9 12.5H12V16.5H9C8.44772 16.5 8 16.0523 8 15.5V13.5Z' fill='%23059669'/%3E%3Cpath d='M16 13.5C16 12.9477 15.5523 12.5 15 12.5H12V16.5H15C15.5523 16.5 16 16.0523 16 15.5V13.5Z' fill='%232dd4bf'/%3E%3C/svg%3E">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Font Awesome for Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-
+  <!-- Tailwind CSS (✅ FIX: defer for better performance) -->
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -62,6 +54,13 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
       }
     }
   </script>
+  <script src="https://cdn.tailwindcss.com" defer></script>
+
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Lucide Icons (✅ FIX: defer; we call lucide only after DOMContentLoaded) -->
+  <script src="https://unpkg.com/lucide@latest" defer></script>
 
   <style>
     body { font-family: 'Hind Siliguri', sans-serif; -webkit-tap-highlight-color: transparent; }
@@ -112,8 +111,15 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
     mark { padding: 0 2px; border-radius: 4px; background: rgba(16,185,129,.18); color: inherit; }
     .dark mark { background: rgba(16,185,129,.22); }
 
-    /* Toast */
-    .toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: 22px; z-index: 999; max-width: 92vw; }
+    /* Toast (✅ FIX: safe-area support for notched phones) */
+    .toast{
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: calc(22px + env(safe-area-inset-bottom));
+      z-index: 999;
+      max-width: min(92vw, 520px);
+    }
   </style>
 </head>
 
@@ -121,23 +127,8 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
   <div id="root"></div>
 
   <script>
-    // Initialize Lucide icons
-    lucide.createIcons();
-
     /* ======================================================================
       ✅ বই যোগ করার জায়গা (শুধু এই অংশে কাজ করবেন)
-      ----------------------------------------------------------------------
-      1) নতুন বই যোগ করতে: BOOKS_DATA array এর ভেতরে নতুন { ... } object যোগ করুন।
-      2) Cover Image: coverImage এ সরাসরি ইমেজ লিংক দিন (https://...jpg/png/webp)।
-      3) Drive Read Link:
-         - Drive file খুলে Share → Copy link → সাধারণত এমন হয়:
-           https://drive.google.com/file/d/FILE_ID/view?usp=sharing
-      4) Drive Direct Download Link:
-         - এই format ব্যবহার করুন:
-           https://drive.google.com/uc?export=download&id=FILE_ID
-      5) এক বইকে বহু ক্যাটাগরিতে রাখতে চাইলে:
-         - categories: ['উপন্যাস','থ্রিলার','সাহিত্য']
-         - (পুরোনো code এর মতো শুধু category দিলেও চলবে)
     ====================================================================== */
 
     const BOOKS_DATA = [
@@ -146,7 +137,6 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
         title: 'আর রাহীকুল মাখতূম',
         author: 'আল্লামা সফিউর রহমান মোবারকপুরী',
         category: 'ইসলামিক',
-        // categories: ['ইসলামিক','জীবনী'],  // ✅ বহু ক্যাটাগরি চাইলে এভাবে দিন (optional)
         coverImage: 'https://media.kitabghor.com/products/1022/24070/voqjr1678513345czycjt1.jpg',
         readLink: 'https://drive.google.com/file/d/19HyjCsZ6cT6pd15ksGfuahRbSx3iWQ9a/view?usp=sharing',
         downloadLink: 'https://drive.google.com/uc?export=download&id=19HyjCsZ6cT6pd15ksGfuahRbSx3iWQ9a',
@@ -228,8 +218,8 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
         author: 'সত্যজিৎ রায়',
         category: 'থ্রিলার',
         coverImage: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=1000',
-        readLink: '#',      // ⚠️ এখানে # থাকলে ক্লিক করলে toast দেখাবে (লিংক আপডেট হয়নি)
-        downloadLink: '#',  // ⚠️ এখানে # থাকলে ক্লিক করলে toast দেখাবে
+        readLink: '#',
+        downloadLink: '#',
         description: 'প্রদোষ চন্দ্র মিত্রের বুদ্ধির লড়াই আর রহস্য অভিযান।'
       },
       {
@@ -264,12 +254,6 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
       }
     ];
 
-    /* ======================================================================
-      ✅ ক্যাটাগরি যোগ করার জায়গা
-      ----------------------------------------------------------------------
-      নতুন ক্যাটাগরি চাইলে CATEGORIES array তে যোগ করুন।
-      উদাহরণ: 'রোমান্টিক', 'ইতিহাস' ইত্যাদি
-    ====================================================================== */
     const CATEGORIES = ['সবগুলো', 'উপন্যাস', 'থ্রিলার', 'কবিতা', 'ইসলামিক', 'সায়েন্স ফিকশন', 'সাহিত্য', 'ভৌতিক', 'জীবনী', 'অন্যান্য'];
 
     const LOGO_URL = "https://api.dicebear.com/7.x/initials/svg?seed=BC&backgroundColor=10b981&textColor=ffffff";
@@ -279,6 +263,12 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
     const escapeHtml = (s) => String(s ?? '')
       .replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')
       .replaceAll('"','&quot;').replaceAll("'",'&#039;');
+
+    function createLucideIconsSafe() {
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+      }
+    }
 
     function showToast(message, type='info') {
       const old = document.getElementById('toast');
@@ -306,7 +296,7 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
         </div>
       `;
       document.body.appendChild(toast);
-      lucide.createIcons();
+      createLucideIconsSafe();
       toast.querySelector('button')?.addEventListener('click', () => toast.remove());
       setTimeout(() => toast.remove(), 2600);
     }
@@ -332,7 +322,7 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
       return !(u === '#' || u === '');
     }
 
-    // ✅ Multi-category support (আপনি শুধু category দিলেও চলবে, code নিজে থেকে categories বানাবে)
+    // ✅ Multi-category support
     function normalizeBooks(list) {
       return (list || []).map(b => {
         const book = { ...b };
@@ -385,7 +375,7 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
         toggleBtn.innerHTML = isDark
           ? '<i data-lucide="sun" class="w-5 h-5 text-yellow-300"></i>'
           : '<i data-lucide="moon" class="w-5 h-5 text-slate-700"></i>';
-        lucide.createIcons();
+        createLucideIconsSafe();
       }
     }
 
@@ -406,7 +396,7 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
             <p class="text-slate-500 dark:text-slate-400">অন্য কোনো নাম দিয়ে সার্চ করুন অথবা ক্যাটাগরি পরিবর্তন করুন।</p>
           </div>
         `;
-        lucide.createIcons();
+        createLucideIconsSafe();
         return;
       }
 
@@ -421,7 +411,7 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
         return `
           <div class="group bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-lg flex flex-col h-full hover:-translate-y-2 transition-all duration-300">
             <div class="aspect-[2/3] relative overflow-hidden">
-              <img src="${book.coverImage}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" alt="${escapeHtml(book.title)}" />
+              <img src="${book.coverImage}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" decoding="async" alt="${escapeHtml(book.title)}" />
 
               <div class="absolute top-3 left-3 z-10">
                 <span class="px-3 py-1 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm text-brand-600 text-[10px] font-bold rounded-full border border-slate-100 dark:border-slate-800 shadow-sm">
@@ -472,9 +462,8 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
         `;
       }).join('');
 
-      lucide.createIcons();
+      createLucideIconsSafe();
 
-      // ✅ Invalid link হলে toast দেখাবে (ভাঙা লিংক মনে হবে না)
       container.querySelectorAll('.book-action-read, .book-action-download').forEach(a => {
         a.addEventListener('click', (e) => {
           const ok = a.getAttribute('data-ok') === 'true';
@@ -547,7 +536,7 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
         });
       });
 
-      lucide.createIcons();
+      createLucideIconsSafe();
     }
 
     // ---------- Suggestions ----------
@@ -590,7 +579,7 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
         </div>
       `;
       wrap.classList.remove('hidden');
-      lucide.createIcons();
+      createLucideIconsSafe();
     }
 
     function closeSuggestions() {
@@ -635,7 +624,6 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
         closeSuggestions();
       });
 
-      // "/" to focus search, ESC to close suggestions
       document.addEventListener('keydown', (e) => {
         if (e.key === '/' && !e.ctrlKey && !e.metaKey && !e.altKey) {
           const tag = (document.activeElement?.tagName || '').toLowerCase();
@@ -647,7 +635,6 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
         if (e.key === 'Escape') closeSuggestions();
       });
 
-      // click outside closes suggestions
       document.addEventListener('click', (e) => {
         const wrap = document.getElementById('suggestions-wrap');
         const area = document.getElementById('search-area');
@@ -657,13 +644,12 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
       });
     }
 
-    // ---------- Footer links work (Home/Books/Category/Contact) ----------
+    // ---------- Footer links ----------
     function bindFooterLinks() {
       document.getElementById('link-home')?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
       document.getElementById('link-books')?.addEventListener('click', () => scrollToEl('books-grid'));
       document.getElementById('link-category')?.addEventListener('click', () => scrollToEl('category-buttons'));
       document.getElementById('link-contact')?.addEventListener('click', () => {
-        // ✅ Gmail compose open with your email
         window.location.href = "https://mail.google.com/mail/?view=cm&fs=1&to=html.arif@gmail.com";
       });
     }
@@ -678,7 +664,6 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
       });
 
       initializeCategoryButtons();
-
       bindSearchUX();
       bindFooterLinks();
 
@@ -689,11 +674,13 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
         document.getElementById('books-grid').scrollIntoView({ behavior: 'smooth' });
       });
 
-      // Year fix (আগের কোডে id ছিল না)
+      // Year fix
       const y = document.getElementById('current-year');
       if (y) y.textContent = new Date().getFullYear();
 
-      setTimeout(() => lucide.createIcons(), 100);
+      // ✅ Lucide icons init (safe)
+      createLucideIconsSafe();
+      setTimeout(createLucideIconsSafe, 100);
     }
 
     document.addEventListener('DOMContentLoaded', initializeApp);
@@ -728,6 +715,7 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
           <input
             type="text"
             id="search-input"
+            inputmode="search"
             placeholder="বই সার্চ করুন... "
             class="block w-full pl-10 pr-10 py-2 border border-slate-200 dark:border-slate-700 rounded-full bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/50 transition-all text-sm"
             autocomplete="off"
@@ -756,6 +744,7 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
           <input
             type="text"
             id="search-input-mobile"
+            inputmode="search"
             placeholder="বই / লেখক / ক্যাটাগরি..."
             class="block w-full pl-9 pr-10 py-2 border border-slate-200 dark:border-slate-700 rounded-full bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/50 transition-all text-sm"
             autocomplete="off"
@@ -773,7 +762,9 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
       <div class="absolute inset-0 z-0">
         <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=2000"
              alt="Library Background"
-             class="w-full h-full object-cover animate-slow-zoom" />
+             class="w-full h-full object-cover animate-slow-zoom"
+             loading="lazy"
+             decoding="async" />
         <div class="absolute inset-0 hero-gradient"></div>
       </div>
 
@@ -798,7 +789,6 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
             <i data-lucide="compass" class="w-5 h-5"></i> পড়া শুরু করুন
           </button>
 
-          <!-- ✅ Click করলে Gmail compose open হবে -->
           <a href="https://mail.google.com/mail/?view=cm&fs=1&to=html.arif@gmail.com"
              class="w-full sm:w-auto px-8 py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-2xl font-bold text-base sm:text-lg transition-all hover:bg-white/20 active:scale-95 flex items-center justify-center gap-2">
             <i data-lucide="mail" class="w-5 h-5"></i> বই জমা দিন
@@ -927,83 +917,64 @@ href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 
       </div>
     </div>
 
- <!-- ✅ FOOTER BOTTOM BAR (FINAL: MOBILE + PC PERFECT, NO WORD BREAK) -->
-<div class="border-t border-slate-200 dark:border-slate-800 mt-12">
-  <div class="max-w-7xl mx-auto px-4 sm:px-8 py-6">
+    <!-- ✅ FOOTER BOTTOM BAR (FIXED: no duplicate wrapper) -->
+    <div class="border-t border-slate-200 dark:border-slate-800 mt-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-8 py-6">
+        <div class="flex flex-col md:flex-row items-center md:justify-between justify-center gap-4">
 
-   <!-- ✅ FOOTER BOTTOM BAR (NO "Boi Clou" / NO "Arif icial") -->
-<div class="border-t border-slate-200 dark:border-slate-800 mt-12">
-  <div class="max-w-7xl mx-auto px-4 sm:px-8 py-6">
+          <!-- LEFT -->
+          <div class="flex flex-col items-center md:items-start text-center md:text-left gap-1 text-sm text-slate-500 dark:text-slate-400 font-medium">
+            <div class="flex items-center gap-2 justify-center md:justify-start flex-nowrap">
+              <span class="shrink-0">&copy; <span id="current-year">2026</span></span>
 
-    <div class="flex flex-col md:flex-row items-center md:justify-between justify-center gap-4">
+              <span class="relative inline-flex items-center shrink-0">
+                <span class="absolute -inset-1 rounded-xl bg-gradient-to-r from-brand-600/30 via-teal-400/20 to-brand-600/30 blur-md opacity-60"></span>
 
-      <!-- LEFT -->
-      <div class="flex flex-col items-center md:items-start text-center md:text-left gap-1 text-sm text-slate-500 dark:text-slate-400 font-medium">
-
-        <!-- ✅ এখানে flex-wrap বাদ, flex-nowrap ব্যবহার -->
-        <div class="flex items-center gap-2 justify-center md:justify-start flex-nowrap">
-
-          <span class="shrink-0">&copy; <span id="current-year">2026</span></span>
-
-          <!-- ✅ Premium BoiCloud badge: never breaks -->
-          <span class="relative inline-flex items-center shrink-0">
-            <span class="absolute -inset-1 rounded-xl bg-gradient-to-r from-brand-600/30 via-teal-400/20 to-brand-600/30 blur-md opacity-60"></span>
-
-            <span class="relative px-3 py-1 rounded-xl border border-brand-500/20 dark:border-brand-500/20
-                         bg-white/70 dark:bg-slate-900/60 backdrop-blur-md shadow-sm
-                         inline-flex items-center flex-nowrap shrink-0">
-
-              <!-- ✅ IMPORTANT: span দুটার মাঝে কোনো স্পেস/নিউলাইন নেই -->
-              <span class="font-black tracking-tight whitespace-nowrap">
-                <span class="text-white whitespace-nowrap">Boi</span><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 via-teal-400 to-brand-600 whitespace-nowrap">Cloud</span>
+                <span class="relative px-3 py-1 rounded-xl border border-brand-500/20 dark:border-brand-500/20
+                             bg-white/70 dark:bg-slate-900/60 backdrop-blur-md shadow-sm
+                             inline-flex items-center flex-nowrap shrink-0">
+                  <span class="font-black tracking-tight whitespace-nowrap">
+                    <span class="text-white whitespace-nowrap">Boi</span><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 via-teal-400 to-brand-600 whitespace-nowrap">Cloud</span>
+                  </span>
+                </span>
               </span>
 
-            </span>
-          </span>
+              <span class="hidden md:inline shrink-0">•</span>
+            </div>
 
-          <span class="hidden md:inline shrink-0">•</span>
-        </div>
-
-        <span class="text-xs md:text-sm">All rights reserved.</span>
-      </div>
-
-      <!-- RIGHT -->
-      <div class="flex justify-center md:justify-end">
-        <div class="group flex items-center gap-2 cursor-pointer select-none flex-nowrap">
-
-          <span class="text-[9px] md:text-[10px] uppercase tracking-[2.5px] md:tracking-[3px]
-                       text-slate-400 dark:text-slate-500 font-bold whitespace-nowrap shrink-0">
-            Powered by
-          </span>
-
-          <!-- ✅ Arificial badge: never breaks -->
-          <div class="flex items-center gap-1 px-2.5 md:px-3 py-1 md:py-1.5 rounded-lg
-                      bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800
-                      shadow-sm group-hover:border-brand-500/50 transition-colors
-                      flex-nowrap shrink-0">
-
-            <i data-lucide="sparkles"
-               class="w-3.5 h-3.5 md:w-4 md:h-4 text-brand-600 dark:text-brand-500
-                      group-hover:scale-110 transition-transform shrink-0"></i>
-
-            <!-- ✅ IMPORTANT: span দুটার মাঝে কোনো স্পেস/নিউলাইন নেই -->
-            <span class="text-[13px] md:text-sm font-black tracking-tight whitespace-nowrap">
-              <span class="text-slate-800 dark:text-slate-200 whitespace-nowrap">Arif</span><span class="bg-gradient-to-r from-brand-600 to-teal-500 bg-clip-text text-transparent whitespace-nowrap">icial</span>
-            </span>
-
+            <span class="text-xs md:text-sm">All rights reserved.</span>
           </div>
+
+          <!-- RIGHT -->
+          <div class="flex justify-center md:justify-end">
+            <div class="group flex items-center gap-2 cursor-pointer select-none flex-nowrap">
+              <span class="text-[9px] md:text-[10px] uppercase tracking-[2.5px] md:tracking-[3px]
+                           text-slate-400 dark:text-slate-500 font-bold whitespace-nowrap shrink-0">
+                Powered by
+              </span>
+
+              <div class="flex items-center gap-1 px-2.5 md:px-3 py-1 md:py-1.5 rounded-lg
+                          bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800
+                          shadow-sm group-hover:border-brand-500/50 transition-colors
+                          flex-nowrap shrink-0">
+
+                <i data-lucide="sparkles"
+                   class="w-3.5 h-3.5 md:w-4 md:h-4 text-brand-600 dark:text-brand-500
+                          group-hover:scale-110 transition-transform shrink-0"></i>
+
+                <span class="text-[13px] md:text-sm font-black tracking-tight whitespace-nowrap">
+                  <span class="text-slate-800 dark:text-slate-200 whitespace-nowrap">Arif</span><span class="bg-gradient-to-r from-brand-600 to-teal-500 bg-clip-text text-transparent whitespace-nowrap">icial</span>
+                </span>
+
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
-
     </div>
-  </div>
-</div>
 
-<script>
-  const y = document.getElementById('current-year');
-  if (y) y.textContent = new Date().getFullYear();
-</script>
-
+  </footer>
 
 </body>
 </html>
