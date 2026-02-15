@@ -74,6 +74,31 @@
     .dark mark { background: rgba(16,185,129,.22); }
 
     .toast { position:fixed; left:50%; transform:translateX(-50%); bottom: calc(22px + env(safe-area-inset-bottom)); z-index:999; max-width:92vw; }
+
+    /* =========================================================
+      ✅ OTT Slider (Center-focus effect)
+      - scroll-snap center + JS দিয়ে center কার্ড detect করে class দেয়
+    ========================================================= */
+    .slider {
+      scroll-snap-type: x mandatory;
+      scroll-padding-left: 16px;
+      scroll-padding-right: 16px;
+    }
+    .slide-item { scroll-snap-align: center; }
+
+    /* base card motion */
+    .slide-card { transform: translateY(10px) scale(.96); opacity: .92; }
+    .slide-card.is-near { transform: translateY(6px) scale(.98); opacity: .98; }
+    .slide-card.is-center { transform: translateY(-8px) scale(1.04); opacity: 1; }
+
+    /* smoother */
+    .slide-card { transition: transform .28s ease, opacity .28s ease; }
+
+    /* smaller cards on mobile */
+    .slide-w { width: 132px; }
+    @media (min-width: 480px){ .slide-w { width: 150px; } }
+    @media (min-width: 768px){ .slide-w { width: 170px; } }
+    @media (min-width: 1024px){ .slide-w { width: 185px; } }
   </style>
 </head>
 
@@ -137,12 +162,6 @@
       catch { return safe; }
     }
 
-    function isValidLink(url) {
-      if (!url) return false;
-      const u = url.trim();
-      return !(u === '#' || u === '');
-    }
-
     function normalizeBooks(list) {
       return (list || []).map(b => {
         const book = { ...b };
@@ -197,162 +216,141 @@
 
     /* =========================
       Data
+      ✅ NOTE (তোমার কথা অনুযায়ী):
+      - “সাম্প্রতিক” = তুমি যেগুলো শেষদিকে add করো সেগুলো newest
+      - তাই Samprotik row = ALL_BOOKS কে reverse করে দেখানো
     ========================= */
     const BOOKS_DATA = window.BOOKS_DATA || [];
     let ALL_BOOKS = normalizeBooks(BOOKS_DATA);
 
     const CATEGORIES = ['সবগুলো', 'উপন্যাস', 'থ্রিলার', 'কবিতা', 'ইসলামিক', 'সায়েন্স ফিকশন', 'সাহিত্য', 'ভৌতিক', 'জীবনী', 'অন্যান্য'];
 
+    /* =========================================================
+      ✅ 1) Slider Card (small, swipe-friendly)
+      ✅ 2) Click anywhere -> book.html?id=...
+    ========================================================= */
+    function bookCardHTML(book, q='') {
+      const catLabel = book.categories?.[0] || book.category || 'অন্যান্য';
+      return `
+        <a href="book.html?id=${encodeURIComponent(book.id)}"
+           class="slide-item slide-w shrink-0 block group">
+          <div class="slide-card rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-md hover:shadow-xl transition-shadow">
+            <div class="aspect-[2/3] relative overflow-hidden">
+              <img src="${book.coverImage}" alt="${escapeHtml(book.title)}"
+                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy">
+              <div class="absolute top-2 left-2">
+                <span class="px-2.5 py-1 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm text-brand-600 text-[10px] font-black rounded-full border border-slate-100 dark:border-slate-800">
+                  ${escapeHtml(catLabel)}
+                </span>
+              </div>
+            </div>
+
+            <div class="p-3">
+              <div class="text-[13px] font-black text-slate-900 dark:text-white line-clamp-1 group-hover:text-brand-600 transition-colors">
+                ${highlight(book.title, q)}
+              </div>
+              <div class="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-1 mt-0.5">
+                ${highlight(book.author, q)}
+              </div>
+            </div>
+          </div>
+        </a>
+      `;
+    }
+
+    function renderRow(containerId, books, q='') {
+      const wrap = document.getElementById(containerId);
+      if (!wrap) return;
+      wrap.innerHTML = books.map(b => bookCardHTML(b, q)).join('');
+    }
+
+    /* =========================================================
+      ✅ Center-focus effect (মাঝের বই up, পাশের দুইটা down)
+      - Scroll হলে nearest-to-center item detect করে class বসাই
+    ========================================================= */
+    function attachCenterEffect(sliderEl) {
+      if (!sliderEl) return;
+
+      let raf = null;
+
+      const update = () => {
+        raf = null;
+        const items = Array.from(sliderEl.querySelectorAll('.slide-item .slide-card'));
+        if (!items.length) return;
+
+        // slider center (viewport center)
+        const rect = sliderEl.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+
+        let bestIdx = 0;
+        let bestDist = Infinity;
+
+        items.forEach((card, idx) => {
+          const r = card.getBoundingClientRect();
+          const cardCenter = r.left + r.width / 2;
+          const dist = Math.abs(cardCenter - centerX);
+          if (dist < bestDist) { bestDist = dist; bestIdx = idx; }
+        });
+
+        items.forEach((card, idx) => {
+          card.classList.remove('is-center', 'is-near');
+          if (idx === bestIdx) card.classList.add('is-center');
+          else if (idx === bestIdx - 1 || idx === bestIdx + 1) card.classList.add('is-near');
+        });
+      };
+
+      const schedule = () => {
+        if (raf) return;
+        raf = requestAnimationFrame(update);
+      };
+
+      sliderEl.addEventListener('scroll', schedule, { passive: true });
+      window.addEventListener('resize', schedule);
+
+      // first paint
+      setTimeout(update, 60);
+    }
+
+    function attachAllSlidersEffect() {
+      document.querySelectorAll('[data-slider="true"]').forEach(attachCenterEffect);
+    }
+
     /* =========================
-      Render Cards (✅ click -> book.html?id=)
+      Search (যখন search করবে, তখন নিচের “All Books Grid” দেখাবে)
+      - row গুলো hide, grid show
     ========================= */
-    function renderBooks(books, searchQuery='') {
+    function renderAllBooksGrid(books, q='') {
       const container = document.getElementById('books-container');
       if (!container) return;
 
-      if (books.length === 0) {
+      if (!books.length) {
         container.innerHTML = `
-          <div class="col-span-full text-center py-16">
-            <div class="w-20 h-20 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6">
-              <i data-lucide="search-x" class="w-10 h-10 text-slate-400"></i>
+          <div class="col-span-full text-center py-14">
+            <div class="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i data-lucide="search-x" class="w-8 h-8 text-slate-400"></i>
             </div>
-            <h3 class="text-2xl font-bold dark:text-white mb-2">কোনো বই পাওয়া যায়নি</h3>
-            <p class="text-slate-500 dark:text-slate-400">অন্য কোনো নাম দিয়ে সার্চ করুন অথবা ক্যাটাগরি পরিবর্তন করুন।</p>
+            <h3 class="text-xl font-black dark:text-white mb-1">কোনো বই পাওয়া যায়নি</h3>
+            <p class="text-slate-500 dark:text-slate-400 text-sm">অন্য কোনো নাম দিয়ে সার্চ করুন।</p>
           </div>
         `;
         lucide.createIcons();
         return;
       }
 
-      container.innerHTML = books.map(book => {
-        const catLabel = book.categories?.length > 1
-          ? `${book.categories[0]} +${book.categories.length - 1}`
-          : (book.categories?.[0] || book.category || 'অন্যান্য');
-
-        const readOk = isValidLink(book.readLink);
-        const downOk = isValidLink(book.downloadLink);
-
-        return `
-          <div class="group bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-lg flex flex-col h-full hover:-translate-y-2 transition-all duration-300">
-            <!-- ✅ কভার/নাম/সবকিছু ক্লিক করলে details page -->
-            <a href="book.html?id=${encodeURIComponent(book.id)}" class="block">
-              <div class="aspect-[2/3] relative overflow-hidden">
-                <img src="${book.coverImage}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" alt="${escapeHtml(book.title)}" />
-
-                <div class="absolute top-3 left-3 z-10">
-                  <span class="px-3 py-1 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm text-brand-600 text-[10px] font-bold rounded-full border border-slate-100 dark:border-slate-800 shadow-sm">
-                    ${escapeHtml(catLabel)}
-                  </span>
-                </div>
-
-                <!-- hover overlay hint -->
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div class="px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-white text-xs font-bold flex items-center gap-2">
-                    <i data-lucide="arrow-right" class="w-4 h-4"></i> বিস্তারিত দেখুন
-                  </div>
-                </div>
-              </div>
-
-              <div class="p-5">
-                <h3 class="text-lg font-bold text-slate-900 dark:text-white line-clamp-1 mb-0.5 group-hover:text-brand-600 transition-colors">${highlight(book.title, searchQuery)}</h3>
-                <p class="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">
-                  <i data-lucide="user" class="w-3 h-3 inline mr-1"></i> ${highlight(book.author, searchQuery)}
-                </p>
-                ${book.description ? `
-                  <p class="text-slate-400 dark:text-slate-500 text-xs italic line-clamp-2 cursor-help" title="${escapeHtml(book.description)}">
-                    <i data-lucide="info" class="w-3 h-3 inline mr-1"></i> ${highlight(book.description, searchQuery)}
-                  </p>
-                ` : ''}
-              </div>
-            </a>
-
-            <!-- ✅ চাইলে এখানে read/download রাখা যাবে (তোমার ডেটা আছে বলে রেখে দিলাম) -->
-            <div class="px-5 pb-5 mt-auto">
-              <div class="flex items-center gap-2">
-                <a href="${readOk ? book.readLink : 'javascript:void(0)'}"
-                   class="book-action-read flex-[2] text-center py-2.5 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold rounded-xl transition-all shadow-md shadow-brand-500/20 active:scale-95 flex items-center justify-center gap-1 ${readOk ? '' : 'opacity-60 cursor-not-allowed'}"
-                   data-ok="${readOk}">
-                  <i data-lucide="book-open" class="w-3 h-3"></i> পড়ুন
-                </a>
-                <a href="${downOk ? book.downloadLink : 'javascript:void(0)'}"
-                   class="book-action-download flex-1 flex justify-center py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors ${downOk ? '' : 'opacity-60 cursor-not-allowed'}"
-                   data-ok="${downOk}">
-                  <i data-lucide="download" class="w-4 h-4"></i>
-                </a>
-              </div>
-            </div>
+      // ✅ Small grid cards (no read/download)
+      container.innerHTML = books.map(b => `
+        <a href="book.html?id=${encodeURIComponent(b.id)}"
+           class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1">
+          <div class="aspect-[2/3] overflow-hidden">
+            <img src="${b.coverImage}" alt="${escapeHtml(b.title)}"
+                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy">
           </div>
-        `;
-      }).join('');
-
-      lucide.createIcons();
-
-      container.querySelectorAll('.book-action-read, .book-action-download').forEach(a => {
-        a.addEventListener('click', (e) => {
-          const ok = a.getAttribute('data-ok') === 'true';
-          if (!ok) {
-            e.preventDefault();
-            showToast('দুঃখিত! এই বইয়ের লিংক এখনো আপডেট করা হয়নি।', 'error');
-          }
-        });
-      });
-    }
-
-    function getSelectedCategory() {
-      const activeBtn = document.querySelector('.category-btn.active');
-      return activeBtn ? activeBtn.dataset.category : 'সবগুলো';
-    }
-
-    function filterBooks() {
-      const q = (document.getElementById('search-input')?.value || '').trim().toLowerCase();
-      const selectedCategory = getSelectedCategory();
-
-      const filtered = ALL_BOOKS.filter(book => {
-        const hay = [book.title, book.author, book.description || '', (book.categories || []).join(' ')].join(' ').toLowerCase();
-        const matchesSearch = !q || hay.includes(q);
-        const matchesCategory = selectedCategory === 'সবগুলো' || (book.categories || []).includes(selectedCategory);
-        return matchesSearch && matchesCategory;
-      });
-
-      renderBooks(filtered, q);
-
-      const bookCountElement = document.getElementById('book-count');
-      if (bookCountElement) bookCountElement.textContent = filtered.length;
-
-      const noResults = document.getElementById('no-results');
-      if (noResults) noResults.style.display = filtered.length === 0 ? 'block' : 'none';
-
-      renderSuggestions(q, filtered);
-    }
-
-    const filterBooksDebounced = debounce(filterBooks, 140);
-
-    function initializeCategoryButtons() {
-      const container = document.getElementById('category-buttons');
-      if (!container) return;
-
-      container.innerHTML = CATEGORIES.map(category => `
-        <button class="category-btn px-6 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all active:scale-95
-          ${category === 'সবগুলো'
-            ? 'active bg-brand-600 text-white shadow-xl shadow-brand-500/30'
-            : 'bg-white dark:bg-slate-900 text-slate-500 border dark:border-slate-800 hover:border-brand-500/50'}"
-          data-category="${escapeHtml(category)}">
-          ${category === 'সবগুলো' ? '<i data-lucide="grid" class="w-4 h-4 inline mr-2"></i>' : ''}
-          ${escapeHtml(category)}
-        </button>
+          <div class="p-3">
+            <div class="text-sm font-black text-slate-900 dark:text-white line-clamp-1 group-hover:text-brand-600 transition-colors">${highlight(b.title, q)}</div>
+            <div class="text-xs text-slate-500 dark:text-slate-400 line-clamp-1 mt-0.5">${highlight(b.author, q)}</div>
+          </div>
+        </a>
       `).join('');
-
-      document.querySelectorAll('.category-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-          document.querySelectorAll('.category-btn').forEach(b => {
-            b.classList.remove('active','bg-brand-600','text-white','shadow-xl','shadow-brand-500/30');
-            b.classList.add('bg-white','dark:bg-slate-900','text-slate-500','border','dark:border-slate-800');
-          });
-          this.classList.add('active','bg-brand-600','text-white','shadow-xl','shadow-brand-500/30');
-          this.classList.remove('bg-white','dark:bg-slate-900','text-slate-500','border','dark:border-slate-800');
-          filterBooks();
-        });
-      });
 
       lucide.createIcons();
     }
@@ -370,7 +368,8 @@
 
       const top = filteredBooks.slice(0, 6);
       const items = top.map(b => `
-        <a href="book.html?id=${encodeURIComponent(b.id)}" class="block w-full text-left px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors flex gap-3 items-center">
+        <a href="book.html?id=${encodeURIComponent(b.id)}"
+           class="block w-full text-left px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors flex gap-3 items-center">
           <img src="${b.coverImage}" class="w-10 h-14 object-cover rounded-lg border border-slate-200 dark:border-slate-700" alt="">
           <div class="min-w-0">
             <div class="text-sm font-bold text-slate-900 dark:text-white line-clamp-1">${highlight(b.title, q)}</div>
@@ -403,6 +402,115 @@
       document.getElementById('suggestions-wrap')?.classList.add('hidden');
     }
 
+    function applySearchAndToggleLayout(qRaw) {
+      const q = (qRaw || '').trim().toLowerCase();
+
+      const rowsArea = document.getElementById('rows-area');
+      const gridArea = document.getElementById('grid-area');
+      const countEl = document.getElementById('book-count');
+
+      if (!q) {
+        // ✅ no search: show rows, grid hidden (unless user opened grid)
+        rowsArea?.classList.remove('hidden');
+        // gridArea hidden থাকবে by default; user “সব বই দেখুন” দিলে show হবে
+        renderSuggestions('', []);
+        if (countEl) countEl.textContent = ALL_BOOKS.length;
+        return;
+      }
+
+      // ✅ search active: show grid only
+      rowsArea?.classList.add('hidden');
+      gridArea?.classList.remove('hidden');
+
+      const filtered = ALL_BOOKS.filter(book => {
+        const hay = [book.title, book.author, book.description || '', (book.categories || []).join(' ')].join(' ').toLowerCase();
+        return hay.includes(q);
+      });
+
+      if (countEl) countEl.textContent = filtered.length;
+      renderAllBooksGrid(filtered, q);
+      renderSuggestions(q, filtered);
+
+      // scroll to grid
+      scrollToEl('grid-area');
+    }
+
+    const applySearchDebounced = debounce(applySearchAndToggleLayout, 140);
+
+    /* =========================
+      Category pills:
+      - আগের মতোই থাকবে
+      - এখন filter না করে: ক্লিক করলে row তে scroll
+    ========================= */
+    function initializeCategoryButtons() {
+      const container = document.getElementById('category-buttons');
+      if (!container) return;
+
+      container.innerHTML = CATEGORIES.map(category => `
+        <button class="category-btn px-6 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all active:scale-95
+          ${category === 'সবগুলো'
+            ? 'active bg-brand-600 text-white shadow-xl shadow-brand-500/30'
+            : 'bg-white dark:bg-slate-900 text-slate-500 border dark:border-slate-800 hover:border-brand-500/50'}"
+          data-category="${escapeHtml(category)}">
+          ${category === 'সবগুলো' ? '<i data-lucide="grid" class="w-4 h-4 inline mr-2"></i>' : ''}
+          ${escapeHtml(category)}
+        </button>
+      `).join('');
+
+      const setActive = (btn) => {
+        document.querySelectorAll('.category-btn').forEach(b => {
+          b.classList.remove('active','bg-brand-600','text-white','shadow-xl','shadow-brand-500/30');
+          b.classList.add('bg-white','dark:bg-slate-900','text-slate-500','border','dark:border-slate-800');
+        });
+        btn.classList.add('active','bg-brand-600','text-white','shadow-xl','shadow-brand-500/30');
+        btn.classList.remove('bg-white','dark:bg-slate-900','text-slate-500','border','dark:border-slate-800');
+      };
+
+      document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          setActive(btn);
+
+          // ✅ search থাকলে আগে clear করে rows এ আসি
+          const mainSearch = document.getElementById('search-input');
+          const mobileSearch = document.getElementById('search-input-mobile');
+          if ((mainSearch?.value || '').trim() || (mobileSearch?.value || '').trim()) {
+            if (mainSearch) mainSearch.value = '';
+            if (mobileSearch) mobileSearch.value = '';
+            closeSuggestions();
+            // layout reset
+            document.getElementById('rows-area')?.classList.remove('hidden');
+          }
+
+          const cat = btn.dataset.category;
+          if (cat === 'সবগুলো') scrollToEl('row-samprotik');
+          else scrollToEl(`row-${cat}`);
+        });
+      });
+
+      lucide.createIcons();
+    }
+
+    /* =========================
+      Build OTT Rows
+    ========================= */
+    function buildRows() {
+      // ✅ 1) Samprotik (latest-first). “Limit নাই” => সব বই, reverse order
+      const samprotik = [...ALL_BOOKS].reverse();
+      renderRow('samprotik-slider', samprotik);
+
+      // ✅ 2) Category rows
+      CATEGORIES.filter(c => c !== 'সবগুলো').forEach(cat => {
+        const list = ALL_BOOKS.filter(b => (b.categories || []).includes(cat));
+        renderRow(`slider-${cat}`, list);
+      });
+
+      // ✅ center-effect
+      setTimeout(attachAllSlidersEffect, 80);
+    }
+
+    /* =========================
+      Search UX binding
+    ========================= */
     function bindSearchUX() {
       const mobileSearch = document.getElementById('search-input-mobile');
       const mainSearch = document.getElementById('search-input');
@@ -416,7 +524,7 @@
         const q = (mainSearch?.value || '').trim();
         clearMain?.classList.toggle('hidden', !q);
         clearMobile?.classList.toggle('hidden', !q);
-        filterBooksDebounced();
+        applySearchDebounced(q);
       };
 
       mainSearch?.addEventListener('input', () => { sync(mainSearch, mobileSearch); onInput(); });
@@ -426,18 +534,20 @@
         if (!mainSearch) return;
         mainSearch.value = '';
         if (mobileSearch) mobileSearch.value = '';
-        onInput();
-        mainSearch.focus();
+        clearMain.classList.add('hidden');
+        clearMobile?.classList.add('hidden');
         closeSuggestions();
+        applySearchAndToggleLayout('');
       });
 
       clearMobile?.addEventListener('click', () => {
         if (!mobileSearch) return;
         mobileSearch.value = '';
         if (mainSearch) mainSearch.value = '';
-        onInput();
-        mobileSearch.focus();
+        clearMobile.classList.add('hidden');
+        clearMain?.classList.add('hidden');
         closeSuggestions();
+        applySearchAndToggleLayout('');
       });
 
       document.addEventListener('keydown', (e) => {
@@ -462,7 +572,7 @@
 
     function bindFooterLinks() {
       document.getElementById('link-home')?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-      document.getElementById('link-books')?.addEventListener('click', () => scrollToEl('books-grid'));
+      document.getElementById('link-books')?.addEventListener('click', () => scrollToEl('row-samprotik'));
       document.getElementById('link-category')?.addEventListener('click', () => scrollToEl('category-buttons'));
       document.getElementById('link-contact')?.addEventListener('click', () => {
         window.location.href = "https://mail.google.com/mail/?view=cm&fs=1&to=html.arif@gmail.com";
@@ -472,23 +582,32 @@
     function initializeApp() {
       const isDarkMode = initializeDarkMode();
       updateDarkModeToggle(isDarkMode);
-
       document.getElementById('dark-mode-toggle')?.addEventListener('click', toggleDarkMode);
-
-      document.getElementById('nav-categories')?.addEventListener('click', () => scrollToEl('category-buttons'));
-      document.getElementById('nav-home')?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
       initializeCategoryButtons();
       bindSearchUX();
       bindFooterLinks();
 
-      renderBooks(ALL_BOOKS);
+      // ✅ build OTT rows
+      buildRows();
+
+      // ✅ count default
       document.getElementById('book-count').textContent = ALL_BOOKS.length;
 
+      // ✅ Explore button -> Samprotik
       document.getElementById('explore-books-btn')?.addEventListener('click', () => {
-        document.getElementById('books-grid').scrollIntoView({ behavior: 'smooth' });
+        scrollToEl('row-samprotik');
       });
 
+      // ✅ “সব বই দেখুন” -> grid show + render all
+      document.getElementById('show-all-grid-btn')?.addEventListener('click', () => {
+        const gridArea = document.getElementById('grid-area');
+        gridArea?.classList.remove('hidden');
+        renderAllBooksGrid(ALL_BOOKS, '');
+        scrollToEl('grid-area');
+      });
+
+      // year
       const y = document.getElementById('current-year');
       if (y) y.textContent = new Date().getFullYear();
 
@@ -516,16 +635,6 @@
           <h1 class="text-xl sm:text-3xl font-black tracking-tighter whitespace-nowrap">
             <span class="text-slate-800 dark:text-white">Boi</span><span class="bg-gradient-to-r from-brand-600 to-teal-500 bg-clip-text text-transparent">Cloud</span>
           </h1>
-        </div>
-
-        <!-- ✅ small nav (Home + Categories) -->
-        <div class="hidden md:flex items-center gap-2 ml-4">
-          <button id="nav-home" class="px-3 py-2 rounded-full text-xs font-bold border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 hover:border-brand-500/50 transition-colors">
-            <i data-lucide="home" class="w-4 h-4 inline -mt-0.5 mr-1"></i> Home
-          </button>
-          <button id="nav-categories" class="px-3 py-2 rounded-full text-xs font-bold border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 hover:border-brand-500/50 transition-colors">
-            <i data-lucide="grid" class="w-4 h-4 inline -mt-0.5 mr-1"></i> Categories
-          </button>
         </div>
 
         <!-- Desktop search -->
@@ -556,13 +665,9 @@
         </div>
       </div>
 
-      <!-- Mobile search + Categories quick -->
-      <div class="md:hidden pb-4 flex items-center gap-2">
-        <button id="nav-categories" class="shrink-0 px-3 py-2 rounded-full text-xs font-bold border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 hover:border-brand-500/50 transition-colors">
-          <i data-lucide="grid" class="w-4 h-4"></i>
-        </button>
-
-        <div class="relative w-full">
+      <!-- Mobile search -->
+      <div class="md:hidden pb-4">
+        <div class="relative">
           <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
             <i data-lucide="search" class="w-4 h-4"></i>
           </div>
@@ -583,6 +688,7 @@
   </header>
 
   <main class="flex-grow">
+    <!-- ✅ HERO (তোমার লেখা/ব্যানার সব same রেখেছি) -->
     <section class="relative h-[50vh] sm:h-[70vh] flex items-center justify-center overflow-hidden">
       <div class="absolute inset-0 z-0">
         <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=2000"
@@ -620,50 +726,163 @@
       </div>
     </section>
 
-    <section id="books-grid" class="max-w-7xl mx-auto px-4 py-12 sm:py-20 scroll-mt-20">
-      <div class="mb-12 flex flex-col gap-8">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div class="flex items-center gap-4">
-            <div class="p-3 bg-brand-500/10 rounded-2xl text-brand-600 shadow-sm">
-              <i data-lucide="library" class="w-8 h-8"></i>
-            </div>
-            <div>
-              <h2 class="text-2xl sm:text-3xl font-black dark:text-white">বইয়ের সংগ্রহ</h2>
-              <p class="text-slate-500 text-xs sm:text-sm uppercase tracking-widest font-bold">
-                <i data-lucide="book" class="w-4 h-4 inline mr-1"></i>
-                মোট <span id="book-count">0</span>টি বই পাওয়া গেছে
-              </p>
-            </div>
+    <!-- =========================================================
+      ✅ OTT Rows Area (Samprotik + Category rows)
+    ========================================================= -->
+    <section id="rows-area" class="max-w-7xl mx-auto px-4 py-10 sm:py-16">
+
+      <!-- Header line -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+        <div class="flex items-center gap-4">
+          <div class="p-3 bg-brand-500/10 rounded-2xl text-brand-600 shadow-sm">
+            <i data-lucide="library" class="w-8 h-8"></i>
+          </div>
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-black dark:text-white">বইয়ের সংগ্রহ</h2>
+            <p class="text-slate-500 text-xs sm:text-sm uppercase tracking-widest font-bold">
+              <i data-lucide="book" class="w-4 h-4 inline mr-1"></i>
+              মোট <span id="book-count">0</span>টি বই
+            </p>
           </div>
         </div>
 
-        <div id="category-buttons" class="flex gap-3 overflow-x-auto pb-4 no-scrollbar scroll-smooth px-1"></div>
-      </div>
-
-      <div id="no-results" class="hidden text-center py-16">
-        <div class="w-20 h-20 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6">
-          <i data-lucide="search-x" class="w-10 h-10 text-slate-400"></i>
-        </div>
-        <h3 class="text-2xl font-bold dark:text-white mb-2">কোনো বই পাওয়া যায়নি</h3>
-        <p class="text-slate-500 dark:text-slate-400">অন্য কোনো নাম দিয়ে সার্চ করুন অথবা ক্যাটাগরি পরিবর্তন করুন।</p>
-      </div>
-
-      <div id="books-container" class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-10"></div>
-
-      <div class="mt-16 flex justify-center">
-        <button onclick="document.querySelectorAll('.category-btn')[0]?.click();"
-                class="group px-10 py-4 bg-white dark:bg-slate-900 border dark:border-slate-800 rounded-2xl font-black text-slate-800 dark:text-white flex items-center gap-3 hover:border-brand-600 hover:text-brand-600 transition-all shadow-sm active:scale-95">
-          <i data-lucide="rotate-cw" class="w-5 h-5"></i>
-          সব বই দেখুন
-          <i data-lucide="chevron-down" class="w-5 h-5 group-hover:translate-y-1 transition-transform"></i>
+        <button id="show-all-grid-btn"
+                class="px-6 py-3 rounded-2xl font-black text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500/50 hover:text-brand-600 transition-colors active:scale-95 inline-flex items-center gap-2">
+          <i data-lucide="layout-grid" class="w-5 h-5"></i> সব বই দেখুন
         </button>
       </div>
+
+      <!-- ✅ Samprotik Row -->
+      <div id="row-samprotik" class="mb-10 scroll-mt-24">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
+            <i data-lucide="clock" class="w-5 h-5 text-brand-600"></i> সাম্প্রতিক
+          </h3>
+          <div class="text-xs text-slate-500 dark:text-slate-400 font-bold">
+            নতুন আপলোড (Latest first)
+          </div>
+        </div>
+
+        <div class="slider no-scrollbar flex gap-4 overflow-x-auto pb-3" data-slider="true" id="samprotik-slider"></div>
+      </div>
+
+      <!-- ✅ Category pills (আগের মতোই) -->
+      <div class="mb-8">
+        <div class="flex items-center gap-2 mb-3 text-xs font-bold text-slate-500 dark:text-slate-400">
+          <i data-lucide="grid" class="w-4 h-4"></i> ক্যাটাগরি (ক্লিক করলে row তে যাবে)
+        </div>
+        <div id="category-buttons" class="flex gap-3 overflow-x-auto pb-2 no-scrollbar scroll-smooth px-1"></div>
+      </div>
+
+      <!-- ✅ Category rows -->
+      <div class="space-y-10">
+        <!-- NOTE: JS এই container গুলোর ভিতর slider render করবে -->
+        <div id="row-উপন্যাস" class="scroll-mt-24">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
+              <i data-lucide="book-text" class="w-5 h-5 text-brand-600"></i> উপন্যাস
+            </h3>
+          </div>
+          <div class="slider no-scrollbar flex gap-4 overflow-x-auto pb-3" data-slider="true" id="slider-উপন্যাস"></div>
+        </div>
+
+        <div id="row-থ্রিলার" class="scroll-mt-24">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
+              <i data-lucide="activity" class="w-5 h-5 text-brand-600"></i> থ্রিলার
+            </h3>
+          </div>
+          <div class="slider no-scrollbar flex gap-4 overflow-x-auto pb-3" data-slider="true" id="slider-থ্রিলার"></div>
+        </div>
+
+        <div id="row-কবিতা" class="scroll-mt-24">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
+              <i data-lucide="feather" class="w-5 h-5 text-brand-600"></i> কবিতা
+            </h3>
+          </div>
+          <div class="slider no-scrollbar flex gap-4 overflow-x-auto pb-3" data-slider="true" id="slider-কবিতা"></div>
+        </div>
+
+        <div id="row-ইসলামিক" class="scroll-mt-24">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
+              <i data-lucide="moon-star" class="w-5 h-5 text-brand-600"></i> ইসলামিক
+            </h3>
+          </div>
+          <div class="slider no-scrollbar flex gap-4 overflow-x-auto pb-3" data-slider="true" id="slider-ইসলামিক"></div>
+        </div>
+
+        <div id="row-সায়েন্স ফিকশন" class="scroll-mt-24">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
+              <i data-lucide="rocket" class="w-5 h-5 text-brand-600"></i> সায়েন্স ফিকশন
+            </h3>
+          </div>
+          <div class="slider no-scrollbar flex gap-4 overflow-x-auto pb-3" data-slider="true" id="slider-সায়েন্স ফিকশন"></div>
+        </div>
+
+        <div id="row-সাহিত্য" class="scroll-mt-24">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
+              <i data-lucide="pen-tool" class="w-5 h-5 text-brand-600"></i> সাহিত্য
+            </h3>
+          </div>
+          <div class="slider no-scrollbar flex gap-4 overflow-x-auto pb-3" data-slider="true" id="slider-সাহিত্য"></div>
+        </div>
+
+        <div id="row-ভৌতিক" class="scroll-mt-24">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
+              <i data-lucide="ghost" class="w-5 h-5 text-brand-600"></i> ভৌতিক
+            </h3>
+          </div>
+          <div class="slider no-scrollbar flex gap-4 overflow-x-auto pb-3" data-slider="true" id="slider-ভৌতিক"></div>
+        </div>
+
+        <div id="row-জীবনী" class="scroll-mt-24">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
+              <i data-lucide="user" class="w-5 h-5 text-brand-600"></i> জীবনী
+            </h3>
+          </div>
+          <div class="slider no-scrollbar flex gap-4 overflow-x-auto pb-3" data-slider="true" id="slider-জীবনী"></div>
+        </div>
+
+        <div id="row-অন্যান্য" class="scroll-mt-24">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
+              <i data-lucide="layers" class="w-5 h-5 text-brand-600"></i> অন্যান্য
+            </h3>
+          </div>
+          <div class="slider no-scrollbar flex gap-4 overflow-x-auto pb-3" data-slider="true" id="slider-অন্যান্য"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+      ✅ All Books Grid (search করলে auto show / “সব বই দেখুন” ক্লিক করলে show)
+    ========================================================= -->
+    <section id="grid-area" class="hidden max-w-7xl mx-auto px-4 pb-16 scroll-mt-24">
+      <div class="mb-6 flex items-center justify-between">
+        <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
+          <i data-lucide="layout-grid" class="w-5 h-5 text-brand-600"></i> সব বই (Grid)
+        </h3>
+        <button class="text-xs font-black text-slate-500 hover:text-brand-600 transition-colors"
+                onclick="document.getElementById('grid-area').classList.add('hidden'); document.getElementById('rows-area').classList.remove('hidden');">
+          Close
+        </button>
+      </div>
+
+      <div id="books-container" class="grid grid-cols-2 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6"></div>
     </section>
   </main>
 
-  <!-- ✅ Footer (inline links + premium bottom bar fixed) -->
-  <footer class="bg-white dark:bg-slate-900 border-t dark:border-slate-800 pt-16 pb-0">
-    <div class="max-w-7xl mx-auto px-8 grid md:grid-cols-4 gap-12 text-center md:text-left pb-10">
+  <!-- ✅ Footer (তোমার আগেরটাই রেখেছি — সংক্ষেপে, UI same vibe) -->
+  <footer class="bg-white dark:bg-slate-900 border-t dark:border-slate-800 pt-12 pb-0">
+    <div class="max-w-7xl mx-auto px-8 grid md:grid-cols-4 gap-10 text-center md:text-left pb-8">
+
       <div class="col-span-1 md:col-span-2">
         <div class="flex flex-col items-start gap-4">
           <div class="flex items-center gap-3 group cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
@@ -683,33 +902,24 @@
           <p class="text-slate-500 dark:text-slate-400 max-w-xs text-sm leading-relaxed">
             আমাদের লক্ষ্য পাঠকদের জন্য একটি উন্মুক্ত প্ল্যাটফর্ম তৈরি করা যেখানে জ্ঞান এবং কল্পনার কোনো সীমানা নেই।
           </p>
-
-          <div class="flex justify-center md:justify-start gap-4 mt-8">
-            <a href="#" class="p-2.5 bg-slate-100 dark:bg-slate-800 rounded-xl text-slate-500 hover:bg-blue-600 hover:text-white transition-all active:scale-90"><i class="fab fa-facebook-f text-lg"></i></a>
-            <a href="#" class="p-2.5 bg-slate-100 dark:bg-slate-800 rounded-xl text-slate-500 hover:bg-blue-400 hover:text-white transition-all active:scale-90"><i class="fab fa-twitter text-lg"></i></a>
-            <a href="#" class="p-2.5 bg-slate-100 dark:bg-slate-800 rounded-xl text-slate-500 hover:bg-pink-600 hover:text-white transition-all active:scale-90"><i class="fab fa-instagram text-lg"></i></a>
-            <a href="#" class="p-2.5 bg-slate-100 dark:bg-slate-800 rounded-xl text-slate-500 hover:bg-gray-800 hover:text-white transition-all active:scale-90"><i class="fab fa-github text-lg"></i></a>
-            <a href="#" class="p-2.5 bg-slate-100 dark:bg-slate-800 rounded-xl text-slate-500 hover:bg-red-600 hover:text-white transition-all active:scale-90"><i class="fab fa-youtube text-lg"></i></a>
-          </div>
         </div>
       </div>
 
       <div>
-        <h3 class="font-bold text-slate-900 dark:text-white mb-6 text-lg">
+        <h3 class="font-bold text-slate-900 dark:text-white mb-5 text-lg">
           <i data-lucide="link" class="w-5 h-5 inline mr-2"></i> প্রয়োজনীয় লিংক
         </h3>
 
-        <!-- ✅ inline links -->
         <div class="flex flex-wrap gap-x-6 gap-y-3 justify-center md:justify-start text-sm text-slate-500 dark:text-slate-400">
           <span id="link-home" class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2"><i data-lucide="home" class="w-4 h-4"></i> হোম</span>
-          <span id="link-books" class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2"><i data-lucide="book-open" class="w-4 h-4"></i> বইয়ের তালিকা</span>
+          <span id="link-books" class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2"><i data-lucide="book-open" class="w-4 h-4"></i> বই</span>
           <span id="link-category" class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2"><i data-lucide="grid" class="w-4 h-4"></i> ক্যাটাগরি</span>
           <span id="link-contact" class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4"></i> যোগাযোগ</span>
         </div>
       </div>
 
       <div>
-        <h3 class="font-bold text-slate-900 dark:text-white mb-6 text-lg">
+        <h3 class="font-bold text-slate-900 dark:text-white mb-5 text-lg">
           <i data-lucide="mail" class="w-5 h-5 inline mr-2"></i> সাবস্ক্রাইব
         </h3>
         <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">
@@ -722,9 +932,9 @@
           </button>
         </div>
       </div>
+
     </div>
 
-    <!-- Bottom bar -->
     <div class="border-t border-slate-200 dark:border-slate-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-8 py-6">
         <div class="flex flex-col md:flex-row items-center md:justify-between justify-center gap-4">
@@ -733,7 +943,6 @@
             <div class="flex items-center gap-2 justify-center md:justify-start flex-nowrap">
               <span class="shrink-0">&copy; <span id="current-year">2026</span></span>
 
-              <!-- ✅ Premium badge so "Boi" can be white even in light mode -->
               <span class="relative inline-flex items-center shrink-0">
                 <span class="absolute -inset-1 rounded-xl bg-gradient-to-r from-brand-600/30 via-teal-400/20 to-brand-600/30 blur-md opacity-60"></span>
                 <span class="relative px-3 py-1 rounded-xl border border-brand-500/20 dark:border-brand-500/20
@@ -746,9 +955,8 @@
               </span>
 
               <span class="hidden md:inline shrink-0">•</span>
+              <span class="text-xs md:text-sm">All rights reserved.</span>
             </div>
-
-            <span class="text-xs md:text-sm">All rights reserved.</span>
           </div>
 
           <div class="flex justify-center md:justify-end">
@@ -772,7 +980,7 @@
         </div>
       </div>
     </div>
-  </footer>
 
+  </footer>
 </body>
 </html>
