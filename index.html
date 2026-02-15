@@ -405,7 +405,60 @@
       });
     }
 
-    function bindDragToScroll() {
+    function bindDragToScroll()
+    function bindTouchSwipeToHorizontal() {
+  document.querySelectorAll('[data-slider="true"]').forEach(slider => {
+    let startX = 0, startY = 0;
+    let isDown = false;
+    let locked = null; // 'h' | 'v'
+
+    slider.addEventListener('touchstart', (e) => {
+      const t = e.touches[0];
+      startX = t.clientX;
+      startY = t.clientY;
+      isDown = true;
+      locked = null;
+    }, { passive: true });
+
+    slider.addEventListener('touchmove', (e) => {
+      if (!isDown) return;
+
+      const t = e.touches[0];
+      const dx = t.clientX - startX;
+      const dy = t.clientY - startY;
+
+      // decide lock direction only once (small threshold)
+      if (!locked) {
+        if (Math.abs(dx) > 8 || Math.abs(dy) > 8) {
+          locked = Math.abs(dx) > Math.abs(dy) ? 'h' : 'v';
+        } else {
+          return; // not enough movement yet
+        }
+      }
+
+      // ✅ if horizontal swipe -> handle slider scroll, prevent page scroll
+      if (locked === 'h') {
+        e.preventDefault();                // stop vertical scrolling only during horizontal swipe
+        slider.scrollLeft -= dx;           // move slider
+        startX = t.clientX;                // update for smooth continuous drag
+        startY = t.clientY;
+      }
+      // ✅ if vertical -> do nothing, page scroll will work normally
+    }, { passive: false });
+
+    slider.addEventListener('touchend', () => {
+      isDown = false;
+      locked = null;
+    }, { passive: true });
+
+    slider.addEventListener('touchcancel', () => {
+      isDown = false;
+      locked = null;
+    }, { passive: true });
+  });
+}
+
+    {
       document.querySelectorAll('[data-slider="true"]').forEach(slider => {
         let isDown = false;
         let startX = 0;
