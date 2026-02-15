@@ -81,15 +81,35 @@
       - Smooth scrolling + touch friendly
     ========================================================= */
     .slider{
-     scroll-snap-type: x mandatory;
-        scroll-snap-stop: always;   /* softer snap */
-      scroll-padding-left: 16px;
-      scroll-padding-right: 16px;
-      -webkit-overflow-scrolling: touch;
-      overscroll-behavior-x: contain;
-      scroll-behavior: smooth;
-      padding-inline: 6px;
-    }
+  scroll-snap-type: x proximity;
+  scroll-padding-left: 24px;
+  scroll-padding-right: 24px;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scroll-behavior: smooth;
+  padding-inline: 10px;
+}
+
+.slide-item{
+  scroll-snap-align: start;
+}
+
+.slide-card{
+  transform: none !important;
+  opacity: 1 !important;
+  transition:
+    box-shadow .45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color .45s ease,
+    transform .45s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+@media (hover:hover){
+  .slide-card:hover{
+    transform: translateY(-3px);
+  }
+}
+
     .slide-item{ scroll-snap-align: start; }
     .slide-card{
       transform: none !important;
