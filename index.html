@@ -2,8 +2,10 @@
 <html lang="bn" class="dark">
 <head>
   <meta charset="UTF-8">
-  <!-- ✅ FIX: accessibility-friendly viewport -->
+
+  <!-- ✅ FIX 1: viewport (ডিজাইন unchanged, শুধু zoom-lock remove) -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>BoiCloud | বইক্লাউড - প্রিমিয়াম অনলাইন লাইব্রেরি</title>
 
   <link rel="icon" type="image/svg+xml"
@@ -14,7 +16,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CSS (✅ FIX: defer for better performance) -->
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -54,13 +64,6 @@
       }
     }
   </script>
-  <script src="https://cdn.tailwindcss.com" defer></script>
-
-  <!-- Font Awesome for Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <!-- Lucide Icons (✅ FIX: defer; we call lucide only after DOMContentLoaded) -->
-  <script src="https://unpkg.com/lucide@latest" defer></script>
 
   <style>
     body { font-family: 'Hind Siliguri', sans-serif; -webkit-tap-highlight-color: transparent; }
@@ -111,14 +114,14 @@
     mark { padding: 0 2px; border-radius: 4px; background: rgba(16,185,129,.18); color: inherit; }
     .dark mark { background: rgba(16,185,129,.22); }
 
-    /* Toast (✅ FIX: safe-area support for notched phones) */
-    .toast{
+    /* ✅ FIX 2: Toast safe-area (ডিজাইন same, শুধু notch ফোনে কাটা পড়বে না) */
+    .toast {
       position: fixed;
       left: 50%;
       transform: translateX(-50%);
       bottom: calc(22px + env(safe-area-inset-bottom));
       z-index: 999;
-      max-width: min(92vw, 520px);
+      max-width: 92vw;
     }
   </style>
 </head>
@@ -127,6 +130,9 @@
   <div id="root"></div>
 
   <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
     /* ======================================================================
       ✅ বই যোগ করার জায়গা (শুধু এই অংশে কাজ করবেন)
     ====================================================================== */
@@ -264,12 +270,6 @@
       .replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')
       .replaceAll('"','&quot;').replaceAll("'",'&#039;');
 
-    function createLucideIconsSafe() {
-      if (window.lucide && typeof window.lucide.createIcons === 'function') {
-        window.lucide.createIcons();
-      }
-    }
-
     function showToast(message, type='info') {
       const old = document.getElementById('toast');
       if (old) old.remove();
@@ -296,7 +296,7 @@
         </div>
       `;
       document.body.appendChild(toast);
-      createLucideIconsSafe();
+      lucide.createIcons();
       toast.querySelector('button')?.addEventListener('click', () => toast.remove());
       setTimeout(() => toast.remove(), 2600);
     }
@@ -322,7 +322,6 @@
       return !(u === '#' || u === '');
     }
 
-    // ✅ Multi-category support
     function normalizeBooks(list) {
       return (list || []).map(b => {
         const book = { ...b };
@@ -375,7 +374,7 @@
         toggleBtn.innerHTML = isDark
           ? '<i data-lucide="sun" class="w-5 h-5 text-yellow-300"></i>'
           : '<i data-lucide="moon" class="w-5 h-5 text-slate-700"></i>';
-        createLucideIconsSafe();
+        lucide.createIcons();
       }
     }
 
@@ -396,7 +395,7 @@
             <p class="text-slate-500 dark:text-slate-400">অন্য কোনো নাম দিয়ে সার্চ করুন অথবা ক্যাটাগরি পরিবর্তন করুন।</p>
           </div>
         `;
-        createLucideIconsSafe();
+        lucide.createIcons();
         return;
       }
 
@@ -411,7 +410,7 @@
         return `
           <div class="group bg-white dark:bg-slate-900 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-lg flex flex-col h-full hover:-translate-y-2 transition-all duration-300">
             <div class="aspect-[2/3] relative overflow-hidden">
-              <img src="${book.coverImage}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" decoding="async" alt="${escapeHtml(book.title)}" />
+              <img src="${book.coverImage}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" alt="${escapeHtml(book.title)}" />
 
               <div class="absolute top-3 left-3 z-10">
                 <span class="px-3 py-1 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm text-brand-600 text-[10px] font-bold rounded-full border border-slate-100 dark:border-slate-800 shadow-sm">
@@ -462,7 +461,7 @@
         `;
       }).join('');
 
-      createLucideIconsSafe();
+      lucide.createIcons();
 
       container.querySelectorAll('.book-action-read, .book-action-download').forEach(a => {
         a.addEventListener('click', (e) => {
@@ -508,7 +507,6 @@
 
     const filterBooksDebounced = debounce(filterBooks, 140);
 
-    // ---------- Category Buttons ----------
     function initializeCategoryButtons() {
       const container = document.getElementById('category-buttons');
       if (!container) return;
@@ -536,10 +534,9 @@
         });
       });
 
-      createLucideIconsSafe();
+      lucide.createIcons();
     }
 
-    // ---------- Suggestions ----------
     function renderSuggestions(q, filteredBooks) {
       const wrap = document.getElementById('suggestions-wrap');
       const box = document.getElementById('suggestions-box');
@@ -579,14 +576,13 @@
         </div>
       `;
       wrap.classList.remove('hidden');
-      createLucideIconsSafe();
+      lucide.createIcons();
     }
 
     function closeSuggestions() {
       document.getElementById('suggestions-wrap')?.classList.add('hidden');
     }
 
-    // ---------- Search UX (Mobile + Desktop Sync) ----------
     function bindSearchUX() {
       const mobileSearch = document.getElementById('search-input-mobile');
       const mainSearch = document.getElementById('search-input');
@@ -644,7 +640,6 @@
       });
     }
 
-    // ---------- Footer links ----------
     function bindFooterLinks() {
       document.getElementById('link-home')?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
       document.getElementById('link-books')?.addEventListener('click', () => scrollToEl('books-grid'));
@@ -674,13 +669,10 @@
         document.getElementById('books-grid').scrollIntoView({ behavior: 'smooth' });
       });
 
-      // Year fix
       const y = document.getElementById('current-year');
       if (y) y.textContent = new Date().getFullYear();
 
-      // ✅ Lucide icons init (safe)
-      createLucideIconsSafe();
-      setTimeout(createLucideIconsSafe, 100);
+      setTimeout(() => lucide.createIcons(), 100);
     }
 
     document.addEventListener('DOMContentLoaded', initializeApp);
@@ -715,7 +707,6 @@
           <input
             type="text"
             id="search-input"
-            inputmode="search"
             placeholder="বই সার্চ করুন... "
             class="block w-full pl-10 pr-10 py-2 border border-slate-200 dark:border-slate-700 rounded-full bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/50 transition-all text-sm"
             autocomplete="off"
@@ -744,7 +735,6 @@
           <input
             type="text"
             id="search-input-mobile"
-            inputmode="search"
             placeholder="বই / লেখক / ক্যাটাগরি..."
             class="block w-full pl-9 pr-10 py-2 border border-slate-200 dark:border-slate-700 rounded-full bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/50 transition-all text-sm"
             autocomplete="off"
@@ -762,9 +752,7 @@
       <div class="absolute inset-0 z-0">
         <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=2000"
              alt="Library Background"
-             class="w-full h-full object-cover animate-slow-zoom"
-             loading="lazy"
-             decoding="async" />
+             class="w-full h-full object-cover animate-slow-zoom" />
         <div class="absolute inset-0 hero-gradient"></div>
       </div>
 
@@ -917,9 +905,10 @@
       </div>
     </div>
 
-    <!-- ✅ FOOTER BOTTOM BAR (FIXED: no duplicate wrapper) -->
+    <!-- ✅ FIX 3: footer bottom bar ডুপ্লিকেট remove (একটাই রাখা হলো) -->
     <div class="border-t border-slate-200 dark:border-slate-800 mt-12">
       <div class="max-w-7xl mx-auto px-4 sm:px-8 py-6">
+
         <div class="flex flex-col md:flex-row items-center md:justify-between justify-center gap-4">
 
           <!-- LEFT -->
@@ -933,9 +922,11 @@
                 <span class="relative px-3 py-1 rounded-xl border border-brand-500/20 dark:border-brand-500/20
                              bg-white/70 dark:bg-slate-900/60 backdrop-blur-md shadow-sm
                              inline-flex items-center flex-nowrap shrink-0">
+
                   <span class="font-black tracking-tight whitespace-nowrap">
                     <span class="text-white whitespace-nowrap">Boi</span><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 via-teal-400 to-brand-600 whitespace-nowrap">Cloud</span>
                   </span>
+
                 </span>
               </span>
 
@@ -948,6 +939,7 @@
           <!-- RIGHT -->
           <div class="flex justify-center md:justify-end">
             <div class="group flex items-center gap-2 cursor-pointer select-none flex-nowrap">
+
               <span class="text-[9px] md:text-[10px] uppercase tracking-[2.5px] md:tracking-[3px]
                            text-slate-400 dark:text-slate-500 font-bold whitespace-nowrap shrink-0">
                 Powered by
