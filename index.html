@@ -78,34 +78,30 @@
     /* =========================================================
       ✅ OTT Slider (Center-focus effect) — FIXED FOR MOBILE + DESKTOP
     ========================================================= */
-    .slider {
-      scroll-snap-type: x mandatory;
-      scroll-padding-left: 16px;
-      scroll-padding-right: 16px;
+   .slider{
+  scroll-snap-type:x mandatory;
+  scroll-padding-left:16px;
+  scroll-padding-right:16px;
 
-      overflow-x: auto;
-      overflow-y: hidden;
+  overflow-x:auto;
+  overflow-y:hidden;
 
-      -webkit-overflow-scrolling: touch;
-      overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior-x:contain;
 
-      /* ✅ MUST for mobile chrome swipe */
-      touch-action: pan-x pinch-zoom;
+  /* ✅ IMPORTANT: allow vertical page scroll from cards */
+  touch-action: pan-y pinch-zoom;
 
-      /* ✅ Smooth feeling */
-      scroll-behavior: smooth;
+  scroll-behavior:smooth;
 
-      /* ✅ Desktop */
-      cursor: grab;
-      user-select: none;
-    }
-    .slider:active { cursor: grabbing; }
+  cursor:grab;
+  user-select:none;
+}
+.slider:active{ cursor:grabbing; }
+.slide-item{ scroll-snap-align:center; }
 
-    /* slider item */
-    .slide-item { scroll-snap-align: center; }
-
-    /* Prevent image drag ghost */
-    .slider img { -webkit-user-drag: none; user-drag: none; pointer-events: none; }
+/* ✅ image drag off */
+.slider img{ -webkit-user-drag:none; user-drag:none; }
 
     /* base card motion */
     .slide-card { transform: translateY(10px) scale(.96); opacity: .92; }
