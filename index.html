@@ -78,46 +78,26 @@
     /* =========================================================
       ✅ Slider (User-friendly + Mobile-friendly)
       - NO center-focus / NO up-down animation
-      - Smooth scrolling + touch friendly
+      - Smooth & NATURAL feel (slightly slower easing)
     ========================================================= */
     .slider{
-  scroll-snap-type: x proximity;
-  scroll-padding-left: 24px;
-  scroll-padding-right: 24px;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-x: contain;
-  scroll-behavior: smooth;
-  padding-inline: 10px;
-}
-
-.slide-item{
-  scroll-snap-align: start;
-}
-
-.slide-card{
-  transform: none !important;
-  opacity: 1 !important;
-  transition:
-    box-shadow .45s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color .45s ease,
-    transform .45s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform;
-}
-
-@media (hover:hover){
-  .slide-card:hover{
-    transform: translateY(-3px);
-  }
-}
-
+      scroll-snap-type: x proximity;   /* softer snap */
+      scroll-padding-left: 20px;
+      scroll-padding-right: 20px;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-x: contain;
+      scroll-behavior: smooth;
+      padding-inline: 8px;
+    }
     .slide-item{ scroll-snap-align: start; }
     .slide-card{
       transform: none !important;
       opacity: 1 !important;
       transition:
-    box-shadow .45s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color .45s ease,
-    transform .45s cubic-bezier(0.22, 1, 0.36, 1);
+        box-shadow .45s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color .45s ease,
+        transform .45s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
     }
     /* smaller cards on mobile */
     .slide-w { width: 132px; }
@@ -292,6 +272,47 @@
     }
 
     /* =========================
+      Grid Title helpers
+    ========================= */
+    const DEFAULT_GRID_TITLE_HTML = `<i data-lucide="layout-grid" class="w-5 h-5 text-brand-600"></i> সব বই (Grid)`;
+
+    function setGridTitle(html) {
+      const t = document.getElementById('grid-title');
+      if (t) t.innerHTML = html;
+      lucide.createIcons();
+    }
+
+    /* =========================
+      ✅ Category "সব দেখুন"
+      - row hide, grid show
+      - only that category books
+    ========================= */
+    function showCategoryGrid(category) {
+      const gridArea = document.getElementById('grid-area');
+      const rowsArea = document.getElementById('rows-area');
+      if (!gridArea || !rowsArea) return;
+
+      // clear search (if any)
+      const mainSearch = document.getElementById('search-input');
+      const mobileSearch = document.getElementById('search-input-mobile');
+      const clearMain = document.getElementById('search-clear');
+      const clearMobile = document.getElementById('search-clear-mobile');
+      if (mainSearch) mainSearch.value = '';
+      if (mobileSearch) mobileSearch.value = '';
+      clearMain?.classList.add('hidden');
+      clearMobile?.classList.add('hidden');
+      closeSuggestions();
+
+      rowsArea.classList.add('hidden');
+      gridArea.classList.remove('hidden');
+
+      const filtered = ALL_BOOKS.filter(b => (b.categories || []).includes(category));
+      setGridTitle(`<i data-lucide="layout-grid" class="w-5 h-5 text-brand-600"></i> ${escapeHtml(category)} বই`);
+      renderAllBooksGrid(filtered, '');
+      scrollToEl('grid-area');
+    }
+
+    /* =========================
       Search (যখন search করবে, তখন নিচের “All Books Grid” দেখাবে)
     ========================= */
     function renderAllBooksGrid(books, q='') {
@@ -385,6 +406,7 @@
 
       if (!q) {
         rowsArea?.classList.remove('hidden');
+        // grid আগের মতো hidden থাকতে পারে (user open করলে থাকবে)
         renderSuggestions('', []);
         if (countEl) countEl.textContent = ALL_BOOKS.length;
         return;
@@ -399,6 +421,8 @@
       });
 
       if (countEl) countEl.textContent = filtered.length;
+
+      setGridTitle(`<i data-lucide="layout-grid" class="w-5 h-5 text-brand-600"></i> সার্চ রেজাল্ট`);
       renderAllBooksGrid(filtered, q);
       renderSuggestions(q, filtered);
       scrollToEl('grid-area');
@@ -497,6 +521,7 @@
         clearMain.classList.add('hidden');
         clearMobile?.classList.add('hidden');
         closeSuggestions();
+        setGridTitle(DEFAULT_GRID_TITLE_HTML);
         applySearchAndToggleLayout('');
       });
 
@@ -507,6 +532,7 @@
         clearMobile.classList.add('hidden');
         clearMain?.classList.add('hidden');
         closeSuggestions();
+        setGridTitle(DEFAULT_GRID_TITLE_HTML);
         applySearchAndToggleLayout('');
       });
 
@@ -558,7 +584,11 @@
 
       document.getElementById('show-all-grid-btn')?.addEventListener('click', () => {
         const gridArea = document.getElementById('grid-area');
+        const rowsArea = document.getElementById('rows-area');
+        rowsArea?.classList.add('hidden');
         gridArea?.classList.remove('hidden');
+
+        setGridTitle(DEFAULT_GRID_TITLE_HTML);
         renderAllBooksGrid(ALL_BOOKS, '');
         scrollToEl('grid-area');
       });
@@ -673,7 +703,8 @@
             <i data-lucide="compass" class="w-5 h-5"></i> পড়া শুরু করুন
           </button>
 
-          <a href="mailto:html.arif@gmail.com?subject=বই জমা দিন&body=বইয়ের নাম:%0Aলেখক:%0Aলিংক/ফাইল:%0A"
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=html.arif@gmail.com"
+             target="_blank" rel="noopener"
              class="w-full sm:w-auto px-8 py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-2xl font-bold text-base sm:text-lg transition-all hover:bg-white/20 active:scale-95 flex items-center justify-center gap-2">
             <i data-lucide="mail" class="w-5 h-5"></i> বই জমা দিন
           </a>
@@ -731,6 +762,8 @@
             <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
               <i data-lucide="book-text" class="w-5 h-5 text-brand-600"></i> উপন্যাস
             </h3>
+            <button class="text-xs font-black text-slate-500 hover:text-brand-600 transition-colors"
+                    onclick="showCategoryGrid('উপন্যাস')">সব দেখুন</button>
           </div>
           <div class="slider no-scrollbar flex gap-4 overflow-x-auto pb-3" data-slider="true" id="slider-উপন্যাস"></div>
         </div>
@@ -740,6 +773,8 @@
             <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
               <i data-lucide="activity" class="w-5 h-5 text-brand-600"></i> থ্রিলার
             </h3>
+            <button class="text-xs font-black text-slate-500 hover:text-brand-600 transition-colors"
+                    onclick="showCategoryGrid('থ্রিলার')">সব দেখুন</button>
           </div>
           <div class="slider no-scrollbar flex gap-4 overflow-x-auto pb-3" data-slider="true" id="slider-থ্রিলার"></div>
         </div>
@@ -749,6 +784,8 @@
             <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
               <i data-lucide="feather" class="w-5 h-5 text-brand-600"></i> কবিতা
             </h3>
+            <button class="text-xs font-black text-slate-500 hover:text-brand-600 transition-colors"
+                    onclick="showCategoryGrid('কবিতা')">সব দেখুন</button>
           </div>
           <div class="slider no-scrollbar flex gap-4 overflow-x-auto pb-3" data-slider="true" id="slider-কবিতা"></div>
         </div>
@@ -758,6 +795,8 @@
             <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
               <i data-lucide="moon-star" class="w-5 h-5 text-brand-600"></i> ইসলামিক
             </h3>
+            <button class="text-xs font-black text-slate-500 hover:text-brand-600 transition-colors"
+                    onclick="showCategoryGrid('ইসলামিক')">সব দেখুন</button>
           </div>
           <div class="slider no-scrollbar flex gap-4 overflow-x-auto pb-3" data-slider="true" id="slider-ইসলামিক"></div>
         </div>
@@ -767,6 +806,8 @@
             <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
               <i data-lucide="rocket" class="w-5 h-5 text-brand-600"></i> সায়েন্স ফিকশন
             </h3>
+            <button class="text-xs font-black text-slate-500 hover:text-brand-600 transition-colors"
+                    onclick="showCategoryGrid('সায়েন্স ফিকশন')">সব দেখুন</button>
           </div>
           <div class="slider no-scrollbar flex gap-4 overflow-x-auto pb-3" data-slider="true" id="slider-সায়েন্স ফিকশন"></div>
         </div>
@@ -776,6 +817,8 @@
             <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
               <i data-lucide="pen-tool" class="w-5 h-5 text-brand-600"></i> সাহিত্য
             </h3>
+            <button class="text-xs font-black text-slate-500 hover:text-brand-600 transition-colors"
+                    onclick="showCategoryGrid('সাহিত্য')">সব দেখুন</button>
           </div>
           <div class="slider no-scrollbar flex gap-4 overflow-x-auto pb-3" data-slider="true" id="slider-সাহিত্য"></div>
         </div>
@@ -785,6 +828,8 @@
             <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
               <i data-lucide="ghost" class="w-5 h-5 text-brand-600"></i> ভৌতিক
             </h3>
+            <button class="text-xs font-black text-slate-500 hover:text-brand-600 transition-colors"
+                    onclick="showCategoryGrid('ভৌতিক')">সব দেখুন</button>
           </div>
           <div class="slider no-scrollbar flex gap-4 overflow-x-auto pb-3" data-slider="true" id="slider-ভৌতিক"></div>
         </div>
@@ -794,6 +839,8 @@
             <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
               <i data-lucide="user" class="w-5 h-5 text-brand-600"></i> জীবনী
             </h3>
+            <button class="text-xs font-black text-slate-500 hover:text-brand-600 transition-colors"
+                    onclick="showCategoryGrid('জীবনী')">সব দেখুন</button>
           </div>
           <div class="slider no-scrollbar flex gap-4 overflow-x-auto pb-3" data-slider="true" id="slider-জীবনী"></div>
         </div>
@@ -803,6 +850,8 @@
             <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
               <i data-lucide="layers" class="w-5 h-5 text-brand-600"></i> অন্যান্য
             </h3>
+            <button class="text-xs font-black text-slate-500 hover:text-brand-600 transition-colors"
+                    onclick="showCategoryGrid('অন্যান্য')">সব দেখুন</button>
           </div>
           <div class="slider no-scrollbar flex gap-4 overflow-x-auto pb-3" data-slider="true" id="slider-অন্যান্য"></div>
         </div>
@@ -823,11 +872,15 @@
     <!-- ✅ Grid Area -->
     <section id="grid-area" class="hidden max-w-7xl mx-auto px-4 pb-16 scroll-mt-24">
       <div class="mb-6 flex items-center justify-between">
-        <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
+        <h3 id="grid-title" class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
           <i data-lucide="layout-grid" class="w-5 h-5 text-brand-600"></i> সব বই (Grid)
         </h3>
         <button class="text-xs font-black text-slate-500 hover:text-brand-600 transition-colors"
-                onclick="document.getElementById('grid-area').classList.add('hidden'); document.getElementById('rows-area').classList.remove('hidden');">
+                onclick="
+                  document.getElementById('grid-area').classList.add('hidden');
+                  document.getElementById('rows-area').classList.remove('hidden');
+                  (function(){ try{ setGridTitle(DEFAULT_GRID_TITLE_HTML); }catch(e){} })();
+                ">
           Close
         </button>
       </div>
