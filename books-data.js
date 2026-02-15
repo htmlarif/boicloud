@@ -643,5 +643,75 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1xNxZjpEwwEaEEaAIyQ0AtljgPCq53HKp/view?usp=sharing',
     downloadLink: 'https://drive.google.com/uc?export=download&id=1xNxZjpEwwEaEEaAIyQ0AtljgPCq53HKp',
     description: 'ঐতিহাসিক ও সামাজিক প্রেক্ষাপটে লেখা একটি জীবনমুখী উপন্যাস।'
-  }
+  },
+  { 
+    id: '65', 
+    title: 'আদর্শ নেতা মুহম্মদ রাসুলুল্লাহ (ﷺ)', 
+    author: 'মাওলানা আবদুস শহীদ নাসিম', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://boimate.com/media/1226/Adorsho-Neta-Muhammad-Rasulullah-PDF.webp', 
+    readLink: 'https://drive.google.com/file/d/1ny4Rsh4yKPmcNJYJUcZoj-EP9nUTzOAh/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1ny4Rsh4yKPmcNJYJUcZoj-EP9nUTzOAh', 
+    description: 'রাসুলুল্লাহ (ﷺ)-এর নেতৃত্বের আদর্শ ও গুণাবলী নিয়ে রচিত বই।' 
+  },
+  { 
+    id: '66', 
+    title: 'ইতিহাসের কান্না: শেষ মোগল সম্রাট পরিবারের করুণ কাহিনি', 
+    author: 'মাওলানা উবায়দুর রহমান খান নদভী', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5qagjinsK3QYoT9NR-wwe9LDHAD1HO7EsrA&s', 
+    readLink: 'https://drive.google.com/file/d/1HJ8EaZtAOlm1R6PIM6J0_HMF-rXUePf1/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1HJ8EaZtAOlm1R6PIM6J0_HMF-rXUePf1', 
+    description: 'মোগল সাম্রাজ্যের পতন এবং শেষ সম্রাট পরিবারের মর্মস্পর্শী ইতিহাস।' 
+  },
+  { 
+    id: '67', 
+    title: 'ইসলাম ভঙ্গকারী বিষয়সমূহ', 
+    author: 'মুহাম্মদ ইবন ইবরাহীম আত তুওয়াইজিরী', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://wafilife-media.wafilife.com/uploads/2021/02/%E0%A6%87%E0%A6%B8%E0%A6%B2%E0%A6%BE%E0%A6%AE-%E0%A6%AD%E0%A6%99%E0%A7%8D%E0%A6%97%E0%A6%95%E0%A6%BE%E0%A6%B0%E0%A7%80-%E0%A6%AC%E0%A6%BF%E0%A6%B7%E0%A7%9F%E0%A6%B8%E0%A6%AE%E0%A7%82%E0%A6%B9-250x390.png', 
+    readLink: 'https://drive.google.com/file/d/1vH39OueefZflgcTBNfPvKxzs_VkWhrzk/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1vH39OueefZflgcTBNfPvKxzs_VkWhrzk', 
+    description: 'যেসব কর্ম বা বিশ্বাসের কারণে ইসলাম নষ্ট হয়ে যায়, তার বিস্তারিত আলোচনা।' 
+  },
+  { 
+    id: '68', 
+    title: 'উলামায়ে কেরামের উদ্দেশ্যে থানভী রহ. এর বাণী', 
+    author: 'আশরাফ আলী থানভী (রহ.)', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://wafilife-media.wafilife.com/uploads/2020/08/thanvi-bani-final.jpg', 
+    readLink: 'https://drive.google.com/file/d/1A3nj2jPny0TIpBe9mUdWoGFg5FuegxMz/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1A3nj2jPny0TIpBe9mUdWoGFg5FuegxMz', 
+    description: 'আলেম সমাজের প্রতি হযরত থানভী (রহ.)-এর অত্যন্ত গুরুত্বপূর্ণ নসিহত।' 
+  },
+  { 
+    id: '69', 
+    title: 'এসো ঈমান মেরামত করি', 
+    author: 'শায়খ মুহাম্মদ বিন সালেহ আল মুনাজ্জিদ', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://wafilife-media.wafilife.com/uploads/2019/07/Aso-Eman-Meramot-kori.jpg', 
+    readLink: 'https://drive.google.com/file/d/16hBmm7hoAg9eyyQmXjeVTpEzfBdfejh_/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=16hBmm7hoAg9eyyQmXjeVTpEzfBdfejh_', 
+    description: 'ঈমানকে সতেজ ও শক্তিশালী করার উপায় নিয়ে আধ্যাত্মিক আলোচনা।' 
+  },
+  { 
+    id: '70', 
+    title: 'কাদিয়ানী সম্প্রদায়: তত্ত্ব ও ইতিহাস', 
+    author: 'সাইয়েদ আবুল হাসান আলী নদভী (রহ.)', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://wafilife-media.wafilife.com/uploads/2016/08/KadiyaniSomprodayTottoItihas.jpg', 
+    readLink: 'https://drive.google.com/file/d/1V6fnMzw0zpNlb-4XW270mcocz3obgtKQ/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1V6fnMzw0zpNlb-4XW270mcocz3obgtKQ', 
+    description: 'কাদিয়ানী মতবাদের উৎপত্তি ও বিভ্রান্তিকর ইতিহাসের তথ্যবহুল বিশ্লেষণ।' 
+  },
+  { 
+    id: '71', 
+    title: 'কাসাসুল আম্বিয়া', 
+    author: 'আল্লামা ইবনে কাসীর (রহ.)', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuwu52FLg44fmsVPt1MsWiEGU48Yh_RUkvQA&s', 
+    readLink: 'https://drive.google.com/file/d/1ss4H_8CMfgGDyWl3BC-ZIds1X9Fxr-NP/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1ss4H_8CMfgGDyWl3BC-ZIds1X9Fxr-NP', 
+    description: 'পবিত্র কুরআনে বর্ণিত নবী-রাসূলগণের জীবনকাহিনী।' 
+  },
 ];
