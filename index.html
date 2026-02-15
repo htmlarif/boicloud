@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="bn" class="dark">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +14,8 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -24,6 +26,10 @@
   <!-- Lucide -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
+  <!-- ✅ Swiper.js CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -32,19 +38,19 @@
           screens: { xs: '480px' },
           fontFamily: { bengali: ['"Hind Siliguri"', 'sans-serif'] },
           colors: {
-            brand: { 50:'#f0fdf4', 100:'#dcfce7', 500:'#10b981', 600:'#059669', 700:'#047857' }
+            brand: { 50: '#f0fdf4', 100: '#dcfce7', 500: '#10b981', 600: '#059669', 700: '#047857' }
           },
           animation: {
-            'slow-zoom':'slow-zoom 20s infinite alternate',
-            'fade-in-up':'fade-in-up 0.8s ease-out forwards',
-            'blink-soft':'blink-soft 1.2s ease-in-out infinite',
-            'pop-in':'pop-in .18s ease-out forwards',
+            'slow-zoom': 'slow-zoom 20s infinite alternate',
+            'fade-in-up': 'fade-in-up 0.8s ease-out forwards',
+            'blink-soft': 'blink-soft 1.2s ease-in-out infinite',
+            'pop-in': 'pop-in .18s ease-out forwards',
           },
           keyframes: {
-            'slow-zoom': { '0%':{transform:'scale(1) translate(0,0)'}, '100%':{transform:'scale(1.1) translate(-2%,-1%)'} },
-            'fade-in-up': { '0%':{opacity:'0',transform:'translateY(20px)'}, '100%':{opacity:'1',transform:'translateY(0)'} },
-            'blink-soft': { '0%,100%':{filter:'brightness(1)',transform:'translateY(0px)'}, '50%':{filter:'brightness(1.12)',transform:'translateY(-1px)'} },
-            'pop-in': { '0%':{opacity:'0',transform:'translateY(8px) scale(.98)'}, '100%':{opacity:'1',transform:'translateY(0) scale(1)'} },
+            'slow-zoom': { '0%': { transform: 'scale(1) translate(0,0)' }, '100%': { transform: 'scale(1.1) translate(-2%,-1%)' } },
+            'fade-in-up': { '0%': { opacity: '0', transform: 'translateY(30px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+            'blink-soft': { '0%,100%': { filter: 'brightness(1)', transform: 'translateY(0px)' }, '50%': { filter: 'brightness(1.12)', transform: 'translateY(-1px)' } },
+            'pop-in': { '0%': { opacity: '0', transform: 'translateY(8px) scale(.98)' }, '100%': { opacity: '1', transform: 'translateY(0) scale(1)' } },
           }
         }
       }
@@ -52,89 +58,147 @@
   </script>
 
   <style>
-    body { font-family: 'Hind Siliguri', sans-serif; -webkit-tap-highlight-color: transparent; }
-    .glass-effect { backdrop-filter: blur(12px); background: rgba(255, 255, 255, 0.8); }
-    .dark .glass-effect { background: rgba(15, 23, 42, 0.8); }
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    body {
+      font-family: 'Hind Siliguri', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-    .hero-gradient { background: linear-gradient(to bottom, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.8)); }
-    * { transition: background-color .3s ease, border-color .3s ease; }
+    /* Scroll Reveal Class */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+    }
+
+    .reveal-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .glass-effect {
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .dark .glass-effect {
+      background: rgba(15, 23, 42, 0.8);
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .hero-gradient {
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.8));
+    }
+
+    * {
+      transition: background-color .3s ease, border-color .3s ease;
+    }
 
     /* Category hover blink */
-    .category-btn:hover { box-shadow: 0 12px 30px -16px rgba(16,185,129,.45); }
+    .category-btn:hover {
+      box-shadow: 0 12px 30px -16px rgba(16, 185, 129, .45);
+    }
+
     .category-btn:hover:not(.active) {
       animation: blink-soft 1.2s ease-in-out infinite;
-      border-color: rgba(16,185,129,.45) !important;
+      border-color: rgba(16, 185, 129, .45) !important;
     }
 
     /* Suggestions */
-    .suggestions { position:absolute; top: calc(100% + 10px); left:0; right:0; z-index:60; border-radius:16px; overflow:hidden; transform-origin:top; }
-    mark { padding:0 2px; border-radius:4px; background: rgba(16,185,129,.18); color: inherit; }
-    .dark mark { background: rgba(16,185,129,.22); }
+    .suggestions {
+      position: relative;
+      z-index: 60;
+      border-radius: 16px;
+      overflow: hidden;
+      transform-origin: top;
+    }
 
-    .toast { position:fixed; left:50%; transform:translateX(-50%); bottom: calc(22px + env(safe-area-inset-bottom)); z-index:999; max-width:92vw; }
+    mark {
+      padding: 0 2px;
+      border-radius: 4px;
+      background: rgba(16, 185, 129, .18);
+      color: inherit;
+    }
+
+    .dark mark {
+      background: rgba(16, 185, 129, .22);
+    }
+
+    /* Fallback if Tailwind CDN/plugin set differs */
+    .line-clamp-1 {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: calc(22px + env(safe-area-inset-bottom));
+      z-index: 999;
+      max-width: 92vw;
+    }
 
     /* =========================================================
-      ✅ OTT Slider (Center-focus effect) — FIXED FOR MOBILE + DESKTOP
-      ✅ FIX: vertical scroll will work even when touching on a book card
-      ✅ SMOOTH: better snap feel
+      ✅ Swiper Customization
     ========================================================= */
-    .slider {
-      scroll-snap-type: x mandatory;
-      scroll-padding-left: 16px;
-      scroll-padding-right: 16px;
-
-      overflow-x: auto;
-      overflow-y: hidden;
-
-      -webkit-overflow-scrolling: touch;
-      overscroll-behavior-x: contain;
-
-      /* ✅ FIX: allow vertical page scroll while still allowing horizontal slider scroll */
+    .swiper {
+      width: 100%;
+      padding-top: 20px;
+      padding-bottom: 30px;
+      /* space for shadow/hover */
+      overflow: visible !important;
+      /* allow cards to peek */
       touch-action: pan-y pinch-zoom;
-
-      /* ✅ Smooth feeling */
-      scroll-behavior: smooth;
-
-      /* ✅ nicer snap feel */
-      scroll-snap-stop: always;
-
-      /* ✅ Desktop */
-      cursor: grab;
-      user-select: none;
     }
-    .slider:active { cursor: grabbing; }
 
-    /* slider item */
-    .slide-item { scroll-snap-align: center; }
+    .swiper-slide {
+      width: 120px;
+      /* ✅ Smaller on mobile (was 130) for better fit */
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      /* default state */
+      opacity: 0.7;
+      transform: scale(0.9);
+    }
 
-    /* Prevent image drag ghost */
-    .slider img { -webkit-user-drag: none; user-drag: none; pointer-events: none; }
+    /* Active slide (centered) */
+    .swiper-slide-active {
+      opacity: 1;
+      transform: scale(1.05);
+      /* slightly bigger */
+      z-index: 10;
+    }
 
-    /* base card motion */
-    .slide-card { transform: translateY(10px) scale(.96); opacity: .92; }
-    .slide-card.is-near { transform: translateY(6px) scale(.98); opacity: .98; }
-    .slide-card.is-center { transform: translateY(-8px) scale(1.04); opacity: 1; }
+    @media (min-width: 480px) {
+      .swiper-slide {
+        width: 150px;
+      }
+    }
 
-    /* smoother */
-    .slide-card { transition: transform .28s ease, opacity .28s ease; }
+    @media (min-width: 768px) {
+      .swiper-slide {
+        width: 170px;
+      }
+    }
 
-    /* smaller cards on mobile */
-    .slide-w { width: 132px; }
-    @media (min-width: 480px){ .slide-w { width: 150px; } }
-    @media (min-width: 768px){ .slide-w { width: 170px; } }
-    @media (min-width: 1024px){ .slide-w { width: 185px; } }
-
-    /* ✅ reduce motion friendly */
-    @media (prefers-reduced-motion: reduce) {
-      .slider { scroll-behavior: auto; }
-      .slide-card { transition: none; }
+    @media (min-width: 1024px) {
+      .swiper-slide {
+        width: 190px;
+      }
     }
   </style>
 </head>
 
-<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 antialiased">
+<body
+  class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 antialiased overflow-x-hidden min-h-screen flex flex-col">
   <div id="root"></div>
 
   <!-- ✅ বই ডেটা আলাদা ফাইল -->
@@ -147,10 +211,10 @@
       Helpers
     ========================= */
     const escapeHtml = (s) => String(s ?? '')
-      .replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')
-      .replaceAll('"','&quot;').replaceAll("'",'&#039;');
+      .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;').replaceAll("'", '&#039;');
 
-    function showToast(message, type='info') {
+    function showToast(message, type = 'info') {
       const old = document.getElementById('toast');
       if (old) old.remove();
 
@@ -159,14 +223,14 @@
       toast.className = 'toast animate-pop-in';
       toast.innerHTML = `
         <div class="px-4 py-3 rounded-2xl shadow-xl border backdrop-blur-md
-          ${type==='error'
-            ? 'bg-red-500/10 border-red-500/30 text-slate-900 dark:text-red-100'
-            : 'bg-brand-500/10 border-brand-500/30 text-slate-900 dark:text-slate-100'}">
+          ${type === 'error'
+          ? 'bg-red-500/10 border-red-500/30 text-slate-900 dark:text-red-100'
+          : 'bg-brand-500/10 border-brand-500/30 text-slate-900 dark:text-slate-100'}">
           <div class="flex items-start gap-3">
             <div class="mt-0.5">
-              ${type==='error'
-                ? '<i data-lucide="alert-triangle" class="w-5 h-5 text-red-400"></i>'
-                : '<i data-lucide="sparkles" class="w-5 h-5 text-brand-500"></i>'}
+              ${type === 'error'
+          ? '<i data-lucide="alert-triangle" class="w-5 h-5 text-red-400"></i>'
+          : '<i data-lucide="sparkles" class="w-5 h-5 text-brand-500"></i>'}
             </div>
             <div class="text-sm leading-relaxed">${escapeHtml(message)}</div>
             <button class="ml-2 opacity-70 hover:opacity-100" aria-label="Close">
@@ -181,7 +245,7 @@
       setTimeout(() => toast.remove(), 2600);
     }
 
-    function debounce(fn, delay=160) {
+    function debounce(fn, delay = 160) {
       let t;
       return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), delay); };
     }
@@ -314,203 +378,113 @@
     }
 
     /* =========================================================
-      ✅ Slider Card (small, swipe-friendly)
+      ✅ Swiper Card HTML
     ========================================================= */
-    function bookCardHTML(book, q='') {
+    function bookCardHTML(book, q = '') {
       const catLabel = book.categories?.[0] || book.category || 'অন্যান্য';
+      // Note: swiper-slide class is added here
       return `
-        <a href="book.html?id=${encodeURIComponent(book.id)}"
-           class="slide-item slide-w shrink-0 block group">
-          <div class="slide-card rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-md hover:shadow-xl transition-shadow">
-            <div class="aspect-[2/3] relative overflow-hidden">
-              <img src="${book.coverImage}" alt="${escapeHtml(book.title)}"
-                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy">
-              <div class="absolute top-2 left-2 pointer-events-none">
-                <span class="px-2.5 py-1 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm text-brand-600 text-[10px] font-black rounded-full border border-slate-100 dark:border-slate-800">
-                  ${escapeHtml(catLabel)}
-                </span>
-              </div>
-            </div>
+        <div class="swiper-slide">
+          <a href="book.html?id=${encodeURIComponent(book.id)}" class="block group h-full">
+            <div class="relative rounded-2xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 h-full transition-shadow duration-300 hover:shadow-2xl hover:shadow-brand-500/20">
+              
+              <!-- Cover Image -->
+              <div class="aspect-[2/3] relative overflow-hidden">
+                <img src="${book.coverImage}" alt="${escapeHtml(book.title)}"
+                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                
+                <!-- Category Badge -->
+                <div class="absolute top-2 left-2 pointer-events-none">
+                  <span class="px-2.5 py-1 bg-white/90 dark:bg-slate-950/90 backdrop-blur-md text-brand-600 text-[10px] font-black rounded-full border border-slate-100 dark:border-slate-800 shadow-sm">
+                    ${escapeHtml(catLabel)}
+                  </span>
+                </div>
 
-            <div class="p-3">
-              <div class="text-[13px] font-black text-slate-900 dark:text-white line-clamp-1 group-hover:text-brand-600 transition-colors">
-                ${highlight(book.title, q)}
+                <!-- Overlay Gradient on Hover -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-              <div class="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-1 mt-0.5">
-                ${highlight(book.author, q)}
+
+              <!-- Content -->
+              <div class="p-3">
+                <div class="text-[13px] font-black text-slate-800 dark:text-slate-100 line-clamp-1 group-hover:text-brand-600 transition-colors">
+                  ${highlight(book.title, q)}
+                </div>
+                <div class="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-1 mt-0.5">
+                  ${highlight(book.author, q)}
+                </div>
               </div>
+
             </div>
-          </div>
-        </a>
+          </a>
+        </div>
       `;
     }
 
-    function renderRow(containerId, books, q='') {
-      const wrap = document.getElementById(containerId);
-      if (!wrap) return;
-      wrap.innerHTML = books.map(b => bookCardHTML(b, q)).join('');
+    function renderRow(containerId, books, q = '') {
+      // Find the parent section of the container to add the swiper class
+      // In this specific HTML structure, the containerId is likely the one we want to be the swiper-wrapper
+      // BUT, Swiper needs a specific structure: .swiper > .swiper-wrapper > .swiper-slide
+
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      // Ensure the container has the 'swiper' class if it's the root, or we need to wrap it?
+      // Looking at existing HTML, the containerId was the scroll-container. 
+      // We'll treat containerId as the element that SHOULD be the 'swiper' container.
+
+      // We need to inject the wrapper. 
+      // Current HTML: <div id="slider-X" class="slider ..."> ... </div>
+      // New HTML: <div id="slider-X" class="swiper"><div class="swiper-wrapper"> ...slides... </div></div>
+
+      // Remove old "scroll row" classes that conflict with Swiper layout.
+      container.classList.remove('slider', 'no-scrollbar', 'flex', 'gap-4', 'pb-3', 'snap-x', 'overflow-x-auto');
+      container.classList.add('swiper');
+
+      const slidesHTML = books.map(b => bookCardHTML(b, q)).join('');
+
+      container.innerHTML = `
+        <div class="swiper-wrapper">
+          ${slidesHTML}
+        </div>
+        <!-- Optional: Pagination or Arrows if we wanted them -->
+      `;
     }
 
     /* =========================================================
-      ✅ Center-focus effect
+      ✅ Initialize Swiper(s)
     ========================================================= */
-    function attachCenterEffect(sliderEl) {
-      if (!sliderEl) return;
+    let SWIPER_INSTANCES = [];
+    function initSwipers() {
+      // (Re)initialize every row slider. Using a loop is required for multiple swipers.
+      SWIPER_INSTANCES.forEach(s => { try { s.destroy(true, true); } catch { } });
+      SWIPER_INSTANCES = [];
 
-      let raf = null;
-
-      const update = () => {
-        raf = null;
-        const items = Array.from(sliderEl.querySelectorAll('.slide-item .slide-card'));
-        if (!items.length) return;
-
-        const rect = sliderEl.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-
-        let bestIdx = 0;
-        let bestDist = Infinity;
-
-        items.forEach((card, idx) => {
-          const r = card.getBoundingClientRect();
-          const cardCenter = r.left + r.width / 2;
-          const dist = Math.abs(cardCenter - centerX);
-          if (dist < bestDist) { bestDist = dist; bestIdx = idx; }
-        });
-
-        items.forEach((card, idx) => {
-          card.classList.remove('is-center', 'is-near');
-          if (idx === bestIdx) card.classList.add('is-center');
-          else if (idx === bestIdx - 1 || idx === bestIdx + 1) card.classList.add('is-near');
-        });
-      };
-
-      const schedule = () => {
-        if (raf) return;
-        raf = requestAnimationFrame(update);
-      };
-
-      sliderEl.addEventListener('scroll', schedule, { passive: true });
-      window.addEventListener('resize', schedule);
-
-      setTimeout(update, 60);
-    }
-
-    function attachAllSlidersEffect() {
-      document.querySelectorAll('[data-slider="true"]').forEach(attachCenterEffect);
-    }
-
-    /* =========================================================
-      ✅ Desktop: mouse wheel -> horizontal, plus drag-to-scroll
-    ========================================================= */
-    function bindWheelToHorizontal() {
-      document.querySelectorAll('[data-slider="true"]').forEach(slider => {
-        slider.addEventListener('wheel', (e) => {
-          // if user is scrolling vertically, convert to horizontal
-          if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-            e.preventDefault();
-            slider.scrollLeft += e.deltaY;
+      document.querySelectorAll('.swiper').forEach((el) => {
+        SWIPER_INSTANCES.push(new Swiper(el, {
+          slidesPerView: 'auto',
+          spaceBetween: 16,
+          centeredSlides: true,
+          centeredSlidesBounds: true, // avoid awkward empty space at ends
+          grabCursor: true,
+          freeMode: false,
+          observer: true,       // ✅ Fix: detect DOM changes
+          observeParents: true, // ✅ Fix: detect container changes
+          mousewheel: { forceToAxis: true },
+          keyboard: { enabled: true },
+          breakpoints: {
+            320: { spaceBetween: 12 },
+            480: { spaceBetween: 16 },
+            640: { spaceBetween: 20 },
+            1024: { spaceBetween: 24 },
           }
-        }, { passive: false });
-      });
-    }
-
-    function bindDragToScroll() {
-      document.querySelectorAll('[data-slider="true"]').forEach(slider => {
-        let isDown = false;
-        let startX = 0;
-        let startScroll = 0;
-
-        const onDown = (e) => {
-          // left mouse only
-          if (e.button !== 0) return;
-          isDown = true;
-          slider.classList.add('is-dragging');
-          startX = e.pageX;
-          startScroll = slider.scrollLeft;
-        };
-
-        const onMove = (e) => {
-          if (!isDown) return;
-          e.preventDefault();
-          const dx = (e.pageX - startX);
-          slider.scrollLeft = startScroll - dx;
-        };
-
-        const onUp = () => {
-          isDown = false;
-          slider.classList.remove('is-dragging');
-        };
-
-        slider.addEventListener('mousedown', onDown);
-        window.addEventListener('mousemove', onMove);
-        window.addEventListener('mouseup', onUp);
-
-        // prevent accidental image/link drag
-        slider.addEventListener('dragstart', (e) => e.preventDefault());
-      });
-    }
-
-    /* =========================================================
-      ✅ Mobile/Touch: smooth horizontal swipe BUT keep vertical page scroll
-      - swipe left/right => slider moves
-      - swipe up/down => page scroll works (even on book card)
-    ========================================================= */
-    function bindTouchSwipeToHorizontal() {
-      document.querySelectorAll('[data-slider="true"]').forEach(slider => {
-        let isDown = false;
-        let startX = 0, startY = 0, startScroll = 0;
-        let locked = null; // 'x' | 'y' | null
-
-        const onDown = (e) => {
-          // touch/pen only (mouse handled by bindDragToScroll)
-          if (e.pointerType === 'mouse') return;
-
-          isDown = true;
-          locked = null;
-          startX = e.clientX;
-          startY = e.clientY;
-          startScroll = slider.scrollLeft;
-
-          try { slider.setPointerCapture(e.pointerId); } catch {}
-        };
-
-        const onMove = (e) => {
-          if (!isDown) return;
-
-          const dx = e.clientX - startX;
-          const dy = e.clientY - startY;
-
-          // decide intent once
-          if (!locked) {
-            if (Math.abs(dx) > Math.abs(dy) + 6) locked = 'x';
-            else if (Math.abs(dy) > Math.abs(dx) + 6) locked = 'y';
-            else return;
-          }
-
-          // if horizontal intent -> scroll slider, block page scroll
-          if (locked === 'x') {
-            e.preventDefault();
-            slider.scrollLeft = startScroll - dx;
-          }
-          // if vertical intent -> do nothing (page scroll works)
-        };
-
-        const onUp = () => {
-          isDown = false;
-          locked = null;
-        };
-
-        slider.addEventListener('pointerdown', onDown, { passive: true });
-        slider.addEventListener('pointermove', onMove, { passive: false });
-        slider.addEventListener('pointerup', onUp, { passive: true });
-        slider.addEventListener('pointercancel', onUp, { passive: true });
+        }));
       });
     }
 
     /* =========================
       Search grid
     ========================= */
-    function renderAllBooksGrid(books, q='') {
+    function renderAllBooksGrid(books, q = '') {
       const container = document.getElementById('books-container');
       if (!container) return;
 
@@ -601,11 +575,13 @@
 
       if (!q) {
         rowsArea?.classList.remove('hidden');
+        gridArea?.classList.add('hidden');
         renderSuggestions('', []);
         if (countEl) countEl.textContent = ALL_BOOKS.length;
         return;
       }
 
+      const gridWasHidden = !!gridArea?.classList.contains('hidden');
       rowsArea?.classList.add('hidden');
       gridArea?.classList.remove('hidden');
 
@@ -618,7 +594,8 @@
       renderAllBooksGrid(filtered, q);
       renderSuggestions(q, filtered);
 
-      scrollToEl('grid-area');
+      // Don't scroll on every keystroke; only when we first open the grid area.
+      if (gridWasHidden) scrollToEl('grid-area');
     }
 
     const applySearchDebounced = debounce(applySearchAndToggleLayout, 140);
@@ -630,11 +607,13 @@
       const container = document.getElementById('category-buttons');
       if (!container) return;
 
-      container.innerHTML = CATEGORIES.map(category => `
+      const cats = CATEGORIES.filter(c => c === 'সবগুলো' || ALL_BOOKS.some(b => (b.categories || []).includes(c)));
+
+      container.innerHTML = cats.map(category => `
         <button class="category-btn px-6 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all active:scale-95
           ${category === 'সবগুলো'
-            ? 'active bg-brand-600 text-white shadow-xl shadow-brand-500/30'
-            : 'bg-white dark:bg-slate-900 text-slate-500 border dark:border-slate-800 hover:border-brand-500/50'}"
+          ? 'active bg-brand-600 text-white shadow-xl shadow-brand-500/30'
+          : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-brand-500/50'}"
           data-category="${escapeHtml(category)}">
           ${category === 'সবগুলো' ? '<i data-lucide="grid" class="w-4 h-4 inline mr-2"></i>' : ''}
           ${escapeHtml(category)}
@@ -643,11 +622,11 @@
 
       const setActive = (btn) => {
         document.querySelectorAll('.category-btn').forEach(b => {
-          b.classList.remove('active','bg-brand-600','text-white','shadow-xl','shadow-brand-500/30');
-          b.classList.add('bg-white','dark:bg-slate-900','text-slate-500','border','dark:border-slate-800');
+          b.classList.remove('active', 'bg-brand-600', 'text-white', 'shadow-xl', 'shadow-brand-500/30');
+          b.classList.add('bg-white', 'dark:bg-slate-900', 'text-slate-700', 'dark:text-slate-300', 'border', 'border-slate-200', 'dark:border-slate-800', 'hover:border-brand-500/50');
         });
-        btn.classList.add('active','bg-brand-600','text-white','shadow-xl','shadow-brand-500/30');
-        btn.classList.remove('bg-white','dark:bg-slate-900','text-slate-500','border','dark:border-slate-800');
+        btn.classList.add('active', 'bg-brand-600', 'text-white', 'shadow-xl', 'shadow-brand-500/30');
+        btn.classList.remove('bg-white', 'dark:bg-slate-900', 'text-slate-700', 'dark:text-slate-300', 'border', 'border-slate-200', 'dark:border-slate-800', 'hover:border-brand-500/50');
       };
 
       document.querySelectorAll('.category-btn').forEach(btn => {
@@ -659,8 +638,10 @@
           if ((mainSearch?.value || '').trim() || (mobileSearch?.value || '').trim()) {
             if (mainSearch) mainSearch.value = '';
             if (mobileSearch) mobileSearch.value = '';
+            document.getElementById('search-clear')?.classList.add('hidden');
+            document.getElementById('search-clear-mobile')?.classList.add('hidden');
             closeSuggestions();
-            document.getElementById('rows-area')?.classList.remove('hidden');
+            applySearchAndToggleLayout('');
           }
 
           const cat = btn.dataset.category;
@@ -676,23 +657,28 @@
       Build OTT Rows
     ========================= */
     function buildRows() {
-      // Samprotik: latest-first + mixed categories
-      const samprotikBase = [...ALL_BOOKS].reverse();
-      const samprotikMixed = mixNoAdjacentSameCategory(samprotikBase);
-      renderRow('samprotik-slider', samprotikMixed);
+      // Samprotik: latest-first (Limit to 25 to keep it fresh and fast)
+      const samprotikBase = [...ALL_BOOKS].reverse().slice(0, 25);
+      // Removed complex mixing logic to ensure stability
+      renderRow('samprotik-slider', samprotikBase);
 
       // Category rows
       CATEGORIES.filter(c => c !== 'সবগুলো').forEach(cat => {
         const list = ALL_BOOKS.filter(b => (b.categories || []).includes(cat));
+        const row = document.getElementById(`row-${cat}`);
+
+        if (!list.length) {
+          row?.classList.add('hidden');
+          return;
+        }
+
+        row?.classList.remove('hidden');
         renderRow(`slider-${cat}`, list);
       });
 
       setTimeout(() => {
-        attachAllSlidersEffect();
-        bindWheelToHorizontal();
-        bindDragToScroll();
-        bindTouchSwipeToHorizontal(); // ✅ FIX for mobile scroll + smoother slide
-      }, 80);
+        initSwipers();
+      }, 50);
     }
 
     /* =========================
@@ -766,6 +752,25 @@
       });
     }
 
+    function animateOnScroll() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+      document.querySelectorAll('section, h2, .swiper, .grid').forEach(el => {
+        el.classList.add('reveal-on-scroll');
+        observer.observe(el);
+      });
+    }
+
+    /* =========================
+      Init
+    ========================= */
     function initializeApp() {
       const isDarkMode = initializeDarkMode();
       updateDarkModeToggle(isDarkMode);
@@ -794,7 +799,10 @@
       const y = document.getElementById('current-year');
       if (y) y.textContent = new Date().getFullYear();
 
-      setTimeout(() => lucide.createIcons(), 50);
+      setTimeout(() => {
+        lucide.createIcons();
+        animateOnScroll(); // Trigger animations
+      }, 100);
     }
 
     document.addEventListener('DOMContentLoaded', initializeApp);
@@ -806,17 +814,25 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="search-area">
 
       <div class="flex justify-between items-center h-16 sm:h-20">
-        <div class="flex items-center gap-3 cursor-pointer group" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-          <div class="relative flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
+        <div class="flex items-center gap-3 cursor-pointer group"
+          onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+          <div
+            class="relative flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
             <svg class="w-10 h-10 sm:w-12 sm:h-12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M17.5 19C20.5376 19 23 16.5376 23 13.5C23 10.4624 20.5376 8 17.5 8C17.2282 8 16.9632 8.01977 16.7042 8.05791C15.6841 5.64243 13.284 4 10.5 4C6.91015 4 4 6.91015 4 10.5C4 10.742 4.0133 10.9809 4.03914 11.2158C2.26425 12.0232 1 13.8152 1 15.9C1 18.7167 3.28335 21 6.1 21H17.5V19Z" class="fill-brand-50/50 stroke-brand-500 dark:fill-brand-700/20 dark:stroke-brand-500" stroke-width="1.5"/>
-              <path d="M8 13.5C8 12.9477 8.44772 12.5 9 12.5H12V16.5H9C8.44772 16.5 8 16.0523 8 15.5V13.5Z" class="fill-brand-600 dark:fill-brand-500"/>
-              <path d="M16 13.5C16 12.9477 15.5523 12.5 15 12.5H12V16.5H15C15.5523 16.5 16 16.0523 16 15.5V13.5Z" class="fill-teal-400 dark:fill-teal-300"/>
+              <path
+                d="M17.5 19C20.5376 19 23 16.5376 23 13.5C23 10.4624 20.5376 8 17.5 8C17.2282 8 16.9632 8.01977 16.7042 8.05791C15.6841 5.64243 13.284 4 10.5 4C6.91015 4 4 6.91015 4 10.5C4 10.742 4.0133 10.9809 4.03914 11.2158C2.26425 12.0232 1 13.8152 1 15.9C1 18.7167 3.28335 21 6.1 21H17.5V19Z"
+                class="fill-brand-50/50 stroke-brand-500 dark:fill-brand-700/20 dark:stroke-brand-500"
+                stroke-width="1.5" />
+              <path d="M8 13.5C8 12.9477 8.44772 12.5 9 12.5H12V16.5H9C8.44772 16.5 8 16.0523 8 15.5V13.5Z"
+                class="fill-brand-600 dark:fill-brand-500" />
+              <path d="M16 13.5C16 12.9477 15.5523 12.5 15 12.5H12V16.5H15C15.5523 16.5 16 16.0523 16 15.5V13.5Z"
+                class="fill-teal-400 dark:fill-teal-300" />
             </svg>
           </div>
 
           <h1 class="text-xl sm:text-3xl font-black tracking-tighter whitespace-nowrap">
-            <span class="text-slate-800 dark:text-white">Boi</span><span class="bg-gradient-to-r from-brand-600 to-teal-500 bg-clip-text text-transparent">Cloud</span>
+            <span class="text-slate-800 dark:text-white">Boi</span><span
+              class="bg-gradient-to-r from-brand-600 to-teal-500 bg-clip-text text-transparent">Cloud</span>
           </h1>
         </div>
 
@@ -826,15 +842,12 @@
             <i data-lucide="search" class="w-5 h-5"></i>
           </div>
 
-          <input
-            type="text"
-            id="search-input"
-            placeholder="বই সার্চ করুন..."
+          <input type="text" id="search-input" placeholder="বই সার্চ করুন..."
             class="block w-full pl-10 pr-10 py-2 border border-slate-200 dark:border-slate-700 rounded-full bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/50 transition-all text-sm"
-            autocomplete="off"
-          />
+            autocomplete="off" />
 
-          <button id="search-clear" class="hidden absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">
+          <button id="search-clear"
+            class="hidden absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">
             <i data-lucide="x-circle" class="w-5 h-5"></i>
           </button>
 
@@ -844,7 +857,8 @@
         </div>
 
         <div class="flex items-center gap-2 sm:gap-4">
-          <button id="dark-mode-toggle" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-400"></button>
+          <button id="dark-mode-toggle"
+            class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-400"></button>
         </div>
       </div>
 
@@ -854,14 +868,11 @@
           <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
             <i data-lucide="search" class="w-4 h-4"></i>
           </div>
-          <input
-            type="text"
-            id="search-input-mobile"
-            placeholder="বই / লেখক / ক্যাটাগরি..."
+          <input type="text" id="search-input-mobile" placeholder="বই / লেখক / ক্যাটাগরি..."
             class="block w-full pl-9 pr-10 py-2 border border-slate-200 dark:border-slate-700 rounded-full bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/50 transition-all text-sm"
-            autocomplete="off"
-          />
-          <button id="search-clear-mobile" class="hidden absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">
+            autocomplete="off" />
+          <button id="search-clear-mobile"
+            class="hidden absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">
             <i data-lucide="x-circle" class="w-5 h-5"></i>
           </button>
         </div>
@@ -875,34 +886,36 @@
     <section class="relative h-[50vh] sm:h-[70vh] flex items-center justify-center overflow-hidden">
       <div class="absolute inset-0 z-0">
         <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=2000"
-             alt="Library Background"
-             class="w-full h-full object-cover animate-slow-zoom" />
+          alt="Library Background" class="w-full h-full object-cover animate-slow-zoom" />
         <div class="absolute inset-0 hero-gradient"></div>
       </div>
 
       <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 backdrop-blur-md text-brand-300 text-[10px] sm:text-xs font-medium mb-6 border border-white/10 animate-fade-in-up">
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 backdrop-blur-md text-brand-300 text-[10px] sm:text-xs font-medium mb-6 border border-white/10 animate-fade-in-up">
           <i data-lucide="sparkles" class="w-4 h-4"></i>
           <span>আপনার প্রিয় বইয়ের নতুন ডিজিটাল ঠিকানা</span>
         </div>
 
-        <h2 class="text-3xl sm:text-6xl lg:text-8xl font-black text-white mb-6 leading-tight drop-shadow-2xl animate-fade-in-up">
+        <h2
+          class="text-3xl sm:text-6xl lg:text-8xl font-black text-white mb-6 leading-tight drop-shadow-2xl animate-fade-in-up">
           <i data-lucide="book-open" class="w-12 h-12 sm:w-20 sm:h-20 inline mr-4 align-middle"></i>
           বইয়ের জগতে আপনাকে স্বাগতম
         </h2>
 
-        <p class="text-sm sm:text-xl text-slate-200 max-w-2xl mx-auto mb-10 leading-relaxed font-light animate-fade-in-up">
+        <p
+          class="text-sm sm:text-xl text-slate-200 max-w-2xl mx-auto mb-10 leading-relaxed font-light animate-fade-in-up">
           BoiCloud এ আপনি পাবেন বাংলা বইয়ের বিশাল সংগ্রহ। অনলাইনে পড়ুন অথবা ডাউনলোড করুন।
         </p>
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up">
           <button id="explore-books-btn"
-                  class="w-full sm:w-auto px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white rounded-2xl font-bold text-base sm:text-lg transition-all shadow-xl shadow-brand-500/30 active:scale-95 flex items-center justify-center gap-2">
+            class="w-full sm:w-auto px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white rounded-2xl font-bold text-base sm:text-lg transition-all shadow-xl shadow-brand-500/30 active:scale-95 flex items-center justify-center gap-2">
             <i data-lucide="compass" class="w-5 h-5"></i> পড়া শুরু করুন
           </button>
 
           <a href="https://mail.google.com/mail/?view=cm&fs=1&to=html.arif@gmail.com"
-             class="w-full sm:w-auto px-8 py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-2xl font-bold text-base sm:text-lg transition-all hover:bg-white/20 active:scale-95 flex items-center justify-center gap-2">
+            class="w-full sm:w-auto px-8 py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-2xl font-bold text-base sm:text-lg transition-all hover:bg-white/20 active:scale-95 flex items-center justify-center gap-2">
             <i data-lucide="mail" class="w-5 h-5"></i> বই জমা দিন
           </a>
         </div>
@@ -1047,19 +1060,20 @@
           <i data-lucide="layout-grid" class="w-5 h-5 text-brand-600"></i> সব বই (Grid)
         </h3>
         <button class="text-xs font-black text-slate-500 hover:text-brand-600 transition-colors"
-                onclick="document.getElementById('grid-area').classList.add('hidden'); document.getElementById('rows-area').classList.remove('hidden');">
+          onclick="document.getElementById('grid-area').classList.add('hidden'); document.getElementById('rows-area').classList.remove('hidden');">
           Close
         </button>
       </div>
 
-      <div id="books-container" class="grid grid-cols-2 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6"></div>
+      <div id="books-container" class="grid grid-cols-2 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
+      </div>
     </section>
 
     <!-- ✅ “সব বই দেখুন” option একদম last (footer-এর আগে) -->
     <section class="max-w-7xl mx-auto px-4 pb-16">
       <div class="flex justify-center">
         <button id="show-all-grid-btn"
-                class="group px-10 py-4 bg-white dark:bg-slate-900 border dark:border-slate-800 rounded-2xl font-black text-slate-800 dark:text-white flex items-center gap-3 hover:border-brand-600 hover:text-brand-600 transition-all shadow-sm active:scale-95">
+          class="group px-10 py-4 bg-white dark:bg-slate-900 border dark:border-slate-800 rounded-2xl font-black text-slate-800 dark:text-white flex items-center gap-3 hover:border-brand-600 hover:text-brand-600 transition-all shadow-sm active:scale-95">
           <i data-lucide="layout-grid" class="w-5 h-5"></i>
           সব বই দেখুন
           <i data-lucide="chevron-down" class="w-5 h-5 group-hover:translate-y-1 transition-transform"></i>
@@ -1074,17 +1088,25 @@
 
       <div class="col-span-1 md:col-span-2">
         <div class="flex flex-col items-start gap-4">
-          <div class="flex items-center gap-3 group cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-            <div class="relative flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
+          <div class="flex items-center gap-3 group cursor-pointer"
+            onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <div
+              class="relative flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
               <svg class="w-12 h-12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M17.5 19C20.5376 19 23 16.5376 23 13.5C23 10.4624 20.5376 8 17.5 8C17.2282 8 16.9632 8.01977 16.7042 8.05791C15.6841 5.64243 13.284 4 10.5 4C6.91015 4 4 6.91015 4 10.5C4 10.742 4.0133 10.9809 4.03914 11.2158C2.26425 12.0232 1 13.8152 1 15.9C1 18.7167 3.28335 21 6.1 21H17.5V19Z" class="fill-brand-50/50 stroke-brand-500 dark:fill-brand-700/20 dark:stroke-brand-500" stroke-width="1.5"/>
-                <path d="M8 13.5C8 12.9477 8.44772 12.5 9 12.5H12V16.5H9C8.44772 16.5 8 16.0523 8 15.5V13.5Z" class="fill-brand-600 dark:fill-brand-500"/>
-                <path d="M16 13.5C16 12.9477 15.5523 12.5 15 12.5H12V16.5H15C15.5523 16.5 16 16.0523 16 15.5V13.5Z" class="fill-teal-400 dark:fill-teal-300"/>
+                <path
+                  d="M17.5 19C20.5376 19 23 16.5376 23 13.5C23 10.4624 20.5376 8 17.5 8C17.2282 8 16.9632 8.01977 16.7042 8.05791C15.6841 5.64243 13.284 4 10.5 4C6.91015 4 4 6.91015 4 10.5C4 10.742 4.0133 10.9809 4.03914 11.2158C2.26425 12.0232 1 13.8152 1 15.9C1 18.7167 3.28335 21 6.1 21H17.5V19Z"
+                  class="fill-brand-50/50 stroke-brand-500 dark:fill-brand-700/20 dark:stroke-brand-500"
+                  stroke-width="1.5" />
+                <path d="M8 13.5C8 12.9477 8.44772 12.5 9 12.5H12V16.5H9C8.44772 16.5 8 16.0523 8 15.5V13.5Z"
+                  class="fill-brand-600 dark:fill-brand-500" />
+                <path d="M16 13.5C16 12.9477 15.5523 12.5 15 12.5H12V16.5H15C15.5523 16.5 16 16.0523 16 15.5V13.5Z"
+                  class="fill-teal-400 dark:fill-teal-300" />
               </svg>
             </div>
 
             <h2 class="text-3xl font-black tracking-tighter whitespace-nowrap">
-              <span class="text-slate-800 dark:text-white">Boi</span><span class="bg-gradient-to-r from-brand-600 via-teal-400 to-brand-600 bg-clip-text text-transparent">Cloud</span>
+              <span class="text-slate-800 dark:text-white">Boi</span><span
+                class="bg-gradient-to-r from-brand-600 via-teal-400 to-brand-600 bg-clip-text text-transparent">Cloud</span>
             </h2>
           </div>
 
@@ -1099,11 +1121,20 @@
           <i data-lucide="link" class="w-5 h-5 inline mr-2"></i> প্রয়োজনীয় লিংক
         </h3>
 
-        <div class="flex flex-wrap gap-x-6 gap-y-3 justify-center md:justify-start text-sm text-slate-500 dark:text-slate-400">
-          <span id="link-home" class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2"><i data-lucide="home" class="w-4 h-4"></i> হোম</span>
-          <span id="link-books" class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2"><i data-lucide="book-open" class="w-4 h-4"></i> বই</span>
-          <span id="link-category" class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2"><i data-lucide="grid" class="w-4 h-4"></i> ক্যাটাগরি</span>
-          <span id="link-contact" class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4"></i> যোগাযোগ</span>
+        <div
+          class="flex flex-wrap gap-x-6 gap-y-3 justify-center md:justify-start text-sm text-slate-500 dark:text-slate-400">
+          <span id="link-home"
+            class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2"><i
+              data-lucide="home" class="w-4 h-4"></i> হোম</span>
+          <span id="link-books"
+            class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2"><i
+              data-lucide="book-open" class="w-4 h-4"></i> বই</span>
+          <span id="link-category"
+            class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2"><i
+              data-lucide="grid" class="w-4 h-4"></i> ক্যাটাগরি</span>
+          <span id="link-contact"
+            class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2"><i
+              data-lucide="mail" class="w-4 h-4"></i> যোগাযোগ</span>
         </div>
       </div>
 
@@ -1115,8 +1146,10 @@
           <i data-lucide="bell" class="w-4 h-4 inline mr-1"></i> নতুন বইয়ের খবরের জন্য যোগ দিন।
         </p>
         <div class="flex gap-2">
-          <input type="email" placeholder="ইমেইল..." class="bg-slate-50 dark:bg-slate-950 border dark:border-slate-800 rounded-xl px-4 py-2 text-xs w-full focus:ring-1 focus:ring-brand-500 outline-none" />
-          <button class="bg-brand-600 text-white p-2.5 rounded-xl hover:bg-brand-700 transition-colors" onclick="showToast('ধন্যবাদ! (ডেমো)')">
+          <input type="email" placeholder="ইমেইল..."
+            class="bg-slate-50 dark:bg-slate-950 border dark:border-slate-800 rounded-xl px-4 py-2 text-xs w-full focus:ring-1 focus:ring-brand-500 outline-none" />
+          <button class="bg-brand-600 text-white p-2.5 rounded-xl hover:bg-brand-700 transition-colors"
+            onclick="showToast('ধন্যবাদ! (ডেমো)')">
             <i data-lucide="send" class="w-5 h-5"></i>
           </button>
         </div>
@@ -1128,17 +1161,20 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-8 py-6">
         <div class="flex flex-col md:flex-row items-center md:justify-between justify-center gap-4">
 
-          <div class="flex flex-col items-center md:items-start text-center md:text-left gap-1 text-sm text-slate-500 dark:text-slate-400 font-medium">
+          <div
+            class="flex flex-col items-center md:items-start text-center md:text-left gap-1 text-sm text-slate-500 dark:text-slate-400 font-medium">
             <div class="flex items-center gap-2 justify-center md:justify-start flex-nowrap">
               <span class="shrink-0">&copy; <span id="current-year">2026</span></span>
 
               <span class="relative inline-flex items-center shrink-0">
-                <span class="absolute -inset-1 rounded-xl bg-gradient-to-r from-brand-600/30 via-teal-400/20 to-brand-600/30 blur-md opacity-60"></span>
+                <span
+                  class="absolute -inset-1 rounded-xl bg-gradient-to-r from-brand-600/30 via-teal-400/20 to-brand-600/30 blur-md opacity-60"></span>
                 <span class="relative px-3 py-1 rounded-xl border border-brand-500/20 dark:border-brand-500/20
                              bg-slate-900/90 dark:bg-slate-900/60 backdrop-blur-md shadow-sm
                              inline-flex items-center flex-nowrap shrink-0">
                   <span class="font-black tracking-tight whitespace-nowrap">
-                    <span class="text-white whitespace-nowrap">Boi</span><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 via-teal-400 to-brand-600 whitespace-nowrap">Cloud</span>
+                    <span class="text-white whitespace-nowrap">Boi</span><span
+                      class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 via-teal-400 to-brand-600 whitespace-nowrap">Cloud</span>
                   </span>
                 </span>
               </span>
@@ -1150,7 +1186,8 @@
 
           <div class="flex justify-center md:justify-end">
             <div class="group flex items-center gap-2 cursor-pointer select-none flex-nowrap">
-              <span class="text-[9px] md:text-[10px] uppercase tracking-[2.5px] md:tracking-[3px] text-slate-400 dark:text-slate-500 font-bold whitespace-nowrap shrink-0">
+              <span
+                class="text-[9px] md:text-[10px] uppercase tracking-[2.5px] md:tracking-[3px] text-slate-400 dark:text-slate-500 font-bold whitespace-nowrap shrink-0">
                 Powered by
               </span>
 
@@ -1158,9 +1195,11 @@
                           bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800
                           shadow-sm group-hover:border-brand-500/50 transition-colors
                           flex-nowrap shrink-0">
-                <i data-lucide="sparkles" class="w-3.5 h-3.5 md:w-4 md:h-4 text-brand-600 dark:text-brand-500 group-hover:scale-110 transition-transform shrink-0"></i>
+                <i data-lucide="sparkles"
+                  class="w-3.5 h-3.5 md:w-4 md:h-4 text-brand-600 dark:text-brand-500 group-hover:scale-110 transition-transform shrink-0"></i>
                 <span class="text-[13px] md:text-sm font-black tracking-tight whitespace-nowrap">
-                  <span class="text-slate-800 dark:text-slate-200 whitespace-nowrap">Arif</span><span class="bg-gradient-to-r from-brand-600 to-teal-500 bg-clip-text text-transparent whitespace-nowrap">icial</span>
+                  <span class="text-slate-800 dark:text-slate-200 whitespace-nowrap">Arif</span><span
+                    class="bg-gradient-to-r from-brand-600 to-teal-500 bg-clip-text text-transparent whitespace-nowrap">icial</span>
                 </span>
               </div>
             </div>
@@ -1172,4 +1211,5 @@
 
   </footer>
 </body>
+
 </html>
