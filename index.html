@@ -78,7 +78,7 @@
     /* =========================================================
       ✅ OTT Slider (Center-focus effect) — FIXED FOR MOBILE + DESKTOP
       ✅ FIX: vertical scroll will work even when touching on a book card
-      ✅ SMOOTH: better snap feel
+      ✅ SMOOTH: better snap feel + insta snap
     ========================================================= */
     .slider {
       scroll-snap-type: x mandatory;
@@ -408,7 +408,7 @@
           // if user is scrolling vertically, convert to horizontal
           if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
             e.preventDefault();
-            slider.scrollLeft += e.deltaY;
+            slider.scrollLeft += e.deltaY * 1.6; // ✅ smoother + faster
           }
         }, { passive: false });
       });
@@ -504,6 +504,62 @@
         slider.addEventListener('pointermove', onMove, { passive: false });
         slider.addEventListener('pointerup', onUp, { passive: true });
         slider.addEventListener('pointercancel', onUp, { passive: true });
+      });
+    }
+
+    /* =========================================================
+      ✅ Instagram-like Auto Snap to Center (NEW)
+      - user scroll থামলেই nearest card center হবে
+      - mobile swipe + desktop wheel/drag সব জায়গায় কাজ করবে
+    ========================================================= */
+    function bindAutoSnapToCenter() {
+      document.querySelectorAll('[data-slider="true"]').forEach(slider => {
+        let t = null;
+        let snapping = false;
+
+        const getClosestItem = () => {
+          const items = Array.from(slider.querySelectorAll('.slide-item'));
+          if (!items.length) return null;
+
+          const rect = slider.getBoundingClientRect();
+          const centerX = rect.left + rect.width / 2;
+
+          let best = null;
+          let bestDist = Infinity;
+
+          items.forEach(item => {
+            const r = item.getBoundingClientRect();
+            const itemCenter = r.left + r.width / 2;
+            const dist = Math.abs(itemCenter - centerX);
+            if (dist < bestDist) { bestDist = dist; best = item; }
+          });
+
+          return best;
+        };
+
+        const snapNow = () => {
+          if (snapping) return;
+          const target = getClosestItem();
+          if (!target) return;
+
+          snapping = true;
+          target.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+
+          setTimeout(() => { snapping = false; }, 260);
+        };
+
+        const scheduleSnap = () => {
+          if (snapping) return;
+          clearTimeout(t);
+          t = setTimeout(snapNow, 120);
+        };
+
+        slider.addEventListener('scroll', scheduleSnap, { passive: true });
+        slider.addEventListener('pointerup', scheduleSnap, { passive: true });
+        slider.addEventListener('touchend', scheduleSnap, { passive: true });
+
+        // initial snap (first load)
+        setTimeout(snapNow, 200);
       });
     }
 
@@ -691,7 +747,8 @@
         attachAllSlidersEffect();
         bindWheelToHorizontal();
         bindDragToScroll();
-        bindTouchSwipeToHorizontal(); // ✅ FIX for mobile scroll + smoother slide
+        bindTouchSwipeToHorizontal();
+        bindAutoSnapToCenter(); // ✅ NEW (Instagram type)
       }, 80);
     }
 
@@ -871,7 +928,7 @@
   </header>
 
   <main class="flex-grow">
-    <!-- ✅ HERO (তোমার লেখা/ব্যানার সব same রেখেছি) -->
+    <!-- ✅ HERO -->
     <section class="relative h-[50vh] sm:h-[70vh] flex items-center justify-center overflow-hidden">
       <div class="absolute inset-0 z-0">
         <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=2000"
@@ -909,12 +966,8 @@
       </div>
     </section>
 
-    <!-- =========================================================
-      ✅ OTT Rows Area (Samprotik + Category rows)
-    ========================================================= -->
+    <!-- ✅ Rows Area -->
     <section id="rows-area" class="max-w-7xl mx-auto px-4 py-10 sm:py-16">
-
-      <!-- Header line -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div class="flex items-center gap-4">
           <div class="p-3 bg-brand-500/10 rounded-2xl text-brand-600 shadow-sm">
@@ -930,7 +983,6 @@
         </div>
       </div>
 
-      <!-- ✅ Samprotik Row -->
       <div id="row-samprotik" class="mb-10 scroll-mt-24">
         <div class="flex items-center justify-between mb-4">
           <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
@@ -944,7 +996,6 @@
         <div class="slider no-scrollbar flex gap-4 pb-3" data-slider="true" id="samprotik-slider"></div>
       </div>
 
-      <!-- ✅ Category pills (আগের মতোই) -->
       <div class="mb-8">
         <div class="flex items-center gap-2 mb-3 text-xs font-bold text-slate-500 dark:text-slate-400">
           <i data-lucide="grid" class="w-4 h-4"></i> ক্যাটাগরি (ক্লিক করলে row তে যাবে)
@@ -952,7 +1003,6 @@
         <div id="category-buttons" class="flex gap-3 overflow-x-auto pb-2 no-scrollbar scroll-smooth px-1"></div>
       </div>
 
-      <!-- ✅ Category rows -->
       <div class="space-y-10">
         <div id="row-উপন্যাস" class="scroll-mt-24">
           <div class="flex items-center justify-between mb-4">
@@ -1034,13 +1084,9 @@
           </div>
           <div class="slider no-scrollbar flex gap-4 pb-3" data-slider="true" id="slider-অন্যান্য"></div>
         </div>
-
       </div>
     </section>
 
-    <!-- =========================================================
-      ✅ All Books Grid (search করলে auto show / “সব বই দেখুন” ক্লিক করলে show)
-    ========================================================= -->
     <section id="grid-area" class="hidden max-w-7xl mx-auto px-4 pb-16 scroll-mt-24">
       <div class="mb-6 flex items-center justify-between">
         <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
@@ -1055,7 +1101,6 @@
       <div id="books-container" class="grid grid-cols-2 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6"></div>
     </section>
 
-    <!-- ✅ “সব বই দেখুন” option একদম last (footer-এর আগে) -->
     <section class="max-w-7xl mx-auto px-4 pb-16">
       <div class="flex justify-center">
         <button id="show-all-grid-btn"
@@ -1068,7 +1113,6 @@
     </section>
   </main>
 
-  <!-- ✅ Footer (তোমার আগেরটাই রেখেছি — সংক্ষেপে, UI same vibe) -->
   <footer class="bg-white dark:bg-slate-900 border-t dark:border-slate-800 pt-12 pb-0">
     <div class="max-w-7xl mx-auto px-8 grid md:grid-cols-4 gap-10 text-center md:text-left pb-8">
 
