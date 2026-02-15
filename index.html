@@ -81,7 +81,8 @@
       - Smooth scrolling + touch friendly
     ========================================================= */
     .slider{
-      scroll-snap-type: x proximity;   /* softer snap */
+     scroll-snap-type: x mandatory;
+        scroll-snap-stop: always;   /* softer snap */
       scroll-padding-left: 16px;
       scroll-padding-right: 16px;
       -webkit-overflow-scrolling: touch;
