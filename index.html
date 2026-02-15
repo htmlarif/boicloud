@@ -746,10 +746,7 @@
           </div>
         </div>
 
-        <button id="show-all-grid-btn"
-                class="px-6 py-3 rounded-2xl font-black text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500/50 hover:text-brand-600 transition-colors active:scale-95 inline-flex items-center gap-2">
-          <i data-lucide="layout-grid" class="w-5 h-5"></i> সব বই দেখুন
-        </button>
+        <!-- ✅ change: “সব বই দেখুন” button moved to LAST (page bottom) -->
       </div>
 
       <!-- ✅ Samprotik Row -->
@@ -856,6 +853,16 @@
             </h3>
           </div>
           <div class="slider no-scrollbar flex gap-4 overflow-x-auto pb-3" data-slider="true" id="slider-অন্যান্য"></div>
+        </div>
+
+        <!-- ✅ NEW: “সব বই দেখুন” option moved to very last (end of books section) -->
+        <div class="pt-4">
+          <div class="flex justify-center sm:justify-end">
+            <button id="show-all-grid-btn"
+                    class="px-6 py-3 rounded-2xl font-black text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500/50 hover:text-brand-600 transition-colors active:scale-95 inline-flex items-center gap-2">
+              <i data-lucide="layout-grid" class="w-5 h-5"></i> সব বই দেখুন
+            </button>
+          </div>
         </div>
 
       </div>
