@@ -662,24 +662,26 @@
     /* =========================
       Build OTT Rows
     ========================= */
-    function buildRows() {
-      // Samprotik: latest-first + mixed categories
-      const samprotikBase = [...ALL_BOOKS].reverse();
-      const samprotikMixed = mixNoAdjacentSameCategory(samprotikBase);
-      renderRow('samprotik-slider', samprotikMixed);
+   function buildRows() {
+  // Samprotik: latest-first + mixed categories
+  const samprotikBase = [...ALL_BOOKS].reverse();
+  const samprotikMixed = mixNoAdjacentSameCategory(samprotikBase);
+  renderRow('samprotik-slider', samprotikMixed);
 
-      // Category rows
-      CATEGORIES.filter(c => c !== 'সবগুলো').forEach(cat => {
-        const list = ALL_BOOKS.filter(b => (b.categories || []).includes(cat));
-        renderRow(`slider-${cat}`, list);
-      });
+  // Category rows
+  CATEGORIES.filter(c => c !== 'সবগুলো').forEach(cat => {
+    const list = ALL_BOOKS.filter(b => (b.categories || []).includes(cat));
+    renderRow(`slider-${cat}`, list);
+  });
 
-      setTimeout(() => {
-        attachAllSlidersEffect();
-        bindWheelToHorizontal();
-        bindDragToScroll();
-      }, 80);
-    }
+  setTimeout(() => {
+    attachAllSlidersEffect();
+    bindWheelToHorizontal();
+    bindDragToScroll();
+    bindTouchSwipeToHorizontal(); // ✅ এটুকুই add করো
+  }, 80);
+}
+
 
     /* =========================
       Search UX binding
