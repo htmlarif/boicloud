@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="bn" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BoiCloud | বই বিস্তারিত</title>
 
   <link rel="icon" type="image/svg+xml"
@@ -13,8 +13,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <script>
     tailwind.config = {
@@ -23,231 +23,41 @@
         extend: {
           screens: { xs: '480px' },
           fontFamily: { bengali: ['"Hind Siliguri"', 'sans-serif'] },
-          colors: { brand: { 50:'#f0fdf4', 100:'#dcfce7', 500:'#10b981', 600:'#059669', 700:'#047857' } }
+          colors: { brand: { 500:'#10b981', 600:'#059669', 700:'#047857' } }
         }
       }
     }
   </script>
 
   <style>
-    body { font-family: 'Hind Siliguri', sans-serif; -webkit-tap-highlight-color: transparent; }
-    .glass-effect { backdrop-filter: blur(12px); background: rgba(255, 255, 255, 0.8); }
-    .dark .glass-effect { background: rgba(15, 23, 42, 0.8); }
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    * { transition: background-color .3s ease, border-color .3s ease; }
+    body { font-family:'Hind Siliguri',sans-serif; -webkit-tap-highlight-color: transparent; }
+    .glass-effect { backdrop-filter: blur(12px); background: rgba(255,255,255,.8); }
+    .dark .glass-effect { background: rgba(15,23,42,.8); }
+    .no-scrollbar::-webkit-scrollbar { display:none; }
+    .no-scrollbar { -ms-overflow-style:none; scrollbar-width:none; }
+
+    /* ✅ cover sizing: mobile friendly */
+    .cover-wrap { max-width: 340px; }
+    @media (min-width: 768px) { .cover-wrap { max-width: 360px; } }
+
+    /* ✅ carousel snap */
+    .snap-x { scroll-snap-type: x mandatory; }
+    .snap-start { scroll-snap-align: start; }
   </style>
 </head>
 
 <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 antialiased overflow-x-hidden">
-
-  <!-- data -->
   <script src="books-data.js"></script>
 
-  <script>
-    lucide.createIcons();
-
-    const escapeHtml = (s) => String(s ?? '')
-      .replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')
-      .replaceAll('"','&quot;').replaceAll("'",'&#039;');
-
-    function normalizeBooks(list) {
-      return (list || []).map(b => {
-        const book = { ...b };
-        if (!book.categories || !Array.isArray(book.categories) || book.categories.length === 0) {
-          if (book.category && typeof book.category === 'string') book.categories = [book.category];
-          else book.categories = ['অন্যান্য'];
-        }
-        book.category = book.categories[0] || 'অন্যান্য';
-        return book;
-      });
-    }
-
-    function initializeDarkMode() {
-      const savedTheme = localStorage.getItem('boicloud-theme');
-      if (savedTheme === null) {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('boicloud-theme', 'dark');
-        return true;
-      }
-      const isDark = savedTheme === 'dark';
-      document.documentElement.classList.toggle('dark', isDark);
-      return isDark;
-    }
-
-    function toggleDarkMode() {
-      const html = document.documentElement;
-      const isDark = html.classList.contains('dark');
-      html.classList.toggle('dark', !isDark);
-      localStorage.setItem('boicloud-theme', !isDark ? 'dark' : 'light');
-      updateDarkModeToggle(!isDark);
-      return !isDark;
-    }
-
-    function updateDarkModeToggle(isDark) {
-      const toggleBtn = document.getElementById('dark-mode-toggle');
-      if (toggleBtn) {
-        toggleBtn.innerHTML = isDark
-          ? '<i data-lucide="sun" class="w-5 h-5 text-yellow-300"></i>'
-          : '<i data-lucide="moon" class="w-5 h-5 text-slate-700"></i>';
-        lucide.createIcons();
-      }
-    }
-
-    function getIdFromQuery() {
-      const params = new URLSearchParams(location.search);
-      return params.get('id');
-    }
-
-    function shuffle(arr) {
-      const a = [...arr];
-      for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
-      }
-      return a;
-    }
-
-    /* ======================================================================
-      ✅ RELATED ALGO (তোমার চাহিদা অনুযায়ী)
-      - same category priority (৫-৬টা)
-      - তারপর সব category থেকে ১-২টা করে mix
-      - তারপর fill up করে total ~ 30 (mobile swipe friendly)
-    ====================================================================== */
-    function buildRelatedBooks(currentBook, allBooks, total = 30) {
-      const currentId = currentBook.id;
-      const currentCat = currentBook.category;
-
-      const others = allBooks.filter(b => b.id !== currentId);
-
-      const sameCat = shuffle(others.filter(b => b.category === currentCat)).slice(0, 6);
-
-      // group by category
-      const cats = [...new Set(others.map(b => b.category))].filter(c => c !== currentCat);
-      const mixed = [];
-
-      // 1-2 from each other category (randomized)
-      shuffle(cats).forEach(cat => {
-        const pool = shuffle(others.filter(b => b.category === cat));
-        if (pool.length > 0) mixed.push(pool[0]);
-        if (pool.length > 1 && Math.random() > 0.55) mixed.push(pool[1]); // sometimes 2
-      });
-
-      // merge unique
-      const used = new Set([currentId]);
-      const result = [];
-      const pushUnique = (b) => { if (!used.has(b.id)) { used.add(b.id); result.push(b); } };
-
-      sameCat.forEach(pushUnique);
-      shuffle(mixed).forEach(pushUnique);
-
-      // fill remaining from all others
-      if (result.length < total) {
-        shuffle(others).forEach(pushUnique);
-      }
-
-      return result.slice(0, total);
-    }
-
-    function renderBookDetails(book) {
-      document.title = `BoiCloud | ${book.title}`;
-
-      const title = document.getElementById('book-title');
-      const author = document.getElementById('book-author');
-      const category = document.getElementById('book-category');
-      const desc = document.getElementById('book-desc');
-      const cover = document.getElementById('book-cover');
-
-      if (title) title.textContent = book.title;
-      if (author) author.textContent = book.author;
-      if (category) category.textContent = book.category;
-      if (desc) desc.textContent = book.description || 'এই বইটির জন্য এখনো বিস্তারিত বর্ণনা যোগ করা হয়নি।';
-      if (cover) cover.src = book.coverImage;
-
-      // Share links
-      const shareUrl = encodeURIComponent(location.href);
-      const shareText = encodeURIComponent(`${book.title} - ${book.author}`);
-
-      document.getElementById('share-fb')?.setAttribute('href', `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`);
-      document.getElementById('share-wa')?.setAttribute('href', `https://wa.me/?text=${shareText}%20${shareUrl}`);
-      document.getElementById('share-tg')?.setAttribute('href', `https://t.me/share/url?url=${shareUrl}&text=${shareText}`);
-      document.getElementById('share-x')?.setAttribute('href', `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`);
-    }
-
-    function renderRelatedCarousel(list) {
-      const wrap = document.getElementById('related-wrap');
-      if (!wrap) return;
-
-      wrap.innerHTML = list.map(b => `
-        <a href="book.html?id=${encodeURIComponent(b.id)}"
-           class="snap-start shrink-0 w-32 xs:w-36 sm:w-40 md:w-44 group">
-          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm hover:-translate-y-1 transition-transform">
-            <div class="aspect-[2/3] overflow-hidden">
-              <img src="${b.coverImage}" alt="" loading="lazy"
-                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-            </div>
-            <div class="p-3">
-              <div class="text-[11px] font-bold text-brand-600 mb-1 line-clamp-1">${escapeHtml(b.category)}</div>
-              <div class="text-sm font-black text-slate-900 dark:text-white line-clamp-1 group-hover:text-brand-600 transition-colors">${escapeHtml(b.title)}</div>
-              <div class="text-xs text-slate-500 dark:text-slate-400 line-clamp-1">${escapeHtml(b.author)}</div>
-            </div>
-          </div>
-        </a>
-      `).join('');
-
-      lucide.createIcons();
-    }
-
-    function bindFooterLinks() {
-      document.getElementById('link-home')?.addEventListener('click', () => location.href = 'index.html');
-      document.getElementById('link-books')?.addEventListener('click', () => location.href = 'index.html#books-grid');
-      document.getElementById('link-category')?.addEventListener('click', () => location.href = 'index.html#category-buttons');
-      document.getElementById('link-contact')?.addEventListener('click', () => {
-        window.location.href = "https://mail.google.com/mail/?view=cm&fs=1&to=html.arif@gmail.com";
-      });
-    }
-
-    function init() {
-      const isDark = initializeDarkMode();
-      updateDarkModeToggle(isDark);
-      document.getElementById('dark-mode-toggle')?.addEventListener('click', toggleDarkMode);
-
-      const y = document.getElementById('current-year');
-      if (y) y.textContent = new Date().getFullYear();
-
-      const allBooks = normalizeBooks(window.BOOKS_DATA || []);
-      const id = getIdFromQuery();
-      const book = allBooks.find(b => String(b.id) === String(id));
-
-      if (!book) {
-        document.getElementById('not-found')?.classList.remove('hidden');
-        return;
-      }
-
-      renderBookDetails(book);
-
-      // ✅ related mix carousel
-      const related = buildRelatedBooks(book, allBooks, 30);
-      renderRelatedCarousel(related);
-
-      bindFooterLinks();
-    }
-
-    document.addEventListener('DOMContentLoaded', init);
-  </script>
-
-  <!-- Header -->
   <header class="sticky top-0 z-50 glass-effect border-b border-slate-200 dark:border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16 sm:h-20">
-        <a href="index.html" class="flex items-center gap-3 cursor-pointer group">
-          <div class="relative flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
-            <svg class="w-10 h-10 sm:w-12 sm:h-12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M17.5 19C20.5376 19 23 16.5376 23 13.5C23 10.4624 20.5376 8 17.5 8C17.2282 8 16.9632 8.01977 16.7042 8.05791C15.6841 5.64243 13.284 4 10.5 4C6.91015 4 4 6.91015 4 10.5C4 10.742 4.0133 10.9809 4.03914 11.2158C2.26425 12.0232 1 13.8152 1 15.9C1 18.7167 3.28335 21 6.1 21H17.5V19Z" class="fill-brand-50/50 stroke-brand-500 dark:fill-brand-700/20 dark:stroke-brand-500" stroke-width="1.5"/>
-              <path d="M8 13.5C8 12.9477 8.44772 12.5 9 12.5H12V16.5H9C8.44772 16.5 8 16.0523 8 15.5V13.5Z" class="fill-brand-600 dark:fill-brand-500"/>
-              <path d="M16 13.5C16 12.9477 15.5523 12.5 15 12.5H12V16.5H15C15.5523 16.5 16 16.0523 16 15.5V13.5Z" class="fill-teal-400 dark:fill-teal-300"/>
-            </svg>
-          </div>
+        <a href="index.html" class="flex items-center gap-3 group">
+          <svg class="w-10 h-10 sm:w-12 sm:h-12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.5 19C20.5376 19 23 16.5376 23 13.5C23 10.4624 20.5376 8 17.5 8C17.2282 8 16.9632 8.01977 16.7042 8.05791C15.6841 5.64243 13.284 4 10.5 4C6.91015 4 4 6.91015 4 10.5C4 10.742 4.0133 10.9809 4.03914 11.2158C2.26425 12.0232 1 13.8152 1 15.9C1 18.7167 3.28335 21 6.1 21H17.5V19Z" class="fill-brand-500/10 stroke-brand-500 dark:fill-brand-700/20 dark:stroke-brand-500" stroke-width="1.5"/>
+            <path d="M8 13.5C8 12.9477 8.44772 12.5 9 12.5H12V16.5H9C8.44772 16.5 8 16.0523 8 15.5V13.5Z" class="fill-brand-600"/>
+            <path d="M16 13.5C16 12.9477 15.5523 12.5 15 12.5H12V16.5H15C15.5523 16.5 16 16.0523 16 15.5V13.5Z" class="fill-teal-400"/>
+          </svg>
 
           <h1 class="text-xl sm:text-3xl font-black tracking-tighter whitespace-nowrap">
             <span class="text-slate-800 dark:text-white">Boi</span><span class="bg-gradient-to-r from-brand-600 to-teal-500 bg-clip-text text-transparent">Cloud</span>
@@ -255,10 +65,10 @@
         </a>
 
         <div class="flex items-center gap-2">
-          <a href="index.html" class="px-4 py-2 rounded-full text-xs font-black border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 hover:border-brand-500/50 transition-colors inline-flex items-center gap-2">
+          <a href="index.html" class="px-3 py-2 rounded-full text-xs font-black border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 hover:border-brand-500/50 transition-colors inline-flex items-center gap-2">
             <i data-lucide="home" class="w-4 h-4"></i> Home
           </a>
-          <a href="index.html#category-buttons" class="px-4 py-2 rounded-full text-xs font-black border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 hover:border-brand-500/50 transition-colors inline-flex items-center gap-2">
+          <a href="index.html#category-buttons" class="px-3 py-2 rounded-full text-xs font-black border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 hover:border-brand-500/50 transition-colors inline-flex items-center gap-2">
             <i data-lucide="grid" class="w-4 h-4"></i> Category
           </a>
           <button id="dark-mode-toggle" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-400"></button>
@@ -267,8 +77,8 @@
     </div>
   </header>
 
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-    <div id="not-found" class="hidden text-center py-20">
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <div id="not-found" class="hidden text-center py-16">
       <div class="w-20 h-20 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6">
         <i data-lucide="alert-triangle" class="w-10 h-10 text-slate-400"></i>
       </div>
@@ -279,44 +89,50 @@
       </a>
     </div>
 
-    <section class="grid md:grid-cols-12 gap-8 md:gap-10">
-      <div class="md:col-span-4">
-        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden shadow-lg">
-          <div class="aspect-[2/3]">
-            <img id="book-cover" src="" alt="" class="w-full h-full object-cover" />
-          </div>
-        </div>
-
-        <div class="mt-4 flex items-center gap-2">
-          <span class="px-3 py-1 rounded-full text-[11px] font-black bg-brand-500/10 text-brand-600 border border-brand-500/20" id="book-category">—</span>
-        </div>
-
-        <!-- Share -->
-        <div class="mt-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 shadow-sm">
-          <div class="flex items-center justify-between">
-            <h3 class="text-sm font-black flex items-center gap-2"><i data-lucide="share-2" class="w-4 h-4"></i> Share</h3>
-            <span class="text-[10px] uppercase tracking-[3px] text-slate-400">social</span>
+    <!-- ✅ Mobile-first: cover + info stacked, desktop = 2 cols -->
+    <section id="book-section" class="grid md:grid-cols-12 gap-6 md:gap-10">
+      <div class="md:col-span-5">
+        <div class="cover-wrap mx-auto md:mx-0">
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden shadow-lg">
+            <div class="aspect-[3/4] sm:aspect-[2/3]">
+              <img id="book-cover" src="" alt="" class="w-full h-full object-cover">
+            </div>
           </div>
 
-          <div class="mt-4 flex flex-wrap gap-2">
-            <a id="share-fb" target="_blank" class="px-3 py-2 rounded-xl text-xs font-black bg-slate-100 dark:bg-slate-800 hover:bg-blue-600 hover:text-white transition-colors inline-flex items-center gap-2">
-              <i class="fab fa-facebook-f"></i> Facebook
-            </a>
-            <a id="share-wa" target="_blank" class="px-3 py-2 rounded-xl text-xs font-black bg-slate-100 dark:bg-slate-800 hover:bg-green-600 hover:text-white transition-colors inline-flex items-center gap-2">
-              <i class="fab fa-whatsapp"></i> WhatsApp
-            </a>
-            <a id="share-tg" target="_blank" class="px-3 py-2 rounded-xl text-xs font-black bg-slate-100 dark:bg-slate-800 hover:bg-sky-500 hover:text-white transition-colors inline-flex items-center gap-2">
-              <i class="fab fa-telegram-plane"></i> Telegram
-            </a>
-            <a id="share-x" target="_blank" class="px-3 py-2 rounded-xl text-xs font-black bg-slate-100 dark:bg-slate-800 hover:bg-black hover:text-white transition-colors inline-flex items-center gap-2">
-              <i class="fab fa-x-twitter"></i> X
-            </a>
+          <div class="mt-3 flex items-center justify-between gap-2">
+            <span id="book-category" class="px-3 py-1 rounded-full text-[11px] font-black bg-brand-500/10 text-brand-600 border border-brand-500/20">—</span>
+            <button id="copy-link" class="px-3 py-2 rounded-xl text-xs font-black bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors inline-flex items-center gap-2">
+              <i data-lucide="copy" class="w-4 h-4"></i> Copy Link
+            </button>
+          </div>
+
+          <!-- Share -->
+          <div class="mt-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-4 shadow-sm">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-black flex items-center gap-2"><i data-lucide="share-2" class="w-4 h-4"></i> Share</h3>
+              <span class="text-[10px] uppercase tracking-[3px] text-slate-400">social</span>
+            </div>
+
+            <div class="mt-3 flex flex-wrap gap-2">
+              <a id="share-fb" target="_blank" class="px-3 py-2 rounded-xl text-xs font-black bg-slate-100 dark:bg-slate-800 hover:bg-blue-600 hover:text-white transition-colors inline-flex items-center gap-2">
+                <i class="fab fa-facebook-f"></i> Facebook
+              </a>
+              <a id="share-wa" target="_blank" class="px-3 py-2 rounded-xl text-xs font-black bg-slate-100 dark:bg-slate-800 hover:bg-green-600 hover:text-white transition-colors inline-flex items-center gap-2">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+              </a>
+              <a id="share-tg" target="_blank" class="px-3 py-2 rounded-xl text-xs font-black bg-slate-100 dark:bg-slate-800 hover:bg-sky-500 hover:text-white transition-colors inline-flex items-center gap-2">
+                <i class="fab fa-telegram-plane"></i> Telegram
+              </a>
+              <a id="share-x" target="_blank" class="px-3 py-2 rounded-xl text-xs font-black bg-slate-100 dark:bg-slate-800 hover:bg-black hover:text-white transition-colors inline-flex items-center gap-2">
+                <i class="fab fa-x-twitter"></i> X
+              </a>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="md:col-span-8">
-        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-lg">
+      <div class="md:col-span-7">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 sm:p-7 shadow-lg">
           <h2 id="book-title" class="text-2xl sm:text-4xl font-black leading-tight">—</h2>
           <p class="mt-2 text-slate-500 dark:text-slate-400 font-bold">
             <i data-lucide="user" class="w-4 h-4 inline mr-1"></i>
@@ -343,18 +159,18 @@
         </div>
 
         <!-- Related -->
-        <div class="mt-10">
-          <div class="flex items-end justify-between gap-4 mb-4">
+        <div class="mt-8">
+          <div class="flex items-end justify-between gap-4 mb-3">
             <div>
               <h3 class="text-lg sm:text-xl font-black flex items-center gap-2">
                 <i data-lucide="sparkles" class="w-5 h-5 text-brand-600"></i> Related Books
               </h3>
               <p class="text-xs text-slate-500 dark:text-slate-400">ডানে-বামে swipe করে আরও বই দেখুন</p>
             </div>
-            <div class="text-[10px] uppercase tracking-[3px] text-slate-400">carousel</div>
+            <span class="text-[10px] uppercase tracking-[3px] text-slate-400">50 items</span>
           </div>
 
-          <div class="flex gap-3 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-2" id="related-wrap">
+          <div id="related-wrap" class="flex gap-3 overflow-x-auto no-scrollbar snap-x pb-2">
             <!-- JS fills -->
           </div>
         </div>
@@ -362,7 +178,6 @@
     </section>
   </main>
 
-  <!-- Footer (same inline links + same bottom bar) -->
   <footer class="bg-white dark:bg-slate-900 border-t dark:border-slate-800 pt-10 pb-0">
     <div class="max-w-7xl mx-auto px-8 pb-8">
       <div class="flex flex-wrap gap-x-6 gap-y-3 justify-center md:justify-start text-sm text-slate-500 dark:text-slate-400">
@@ -374,37 +189,210 @@
     </div>
 
     <div class="border-t border-slate-200 dark:border-slate-800">
-      <div class="max-w-7xl mx-auto px-4 sm:px-8 py-6">
-        <div class="flex flex-col md:flex-row items-center md:justify-between justify-center gap-4">
-          <div class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 font-medium flex-wrap justify-center md:justify-start">
-            <span>&copy; <span id="current-year">2026</span></span>
-            <span class="px-3 py-1 rounded-xl border border-brand-500/20 bg-slate-900/90 dark:bg-slate-900/60 shadow-sm">
-              <span class="font-black tracking-tight whitespace-nowrap">
-                <span class="text-white">Boi</span><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 via-teal-400 to-brand-600">Cloud</span>
-              </span>
+      <div class="max-w-7xl mx-auto px-4 sm:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="text-sm text-slate-500 dark:text-slate-400 font-medium">
+          &copy; <span id="current-year"></span>
+          <span class="ml-2 px-3 py-1 rounded-xl border border-brand-500/20 bg-slate-900/90 dark:bg-slate-900/60 shadow-sm">
+            <span class="font-black tracking-tight whitespace-nowrap">
+              <span class="text-white">Boi</span><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 via-teal-400 to-brand-600">Cloud</span>
             </span>
-            <span class="hidden md:inline">•</span>
-            <span class="text-xs md:text-sm">All rights reserved.</span>
-          </div>
+          </span>
+          <span class="ml-2">All rights reserved.</span>
+        </div>
 
-          <div class="group flex items-center gap-2 cursor-pointer select-none flex-nowrap">
-            <span class="text-[9px] md:text-[10px] uppercase tracking-[2.5px] md:tracking-[3px] text-slate-400 dark:text-slate-500 font-bold whitespace-nowrap shrink-0">
-              Powered by
+        <div class="flex items-center gap-2">
+          <span class="text-[10px] uppercase tracking-[3px] text-slate-400 dark:text-slate-500 font-bold whitespace-nowrap">Powered by</span>
+          <div class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+            <i data-lucide="sparkles" class="w-4 h-4 text-brand-600"></i>
+            <span class="text-sm font-black tracking-tight whitespace-nowrap">
+              <span class="text-slate-800 dark:text-slate-200">Arif</span><span class="bg-gradient-to-r from-brand-600 to-teal-500 bg-clip-text text-transparent">icial</span>
             </span>
-            <div class="flex items-center gap-1 px-2.5 md:px-3 py-1 md:py-1.5 rounded-lg
-                        bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800
-                        shadow-sm group-hover:border-brand-500/50 transition-colors flex-nowrap shrink-0">
-              <i data-lucide="sparkles" class="w-3.5 h-3.5 md:w-4 md:h-4 text-brand-600 dark:text-brand-500 group-hover:scale-110 transition-transform shrink-0"></i>
-              <span class="text-[13px] md:text-sm font-black tracking-tight whitespace-nowrap">
-                <span class="text-slate-800 dark:text-slate-200">Arif</span><span class="bg-gradient-to-r from-brand-600 to-teal-500 bg-clip-text text-transparent">icial</span>
-              </span>
-            </div>
           </div>
-
         </div>
       </div>
     </div>
   </footer>
 
+  <script>
+    lucide.createIcons();
+
+    // Theme
+    function initializeDarkMode() {
+      const savedTheme = localStorage.getItem('boicloud-theme');
+      if (savedTheme === null) {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('boicloud-theme', 'dark');
+        return true;
+      }
+      const isDark = savedTheme === 'dark';
+      document.documentElement.classList.toggle('dark', isDark);
+      return isDark;
+    }
+    function updateDarkModeToggle(isDark) {
+      const btn = document.getElementById('dark-mode-toggle');
+      if (!btn) return;
+      btn.innerHTML = isDark
+        ? '<i data-lucide="sun" class="w-5 h-5 text-yellow-300"></i>'
+        : '<i data-lucide="moon" class="w-5 h-5 text-slate-700"></i>';
+      lucide.createIcons();
+    }
+    function toggleDarkMode() {
+      const html = document.documentElement;
+      const isDark = html.classList.contains('dark');
+      html.classList.toggle('dark', !isDark);
+      localStorage.setItem('boicloud-theme', !isDark ? 'dark' : 'light');
+      updateDarkModeToggle(!isDark);
+    }
+
+    // Helpers
+    const escapeHtml = (s) => String(s ?? '')
+      .replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')
+      .replaceAll('"','&quot;').replaceAll("'",'&#039;');
+
+    function normalizeBooks(list) {
+      return (list || []).map(b => {
+        const book = { ...b };
+        if (!book.categories || !Array.isArray(book.categories) || book.categories.length === 0) {
+          if (book.category && typeof book.category === 'string') book.categories = [book.category];
+          else book.categories = ['অন্যান্য'];
+        }
+        book.category = book.categories[0] || 'অন্যান্য';
+        return book;
+      });
+    }
+
+    function getIdFromQuery() {
+      const params = new URLSearchParams(location.search);
+      return params.get('id');
+    }
+
+    function shuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    // ✅ Related: same category 3 + mix all categories + fill up to 50
+    function buildRelatedBooks(currentBook, allBooks, total = 50) {
+      const currentId = currentBook.id;
+      const currentCat = currentBook.category;
+      const others = allBooks.filter(b => b.id !== currentId);
+
+      const used = new Set([currentId]);
+      const result = [];
+
+      const pushUnique = (b) => {
+        if (!b || used.has(b.id)) return;
+        used.add(b.id);
+        result.push(b);
+      };
+
+      // same category 3
+      shuffle(others.filter(b => b.category === currentCat)).slice(0, 3).forEach(pushUnique);
+
+      // 1 from each category (including current cat again later doesn't matter)
+      const cats = shuffle([...new Set(others.map(b => b.category))]);
+      cats.forEach(cat => {
+        const pool = shuffle(others.filter(b => b.category === cat));
+        if (pool[0]) pushUnique(pool[0]);
+        if (pool[1] && result.length < total && Math.random() > 0.5) pushUnique(pool[1]);
+      });
+
+      // fill remaining
+      shuffle(others).forEach(pushUnique);
+
+      return result.slice(0, total);
+    }
+
+    function renderBookDetails(book) {
+      document.title = `BoiCloud | ${book.title}`;
+      document.getElementById('book-title').textContent = book.title;
+      document.getElementById('book-author').textContent = book.author;
+      document.getElementById('book-category').textContent = book.category;
+      document.getElementById('book-desc').textContent = book.description || 'এই বইটির জন্য এখনো বিস্তারিত বর্ণনা যোগ করা হয়নি।';
+      document.getElementById('book-cover').src = book.coverImage;
+
+      // share links
+      const shareUrl = encodeURIComponent(location.href);
+      const shareText = encodeURIComponent(`${book.title} - ${book.author}`);
+      document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
+      document.getElementById('share-wa').href = `https://wa.me/?text=${shareText}%20${shareUrl}`;
+      document.getElementById('share-tg').href = `https://t.me/share/url?url=${shareUrl}&text=${shareText}`;
+      document.getElementById('share-x').href = `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
+    }
+
+    function renderRelatedCarousel(list) {
+      const wrap = document.getElementById('related-wrap');
+      wrap.innerHTML = list.map(b => `
+        <a href="book.html?id=${encodeURIComponent(b.id)}"
+           class="snap-start shrink-0 w-28 xs:w-32 sm:w-36 md:w-40 group">
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm hover:-translate-y-1 transition-transform">
+            <div class="aspect-[2/3] overflow-hidden">
+              <img src="${b.coverImage}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="">
+            </div>
+            <div class="p-2.5">
+              <div class="text-[10px] font-black text-brand-600 line-clamp-1">${escapeHtml(b.category)}</div>
+              <div class="text-[12px] sm:text-sm font-black text-slate-900 dark:text-white line-clamp-1 group-hover:text-brand-600 transition-colors">${escapeHtml(b.title)}</div>
+              <div class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 line-clamp-1">${escapeHtml(b.author)}</div>
+            </div>
+          </div>
+        </a>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    function bindFooterLinks() {
+      document.getElementById('link-home')?.addEventListener('click', () => location.href='index.html');
+      document.getElementById('link-books')?.addEventListener('click', () => location.href='index.html#books-grid');
+      document.getElementById('link-category')?.addEventListener('click', () => location.href='index.html#category-buttons');
+      document.getElementById('link-contact')?.addEventListener('click', () => location.href="https://mail.google.com/mail/?view=cm&fs=1&to=html.arif@gmail.com");
+    }
+
+    async function copyLink() {
+      const text = location.href;
+      try {
+        await navigator.clipboard.writeText(text);
+        document.getElementById('copy-link').innerHTML = `<i data-lucide="check" class="w-4 h-4"></i> Copied`;
+        lucide.createIcons();
+        setTimeout(() => {
+          document.getElementById('copy-link').innerHTML = `<i data-lucide="copy" class="w-4 h-4"></i> Copy Link`;
+          lucide.createIcons();
+        }, 1200);
+      } catch {
+        // fallback
+        prompt('Copy this link:', text);
+      }
+    }
+
+    function init() {
+      const isDark = initializeDarkMode();
+      updateDarkModeToggle(isDark);
+      document.getElementById('dark-mode-toggle')?.addEventListener('click', toggleDarkMode);
+
+      const allBooks = normalizeBooks(window.BOOKS_DATA || []);
+      const id = getIdFromQuery();
+      const book = allBooks.find(b => String(b.id) === String(id));
+
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+      bindFooterLinks();
+      document.getElementById('copy-link')?.addEventListener('click', copyLink);
+
+      if (!book) {
+        document.getElementById('not-found')?.classList.remove('hidden');
+        document.getElementById('book-section')?.classList.add('hidden');
+        return;
+      }
+
+      renderBookDetails(book);
+
+      const related = buildRelatedBooks(book, allBooks, 50);
+      renderRelatedCarousel(related);
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
 </body>
 </html>
