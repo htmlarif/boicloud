@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="bn" class="dark">
 <head>
@@ -229,7 +230,7 @@
     <div class="border-t border-slate-200 dark:border-slate-800">
       <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
         <div class="text-sm text-slate-500 dark:text-slate-400 font-medium text-center md:text-left">
-          © <span id="current-year"></span>
+          &copy; <span id="current-year"></span>
           <span class="ml-2 px-3 py-1 rounded-xl border border-brand-500/20 bg-slate-900/90 dark:bg-slate-900/60 shadow-sm inline-block">
             <span class="font-black tracking-tight whitespace-nowrap">
               <span class="text-white">Boi</span><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 via-teal-400 to-brand-600">Cloud</span>
@@ -256,8 +257,8 @@
 
     // ========================= TOAST =========================
     const escapeHtml = (s) => String(s ?? '')
-      .replaceAll('&','&').replaceAll('<','<').replaceAll('>','>')
-      .replaceAll('"','"').replaceAll("'",''');
+      .replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')
+      .replaceAll('"','&quot;').replaceAll("'",'&#039;');
 
     function showToast(message, type='info') {
       const old = document.getElementById('toast');
@@ -400,4 +401,101 @@
       const readOk = isValidLink(book.readLink);
       const downOk = isValidLink(book.downloadLink);
 
-      readBtn.href =
+      readBtn.href = readOk ? book.readLink : 'javascript:void(0)';
+      downBtn.href = downOk ? book.downloadLink : 'javascript:void(0)';
+
+      if (!readOk) readBtn.classList.add('opacity-60', 'cursor-not-allowed');
+      if (!downOk) downBtn.classList.add('opacity-60', 'cursor-not-allowed');
+
+      readBtn.addEventListener('click', (e) => {
+        if (!readOk) { e.preventDefault(); showToast('দুঃখিত! এই বইয়ের পড়ার লিংক এখনো আপডেট করা হয়নি।', 'error'); }
+      });
+      downBtn.addEventListener('click', (e) => {
+        if (!downOk) { e.preventDefault(); showToast('দুঃখিত! এই বইয়ের ডাউনলোড লিংক এখনো আপডেট করা হয়নি।', 'error'); }
+      });
+
+      // Share links
+      const shareUrl = encodeURIComponent(location.href);
+      const shareText = encodeURIComponent(`${book.title} - ${book.author}`);
+
+      document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
+      document.getElementById('share-wa').href = `https://wa.me/?text=${shareText}%20${shareUrl}`;
+      document.getElementById('share-tg').href = `https://t.me/share/url?url=${shareUrl}&text=${shareText}`;
+      document.getElementById('share-x').href = `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
+    }
+
+    function renderRelatedCarousel(list) {
+      const wrap = document.getElementById('related-wrap');
+      wrap.innerHTML = list.map(b => `
+        <a href="book.html?id=${encodeURIComponent(b.id)}"
+           class="snap-start shrink-0 w-28 xs:w-32 sm:w-36 md:w-40 group">
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm hover:-translate-y-1 transition-transform">
+            <div class="aspect-[2/3] overflow-hidden">
+              <img src="${b.coverImage}" loading="lazy"
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="">
+            </div>
+            <div class="p-2.5">
+              <div class="text-[10px] font-black text-brand-600 line-clamp-1">${b.category}</div>
+              <div class="text-[12px] sm:text-sm font-black text-slate-900 dark:text-white line-clamp-1 group-hover:text-brand-600 transition-colors">${b.title}</div>
+              <div class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 line-clamp-1">${b.author}</div>
+            </div>
+          </div>
+        </a>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    // ✅ One click copy (no extra)
+    async function copyLinkInstant() {
+      const url = location.href;
+      try {
+        await navigator.clipboard.writeText(url);
+        showToast('লিংক কপি হয়েছে ✅');
+      } catch {
+        // fallback if clipboard blocked
+        const temp = document.createElement('input');
+        temp.value = url;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        temp.remove();
+        showToast('লিংক কপি হয়েছে ✅');
+      }
+    }
+
+    function bindFooterLinks() {
+      document.getElementById('link-home')?.addEventListener('click', () => location.href='index.html');
+      document.getElementById('link-books')?.addEventListener('click', () => location.href='index.html#books-grid');
+      document.getElementById('link-category')?.addEventListener('click', () => location.href='index.html#category-buttons');
+      document.getElementById('link-contact')?.addEventListener('click', () => location.href="https://mail.google.com/mail/?view=cm&fs=1&to=html.arif@gmail.com");
+    }
+
+    function init() {
+      const isDark = initializeDarkMode();
+      updateDarkModeToggle(isDark);
+      document.getElementById('dark-mode-toggle')?.addEventListener('click', toggleDarkMode);
+
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+      bindFooterLinks();
+
+      document.getElementById('copy-link')?.addEventListener('click', copyLinkInstant);
+
+      const allBooks = normalizeBooks(window.BOOKS_DATA || []);
+      const id = getIdFromQuery();
+      const book = allBooks.find(b => String(b.id) === String(id));
+
+      if (!book) {
+        document.getElementById('not-found')?.classList.remove('hidden');
+        document.getElementById('book-section')?.classList.add('hidden');
+        return;
+      }
+
+      renderBookDetails(book);
+      renderRelatedCarousel(buildRelatedBooks(book, allBooks, 50));
+      lucide.createIcons();
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
