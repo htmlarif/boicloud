@@ -714,4 +714,34 @@ window.BOOKS_DATA = [
     downloadLink: 'https://drive.google.com/uc?export=download&id=1ss4H_8CMfgGDyWl3BC-ZIds1X9Fxr-NP', 
     description: 'পবিত্র কুরআনে বর্ণিত নবী-রাসূলগণের জীবনকাহিনী।' 
   },
+  { 
+    id: '72', 
+    title: 'জানাযা দর্পন', 
+    author: 'শাঈখ আব্দুল হামীদ ফাইজী', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Y18hXsqjhMuCLyhAN7Zhtm5Gqgb7dGaing&s', 
+    readLink: 'https://drive.google.com/file/d/11Kf519Z46rc8bRAjMdFjEedwbuahwbDC/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=11Kf519Z46rc8bRAjMdFjEedwbuahwbDC', 
+    description: 'জানাযার নিয়ম-কানুন ও এ সংক্রান্ত মাসআলা-মাসায়েলের বিস্তারিত আলোচনা।' 
+  },
+  { 
+    id: '73', 
+    title: 'নবুওয়াতের সমাপ্তি ও কাদিয়ানি ষড়যন্ত্র', 
+    author: 'শাইখ মুফতি সাঈদ আহমাদ পালনপুরি', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://boimate.com/media/921/Nobuoter-Somapti-PDF.webp', 
+    readLink: 'https://drive.google.com/file/d/1Tm0TEw0ZIKnEwAh8gqMszWob-M9eh8AP/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1Tm0TEw0ZIKnEwAh8gqMszWob-M9eh8AP', 
+    description: 'খতমে নবুওয়াত এবং কাদিয়ানিদের বিভিন্ন চক্রান্ত ও বিভ্রান্তি নিয়ে তাত্ত্বিক আলোচনা।' 
+  },
+  { 
+    id: '74', 
+    title: 'পবিত্র কুরআনে জেরুজালেম', 
+    author: 'ইমরান নযর হোসেন', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfkmp2ZkLWAQ0tlNcwg_3r5tBzZ7QGtr6Ojw&s', 
+    readLink: 'https://drive.google.com/file/d/1zcWz5h-Op0QZBxG-CoLGdN51uOCG5X-q/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1zcWz5h-Op0QZBxG-CoLGdN51uOCG5X-q', 
+    description: 'কুরআনের আলোকে জেরুজালেমের গুরুত্ব ও শেষ জামানার বিভিন্ন প্রেক্ষাপট নিয়ে বিশ্লেষণ।' 
+  }
 ];
