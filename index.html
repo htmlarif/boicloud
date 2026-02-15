@@ -76,29 +76,36 @@
     .toast { position:fixed; left:50%; transform:translateX(-50%); bottom: calc(22px + env(safe-area-inset-bottom)); z-index:999; max-width:92vw; }
 
     /* =========================================================
-      ✅ OTT Slider (Center-focus effect)
-      - scroll-snap center + JS দিয়ে center কার্ড detect করে class দেয়
+      ✅ Slider (User-friendly + Mobile-friendly)
+      - NO center-focus / NO up-down animation
+      - Smooth scrolling + touch friendly
     ========================================================= */
-    .slider {
-      scroll-snap-type: x mandatory;
+    .slider{
+      scroll-snap-type: x proximity;   /* softer snap */
       scroll-padding-left: 16px;
       scroll-padding-right: 16px;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-x: contain;
+      scroll-behavior: smooth;
+      padding-inline: 6px;
     }
-    .slide-item { scroll-snap-align: center; }
-
-    /* base card motion */
-    .slide-card { transform: translateY(10px) scale(.96); opacity: .92; }
-    .slide-card.is-near { transform: translateY(6px) scale(.98); opacity: .98; }
-    .slide-card.is-center { transform: translateY(-8px) scale(1.04); opacity: 1; }
-
-    /* smoother */
-    .slide-card { transition: transform .28s ease, opacity .28s ease; }
-
+    .slide-item{ scroll-snap-align: start; }
+    .slide-card{
+      transform: none !important;
+      opacity: 1 !important;
+      transition: box-shadow .25s ease, border-color .25s ease, transform .25s ease;
+      will-change: transform;
+    }
     /* smaller cards on mobile */
     .slide-w { width: 132px; }
     @media (min-width: 480px){ .slide-w { width: 150px; } }
     @media (min-width: 768px){ .slide-w { width: 170px; } }
     @media (min-width: 1024px){ .slide-w { width: 185px; } }
+
+    /* Optional: gentle hover (desktop only) */
+    @media (hover:hover){
+      .slide-card:hover{ transform: translateY(-2px); }
+    }
   </style>
 </head>
 
@@ -216,9 +223,6 @@
 
     /* =========================
       Data
-      ✅ NOTE (তোমার কথা অনুযায়ী):
-      - “সাম্প্রতিক” = তুমি যেগুলো শেষদিকে add করো সেগুলো newest
-      - তাই Samprotik row = ALL_BOOKS কে reverse করে দেখানো
     ========================= */
     const BOOKS_DATA = window.BOOKS_DATA || [];
     let ALL_BOOKS = normalizeBooks(BOOKS_DATA);
@@ -226,15 +230,15 @@
     const CATEGORIES = ['সবগুলো', 'উপন্যাস', 'থ্রিলার', 'কবিতা', 'ইসলামিক', 'সায়েন্স ফিকশন', 'সাহিত্য', 'ভৌতিক', 'জীবনী', 'অন্যান্য'];
 
     /* =========================================================
-      ✅ 1) Slider Card (small, swipe-friendly)
-      ✅ 2) Click anywhere -> book.html?id=...
+      ✅ Slider Card (smooth + stable)
+      ✅ Click anywhere -> book.html?id=...
     ========================================================= */
     function bookCardHTML(book, q='') {
       const catLabel = book.categories?.[0] || book.category || 'অন্যান্য';
       return `
         <a href="book.html?id=${encodeURIComponent(book.id)}"
            class="slide-item slide-w shrink-0 block group">
-          <div class="slide-card rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-md hover:shadow-xl transition-shadow">
+          <div class="slide-card rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-md hover:shadow-xl">
             <div class="aspect-[2/3] relative overflow-hidden">
               <img src="${book.coverImage}" alt="${escapeHtml(book.title)}"
                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy">
@@ -264,60 +268,8 @@
       wrap.innerHTML = books.map(b => bookCardHTML(b, q)).join('');
     }
 
-    /* =========================================================
-      ✅ Center-focus effect (মাঝের বই up, পাশের দুইটা down)
-      - Scroll হলে nearest-to-center item detect করে class বসাই
-    ========================================================= */
-    function attachCenterEffect(sliderEl) {
-      if (!sliderEl) return;
-
-      let raf = null;
-
-      const update = () => {
-        raf = null;
-        const items = Array.from(sliderEl.querySelectorAll('.slide-item .slide-card'));
-        if (!items.length) return;
-
-        // slider center (viewport center)
-        const rect = sliderEl.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-
-        let bestIdx = 0;
-        let bestDist = Infinity;
-
-        items.forEach((card, idx) => {
-          const r = card.getBoundingClientRect();
-          const cardCenter = r.left + r.width / 2;
-          const dist = Math.abs(cardCenter - centerX);
-          if (dist < bestDist) { bestDist = dist; bestIdx = idx; }
-        });
-
-        items.forEach((card, idx) => {
-          card.classList.remove('is-center', 'is-near');
-          if (idx === bestIdx) card.classList.add('is-center');
-          else if (idx === bestIdx - 1 || idx === bestIdx + 1) card.classList.add('is-near');
-        });
-      };
-
-      const schedule = () => {
-        if (raf) return;
-        raf = requestAnimationFrame(update);
-      };
-
-      sliderEl.addEventListener('scroll', schedule, { passive: true });
-      window.addEventListener('resize', schedule);
-
-      // first paint
-      setTimeout(update, 60);
-    }
-
-    function attachAllSlidersEffect() {
-      document.querySelectorAll('[data-slider="true"]').forEach(attachCenterEffect);
-    }
-
     /* =========================
       Search (যখন search করবে, তখন নিচের “All Books Grid” দেখাবে)
-      - row গুলো hide, grid show
     ========================= */
     function renderAllBooksGrid(books, q='') {
       const container = document.getElementById('books-container');
@@ -337,7 +289,6 @@
         return;
       }
 
-      // ✅ Small grid cards (no read/download)
       container.innerHTML = books.map(b => `
         <a href="book.html?id=${encodeURIComponent(b.id)}"
            class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1">
@@ -410,15 +361,12 @@
       const countEl = document.getElementById('book-count');
 
       if (!q) {
-        // ✅ no search: show rows, grid hidden (unless user opened grid)
         rowsArea?.classList.remove('hidden');
-        // gridArea hidden থাকবে by default; user “সব বই দেখুন” দিলে show হবে
         renderSuggestions('', []);
         if (countEl) countEl.textContent = ALL_BOOKS.length;
         return;
       }
 
-      // ✅ search active: show grid only
       rowsArea?.classList.add('hidden');
       gridArea?.classList.remove('hidden');
 
@@ -430,17 +378,13 @@
       if (countEl) countEl.textContent = filtered.length;
       renderAllBooksGrid(filtered, q);
       renderSuggestions(q, filtered);
-
-      // scroll to grid
       scrollToEl('grid-area');
     }
 
     const applySearchDebounced = debounce(applySearchAndToggleLayout, 140);
 
     /* =========================
-      Category pills:
-      - আগের মতোই থাকবে
-      - এখন filter না করে: ক্লিক করলে row তে scroll
+      Category pills (same)
     ========================= */
     function initializeCategoryButtons() {
       const container = document.getElementById('category-buttons');
@@ -470,14 +414,12 @@
         btn.addEventListener('click', () => {
           setActive(btn);
 
-          // ✅ search থাকলে আগে clear করে rows এ আসি
           const mainSearch = document.getElementById('search-input');
           const mobileSearch = document.getElementById('search-input-mobile');
           if ((mainSearch?.value || '').trim() || (mobileSearch?.value || '').trim()) {
             if (mainSearch) mainSearch.value = '';
             if (mobileSearch) mobileSearch.value = '';
             closeSuggestions();
-            // layout reset
             document.getElementById('rows-area')?.classList.remove('hidden');
           }
 
@@ -491,21 +433,16 @@
     }
 
     /* =========================
-      Build OTT Rows
+      Build Rows
     ========================= */
     function buildRows() {
-      // ✅ 1) Samprotik (latest-first). “Limit নাই” => সব বই, reverse order
       const samprotik = [...ALL_BOOKS].reverse();
       renderRow('samprotik-slider', samprotik);
 
-      // ✅ 2) Category rows
       CATEGORIES.filter(c => c !== 'সবগুলো').forEach(cat => {
         const list = ALL_BOOKS.filter(b => (b.categories || []).includes(cat));
         renderRow(`slider-${cat}`, list);
       });
-
-      // ✅ center-effect
-      setTimeout(attachAllSlidersEffect, 80);
     }
 
     /* =========================
@@ -588,18 +525,14 @@
       bindSearchUX();
       bindFooterLinks();
 
-      // ✅ build OTT rows
       buildRows();
 
-      // ✅ count default
       document.getElementById('book-count').textContent = ALL_BOOKS.length;
 
-      // ✅ Explore button -> Samprotik
       document.getElementById('explore-books-btn')?.addEventListener('click', () => {
         scrollToEl('row-samprotik');
       });
 
-      // ✅ “সব বই দেখুন” -> grid show + render all
       document.getElementById('show-all-grid-btn')?.addEventListener('click', () => {
         const gridArea = document.getElementById('grid-area');
         gridArea?.classList.remove('hidden');
@@ -607,7 +540,6 @@
         scrollToEl('grid-area');
       });
 
-      // year
       const y = document.getElementById('current-year');
       if (y) y.textContent = new Date().getFullYear();
 
@@ -688,7 +620,7 @@
   </header>
 
   <main class="flex-grow">
-    <!-- ✅ HERO (তোমার লেখা/ব্যানার সব same রেখেছি) -->
+    <!-- ✅ HERO -->
     <section class="relative h-[50vh] sm:h-[70vh] flex items-center justify-center overflow-hidden">
       <div class="absolute inset-0 z-0">
         <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=2000"
@@ -727,11 +659,10 @@
     </section>
 
     <!-- =========================================================
-      ✅ OTT Rows Area (Samprotik + Category rows)
+      ✅ Rows Area
     ========================================================= -->
     <section id="rows-area" class="max-w-7xl mx-auto px-4 py-10 sm:py-16">
 
-      <!-- Header line -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div class="flex items-center gap-4">
           <div class="p-3 bg-brand-500/10 rounded-2xl text-brand-600 shadow-sm">
@@ -745,11 +676,9 @@
             </p>
           </div>
         </div>
-
-        <!-- ✅ change: “সব বই দেখুন” button moved to LAST (page bottom) -->
       </div>
 
-      <!-- ✅ Samprotik Row -->
+      <!-- ✅ Samprotik -->
       <div id="row-samprotik" class="mb-10 scroll-mt-24">
         <div class="flex items-center justify-between mb-4">
           <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
@@ -763,7 +692,7 @@
         <div class="slider no-scrollbar flex gap-4 overflow-x-auto pb-3" data-slider="true" id="samprotik-slider"></div>
       </div>
 
-      <!-- ✅ Category pills (আগের মতোই) -->
+      <!-- ✅ Category pills -->
       <div class="mb-8">
         <div class="flex items-center gap-2 mb-3 text-xs font-bold text-slate-500 dark:text-slate-400">
           <i data-lucide="grid" class="w-4 h-4"></i> ক্যাটাগরি (ক্লিক করলে row তে যাবে)
@@ -773,7 +702,7 @@
 
       <!-- ✅ Category rows -->
       <div class="space-y-10">
-        <!-- NOTE: JS এই container গুলোর ভিতর slider render করবে -->
+
         <div id="row-উপন্যাস" class="scroll-mt-24">
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
@@ -855,7 +784,7 @@
           <div class="slider no-scrollbar flex gap-4 overflow-x-auto pb-3" data-slider="true" id="slider-অন্যান্য"></div>
         </div>
 
-        <!-- ✅ NEW: “সব বই দেখুন” option moved to very last (end of books section) -->
+        <!-- ✅ “সব বই দেখুন” at last -->
         <div class="pt-4">
           <div class="flex justify-center sm:justify-end">
             <button id="show-all-grid-btn"
@@ -868,9 +797,7 @@
       </div>
     </section>
 
-    <!-- =========================================================
-      ✅ All Books Grid (search করলে auto show / “সব বই দেখুন” ক্লিক করলে show)
-    ========================================================= -->
+    <!-- ✅ Grid Area -->
     <section id="grid-area" class="hidden max-w-7xl mx-auto px-4 pb-16 scroll-mt-24">
       <div class="mb-6 flex items-center justify-between">
         <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
@@ -886,7 +813,7 @@
     </section>
   </main>
 
-  <!-- ✅ Footer (তোমার আগেরটাই রেখেছি — সংক্ষেপে, UI same vibe) -->
+  <!-- ✅ Footer (same) -->
   <footer class="bg-white dark:bg-slate-900 border-t dark:border-slate-800 pt-12 pb-0">
     <div class="max-w-7xl mx-auto px-8 grid md:grid-cols-4 gap-10 text-center md:text-left pb-8">
 
