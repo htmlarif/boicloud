@@ -182,10 +182,19 @@
       });
     }
 
-    function scrollToEl(id) {
-      const el = document.getElementById(id);
-      if (!el) return;
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+   function scrollToEl(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+
+  const header = document.querySelector('header.sticky');
+  const headerH = header ? header.getBoundingClientRect().height : 0;
+
+  // একটু extra gap (8-12px) nice লাগে
+  const extra = 10;
+
+  const y = window.scrollY + el.getBoundingClientRect().top - headerH - extra;
+
+  window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
     }
 
     /* =========================
