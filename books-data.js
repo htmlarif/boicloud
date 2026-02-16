@@ -8,6 +8,349 @@
 ====================================================================== */
 
 window.BOOKS_DATA = [
+ { 
+    id: '128', 
+    title: 'অর্থমনর্থম্ (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1533320297i/20746186.jpg', 
+    readLink: 'https://drive.google.com/file/d/1fojisnky5ARFTfFumD29ddKLMil0yAhM/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1fojisnky5ARFTfFumD29ddKLMil0yAhM', 
+    description: 'ব্যোমকেশ বক্সী সিরিজের একটি টানটান রহস্য উপন্যাস।' 
+  },
+  { 
+    id: '129', 
+    title: 'অগ্নিবাণ (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhcpxSq8oV7L8A31Kmh3cvxye2QvYQyZm01w&s', 
+    readLink: 'https://drive.google.com/file/d/1M-sti9DYbbnZpD7qdp8uL7hDMKezcJZT/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1M-sti9DYbbnZpD7qdp8uL7hDMKezcJZT', 
+    description: 'ব্যোমকেশ বক্সীর রহস্যভেদের এক রোমাঞ্চকর গল্প।' 
+  },
+  { 
+    id: '130', 
+    title: 'অচিন পাখি (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoYq2uRdj1qQKmhoCAUhc9BGPwN1m4xTLu5A&s', 
+    readLink: 'https://drive.google.com/file/d/1I0shCe4BxS4a6ucMNLLV3YONCJUFWSUZ/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1I0shCe4BxS4a6ucMNLLV3YONCJUFWSUZ', 
+    description: 'ব্যোমকেশ বক্সীর বুদ্ধির দীপ্তিতে রহস্য উন্মোচনের কাহিনী।' 
+  },
+  { 
+    id: '131', 
+    title: 'অদৃশ্য ত্রিকোণ (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://www.amarbooks.org/thumbs/1573952796.jpg', 
+    readLink: 'https://drive.google.com/file/d/1Rp-hCUriKoduX3Y8ZK917B_O1-aOJNK1/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1Rp-hCUriKoduX3Y8ZK917B_O1-aOJNK1', 
+    description: 'অদৃশ্য এক ত্রিকোণকে ঘিরে জটিল রহস্যের সমাধান।' 
+  },
+  { 
+    id: '132', 
+    title: 'অদ্বিতীয় (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://allboi.com/wp-content/uploads/2023/01/Adwitiya-by-Sharadindu-Bandhapadhyay.jpg', 
+    readLink: 'https://drive.google.com/file/d/1K2fif5uvEFoN7r5t6goLHrUp_mnCH-Nq/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1K2fif5uvEFoN7r5t6goLHrUp_mnCH-Nq', 
+    description: 'ব্যোমকেশ বক্সীর তীক্ষ্ণ মেধার এক অনন্য পরিচয়।' 
+  },
+  { 
+    id: '133', 
+    title: 'অভিজাতক (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTScZsEKVdyj3KIeI9XMePzM-Y7FLYpQugkDA&s', 
+    readLink: 'https://drive.google.com/file/d/1F1m4y_20cZPIDgFEdxVtgXRlRr5XiTzP/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1F1m4y_20cZPIDgFEdxVtgXRlRr5XiTzP', 
+    description: 'রহস্যময় ঘটনার অন্তরালে সত্যের সন্ধানে ব্যোমকেশ।' 
+  },
+  { 
+    id: '134', 
+    title: 'অমৃতের মৃত্যু (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://www.amarbooks.org/thumbs/1573625274.jpg', 
+    readLink: 'https://drive.google.com/file/d/1lFx4N5K2rw6KG5a1V6dRat_Ovao1Sk2v/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1lFx4N5K2rw6KG5a1V6dRat_Ovao1Sk2v', 
+    description: 'অমৃতের রহস্যময় মৃত্যুর কারণ খুঁজতে সত্যান্বেষী।' 
+  },
+  { 
+    id: '135', 
+    title: 'আদিম রিপু (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://www.amarbooks.org/thumbs/1573625094.jpg', 
+    readLink: 'https://drive.google.com/file/d/1f5VU0unXbyozjbwjVDuPp-QJ7EsElpVn/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1f5VU0unXbyozjbwjVDuPp-QJ7EsElpVn', 
+    description: 'মানুষের সহজাত প্রবৃত্তি বা আদিম রিপুকে কেন্দ্র করে গড়ে ওঠা রহস্য।' 
+  },
+  { 
+    id: '136', 
+    title: 'উপসংহার (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhIVs8ecrxYV2MFew4wpNRuYDo5QK48Q6lFQ&s', 
+    readLink: 'https://drive.google.com/file/d/1zMnOzdqbhoeXMXBrxvEgJ-hsmUGVpR4J/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1zMnOzdqbhoeXMXBrxvEgJ-hsmUGVpR4J', 
+    description: 'ব্যোমকেশ বক্সী সিরিজের অন্যতম একটি রহস্য গল্প।' 
+  },
+  { 
+    id: '137', 
+    title: 'কহেন কবি কালিদাস (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://www.amarbooks.org/thumbs/1573733304.jpg', 
+    readLink: 'https://drive.google.com/file/d/1kDB4cXmsNvd2JkfAjfMLD5quLXZKMVAa/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1kDB4cXmsNvd2JkfAjfMLD5quLXZKMVAa', 
+    description: 'কালিদাসের কবিতার ছলে লুকিয়ে থাকা রহস্যের উন্মোচন।' 
+  },
+  { 
+    id: '138', 
+    title: 'খুঁজি খুঁজি নারি (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://www.amarbooks.org/thumbs/1573952842.jpg', 
+    readLink: 'https://drive.google.com/file/d/1b8tamfsUOncSNo0-TKTKC4VORwg5JzcD/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1b8tamfsUOncSNo0-TKTKC4VORwg5JzcD', 
+    description: 'ব্যোমকেশ বক্সীর রহস্যের জালে এক নতুন মোড়।' 
+  },
+ 
+  { 
+    id: '142', 
+    title: 'ছলনার ছন্দ (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1590742312i/20746355.jpg', 
+    readLink: 'https://drive.google.com/file/d/1ADBIKll_puwiky0fTedHGfm0iVbeueLs/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1ADBIKll_puwiky0fTedHGfm0iVbeueLs', 
+    description: 'ছলনা আর ছন্দের অন্তরালে থাকা অপরাধকে চিনে নেওয়া।' 
+  },
+  { 
+    id: '143', 
+    title: 'ছায়াপথিক (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQenjbOz9cWdckA11ZY-rgi28kJMLDZn8Wftw&s', 
+    readLink: 'https://drive.google.com/file/d/1OVUwDstBmSUICwxJyZnpNn1yQpHeOoVU/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1OVUwDstBmSUICwxJyZnpNn1yQpHeOoVU', 
+    description: 'ব্যোমকেশ বক্সীর রহস্যের সন্ধানে এক ছায়া পথিকের গল্প।' 
+  },
+  { 
+    id: '144', 
+    title: 'দাদার কীর্তি (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaA0wep_A6DnSSE_9YPsovooZe9jmjvAIHFQ&s', 
+    readLink: 'https://drive.google.com/file/d/1KCBJ37jR_nAbzVZAfHkrUjGC9n44s3eQ/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1KCBJ37jR_nAbzVZAfHkrUjGC9n44s3eQ', 
+    description: 'শরদিন্দু বন্দ্যোপাধ্যায়ের এক অনবদ্য এবং জনপ্রিয় সৃষ্টি।' 
+  },
+  { 
+    id: '145', 
+    title: 'দুর্গরহস্য (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://www.amarbooks.org/thumbs/1573733195.jpg', 
+    readLink: 'https://drive.google.com/file/d/1v4MFBW-0Q-0DHK9ANPW5A7nQ8KvaQOkc/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1v4MFBW-0Q-0DHK9ANPW5A7nQ8KvaQOkc', 
+    description: 'এক দুর্গের ভেতরে লুকিয়ে থাকা প্রাচীন রহস্যের হাতছানি।' 
+  },
+  { 
+    id: '146', 
+    title: 'দুষ্টচক্র (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1590742408i/20746342.jpg', 
+    readLink: 'https://drive.google.com/file/d/1Z8uit4-uLDs3Mfd0PqJrPHJjP29JQgp2/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1Z8uit4-uLDs3Mfd0PqJrPHJjP29JQgp2', 
+    description: 'জটিল ষড়যন্ত্র বা দুষ্টচক্র থেকে সত্য বের করে আনা।' 
+  },
+  { 
+    id: '147', 
+    title: 'পথের কাঁটা (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQcUP9Li2t5I6j07Lp_waFc3g0MbLfGV8J6Q&s', 
+    readLink: 'https://drive.google.com/file/d/1enIleVJ-W40-LoTXi_TTCREoMRItIvC4/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1enIleVJ-W40-LoTXi_TTCREoMRItIvC4', 
+    description: 'নিপুণ খুনি ও তার অভিনব অস্ত্রের রহস্যভেদে ব্যোমকেশ।' 
+  },
+  { 
+    id: '148', 
+    title: 'বহ্নি-পতঙ্গ (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://www.amarbooks.org/thumbs/1573625595.jpg', 
+    readLink: 'https://drive.google.com/file/d/1jRAvTxI6XoK6ypfp4r5H2x7FQZnu6v7s/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1jRAvTxI6XoK6ypfp4r5H2x7FQZnu6v7s', 
+    description: 'আগুনে পতঙ্গের মতো ঝাপিয়ে পড়া রহস্যের সমাধান।' 
+  },
+  { 
+    id: '149', 
+    title: 'বিশুপাল-বধ (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://bengaliebook.com/wp-content/uploads/2021/07/%E0%A6%AC%E0%A6%BF%E0%A6%B6%E0%A7%81%E0%A6%AA%E0%A6%BE%E0%A6%B2-%E0%A6%AC%E0%A6%A7-724x1024.jpg', 
+    readLink: 'https://drive.google.com/file/d/1v2MNz9lfo1q33WokdebpCixSPklEgekp/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1v2MNz9lfo1q33WokdebpCixSPklEgekp', 
+    description: 'ব্যোমকেশ বক্সী সিরিজের অন্যতম একটি হত্যা রহস্য।' 
+  },
+  { 
+    id: '150', 
+    title: 'বিষের ধোঁয়া (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTwMTo4ihqskeMU9VHHJw1TiUb0BHzrsMnUA&s', 
+    readLink: 'https://drive.google.com/file/d/1cDti0N4XKBpyloKJI73refdJUDwaTimY/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1cDti0N4XKBpyloKJI73refdJUDwaTimY', 
+    description: 'ধোঁয়ার অন্তরালে থাকা বিষাক্ত রহস্যের সত্য উদ্ঘাটন।' 
+  },
+  { 
+    id: '151', 
+    title: 'বেণীসংহার (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1590742256i/20746358.jpg', 
+    readLink: 'https://drive.google.com/file/d/1bEivcuI6DvGTFcj2bQs1nstDj-sGWn6I/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1bEivcuI6DvGTFcj2bQs1nstDj-sGWn6I', 
+    description: 'ব্যোমকেশ বক্সীর রহস্যের এক চমৎকার কাহিনী।' 
+  },
+ 
+  { 
+    id: '153', 
+    title: 'মগ্নমৈনাক (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9TySw8E5c0Rh6sCSPxCYQEhXo7d4PHPjfRg&s', 
+    readLink: 'https://drive.google.com/file/d/1KM8_m6UVN9leXgkZPnttfd1tr0RRJx-w/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1KM8_m6UVN9leXgkZPnttfd1tr0RRJx-w', 
+    description: 'গভীর রহস্যে মগ্ন এক ঘটনার তদন্তে ব্যোমকেশ বক্সী।' 
+  },
+  { 
+    id: '154', 
+    title: 'মণিমণ্ডন (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1590588025i/20746298.jpg', 
+    readLink: 'https://drive.google.com/file/d/13W_0WYfjmk6ecz8OlqbvzFpRbdaD8nUF/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=13W_0WYfjmk6ecz8OlqbvzFpRbdaD8nUF', 
+    description: 'ব্যোমকেশ বক্সীর রহস্য সন্ধানের অনন্য এক পটভূমি।' 
+  },
+  { 
+    id: '155', 
+    title: 'মনচোরা (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://m.media-amazon.com/images/M/MV5BM2JhOGNmMDUtYTJmMS00NjMyLTk3NDAtODA3NjZkMzQyZmNjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg', 
+    readLink: 'https://drive.google.com/file/d/1dfNG2q4S2S4E10qG60SBRV9DKazW5Euc/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1dfNG2q4S2S4E10qG60SBRV9DKazW5Euc', 
+    description: 'রহস্য আর আবেগের এক দারুণ সংমিশ্রণ এই কাহিনীতে।' 
+  },
+  
+  { 
+    id: '157', 
+    title: 'রক্তমুখী নীলা (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQw1Eo9y0x6vWAhOvz_CbussTTC25zCnBwHaA&s', 
+    readLink: 'https://drive.google.com/file/d/1uSDhR5G6_VWF8bWpTr1pZB2VtANDvVqA/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1uSDhR5G6_VWF8bWpTr1pZB2VtANDvVqA', 
+    description: 'অভিশপ্ত এক নীলাকে কেন্দ্র করে জমে ওঠা রহস্য।' 
+  },
+  { 
+    id: '158', 
+    title: 'রক্তের দাগ (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://www.amarbooks.org/thumbs/1573953101.jpg', 
+    readLink: 'https://drive.google.com/file/d/1EJcXcANQNPGRoxPJ7AaGMru88EbHv8Xp/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1EJcXcANQNPGRoxPJ7AaGMru88EbHv8Xp', 
+    description: 'অস্পষ্ট এক রক্তের দাগ অনুসরণ করে অপরাধীকে শনাক্ত করা।' 
+  },
+  { 
+    id: '159', 
+    title: 'রাজদ্রোহী (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ35qPGcihbYU0MdjxanHj1m4g4oErlEKFH1w&s', 
+    readLink: 'https://drive.google.com/file/d/1ZOWfUPsisNFqXOJKiGlB50QrgFysVrXr/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1ZOWfUPsisNFqXOJKiGlB50QrgFysVrXr', 
+    description: 'রাজদ্রোহের আড়ালে থাকা গূঢ় ষড়যন্ত্রের জাল উন্মোচন।' 
+  },
+  { 
+    id: '160', 
+    title: 'রিমঝিম (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvZp9RYl4rliK3ddczsJAGvQdtBv4H_UPiuw&s', 
+    readLink: 'https://drive.google.com/file/d/1gzDaFiwhRNJ_xT7F4vpJtWwW7GxUTUzL/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1gzDaFiwhRNJ_xT7F4vpJtWwW7GxUTUzL', 
+    description: 'ব্যোমকেশ বক্সী সিরিজের এক রোমাঞ্চকর অ্যাডভেঞ্চার।' 
+  },
+  { 
+    id: '161', 
+    title: 'রুম নম্বর দুই (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1590742343i/26127442.jpg', 
+    readLink: 'https://drive.google.com/file/d/1Wakhgp3kxwq3xEz74Blf5XnOt9AuLvey/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1Wakhgp3kxwq3xEz74Blf5XnOt9AuLvey', 
+    description: 'হোস্টেলের একটি কক্ষকে ঘিরে আবর্তিত রহস্যভেদে ব্যোমকেশ।' 
+  },
+  { 
+    id: '162', 
+    title: 'লোহার বিস্কুট (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://allboi.com/wp-content/uploads/2023/01/Lohar-Biscuit-by-Sharadindu-Bandhapadhyay1.jpg', 
+    readLink: 'https://drive.google.com/file/d/1E5fSdNuY5_OmBkB4DRK4ab3wx5uKOpou/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1E5fSdNuY5_OmBkB4DRK4ab3wx5uKOpou', 
+    description: 'অদ্ভুত এক চুরির তদন্তে সত্যান্বেষীর তীক্ষ্ণ মেধার প্রকাশ।' 
+  },
+  { 
+    id: '163', 
+    title: 'শজারুর কাঁটা (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1590742285i/20746357.jpg', 
+    readLink: 'https://drive.google.com/file/d/1bqoecmAxq6zJWt-ztCTkQU-VHdUjJIFa/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1bqoecmAxq6zJWt-ztCTkQU-VHdUjJIFa', 
+    description: 'শজারুর কাঁটা দিয়ে বিচিত্র খুনের রহস্যভেদে এক বৃদ্ধ ব্যোমকেশ।' 
+  },
+  { 
+    id: '164', 
+    title: 'শৈলরহস্য (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://www.amarbooks.org/thumbs/1573953033.jpg', 
+    readLink: 'https://drive.google.com/file/d/1WTaKMTB1otCekl6fE2uGeItN6qW9Fh1t/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1WTaKMTB1otCekl6fE2uGeItN6qW9Fh1t', 
+    description: 'পাহাড়ের পটভূমিতে এক শ্বাসরুদ্ধকর রহস্যের উন্মোচন।' 
+  },
+  { 
+    id: '165', 
+    title: 'সত্যান্বেষী (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1729851738i/20746143.jpg', 
+    readLink: 'https://drive.google.com/file/d/1OOFhPKnRK7ha3gRey1zkBBEKa58UpWAX/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1OOFhPKnRK7ha3gRey1zkBBEKa58UpWAX', 
+    description: 'ব্যোমকেশ বক্সী সিরিজের সূচনা ও এক অনন্য গোয়েন্দা যাত্রা।' 
+  },
+  { 
+    id: '166', 
+    title: 'সীমান্ত হীরা (ব্যোমকেশ বক্সী)', 
+    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1564688080i/20746164.jpg', 
+    readLink: 'https://drive.google.com/file/d/1gN4J3nPwFL-AQatICwpQIuYh1035_5QQ/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1gN4J3nPwFL-AQatICwpQIuYh1035_5QQ', 
+    description: 'সীমান্ত পেরিয়ে আসা এক দুর্মূল্য হীরা আর তাকে ঘিরে রহস্য।' 
+  },
   {
     id: '1',
     title: 'আর রাহীকুল মাখতূম',
@@ -894,86 +1237,7 @@ window.BOOKS_DATA = [
     downloadLink: 'https://drive.google.com/uc?export=download&id=1I7kVw5At7clDsBQ1DpzwoD4NyapX5fQY', 
     description: 'হালাল-হারাম চেনা ও বিদআত বর্জনের প্রয়োজনীয় আলোচনা।' 
   },
-  { 
-    id: '90', 
-    title: 'হুদাইবিয়ার সন্ধি: সত্য মিথ্যার দ্বন্দ্ব', 
-    author: 'শাইখ আহমাদ মুসা জিবরিল', 
-    category: 'ইসলামিক', 
-    coverImage: 'https://baatighar.com/web/image/product.template/99073/image_1920?unique=76c4cf4', 
-    readLink: 'https://drive.google.com/file/d/1zIgPlQOCYxk_wh6YCJDCg6m53Q-zuOyO/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1zIgPlQOCYxk_wh6YCJDCg6m53Q-zuOyO', 
-    description: 'হুদাইবিয়ার সন্ধির প্রেক্ষাপট ও এখান থেকে প্রাপ্ত শিক্ষণীয় বিষয়সমূহ।' 
-  },
-  { 
-    id: '91', 
-    title: 'গল্পে গল্পে খালিদ বিন ওয়ালীদ (রাঃ)', 
-    author: 'মুহাম্মদ সিদ্দিক আল মানশাবী', 
-    category: 'ইসলামিক', 
-    coverImage: 'https://wafilife-media.wafilife.com/uploads/2020/09/%E0%A6%97%E0%A6%B2%E0%A7%8D%E0%A6%AA%E0%A7%87-%E0%A6%97%E0%A6%B2%E0%A7%8D%E0%A6%AA%E0%A7%87-%E0%A6%96%E0%A6%BE%E0%A6%B2%E0%A6%BF%E0%A6%A6-%E0%A6%AC%E0%A6%BF%E0%A6%A8-%E0%A6%93%E0%A6%AF%E0%A6%BC%E0%A6%BE%E0%A6%B2%E0%A7%80%E0%A6%A6.jpg', 
-    readLink: 'https://drive.google.com/file/d/1in3glpv2RSKcE8pFLB1OrPLAjIKWjtVg/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1in3glpv2RSKcE8pFLB1OrPLAjIKWjtVg', 
-    description: 'মুসলিম জাহানের মহান সেনাপতি খালিদ বিন ওয়ালীদ (রাঃ)-এর বীরত্বগাথা।' 
-  },
-  { 
-    id: '92', 
-    title: 'গল্পে আঁকা মহীয়সী খাদিজা (রাঃ)', 
-    author: 'ইয়াহইয়া ইউসুফ নদভী', 
-    category: 'ইসলামিক', 
-    coverImage: 'https://boimate.com/media/1495/Golpe-Aka-Mohioshi-Khadija-PDF.webp', 
-    readLink: 'https://drive.google.com/file/d/1aIvZO4OuLWSRLLPTpXwSDROMQgDUN-JV/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1aIvZO4OuLWSRLLPTpXwSDROMQgDUN-JV', 
-    description: 'উম্মুল মুমিনীন হযরত খাদিজা (রাঃ)-এর পুণ্যময় জীবনের গল্প।' 
-  },
-  { 
-    id: '93', 
-    title: 'জবাব', 
-    author: 'আরিফ আজাদ', 
-    category: 'ইসলামিক', 
-    coverImage: 'https://baatighar.com/web/image/product.template/65680/image_1024?unique=07cb24a', 
-    readLink: 'https://drive.google.com/file/d/1HRWG0KiByP4I65yiCUy5lXSuJrbXFv8g/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1HRWG0KiByP4I65yiCUy5lXSuJrbXFv8g', 
-    description: 'ইসলাম নিয়ে বিভিন্ন প্রশ্নের যৌক্তিক ও তাত্ত্বিক উত্তর।' 
-  },
- { 
-    id: '94', 
-    title: 'প্যারাডক্সিকাল সাজিদ ১', 
-    author: 'আরিফ আজাদ', 
-    category: 'ইসলামিক', 
-    coverImage: 'https://static-01.daraz.com.bd/p/862faf13e9e4404236178739bebcb79c.jpg', 
-    readLink: 'https://drive.google.com/file/d/1L5eY5mbJFJ1PciBh_hTueoaPeMYVVvyB/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1L5eY5mbJFJ1PciBh_hTueoaPeMYVVvyB', 
-    description: 'বিশ্বাসের কথাগুলোকে যুক্তি দিয়ে সাজানো এক অনন্য বই।' 
-  },
-  { 
-    id: '95', 
-    title: 'প্যারাডক্সিকাল সাজিদ ২', 
-    author: 'আরিফ আজাদ', 
-    category: 'ইসলামিক', 
-    coverImage: 'https://wafilife-media.wafilife.com/uploads/2019/02/84626090_2399142990190983_5991892351910412288_o-1.png', 
-    readLink: 'https://drive.google.com/file/d/1vk6oTqt65fqBI5SgAxJa851GO0qh_ttn/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1vk6oTqt65fqBI5SgAxJa851GO0qh_ttn', 
-    description: 'প্যারাডক্সিকাল সাজিদ সিরিজের দ্বিতীয় খণ্ড।' 
-  },
-  { 
-    id: '96', 
-    title: 'প্রত্যাবর্তন', 
-    author: 'আরিফ আজাদ', 
-    category: 'ইসলামিক', 
-    coverImage: 'https://allboi.com/wp-content/uploads/2023/01/Prottaborton-1-by-Arif-Azad.jpg', 
-    readLink: 'https://drive.google.com/file/d/1dvX5dl1lsO9rhueFZsFCDcPS8Rd_Z_eu/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1dvX5dl1lsO9rhueFZsFCDcPS8Rd_Z_eu', 
-    description: 'অন্ধকার থেকে আলোর পথে ফিরে আসার গল্প।' 
-  },
-  { 
-    id: '97', 
-    title: 'প্রত্যাবর্তন ২', 
-    author: 'আরিফ আজাদ', 
-    category: 'ইসলামিক', 
-    coverImage: 'https://wafilife-media.wafilife.com/uploads/2022/02/Prottaborton-2.jpg', 
-    readLink: 'https://drive.google.com/file/d/1b6uO54AU_DUixTk8j3S19gPtV0bKgl5d/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1b6uO54AU_DUixTk8j3S19gPtV0bKgl5d', 
-    description: 'প্রত্যাবর্তন সিরিজের দ্বিতীয় খণ্ড।' 
-  },
+ 
   { 
     id: '98', 
     title: 'সোনালী যুগের চার খলিফা', 
@@ -1134,117 +1398,120 @@ window.BOOKS_DATA = [
     downloadLink: 'https://drive.google.com/uc?export=download&id=1rSc6i35nCj51jb1wE1qdb8RPYFE-pWb3', 
     description: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়ের শ্রেষ্ঠ রচনার সংগ্রহ - ১২তম খণ্ড।' 
   },
-  { 
-    id: '128', 
-    title: 'অর্থমনর্থম্ (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1533320297i/20746186.jpg', 
-    readLink: 'https://drive.google.com/file/d/1fojisnky5ARFTfFumD29ddKLMil0yAhM/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1fojisnky5ARFTfFumD29ddKLMil0yAhM', 
-    description: 'ব্যোমকেশ বক্সী সিরিজের একটি টানটান রহস্য উপন্যাস।' 
+   { 
+    id: '90', 
+    title: 'হুদাইবিয়ার সন্ধি: সত্য মিথ্যার দ্বন্দ্ব', 
+    author: 'শাইখ আহমাদ মুসা জিবরিল', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://baatighar.com/web/image/product.template/99073/image_1920?unique=76c4cf4', 
+    readLink: 'https://drive.google.com/file/d/1zIgPlQOCYxk_wh6YCJDCg6m53Q-zuOyO/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1zIgPlQOCYxk_wh6YCJDCg6m53Q-zuOyO', 
+    description: 'হুদাইবিয়ার সন্ধির প্রেক্ষাপট ও এখান থেকে প্রাপ্ত শিক্ষণীয় বিষয়সমূহ।' 
   },
   { 
-    id: '129', 
-    title: 'অগ্নিবাণ (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhcpxSq8oV7L8A31Kmh3cvxye2QvYQyZm01w&s', 
-    readLink: 'https://drive.google.com/file/d/1M-sti9DYbbnZpD7qdp8uL7hDMKezcJZT/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1M-sti9DYbbnZpD7qdp8uL7hDMKezcJZT', 
-    description: 'ব্যোমকেশ বক্সীর রহস্যভেদের এক রোমাঞ্চকর গল্প।' 
+    id: '91', 
+    title: 'গল্পে গল্পে খালিদ বিন ওয়ালীদ (রাঃ)', 
+    author: 'মুহাম্মদ সিদ্দিক আল মানশাবী', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://wafilife-media.wafilife.com/uploads/2020/09/%E0%A6%97%E0%A6%B2%E0%A7%8D%E0%A6%AA%E0%A7%87-%E0%A6%97%E0%A6%B2%E0%A7%8D%E0%A6%AA%E0%A7%87-%E0%A6%96%E0%A6%BE%E0%A6%B2%E0%A6%BF%E0%A6%A6-%E0%A6%AC%E0%A6%BF%E0%A6%A8-%E0%A6%93%E0%A6%AF%E0%A6%BC%E0%A6%BE%E0%A6%B2%E0%A7%80%E0%A6%A6.jpg', 
+    readLink: 'https://drive.google.com/file/d/1in3glpv2RSKcE8pFLB1OrPLAjIKWjtVg/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1in3glpv2RSKcE8pFLB1OrPLAjIKWjtVg', 
+    description: 'মুসলিম জাহানের মহান সেনাপতি খালিদ বিন ওয়ালীদ (রাঃ)-এর বীরত্বগাথা।' 
   },
   { 
-    id: '130', 
-    title: 'অচিন পাখি (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoYq2uRdj1qQKmhoCAUhc9BGPwN1m4xTLu5A&s', 
-    readLink: 'https://drive.google.com/file/d/1I0shCe4BxS4a6ucMNLLV3YONCJUFWSUZ/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1I0shCe4BxS4a6ucMNLLV3YONCJUFWSUZ', 
-    description: 'ব্যোমকেশ বক্সীর বুদ্ধির দীপ্তিতে রহস্য উন্মোচনের কাহিনী।' 
+    id: '92', 
+    title: 'গল্পে আঁকা মহীয়সী খাদিজা (রাঃ)', 
+    author: 'ইয়াহইয়া ইউসুফ নদভী', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://boimate.com/media/1495/Golpe-Aka-Mohioshi-Khadija-PDF.webp', 
+    readLink: 'https://drive.google.com/file/d/1aIvZO4OuLWSRLLPTpXwSDROMQgDUN-JV/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1aIvZO4OuLWSRLLPTpXwSDROMQgDUN-JV', 
+    description: 'উম্মুল মুমিনীন হযরত খাদিজা (রাঃ)-এর পুণ্যময় জীবনের গল্প।' 
   },
   { 
-    id: '131', 
-    title: 'অদৃশ্য ত্রিকোণ (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://www.amarbooks.org/thumbs/1573952796.jpg', 
-    readLink: 'https://drive.google.com/file/d/1Rp-hCUriKoduX3Y8ZK917B_O1-aOJNK1/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1Rp-hCUriKoduX3Y8ZK917B_O1-aOJNK1', 
-    description: 'অদৃশ্য এক ত্রিকোণকে ঘিরে জটিল রহস্যের সমাধান।' 
+    id: '93', 
+    title: 'জবাব', 
+    author: 'আরিফ আজাদ', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://baatighar.com/web/image/product.template/65680/image_1024?unique=07cb24a', 
+    readLink: 'https://drive.google.com/file/d/1HRWG0KiByP4I65yiCUy5lXSuJrbXFv8g/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1HRWG0KiByP4I65yiCUy5lXSuJrbXFv8g', 
+    description: 'ইসলাম নিয়ে বিভিন্ন প্রশ্নের যৌক্তিক ও তাত্ত্বিক উত্তর।' 
+  },
+   { 
+    id: '95', 
+    title: 'প্যারাডক্সিকাল সাজিদ ২', 
+    author: 'আরিফ আজাদ', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://wafilife-media.wafilife.com/uploads/2019/02/84626090_2399142990190983_5991892351910412288_o-1.png', 
+    readLink: 'https://drive.google.com/file/d/1vk6oTqt65fqBI5SgAxJa851GO0qh_ttn/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1vk6oTqt65fqBI5SgAxJa851GO0qh_ttn', 
+    description: 'প্যারাডক্সিকাল সাজিদ সিরিজের দ্বিতীয় খণ্ড।' 
+  },
+ { 
+    id: '94', 
+    title: 'প্যারাডক্সিকাল সাজিদ ১', 
+    author: 'আরিফ আজাদ', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://static-01.daraz.com.bd/p/862faf13e9e4404236178739bebcb79c.jpg', 
+    readLink: 'https://drive.google.com/file/d/1L5eY5mbJFJ1PciBh_hTueoaPeMYVVvyB/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1L5eY5mbJFJ1PciBh_hTueoaPeMYVVvyB', 
+    description: 'বিশ্বাসের কথাগুলোকে যুক্তি দিয়ে সাজানো এক অনন্য বই।' 
+  },
+ 
+  { 
+    id: '97', 
+    title: 'প্রত্যাবর্তন ২', 
+    author: 'আরিফ আজাদ', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://wafilife-media.wafilife.com/uploads/2022/02/Prottaborton-2.jpg', 
+    readLink: 'https://drive.google.com/file/d/1b6uO54AU_DUixTk8j3S19gPtV0bKgl5d/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1b6uO54AU_DUixTk8j3S19gPtV0bKgl5d', 
+    description: 'প্রত্যাবর্তন সিরিজের দ্বিতীয় খণ্ড।' 
   },
   { 
-    id: '132', 
-    title: 'অদ্বিতীয় (ব্যোমকেশ বক্সী)', 
+    id: '96', 
+    title: 'প্রত্যাবর্তন', 
+    author: 'আরিফ আজাদ', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://allboi.com/wp-content/uploads/2023/01/Prottaborton-1-by-Arif-Azad.jpg', 
+    readLink: 'https://drive.google.com/file/d/1dvX5dl1lsO9rhueFZsFCDcPS8Rd_Z_eu/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1dvX5dl1lsO9rhueFZsFCDcPS8Rd_Z_eu', 
+    description: 'অন্ধকার থেকে আলোর পথে ফিরে আসার গল্প।' 
+  },
+  
+  
+   { 
+    id: '152', 
+    title: 'ব্যোমকেশ ও বরদা', 
     author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
     category: 'থ্রিলার', 
-    coverImage: 'https://allboi.com/wp-content/uploads/2023/01/Adwitiya-by-Sharadindu-Bandhapadhyay.jpg', 
-    readLink: 'https://drive.google.com/file/d/1K2fif5uvEFoN7r5t6goLHrUp_mnCH-Nq/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1K2fif5uvEFoN7r5t6goLHrUp_mnCH-Nq', 
-    description: 'ব্যোমকেশ বক্সীর তীক্ষ্ণ মেধার এক অনন্য পরিচয়।' 
+    coverImage: 'https://www.amarbooks.org/thumbs/1573625743.jpg', 
+    readLink: 'https://drive.google.com/file/d/1iLlZmbDmAsG5zTBnPfIHizMlSsk99qW5/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1iLlZmbDmAsG5zTBnPfIHizMlSsk99qW5', 
+    description: 'ব্যোমকেশ বক্সী ও বরদার এক অদ্ভুত রহস্য কাহিনী।' 
   },
   { 
-    id: '133', 
-    title: 'অভিজাতক (ব্যোমকেশ বক্সী)', 
+    id: '156', 
+    title: 'মাকড়সার রস (ব্যোমকেশ বক্সী)', 
     author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
     category: 'থ্রিলার', 
-    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTScZsEKVdyj3KIeI9XMePzM-Y7FLYpQugkDA&s', 
-    readLink: 'https://drive.google.com/file/d/1F1m4y_20cZPIDgFEdxVtgXRlRr5XiTzP/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1F1m4y_20cZPIDgFEdxVtgXRlRr5XiTzP', 
-    description: 'রহস্যময় ঘটনার অন্তরালে সত্যের সন্ধানে ব্যোমকেশ।' 
+    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7yCysXgpGLLxSbDCB-OBYymTI1gdLfGenXw&s', 
+    readLink: 'https://drive.google.com/file/d/1esjIawIhCV94E690AXANk3mRfmBBl_3G/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1esjIawIhCV94E690AXANk3mRfmBBl_3G', 
+    description: 'মাকড়সার জালের মতো জটিল এক হত্যার তদন্ত।' 
   },
   { 
-    id: '134', 
-    title: 'অমৃতের মৃত্যু (ব্যোমকেশ বক্সী)', 
+    id: '167', 
+    title: 'হেঁয়ালির ছন্দ (ব্যোমকেশ বক্সী)', 
     author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
     category: 'থ্রিলার', 
-    coverImage: 'https://www.amarbooks.org/thumbs/1573625274.jpg', 
-    readLink: 'https://drive.google.com/file/d/1lFx4N5K2rw6KG5a1V6dRat_Ovao1Sk2v/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1lFx4N5K2rw6KG5a1V6dRat_Ovao1Sk2v', 
-    description: 'অমৃতের রহস্যময় মৃত্যুর কারণ খুঁজতে সত্যান্বেষী।' 
+    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1RRG-Ji1o6CrGXbUUZTG9riRjhEb5PHfdEA&s', 
+    readLink: 'https://drive.google.com/file/d/1BzJbj-5lqfM9IWB1buFTm4QUaTkEJeza/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1BzJbj-5lqfM9IWB1buFTm4QUaTkEJeza', 
+    description: 'হেঁয়ালির মতো বুনে রাখা এক অপরাধের কূল-কিনারা করা।' 
   },
-  { 
-    id: '135', 
-    title: 'আদিম রিপু (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://www.amarbooks.org/thumbs/1573625094.jpg', 
-    readLink: 'https://drive.google.com/file/d/1f5VU0unXbyozjbwjVDuPp-QJ7EsElpVn/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1f5VU0unXbyozjbwjVDuPp-QJ7EsElpVn', 
-    description: 'মানুষের সহজাত প্রবৃত্তি বা আদিম রিপুকে কেন্দ্র করে গড়ে ওঠা রহস্য।' 
-  },
-  { 
-    id: '136', 
-    title: 'উপসংহার (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhIVs8ecrxYV2MFew4wpNRuYDo5QK48Q6lFQ&s', 
-    readLink: 'https://drive.google.com/file/d/1zMnOzdqbhoeXMXBrxvEgJ-hsmUGVpR4J/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1zMnOzdqbhoeXMXBrxvEgJ-hsmUGVpR4J', 
-    description: 'ব্যোমকেশ বক্সী সিরিজের অন্যতম একটি রহস্য গল্প।' 
-  },
-  { 
-    id: '137', 
-    title: 'কহেন কবি কালিদাস (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://www.amarbooks.org/thumbs/1573733304.jpg', 
-    readLink: 'https://drive.google.com/file/d/1kDB4cXmsNvd2JkfAjfMLD5quLXZKMVAa/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1kDB4cXmsNvd2JkfAjfMLD5quLXZKMVAa', 
-    description: 'কালিদাসের কবিতার ছলে লুকিয়ে থাকা রহস্যের উন্মোচন।' 
-  },
-  { 
-    id: '138', 
-    title: 'খুঁজি খুঁজি নারি (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://www.amarbooks.org/thumbs/1573952842.jpg', 
-    readLink: 'https://drive.google.com/file/d/1b8tamfsUOncSNo0-TKTKC4VORwg5JzcD/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1b8tamfsUOncSNo0-TKTKC4VORwg5JzcD', 
-    description: 'ব্যোমকেশ বক্সীর রহস্যের জালে এক নতুন মোড়।' 
-  },
-  { 
+   { 
     id: '139', 
     title: 'চিড়িয়াখানা (ব্যোমকেশ বক্সী)', 
     author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
@@ -1273,266 +1540,6 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1fWiOnZIlkCUiyOLCyaTg8sN6j27kbugF/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1fWiOnZIlkCUiyOLCyaTg8sN6j27kbugF', 
     description: 'চোরবালির মতো গ্রাস করা এক অপরাধের রহস্য।' 
-  },
-  { 
-    id: '142', 
-    title: 'ছলনার ছন্দ (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1590742312i/20746355.jpg', 
-    readLink: 'https://drive.google.com/file/d/1ADBIKll_puwiky0fTedHGfm0iVbeueLs/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1ADBIKll_puwiky0fTedHGfm0iVbeueLs', 
-    description: 'ছলনা আর ছন্দের অন্তরালে থাকা অপরাধকে চিনে নেওয়া।' 
-  },
-  { 
-    id: '143', 
-    title: 'ছায়াপথিক (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQenjbOz9cWdckA11ZY-rgi28kJMLDZn8Wftw&s', 
-    readLink: 'https://drive.google.com/file/d/1OVUwDstBmSUICwxJyZnpNn1yQpHeOoVU/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1OVUwDstBmSUICwxJyZnpNn1yQpHeOoVU', 
-    description: 'ব্যোমকেশ বক্সীর রহস্যের সন্ধানে এক ছায়া পথিকের গল্প।' 
-  },
-  { 
-    id: '144', 
-    title: 'দাদার কীর্তি (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaA0wep_A6DnSSE_9YPsovooZe9jmjvAIHFQ&s', 
-    readLink: 'https://drive.google.com/file/d/1KCBJ37jR_nAbzVZAfHkrUjGC9n44s3eQ/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1KCBJ37jR_nAbzVZAfHkrUjGC9n44s3eQ', 
-    description: 'শরদিন্দু বন্দ্যোপাধ্যায়ের এক অনবদ্য এবং জনপ্রিয় সৃষ্টি।' 
-  },
-  { 
-    id: '145', 
-    title: 'দুর্গরহস্য (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://www.amarbooks.org/thumbs/1573733195.jpg', 
-    readLink: 'https://drive.google.com/file/d/1v4MFBW-0Q-0DHK9ANPW5A7nQ8KvaQOkc/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1v4MFBW-0Q-0DHK9ANPW5A7nQ8KvaQOkc', 
-    description: 'এক দুর্গের ভেতরে লুকিয়ে থাকা প্রাচীন রহস্যের হাতছানি।' 
-  },
-  { 
-    id: '146', 
-    title: 'দুষ্টচক্র (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1590742408i/20746342.jpg', 
-    readLink: 'https://drive.google.com/file/d/1Z8uit4-uLDs3Mfd0PqJrPHJjP29JQgp2/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1Z8uit4-uLDs3Mfd0PqJrPHJjP29JQgp2', 
-    description: 'জটিল ষড়যন্ত্র বা দুষ্টচক্র থেকে সত্য বের করে আনা।' 
-  },
-  { 
-    id: '147', 
-    title: 'পথের কাঁটা (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQcUP9Li2t5I6j07Lp_waFc3g0MbLfGV8J6Q&s', 
-    readLink: 'https://drive.google.com/file/d/1enIleVJ-W40-LoTXi_TTCREoMRItIvC4/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1enIleVJ-W40-LoTXi_TTCREoMRItIvC4', 
-    description: 'নিপুণ খুনি ও তার অভিনব অস্ত্রের রহস্যভেদে ব্যোমকেশ।' 
-  },
-  { 
-    id: '148', 
-    title: 'বহ্নি-পতঙ্গ (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://www.amarbooks.org/thumbs/1573625595.jpg', 
-    readLink: 'https://drive.google.com/file/d/1jRAvTxI6XoK6ypfp4r5H2x7FQZnu6v7s/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1jRAvTxI6XoK6ypfp4r5H2x7FQZnu6v7s', 
-    description: 'আগুনে পতঙ্গের মতো ঝাপিয়ে পড়া রহস্যের সমাধান।' 
-  },
-  { 
-    id: '149', 
-    title: 'বিশুপাল-বধ (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://bengaliebook.com/wp-content/uploads/2021/07/%E0%A6%AC%E0%A6%BF%E0%A6%B6%E0%A7%81%E0%A6%AA%E0%A6%BE%E0%A6%B2-%E0%A6%AC%E0%A6%A7-724x1024.jpg', 
-    readLink: 'https://drive.google.com/file/d/1v2MNz9lfo1q33WokdebpCixSPklEgekp/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1v2MNz9lfo1q33WokdebpCixSPklEgekp', 
-    description: 'ব্যোমকেশ বক্সী সিরিজের অন্যতম একটি হত্যা রহস্য।' 
-  },
-  { 
-    id: '150', 
-    title: 'বিষের ধোঁয়া (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTwMTo4ihqskeMU9VHHJw1TiUb0BHzrsMnUA&s', 
-    readLink: 'https://drive.google.com/file/d/1cDti0N4XKBpyloKJI73refdJUDwaTimY/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1cDti0N4XKBpyloKJI73refdJUDwaTimY', 
-    description: 'ধোঁয়ার অন্তরালে থাকা বিষাক্ত রহস্যের সত্য উদ্ঘাটন।' 
-  },
-  { 
-    id: '151', 
-    title: 'বেণীসংহার (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1590742256i/20746358.jpg', 
-    readLink: 'https://drive.google.com/file/d/1bEivcuI6DvGTFcj2bQs1nstDj-sGWn6I/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1bEivcuI6DvGTFcj2bQs1nstDj-sGWn6I', 
-    description: 'ব্যোমকেশ বক্সীর রহস্যের এক চমৎকার কাহিনী।' 
-  },
-  { 
-    id: '152', 
-    title: 'ব্যোমকেশ ও বরদা', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://www.amarbooks.org/thumbs/1573625743.jpg', 
-    readLink: 'https://drive.google.com/file/d/1iLlZmbDmAsG5zTBnPfIHizMlSsk99qW5/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1iLlZmbDmAsG5zTBnPfIHizMlSsk99qW5', 
-    description: 'ব্যোমকেশ বক্সী ও বরদার এক অদ্ভুত রহস্য কাহিনী।' 
-  },
-  { 
-    id: '153', 
-    title: 'মগ্নমৈনাক (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9TySw8E5c0Rh6sCSPxCYQEhXo7d4PHPjfRg&s', 
-    readLink: 'https://drive.google.com/file/d/1KM8_m6UVN9leXgkZPnttfd1tr0RRJx-w/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1KM8_m6UVN9leXgkZPnttfd1tr0RRJx-w', 
-    description: 'গভীর রহস্যে মগ্ন এক ঘটনার তদন্তে ব্যোমকেশ বক্সী।' 
-  },
-  { 
-    id: '154', 
-    title: 'মণিমণ্ডন (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1590588025i/20746298.jpg', 
-    readLink: 'https://drive.google.com/file/d/13W_0WYfjmk6ecz8OlqbvzFpRbdaD8nUF/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=13W_0WYfjmk6ecz8OlqbvzFpRbdaD8nUF', 
-    description: 'ব্যোমকেশ বক্সীর রহস্য সন্ধানের অনন্য এক পটভূমি।' 
-  },
-  { 
-    id: '155', 
-    title: 'মনচোরা (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://m.media-amazon.com/images/M/MV5BM2JhOGNmMDUtYTJmMS00NjMyLTk3NDAtODA3NjZkMzQyZmNjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg', 
-    readLink: 'https://drive.google.com/file/d/1dfNG2q4S2S4E10qG60SBRV9DKazW5Euc/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1dfNG2q4S2S4E10qG60SBRV9DKazW5Euc', 
-    description: 'রহস্য আর আবেগের এক দারুণ সংমিশ্রণ এই কাহিনীতে।' 
-  },
-  { 
-    id: '156', 
-    title: 'মাকড়সার রস (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7yCysXgpGLLxSbDCB-OBYymTI1gdLfGenXw&s', 
-    readLink: 'https://drive.google.com/file/d/1esjIawIhCV94E690AXANk3mRfmBBl_3G/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1esjIawIhCV94E690AXANk3mRfmBBl_3G', 
-    description: 'মাকড়সার জালের মতো জটিল এক হত্যার তদন্ত।' 
-  },
-  { 
-    id: '157', 
-    title: 'রক্তমুখী নীলা (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQw1Eo9y0x6vWAhOvz_CbussTTC25zCnBwHaA&s', 
-    readLink: 'https://drive.google.com/file/d/1uSDhR5G6_VWF8bWpTr1pZB2VtANDvVqA/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1uSDhR5G6_VWF8bWpTr1pZB2VtANDvVqA', 
-    description: 'অভিশপ্ত এক নীলাকে কেন্দ্র করে জমে ওঠা রহস্য।' 
-  },
-  { 
-    id: '158', 
-    title: 'রক্তের দাগ (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://www.amarbooks.org/thumbs/1573953101.jpg', 
-    readLink: 'https://drive.google.com/file/d/1EJcXcANQNPGRoxPJ7AaGMru88EbHv8Xp/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1EJcXcANQNPGRoxPJ7AaGMru88EbHv8Xp', 
-    description: 'অস্পষ্ট এক রক্তের দাগ অনুসরণ করে অপরাধীকে শনাক্ত করা।' 
-  },
-  { 
-    id: '159', 
-    title: 'রাজদ্রোহী (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ35qPGcihbYU0MdjxanHj1m4g4oErlEKFH1w&s', 
-    readLink: 'https://drive.google.com/file/d/1ZOWfUPsisNFqXOJKiGlB50QrgFysVrXr/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1ZOWfUPsisNFqXOJKiGlB50QrgFysVrXr', 
-    description: 'রাজদ্রোহের আড়ালে থাকা গূঢ় ষড়যন্ত্রের জাল উন্মোচন।' 
-  },
-  { 
-    id: '160', 
-    title: 'রিমঝিম (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvZp9RYl4rliK3ddczsJAGvQdtBv4H_UPiuw&s', 
-    readLink: 'https://drive.google.com/file/d/1gzDaFiwhRNJ_xT7F4vpJtWwW7GxUTUzL/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1gzDaFiwhRNJ_xT7F4vpJtWwW7GxUTUzL', 
-    description: 'ব্যোমকেশ বক্সী সিরিজের এক রোমাঞ্চকর অ্যাডভেঞ্চার।' 
-  },
-  { 
-    id: '161', 
-    title: 'রুম নম্বর দুই (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1590742343i/26127442.jpg', 
-    readLink: 'https://drive.google.com/file/d/1Wakhgp3kxwq3xEz74Blf5XnOt9AuLvey/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1Wakhgp3kxwq3xEz74Blf5XnOt9AuLvey', 
-    description: 'হোস্টেলের একটি কক্ষকে ঘিরে আবর্তিত রহস্যভেদে ব্যোমকেশ।' 
-  },
-  { 
-    id: '162', 
-    title: 'লোহার বিস্কুট (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://allboi.com/wp-content/uploads/2023/01/Lohar-Biscuit-by-Sharadindu-Bandhapadhyay1.jpg', 
-    readLink: 'https://drive.google.com/file/d/1E5fSdNuY5_OmBkB4DRK4ab3wx5uKOpou/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1E5fSdNuY5_OmBkB4DRK4ab3wx5uKOpou', 
-    description: 'অদ্ভুত এক চুরির তদন্তে সত্যান্বেষীর তীক্ষ্ণ মেধার প্রকাশ।' 
-  },
-  { 
-    id: '163', 
-    title: 'শজারুর কাঁটা (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1590742285i/20746357.jpg', 
-    readLink: 'https://drive.google.com/file/d/1bqoecmAxq6zJWt-ztCTkQU-VHdUjJIFa/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1bqoecmAxq6zJWt-ztCTkQU-VHdUjJIFa', 
-    description: 'শজারুর কাঁটা দিয়ে বিচিত্র খুনের রহস্যভেদে এক বৃদ্ধ ব্যোমকেশ।' 
-  },
-  { 
-    id: '164', 
-    title: 'শৈলরহস্য (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://www.amarbooks.org/thumbs/1573953033.jpg', 
-    readLink: 'https://drive.google.com/file/d/1WTaKMTB1otCekl6fE2uGeItN6qW9Fh1t/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1WTaKMTB1otCekl6fE2uGeItN6qW9Fh1t', 
-    description: 'পাহাড়ের পটভূমিতে এক শ্বাসরুদ্ধকর রহস্যের উন্মোচন।' 
-  },
-  { 
-    id: '165', 
-    title: 'সত্যান্বেষী (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1729851738i/20746143.jpg', 
-    readLink: 'https://drive.google.com/file/d/1OOFhPKnRK7ha3gRey1zkBBEKa58UpWAX/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1OOFhPKnRK7ha3gRey1zkBBEKa58UpWAX', 
-    description: 'ব্যোমকেশ বক্সী সিরিজের সূচনা ও এক অনন্য গোয়েন্দা যাত্রা।' 
-  },
-  { 
-    id: '166', 
-    title: 'সীমান্ত হীরা (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1564688080i/20746164.jpg', 
-    readLink: 'https://drive.google.com/file/d/1gN4J3nPwFL-AQatICwpQIuYh1035_5QQ/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1gN4J3nPwFL-AQatICwpQIuYh1035_5QQ', 
-    description: 'সীমান্ত পেরিয়ে আসা এক দুর্মূল্য হীরা আর তাকে ঘিরে রহস্য।' 
-  },
-  { 
-    id: '167', 
-    title: 'হেঁয়ালির ছন্দ (ব্যোমকেশ বক্সী)', 
-    author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
-    category: 'থ্রিলার', 
-    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1RRG-Ji1o6CrGXbUUZTG9riRjhEb5PHfdEA&s', 
-    readLink: 'https://drive.google.com/file/d/1BzJbj-5lqfM9IWB1buFTm4QUaTkEJeza/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1BzJbj-5lqfM9IWB1buFTm4QUaTkEJeza', 
-    description: 'হেঁয়ালির মতো বুনে রাখা এক অপরাধের কূল-কিনারা করা।' 
   },
   { 
     id: '169', 
