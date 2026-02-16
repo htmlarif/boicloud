@@ -42,7 +42,7 @@ window.BOOKS_DATA = [
     id: '4',
     title: 'প্রফেসর শঙ্কু সমগ্র',
     author: 'সত্যজিৎ রায়',
-    category: 'সায়েন্স ফিকশন',
+    category: 'বিজ্ঞান ও সায়েন্স ফিকশন',
     coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1698947761i/670686.jpg',
     readLink: 'https://drive.google.com/file/d/1UGmXVI8LswS40A8QbP9Ugr_2Bs_11Hcr/view?usp=sharing',
     downloadLink: 'https://drive.google.com/uc?export=download&id=1UGmXVI8LswS40A8QbP9Ugr_2Bs_11Hcr',
