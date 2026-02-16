@@ -1134,6 +1134,16 @@ window.BOOKS_DATA = [
     downloadLink: 'https://drive.google.com/uc?export=download&id=1rSc6i35nCj51jb1wE1qdb8RPYFE-pWb3', 
     description: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়ের শ্রেষ্ঠ রচনার সংগ্রহ - ১২তম খণ্ড।' 
   },
+ { 
+    id: '127', 
+    title: 'অলাতচক্র', 
+    author: 'তারাশঙ্কর বন্দ্যোপাধ্যায়', 
+    category: 'উপন্যাস', 
+    coverImage: 'https://bengaliebook.com/wp-content/uploads/2021/07/%E0%A6%85%E0%A6%B2%E0%A6%BE%E0%A6%A4%E0%A6%9A%E0%A6%95%E0%A7%8D%E0%A6%B0-724x1024.jpg', 
+    readLink: 'https://drive.google.com/file/d/1KE6nkwKOAeVHENf_17RhSMm-lgR2QPPy/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1KE6nkwKOAeVHENf_17RhSMm-lgR2QPPy', 
+    description: 'তারাশঙ্কর বন্দ্যোপাধ্যায়ের কালজয়ী একটি উপন্যাস।' 
+  },
   { 
     id: '114', 
     title: 'তারানাথ তান্ত্রিক', 
