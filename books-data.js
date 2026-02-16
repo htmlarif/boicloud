@@ -743,5 +743,165 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1zcWz5h-Op0QZBxG-CoLGdN51uOCG5X-q/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1zcWz5h-Op0QZBxG-CoLGdN51uOCG5X-q', 
     description: 'কুরআনের আলোকে জেরুজালেমের গুরুত্ব ও শেষ জামানার বিভিন্ন প্রেক্ষাপট নিয়ে বিশ্লেষণ।' 
+  },
+  { 
+    id: '75', 
+    title: 'ভোটের শরয়ী বিধান', 
+    author: 'হযরত মাওলানা মুফতী মুহাম্মদ শফী (রহ.)', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-GFi6nBLrVB__RWgR05TcmBgxTzGKcudg5A&s', 
+    readLink: 'https://drive.google.com/file/d/1qhixc0_s-XEVonkvkTyg_39qtQolNwb-/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1qhixc0_s-XEVonkvkTyg_39qtQolNwb-', 
+    description: 'ইসলামি শরিয়তের আলোকে ভোট প্রদানের গুরুত্ব ও বিধান সংক্রান্ত আলোচনা।' 
+  },
+  { 
+    id: '76', 
+    title: 'মনমাতানো ঘটনাবলী ১ম খণ্ড', 
+    author: 'মুফতী মুহাম্মাদ তাকী উসমানী', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://boimate.com/media/1548/01KHG0PJW7KPBG6F268HABAW3P-thumb.webp', 
+    readLink: 'https://drive.google.com/file/d/1oLG2efJZCNekjnbYR0rACVWoYZmLG-3p/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1oLG2efJZCNekjnbYR0rACVWoYZmLG-3p', 
+    description: 'অনুপ্রেরণামূলক ও শিক্ষণীয় সত্য ঘটনাবলীর সংকলন।' 
+  },
+  { 
+    id: '77', 
+    title: 'মনমাতানো ঘটনাবলী ২য় খণ্ড', 
+    author: 'মুফতী মুহাম্মাদ তাকী উসমানী।', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://rokbucket.rokomari.io/ProductNew20190903/260X372/5cf064da4_98864.gif', 
+    readLink: 'https://drive.google.com/file/d/1xpdkgTrEN63of15cg--cV_l2k1eCrINH/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1xpdkgTrEN63of15cg--cV_l2k1eCrINH', 
+    description: 'মনমাতানো সত্য ঘটনাবলীর দ্বিতীয় খণ্ড।' 
+  },
+  { 
+    id: '78', 
+    title: 'মনমাতানো ঘটনাবলী ৩য় খণ্ড', 
+    author: 'মুফতী মুহাম্মাদ তাকী উসমানী। ', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://rokbucket.rokomari.io/ProductNew20190903/260X372/5cf064da4_98864.gif', 
+    readLink: 'https://drive.google.com/file/d/1-xKpZN7mSjVaq3m3UYNmljGzlmU4s99j/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1-xKpZN7mSjVaq3m3UYNmljGzlmU4s99j', 
+    description: 'মনমাতানো সত্য ঘটনাবলীর তৃতীয় খণ্ড।' 
+  },
+  { 
+    id: '79', 
+    title: 'মহীয়সী মা: একজন আদর্শ মায়ের জীবনগাথা', 
+    author: 'সায়্যিদ আবুল হাসান আলী নদভী (রহ.)', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://wafilife-media.wafilife.com/uploads/2023/11/WhatsApp-Image-2023-11-26-at-06.13.30_f06b251a-192x254.jpg', 
+    readLink: 'https://drive.google.com/file/d/1RahaW09nyQJwZCKhQ5tYFqRIFqzTu0-Z/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1RahaW09nyQJwZCKhQ5tYFqRIFqzTu0-Z', 
+    description: 'আদর্শ মায়েদের জীবন থেকে নেওয়া শিক্ষণীয় কাহিনী।' 
+  },
+  { 
+    id: '80', 
+    title: 'মাআল মুস্তফা (সিরাতে রাসূলের সুরভিত পাঠ)', 
+    author: 'ড. সালমান আল আওদা', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_55-PNYaBE3WA1mQAlwekVErDpvFnxhSGPw&s', 
+    readLink: 'https://drive.google.com/file/d/1ujZxi2RtTZUFN-rZXr0_c6cPnEvhMmzF/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1ujZxi2RtTZUFN-rZXr0_c6cPnEvhMmzF', 
+    description: 'রাসূলুল্লাহ (ﷺ)-এর সীরাতের ওপর এক অনন্য ও সুরভিত পাঠ।' 
+  },
+  { 
+    id: '81', 
+    title: 'মিল্লাতে ইবরাহিমের জাগরণ', 
+    author: 'শাইখ মুদ্দাসসির আহমাদ ইবনু মুহাম্মাদ আরশাদ', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://wafilife-media.wafilife.com/uploads/2020/11/28616982_224018211494465_3706052968726644218_o.png', 
+    readLink: 'https://drive.google.com/file/d/1Z3idxAJSTCFX5kpyGliHaOu_-ST3TyX2/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1Z3idxAJSTCFX5kpyGliHaOu_-ST3TyX2', 
+    description: 'মিল্লাতে ইবরাহিমির পুনর্জাগরণ ও তাওহিদের দাওয়াত নিয়ে তাত্ত্বিক আলোচনা।' 
+  },
+  { 
+    id: '82', 
+    title: 'মৃত্যুকে স্মরণ', 
+    author: 'ড. মুহাম্মদ আসাদুল্লাহ আল-গালিব', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://wafilife-media.wafilife.com/uploads/2022/01/mrittue-ke-shoron-CTP-150-DPI-2020.jpg', 
+    readLink: 'https://drive.google.com/file/d/1F3mi489nMjDgabfKoE__7-hFnY7IqwE6/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1F3mi489nMjDgabfKoE__7-hFnY7IqwE6', 
+    description: 'পরকালের প্রস্তুতির জন্য মৃত্যুকে স্মরণে রাখার গুরুত্ব।' 
+  },
+  { 
+    id: '83', 
+    title: 'যখন আসবে মৃত্যুর ডাক', 
+    author: 'মাওলানা তারিক জামিল', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://static-01.daraz.com.bd/p/3f760ef8f8ad82f4926a9c9c10ae79f9.jpg', 
+    readLink: 'https://drive.google.com/file/d/15t7SvO_L9AnadBG4orqZTDAyp7KYY1y4/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=15t7SvO_L9AnadBG4orqZTDAyp7KYY1y4', 
+    description: 'মৃত্যু এবং মৃত্যুপরবর্তী জীবনের জন্য পাথেয় সংগ্রহের আহ্বান।' 
+  },
+  { 
+    id: '84', 
+    title: 'যেভাবে হবে হাশরের বিচার', 
+    author: 'মুফতী মুহাম্মাদ শফী (রহ.)', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuTyXFlQjmQhbqlZAuHR2usN8h9I1kWZRAFA&s', 
+    readLink: 'https://drive.google.com/file/d/1qbgvPiCi9LjDeH--U0lHfKCoB8Uze64a/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1qbgvPiCi9LjDeH--U0lHfKCoB8Uze64a', 
+    description: 'কিয়ামতের বিভীষিকা ও হাশরের ময়দানে বিচারের চিত্র।' 
+  },
+  { 
+    id: '85', 
+    title: 'শ্রেষ্ঠ নবীর (ﷺ) শ্রেষ্ঠ উম্মত', 
+    author: 'মাওলানা আশেক এলাহী বুলন্দশহরী (রহ.)', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://media.kitabghor.com/products/36/22096/d5k1h16742148995cmnr8j.jpg', 
+    readLink: 'https://drive.google.com/file/d/1paN57BosXixhamRTVECksxQYl8olZ04f/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1paN57BosXixhamRTVECksxQYl8olZ04f', 
+    description: 'উম্মতে মুহাম্মদীর শ্রেষ্ঠত্ব ও দায়িত্ব কর্তব্য নিয়ে আলোচনা।' 
+  },
+  { 
+    id: '86', 
+    title: 'সেপালকার ইন লাভ', 
+    author: 'শাইখ আতিক উল্লাহ', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://muslimexpress.com.bd/wp-content/uploads/2024/11/Sepalkar-In-Love-Mex-1.jpg', 
+    readLink: 'https://drive.google.com/file/d/1GMn3MyVJ-XcigdTSc_8YhG_6PXDES2Fg/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1GMn3MyVJ-XcigdTSc_8YhG_6PXDES2Fg', 
+    description: 'শাইখ আতিক উল্লাহর এক অনন্য রচনার সংকলন।' 
+  },
+  { 
+    id: '87', 
+    title: 'স্রষ্টা ও তাঁর স্বরূপ সন্ধানে', 
+    author: 'মাওলানা আবুল ফাতাহ মুহাম্মদ ইয়াহইয়া', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://wafilife-media.wafilife.com/uploads/2025/07/06.sroshta-o-tar-Shorup-Shondhane.jpg', 
+    readLink: 'https://drive.google.com/file/d/1kQ82B3XtaDchR1aI9SCaxUlltOX0eudE/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1kQ82B3XtaDchR1aI9SCaxUlltOX0eudE', 
+    description: 'স্রষ্টাকে চেনার ও জানার তাত্ত্বিক অনুসন্ধান।' 
+  },
+  { 
+    id: '88', 
+    title: 'হায়াতের দিন ফুরোলে', 
+    author: 'আরিফ আজাদ', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://pdf.bhumika.com.bd/wp-content/uploads/2024/03/Hayater-Din-Furole.jpg', 
+    readLink: 'https://drive.google.com/file/d/1NrACvS4OWPTwG_1fdkhADsuq26w-B-_a/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1NrACvS4OWPTwG_1fdkhADsuq26w-B-_a', 
+    description: 'জীবনের শেষ সময় ও পরকাল চিন্তা বিষয়ক শর্ট পিডিএফ।' 
+  },
+  { 
+    id: '89', 
+    title: 'হালাল হারাম বিদআত ও ইজতিহাদ', 
+    author: 'হযরত মাওলানা শামসুল হক ফরিদপুরী (রহ.)', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://wafilife-media.wafilife.com/uploads/2024/04/23.-%E0%A6%B9%E0%A6%BE%E0%A6%B2%E0%A6%BE%E0%A6%B2-%E0%A6%B9%E0%A6%BE%E0%A6%B0%E0%A6%BE%E0%A6%AE-%E0%A6%AC%E0%A6%BF%E0%A6%B7%E0%A7%9F%E0%A6%B8%E0%A6%AE%E0%A7%82%E0%A6%B9-250x389.jpg', 
+    readLink: 'https://drive.google.com/file/d/1I7kVw5At7clDsBQ1DpzwoD4NyapX5fQY/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1I7kVw5At7clDsBQ1DpzwoD4NyapX5fQY', 
+    description: 'হালাল-হারাম চেনা ও বিদআত বর্জনের প্রয়োজনীয় আলোচনা।' 
+  },
+  { 
+    id: '90', 
+    title: 'হুদাইবিয়ার সন্ধি: সত্য মিথ্যার দ্বন্দ্ব', 
+    author: 'শাইখ আহমাদ মুসা জিবরিল', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://baatighar.com/web/image/product.template/99073/image_1920?unique=76c4cf4', 
+    readLink: 'https://drive.google.com/file/d/1zIgPlQOCYxk_wh6YCJDCg6m53Q-zuOyO/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1zIgPlQOCYxk_wh6YCJDCg6m53Q-zuOyO', 
+    description: 'হুদাইবিয়ার সন্ধির প্রেক্ষাপট ও এখান থেকে প্রাপ্ত শিক্ষণীয় বিষয়সমূহ।' 
   }
 ];
