@@ -1140,8 +1140,8 @@ window.BOOKS_DATA = [
     author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
     category: 'ভৌতিক', 
     coverImage: 'https://www.versoz.com/cdn/shop/files/WLUYSQ9OTPB6.jpg?v=1764783746', 
-    readLink: 'https://drive.google.com/file/d/1BdK80Fp-oIhCnWb0PNUjcB5u_S8Hykir/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1BdK80Fp-oIhCnWb0PNUjcB5u_S8Hykir', 
+    readLink: 'https://drive.google.com/file/d/1qeiqmfO2qgELL0MJMiu2kPfLYy7Ve7Rn/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1qeiqmfO2qgELL0MJMiu2kPfLYy7Ve7Rn', 
     description: 'রহস্যময় ও অলৌকিক গল্পে তান্ত্রিক তারানাথের রোমাঞ্চকর কাহিনী।' 
   },
   { 
@@ -1154,46 +1154,7 @@ window.BOOKS_DATA = [
     downloadLink: 'https://drive.google.com/uc?export=download&id=13hpFsLOueKk-DRmsUJlQ3eP9CeWAszh6', 
     description: 'অপুর বড় হয়ে ওঠার কাহিনী ও জীবনের নানামুখী সংগ্রাম।' 
   },
-  { 
-    id: '116', 
-    title: 'আদর্শ হিন্দু হোটেল', 
-    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
-    category: 'উপন্যাস', 
-    coverImage: 'https://wafilife-media.wafilife.com/uploads/2024/08/WhatsApp-Image-2024-08-21-at-17.47.38_ad4120cf.jpg', 
-    readLink: 'https://drive.google.com/file/d/1-e-Kht2PBhkkv0gMorNZ8RzJ54lsGi1s/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1-e-Kht2PBhkkv0gMorNZ8RzJ54lsGi1s', 
-    description: 'হাজারী ঠাকুর ও তার রাঁধুনি জীবনের সংগ্রামের বাস্তবধর্মী চিত্র।' 
-  },
-  { 
-    id: '117', 
-    title: 'আরণ্যক', 
-    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
-    category: 'উপন্যাস', 
-    coverImage: 'https://jukash.com/public/uploads/all/bNqCvUFQ93J5GUKLWMzXQUfJIv9k3Hf9WFhmsCV3.png', 
-    readLink: 'https://drive.google.com/file/d/1HUuvvU0kqGebFhCwtownPNSnVP444RVu/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1HUuvvU0kqGebFhCwtownPNSnVP444RVu', 
-    description: 'প্রকৃতি ও মানুষের সম্পর্কের এক অমোঘ বর্ণনা এই উপন্যাস।' 
-  },
-  { 
-    id: '118', 
-    title: 'ইছামতী', 
-    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
-    category: 'উপন্যাস', 
-    coverImage: 'https://static-01.daraz.com.bd/p/8865b37ba312bd442c0650929f936b23.jpg', 
-    readLink: 'https://drive.google.com/file/d/1tyPhuXM_vTYupEjJ45UYZWT0n2GHmHvZ/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1tyPhuXM_vTYupEjJ45UYZWT0n2GHmHvZ', 
-    description: 'ইছামতী নদী কেন্দ্রিক সাধারণ মানুষের জীবন ও নীলকরদের পটভূমি।' 
-  },
-  { 
-    id: '119', 
-    title: 'চাঁদের পাহাড়', 
-    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
-    category: 'সাহিত্য', 
-    coverImage: 'https://fs.pbs.com.bd/DIR/Com/PBS/Product/ImageDetails/2205717.jpg', 
-    readLink: 'https://drive.google.com/file/d/10pHltTtUPSF0tZqU2qZauj8B1FybyM1r/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=10pHltTtUPSF0tZqU2qZauj8B1FybyM1r', 
-    description: 'শঙ্করের আফ্রিকার দুর্গম জঙ্গল ও পাহাড় অভিযানের রোমাঞ্চকর কাহিনী।' 
-  },
+  
   { 
     id: '120', 
     title: 'দম্পতি', 
@@ -1263,5 +1224,46 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1Q6BxGPFu0LPXVKvsBc7XuAMW_PtnS2Xk/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1Q6BxGPFu0LPXVKvsBc7XuAMW_PtnS2Xk', 
     description: 'রোমাঞ্চকর ও অ্যাডভেঞ্চারধর্মী কিশোর কাহিনী - ২য় অংশ।' 
+  },
+  { 
+    id: '116', 
+    title: 'আদর্শ হিন্দু হোটেল', 
+    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'উপন্যাস', 
+    coverImage: 'https://wafilife-media.wafilife.com/uploads/2024/08/WhatsApp-Image-2024-08-21-at-17.47.38_ad4120cf.jpg', 
+    readLink: 'https://drive.google.com/file/d/1-e-Kht2PBhkkv0gMorNZ8RzJ54lsGi1s/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1-e-Kht2PBhkkv0gMorNZ8RzJ54lsGi1s', 
+    description: 'হাজারী ঠাকুর ও তার রাঁধুনি জীবনের সংগ্রামের বাস্তবধর্মী চিত্র।' 
+  },
+  
+  { 
+    id: '117', 
+    title: 'আরণ্যক', 
+    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'উপন্যাস', 
+    coverImage: 'https://jukash.com/public/uploads/all/bNqCvUFQ93J5GUKLWMzXQUfJIv9k3Hf9WFhmsCV3.png', 
+    readLink: 'https://drive.google.com/file/d/1HUuvvU0kqGebFhCwtownPNSnVP444RVu/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1HUuvvU0kqGebFhCwtownPNSnVP444RVu', 
+    description: 'প্রকৃতি ও মানুষের সম্পর্কের এক অমোঘ বর্ণনা এই উপন্যাস।' 
+  },
+  { 
+    id: '118', 
+    title: 'ইছামতী', 
+    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'উপন্যাস', 
+    coverImage: 'https://static-01.daraz.com.bd/p/8865b37ba312bd442c0650929f936b23.jpg', 
+    readLink: 'https://drive.google.com/file/d/1tyPhuXM_vTYupEjJ45UYZWT0n2GHmHvZ/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1tyPhuXM_vTYupEjJ45UYZWT0n2GHmHvZ', 
+    description: 'ইছামতী নদী কেন্দ্রিক সাধারণ মানুষের জীবন ও নীলকরদের পটভূমি।' 
+  },
+  { 
+    id: '119', 
+    title: 'চাঁদের পাহাড়', 
+    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'সাহিত্য', 
+    coverImage: 'https://fs.pbs.com.bd/DIR/Com/PBS/Product/ImageDetails/2205717.jpg', 
+    readLink: 'https://drive.google.com/file/d/10pHltTtUPSF0tZqU2qZauj8B1FybyM1r/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=10pHltTtUPSF0tZqU2qZauj8B1FybyM1r', 
+    description: 'শঙ্করের আফ্রিকার দুর্গম জঙ্গল ও পাহাড় অভিযানের রোমাঞ্চকর কাহিনী।' 
   },
 ];
