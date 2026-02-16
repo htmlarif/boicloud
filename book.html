@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="bn" class="dark">
 <head>
@@ -16,6 +15,23 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- =========================
+    ✅ OG / Social preview (default)
+    NOTE: JS will update these per-book after load
+  ========================= -->
+  <meta property="og:site_name" content="BoiCloud" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="BoiCloud | বই বিস্তারিত" />
+  <meta property="og:description" content="BoiCloud এ আপনার পছন্দের বই পড়ুন বা ডাউনলোড করুন।" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=1200" />
+  <meta property="og:url" content="" />
+  <meta property="og:locale" content="bn_BD" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="BoiCloud | বই বিস্তারিত" />
+  <meta name="twitter:description" content="BoiCloud এ আপনার পছন্দের বই পড়ুন বা ডাউনলোড করুন।" />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=1200" />
 
   <script>
     tailwind.config = {
@@ -136,11 +152,8 @@
           <p id="book-desc" class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed break-words">—</p>
         </div>
 
-      <!-- ✅ Buttons: Home + Category + পড়ুন + ডাউনলোড -->
-<!-- ✅ Buttons: Home + পড়ুন + ডাউনলোড -->
+        <!-- ✅ Buttons: Home + পড়ুন + ডাউনলোড -->
         <div class="mt-6 grid grid-cols-1 xs:grid-cols-3 gap-3">
-          
-
           <a id="read-btn" href="#"
              class="w-full px-5 py-3 rounded-2xl font-black text-sm bg-brand-600 hover:bg-brand-700 text-white inline-flex items-center justify-center gap-2">
             <i data-lucide="book-open" class="w-5 h-5"></i> পড়ুন
@@ -150,6 +163,7 @@
              class="w-full px-5 py-3 rounded-2xl font-black text-sm bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 inline-flex items-center justify-center gap-2">
             <i data-lucide="download" class="w-5 h-5"></i> ডাউনলোড
           </a>
+
           <a href="index.html"
              class="w-full px-5 py-3 rounded-2xl font-black text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500/40 inline-flex items-center justify-center gap-2">
             <i data-lucide="arrow-left" class="w-5 h-5"></i> Home
@@ -164,6 +178,7 @@
           </a>
         </div>
       </div>
+
       <!-- ✅ Share + Copy on header row -->
       <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 shadow-sm">
         <div class="flex items-center justify-between gap-3">
@@ -178,19 +193,28 @@
           </button>
         </div>
 
-        <div class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <!-- ✅ ORDER: fb, ms, wa, tg, x -->
+        <div class="mt-4 grid grid-cols-2 sm:grid-cols-5 gap-2">
           <a id="share-fb" target="_blank"
              class="px-3 py-2 rounded-xl text-xs font-black bg-slate-100 dark:bg-slate-800 hover:bg-blue-600 hover:text-white transition-colors inline-flex items-center justify-center gap-2">
             <i class="fab fa-facebook-f"></i> Facebook
           </a>
+
+          <a id="share-ms" target="_blank"
+             class="px-3 py-2 rounded-xl text-xs font-black bg-slate-100 dark:bg-slate-800 hover:bg-indigo-600 hover:text-white transition-colors inline-flex items-center justify-center gap-2">
+            <i class="fab fa-facebook-messenger"></i> Messenger
+          </a>
+
           <a id="share-wa" target="_blank"
              class="px-3 py-2 rounded-xl text-xs font-black bg-slate-100 dark:bg-slate-800 hover:bg-green-600 hover:text-white transition-colors inline-flex items-center justify-center gap-2">
             <i class="fab fa-whatsapp"></i> WhatsApp
           </a>
+
           <a id="share-tg" target="_blank"
              class="px-3 py-2 rounded-xl text-xs font-black bg-slate-100 dark:bg-slate-800 hover:bg-sky-500 hover:text-white transition-colors inline-flex items-center justify-center gap-2">
             <i class="fab fa-telegram-plane"></i> Telegram
           </a>
+
           <a id="share-x" target="_blank"
              class="px-3 py-2 rounded-xl text-xs font-black bg-slate-100 dark:bg-slate-800 hover:bg-black hover:text-white transition-colors inline-flex items-center justify-center gap-2">
             <i class="fab fa-x-twitter"></i> X
@@ -384,8 +408,45 @@
       return !(u === '#' || u === '');
     }
 
+    // ✅ Update meta tags for social preview (best-effort)
+    function setMeta(attr, key, value) {
+      if (!value) return;
+      const selector = attr === 'property'
+        ? `meta[property="${key}"]`
+        : `meta[name="${key}"]`;
+      let tag = document.querySelector(selector);
+      if (!tag) {
+        tag = document.createElement('meta');
+        tag.setAttribute(attr, key);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute('content', value);
+    }
+
+    function updateSocialMeta(book) {
+      const title = `BoiCloud | ${book.title}`;
+      const desc = (book.description && String(book.description).trim())
+        ? String(book.description).trim().slice(0, 180)
+        : `${book.title} — ${book.author} | BoiCloud এ পড়ুন বা ডাউনলোড করুন।`;
+
+      const url = location.href;
+      const img = book.coverImage || '';
+
+      document.title = title;
+
+      setMeta('property', 'og:title', title);
+      setMeta('property', 'og:description', desc);
+      setMeta('property', 'og:url', url);
+      if (img) setMeta('property', 'og:image', img);
+
+      setMeta('name', 'twitter:title', title);
+      setMeta('name', 'twitter:description', desc);
+      if (img) setMeta('name', 'twitter:image', img);
+    }
+
     function renderBookDetails(book) {
-      document.title = `BoiCloud | ${book.title}`;
+      // Title/meta
+      updateSocialMeta(book);
 
       document.getElementById('book-title').textContent = book.title;
       document.getElementById('book-author').textContent = book.author;
@@ -415,13 +476,36 @@
       });
 
       // Share links
-      const shareUrl = encodeURIComponent(location.href);
+      const shareUrlRaw = location.href;
+      const shareUrl = encodeURIComponent(shareUrlRaw);
       const shareText = encodeURIComponent(`${book.title} - ${book.author}`);
 
-      document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
-      document.getElementById('share-wa').href = `https://wa.me/?text=${shareText}%20${shareUrl}`;
-      document.getElementById('share-tg').href = `https://t.me/share/url?url=${shareUrl}&text=${shareText}`;
-      document.getElementById('share-x').href = `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
+      // Facebook share (post dialog)
+      document.getElementById('share-fb').href =
+        `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
+
+      // Messenger:
+      // ✅ If you have an FB App ID, put it here.
+      // Without App ID, fallback will open FB share (still usable).
+      const FB_APP_ID = ''; // <-- e.g. '123456789012345'
+      const msBtn = document.getElementById('share-ms');
+      if (FB_APP_ID) {
+        msBtn.href = `https://www.facebook.com/dialog/send?link=${shareUrl}&redirect_uri=${shareUrl}&app_id=${encodeURIComponent(FB_APP_ID)}`;
+      } else {
+        msBtn.href = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
+      }
+
+      // WhatsApp
+      document.getElementById('share-wa').href =
+        `https://wa.me/?text=${shareText}%20${shareUrl}`;
+
+      // Telegram
+      document.getElementById('share-tg').href =
+        `https://t.me/share/url?url=${shareUrl}&text=${shareText}`;
+
+      // X
+      document.getElementById('share-x').href =
+        `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
     }
 
     function renderRelatedCarousel(list) {
