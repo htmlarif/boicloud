@@ -1014,134 +1014,254 @@ window.BOOKS_DATA = [
     downloadLink: 'https://drive.google.com/uc?export=download&id=1sHONHKY9OPuSGRQkSr0LTfuzqvlThyhk', 
     description: 'সত্যকথন সিরিজের দ্বিতীয় খণ্ড।' 
   },
-  { 
+ { 
     id: '102', 
-    title: 'বিভূতি রচনাবলী ১-১২ (সকল খণ্ড)', 
+    title: 'বিভূতি রচনাবলী ১', 
     author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
     category: 'সাহিত্য', 
     coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLzVcOW-z-_rY-SAZNHwEyHyhnVudJkDsERg&s', 
     readLink: 'https://drive.google.com/file/d/1_xjPkS6wRvpeZ0_Nm5FqTat0XKNrh8Ve/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1_xjPkS6wRvpeZ0_Nm5FqTat0XKNrh8Ve', 
-    description: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়ের কালজয়ী রচনাবলীর পূর্ণাঙ্গ সংগ্রহ।' 
+    description: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়ের শ্রেষ্ঠ রচনার সংগ্রহ - ১ম খণ্ড।' 
   },
   { 
     id: '103', 
+    title: 'বিভূতি রচনাবলী ২', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'সাহিত্য', 
+    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7dDY05rkVWuNyQBgUMXSDIM-XyTwdenl89w&s', 
+    readLink: 'https://drive.google.com/file/d/1QD3-S1ih9VQkEZTPYClYftD28i17p6_1/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1QD3-S1ih9VQkEZTPYClYftD28i17p6_1', 
+    description: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়ের শ্রেষ্ঠ রচনার সংগ্রহ - ২য় খণ্ড।' 
+  },
+  { 
+    id: '104', 
+    title: 'বিভূতি রচনাবলী ৩', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'সাহিত্য', 
+    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2_NmSM-EsCP_2U2vBeOREIecBbTS0lfjgVQ&s', 
+    readLink: 'https://drive.google.com/file/d/1luSVQDdEhE0WKCozkeVSfXahJ2ZS5fww/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1luSVQDdEhE0WKCozkeVSfXahJ2ZS5fww', 
+    description: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়ের শ্রেষ্ঠ রচনার সংগ্রহ - ৩য় খণ্ড।' 
+  },
+  { 
+    id: '105', 
+    title: 'বিভূতি রচনাবলী ৪', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'সাহিত্য', 
+    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUHUg-idl-zl1vm2xlJCb5YJGW3MZELAPylQ&s', 
+    readLink: 'https://drive.google.com/file/d/1kScgSmPzbzD85D7W5k2j_udf8R3vRrpf/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1kScgSmPzbzD85D7W5k2j_udf8R3vRrpf', 
+    description: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়ের শ্রেষ্ঠ রচনার সংগ্রহ - ৪র্থ খণ্ড।' 
+  },
+  { 
+    id: '106', 
+    title: 'বিভূতি রচনাবলী ৫', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'সাহিত্য', 
+    coverImage: 'https://boichitro.in/wp-content/uploads/2024/06/41sqS2KF2dL.webp', 
+    readLink: 'https://drive.google.com/file/d/1CBYFWEnVxgvtri3hXlG15mjc7Zd1ctnk/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1CBYFWEnVxgvtri3hXlG15mjc7Zd1ctnk', 
+    description: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়ের শ্রেষ্ঠ রচনার সংগ্রহ - ৫ম খণ্ড।' 
+  },
+  { 
+    id: '107', 
+    title: 'বিভূতি রচনাবলী ৬', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'সাহিত্য', 
+    coverImage: 'https://m.media-amazon.com/images/I/41-k6BJyj7L._AC_UF1000,1000_QL80_.jpg', 
+    readLink: 'https://drive.google.com/file/d/1U-22R30n1-ZZMIn812TQwOWIToBQ0RTB/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1U-22R30n1-ZZMIn812TQwOWIToBQ0RTB', 
+    description: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়ের শ্রেষ্ঠ রচনার সংগ্রহ - ৬ষ্ঠ খণ্ড।' 
+  },
+  { 
+    id: '108', 
+    title: 'বিভূতি রচনাবলী ৭', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'সাহিত্য', 
+    coverImage: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi8fqtDoTeyxCbhwGTjz9MyLX4tlCVwyzEVy1SoFrJljysxx3kx_Toj5zHi8vOnD-vwxr5Bd9ZpYgwuBR6gTgJPi3UhexTOkdFrRJ9MpxS8y5smeQWmToeWWbmQnmYCSSwgcSOoQZKPY8Y/s1600/Pages+from+Bibhuti+Rachanabali+2.jpg', 
+    readLink: 'https://drive.google.com/file/d/1BP01venXl6andWrXO-3y5q4cnXKQKc0F/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1BP01venXl6andWrXO-3y5q4cnXKQKc0F', 
+    description: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়ের শ্রেষ্ঠ রচনার সংগ্রহ - ৭ম খণ্ড।' 
+  },
+  { 
+    id: '109', 
+    title: 'বিভূতি রচনাবলী ৮', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'সাহিত্য', 
+    coverImage: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi8fqtDoTeyxCbhwGTjz9MyLX4tlCVwyzEVy1SoFrJljysxx3kx_Toj5zHi8vOnD-vwxr5Bd9ZpYgwuBR6gTgJPi3UhexTOkdFrRJ9MpxS8y5smeQWmToeWWbmQnmYCSSwgcSOoQZKPY8Y/s1600/Pages+from+Bibhuti+Rachanabali+2.jpg', 
+    readLink: 'https://drive.google.com/file/d/1oI02j-7UCiyAvYP5W_CnvIxyEt36c8-2/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1oI02j-7UCiyAvYP5W_CnvIxyEt36c8-2', 
+    description: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়ের শ্রেষ্ঠ রচনার সংগ্রহ - ৮ম খণ্ড।' 
+  },
+  { 
+    id: '110', 
+    title: 'বিভূতি রচনাবলী ৯', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'সাহিত্য', 
+    coverImage: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi8fqtDoTeyxCbhwGTjz9MyLX4tlCVwyzEVy1SoFrJljysxx3kx_Toj5zHi8vOnD-vwxr5Bd9ZpYgwuBR6gTgJPi3UhexTOkdFrRJ9MpxS8y5smeQWmToeWWbmQnmYCSSwgcSOoQZKPY8Y/s1600/Pages+from+Bibhuti+Rachanabali+2.jpg', 
+    readLink: 'https://drive.google.com/file/d/1CiH1kDI1Mg58oYmhtNUhZKul3lc-cMXR/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1CiH1kDI1Mg58oYmhtNUhZKul3lc-cMXR', 
+    description: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়ের শ্রেষ্ঠ রচনার সংগ্রহ - ৯ম খণ্ড।' 
+  },
+  { 
+    id: '111', 
+    title: 'বিভূতি রচনাবলী ১০', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'সাহিত্য', 
+    coverImage: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi8fqtDoTeyxCbhwGTjz9MyLX4tlCVwyzEVy1SoFrJljysxx3kx_Toj5zHi8vOnD-vwxr5Bd9ZpYgwuBR6gTgJPi3UhexTOkdFrRJ9MpxS8y5smeQWmToeWWbmQnmYCSSwgcSOoQZKPY8Y/s1600/Pages+from+Bibhuti+Rachanabali+2.jpg', 
+    readLink: 'https://drive.google.com/file/d/19hkwKW8ZJjFH9cZdonOaNNH_Mfm1I-vN/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=19hkwKW8ZJjFH9cZdonOaNNH_Mfm1I-vN', 
+    description: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়ের শ্রেষ্ঠ রচনার সংগ্রহ - ১০ম খণ্ড।' 
+  },
+  { 
+    id: '112', 
+    title: 'বিভূতি রচনাবলী ১১', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'সাহিত্য', 
+    coverImage: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi8fqtDoTeyxCbhwGTjz9MyLX4tlCVwyzEVy1SoFrJljysxx3kx_Toj5zHi8vOnD-vwxr5Bd9ZpYgwuBR6gTgJPi3UhexTOkdFrRJ9MpxS8y5smeQWmToeWWbmQnmYCSSwgcSOoQZKPY8Y/s1600/Pages+from+Bibhuti+Rachanabali+2.jpg', 
+    readLink: 'https://drive.google.com/file/d/1_Q8qx8hDXpzCZ5fzLfINwi0Qe3n2SCSY/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1_Q8qx8hDXpzCZ5fzLfINwi0Qe3n2SCSY', 
+    description: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়ের শ্রেষ্ঠ রচনার সংগ্রহ - ১১তম খণ্ড।' 
+  },
+  { 
+    id: '113', 
+    title: 'বিভূতি রচনাবলী ১২', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'সাহিত্য', 
+    coverImage: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi8fqtDoTeyxCbhwGTjz9MyLX4tlCVwyzEVy1SoFrJljysxx3kx_Toj5zHi8vOnD-vwxr5Bd9ZpYgwuBR6gTgJPi3UhexTOkdFrRJ9MpxS8y5smeQWmToeWWbmQnmYCSSwgcSOoQZKPY8Y/s1600/Pages+from+Bibhuti+Rachanabali+2.jpg', 
+    readLink: 'https://drive.google.com/file/d/1rSc6i35nCj51jb1wE1qdb8RPYFE-pWb3/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1rSc6i35nCj51jb1wE1qdb8RPYFE-pWb3', 
+    description: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়ের শ্রেষ্ঠ রচনার সংগ্রহ - ১২তম খণ্ড।' 
+  },
+  { 
+    id: '114', 
+    title: 'মরণের ডঙ্কা বাজে ১', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'সাহিত্য', 
+    coverImage: 'https://wafilife-media.wafilife.com/uploads/2024/07/moroner_donka.png', 
+    readLink: 'https://drive.google.com/file/d/1rPRepU_9_zAbN8kOXztJo46gwqv88miC/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1rPRepU_9_zAbN8kOXztJo46gwqv88miC', 
+    description: 'কিশোরদের জন্য রোমাঞ্চকর অভিযানের গল্প - ১ম অংশ।' 
+  },
+  { 
+    id: '115', 
+    title: 'মরণের ডঙ্কা বাজে ২', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'সাহিত্য', 
+    coverImage: 'https://rokbucket.rokomari.io/ProductNew20190903/260X372/Moroner_Donka_Baje-Bibhutibhusan_Bandopadhyay-fb21a-445733.jpg', 
+    readLink: 'https://drive.google.com/file/d/1Q6BxGPFu0LPXVKvsBc7XuAMW_PtnS2Xk/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1Q6BxGPFu0LPXVKvsBc7XuAMW_PtnS2Xk', 
+    description: 'কিশোর অ্যাডভেঞ্চার কাহিনী - ২য় অংশ।' 
+  },
+  { 
+    id: '116', 
     title: 'তারানাথ তান্ত্রিক', 
     author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
     category: 'ভৌতিক', 
     coverImage: 'https://www.versoz.com/cdn/shop/files/WLUYSQ9OTPB6.jpg?v=1764783746', 
     readLink: 'https://drive.google.com/file/d/1BdK80Fp-oIhCnWb0PNUjcB5u_S8Hykir/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1BdK80Fp-oIhCnWb0PNUjcB5u_S8Hykir', 
-    description: 'রহস্যময় তান্ত্রিক তারানাথের অলৌকিক অভিজ্ঞতার গল্প।' 
+    description: 'অলৌকিক ও রহস্যময় তান্ত্রিক অভিজ্ঞতার সংকলন।' 
   },
   { 
-    id: '104', 
+    id: '117', 
     title: 'অপরাজিত', 
     author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
     category: 'উপন্যাস', 
     coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiuUH4vZ84H7gG843hdB2A2Qu4xsbTxUX2rw&s', 
     readLink: 'https://drive.google.com/file/d/13hpFsLOueKk-DRmsUJlQ3eP9CeWAszh6/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=13hpFsLOueKk-DRmsUJlQ3eP9CeWAszh6', 
-    description: 'পথের পাঁচালীর অপুর বড় হয়ে ওঠার মহাকাব্যিক উপাখ্যান।' 
+    description: 'অপুর বড় হয়ে ওঠার মায়াবী উপন্যাস।' 
   },
   { 
-    id: '105', 
+    id: '118', 
     title: 'আদর্শ হিন্দু হোটেল', 
-    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
     category: 'উপন্যাস', 
     coverImage: 'https://wafilife-media.wafilife.com/uploads/2024/08/WhatsApp-Image-2024-08-21-at-17.47.38_ad4120cf.jpg', 
     readLink: 'https://drive.google.com/file/d/1-e-Kht2PBhkkv0gMorNZ8RzJ54lsGi1s/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1-e-Kht2PBhkkv0gMorNZ8RzJ54lsGi1s', 
-    description: 'হাজারী ঠাকুর ও তার হোটেলের সংগ্রামের বাস্তবধর্মী কাহিনী।' 
+    description: 'সংগ্রামী মানুষের জীবন ও ভোজন রসিকতার গল্প।' 
   },
   { 
-    id: '106', 
+    id: '119', 
     title: 'আরণ্যক', 
     author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
     category: 'উপন্যাস', 
     coverImage: 'https://jukash.com/public/uploads/all/bNqCvUFQ93J5GUKLWMzXQUfJIv9k3Hf9WFhmsCV3.png', 
     readLink: 'https://drive.google.com/file/d/1HUuvvU0kqGebFhCwtownPNSnVP444RVu/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1HUuvvU0kqGebFhCwtownPNSnVP444RVu', 
-    description: 'প্রকৃতি ও অরণ্য জীবনের এক মুগ্ধকর চিরায়ত উপন্যাস।' 
+    description: 'প্রকৃতি ও অরণ্যের এক অপূর্ব উপাখ্যান।' 
   },
   { 
-    id: '107', 
+    id: '120', 
     title: 'ইছামতী', 
     author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
     category: 'উপন্যাস', 
     coverImage: 'https://static-01.daraz.com.bd/p/8865b37ba312bd442c0650929f936b23.jpg', 
     readLink: 'https://drive.google.com/file/d/1tyPhuXM_vTYupEjJ45UYZWT0n2GHmHvZ/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1tyPhuXM_vTYupEjJ45UYZWT0n2GHmHvZ', 
-    description: 'ইছামতী নদী সংলগ্ন মানুষের জীবন ও নীলকরদের ইতিহাসের পটভূমি।' 
+    description: 'নদী ও নীলকরদের পটভূমিতে রচিত কালজয়ী উপন্যাস।' 
   },
   { 
-    id: '108', 
+    id: '121', 
     title: 'চাঁদের পাহাড়', 
     author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
     category: 'সাহিত্য', 
     coverImage: 'https://fs.pbs.com.bd/DIR/Com/PBS/Product/ImageDetails/2205717.jpg', 
     readLink: 'https://drive.google.com/file/d/10pHltTtUPSF0tZqU2qZauj8B1FybyM1r/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=10pHltTtUPSF0tZqU2qZauj8B1FybyM1r', 
-    description: 'আফ্রিকার দুর্গম পথে শঙ্করের রোমাঞ্চকর অ্যাডভেঞ্চার।' 
+    description: 'শঙ্করের আফ্রিকার দুর্গম গহীনের অ্যাডভেঞ্চার।' 
   },
   { 
-    id: '109', 
-    title: 'দৃষ্টি-প্রদীপ', 
-    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
-    category: 'উপন্যাস', 
-    coverImage: 'https://pbs.com.bd/_next/image?url=https%3A%2F%2Ffs.pbs.com.bd%2FDIR%2FCom%2FPBS%2FProduct%2FImageDetails%2F1904246.jpg&w=640&q=75', 
-    readLink: 'https://drive.google.com/file/d/1kkenBsXRV3zqcs6eFAQmF_qZeap8GvTc/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1kkenBsXRV3zqcs6eFAQmF_qZeap8GvTc', 
-    description: 'জিতু নামের এক যুবকের আধ্যাত্মিক ও জাগতিক জীবনের উপাখ্যান।' 
-  },
-  { 
-    id: '110', 
-    title: 'দেবযান', 
-    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
-    category: 'উপন্যাস', 
-    coverImage: 'https://wafilife-media.wafilife.com/uploads/2025/07/WhatsApp-Image-2025-07-06-at-10.18.36-PM-1.jpeg', 
-    readLink: 'https://drive.google.com/file/d/1XDBSZv9YbuD_gvryz-VCmObIJ9zbRDef/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1XDBSZv9YbuD_gvryz-VCmObIJ9zbRDef', 
-    description: 'মৃত্যু-পরবর্তী জগত ও আধ্যাত্মিক চেতনার এক অনন্য উপন্যাস।' 
-  },
-  { 
-    id: '111', 
-    title: 'পথের পাঁচালী', 
-    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
-    category: 'উপন্যাস', 
-    coverImage: 'https://www.haritbooks.com/wp-content/uploads/2022/03/pother_panchali.jpg', 
-    readLink: 'https://drive.google.com/file/d/1z7oTbc-KJ3BtJtq_dcS5OH06N1fp_hWq/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1z7oTbc-KJ3BtJtq_dcS5OH06N1fp_hWq', 
-    description: 'অপু ও দুর্গার শৈশব এবং গ্রাম বাংলার মায়াবী জীবনের কালজয়ী গল্প।' 
-  },
-  { 
-    id: '112', 
-    title: 'বাঙালি মুসলমানের মন', 
-    author: 'আহমদ শরীফ', 
-    category: 'অন্যান্য', 
-    coverImage: 'https://ruperhat.com/wp-content/uploads/2021/12/bangali-musulmaner-mon.jpg', 
-    readLink: 'https://drive.google.com/file/d/19kync2Xz6Iq3TXaxKu_4EqGa5P3z9NbM/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=19kync2Xz6Iq3TXaxKu_4EqGa5P3z9NbM', 
-    description: 'বাঙালি মুসলমান সমাজের চিন্তা ও মনস্তত্ত্বের বিশ্লেষণ।' 
-  },
-  { 
-    id: '113', 
-    title: 'মরণের ডঙ্কা বাজে (১ ও ২)', 
-    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
-    category: 'সাহিত্য', 
-    coverImage: 'https://wafilife-media.wafilife.com/uploads/2024/07/moroner_donka.png', 
-    readLink: 'https://drive.google.com/file/d/1rPRepU_9_zAbN8kOXztJo46gwqv88miC/view?usp=sharing', 
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1rPRepU_9_zAbN8kOXztJo46gwqv88miC', 
-    description: 'কিশোরদের উপযোগী রোমাঞ্চকর অভিযানের গল্প।' 
-  },
-  { 
-    id: '114', 
+    id: '122', 
     title: 'দম্পতি', 
     author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
     category: 'উপন্যাস', 
     coverImage: 'https://rokbucket.rokomari.io/ProductNew20190903/260X372/Dompoti-Bibhutibhushan_Bandyopadhyay-96197-359646.jpg', 
     readLink: 'https://drive.google.com/file/d/1eJxQAZoX7AoSaoaSCVe1hGG31YZ5AIKB/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1eJxQAZoX7AoSaoaSCVe1hGG31YZ5AIKB', 
-    description: 'সংসার ও দাম্পত্য জীবনের বাস্তব চিত্র নিয়ে রচিত উপন্যাস।' 
+    description: 'সংসার ও সম্পর্কের গল্প নিয়ে রচিত।' 
+  },
+  { 
+    id: '123', 
+    title: 'দৃষ্টি-প্রদীপ', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'উপন্যাস', 
+    coverImage: 'https://pbs.com.bd/_next/image?url=https%3A%2F%2Ffs.pbs.com.bd%2FDIR%2FCom%2FPBS%2FProduct%2FImageDetails%2F1904246.jpg&w=640&q=75', 
+    readLink: 'https://drive.google.com/file/d/1kkenBsXRV3zqcs6eFAQmF_qZeap8GvTc/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1kkenBsXRV3zqcs6eFAQmF_qZeap8GvTc', 
+    description: 'অপূর্ব এক জীবন সংগ্রামের কাহিনী।' 
+  },
+  { 
+    id: '124', 
+    title: 'দেবযান', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'উপন্যাস', 
+    coverImage: 'https://wafilife-media.wafilife.com/uploads/2025/07/WhatsApp-Image-2025-07-06-at-10.18.36-PM-1.jpeg', 
+    readLink: 'https://drive.google.com/file/d/1XDBSZv9YbuD_gvryz-VCmObIJ9zbRDef/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1XDBSZv9YbuD_gvryz-VCmObIJ9zbRDef', 
+    description: 'মৃত্যু-পরবর্তী আধ্যাত্মিক জগতের কালজয়ী সৃষ্টি।' 
+  },
+  { 
+    id: '125', 
+    title: 'পথের পাঁচালী', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'উপন্যাস', 
+    coverImage: 'https://www.haritbooks.com/wp-content/uploads/2022/03/pother_panchali.jpg', 
+    readLink: 'https://drive.google.com/file/d/1z7oTbc-KJ3BtJtq_dcS5OH06N1fp_hWq/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1z7oTbc-KJ3BtJtq_dcS5OH06N1fp_hWq', 
+    description: 'গ্রাম বাংলার মায়াবী ও নিখুঁত জীবনের গল্প।' 
+  },
+  { 
+    id: '126', 
+    title: 'বাঙালি মুসলমানের মন', 
+    author: 'আহমদ শরীফ', 
+    category: 'অন্যান্য', 
+    coverImage: 'https://ruperhat.com/wp-content/uploads/2021/12/bangali-musulmaner-mon.jpg', 
+    readLink: 'https://drive.google.com/file/d/19kync2Xz6Iq3TXaxKu_4EqGa5P3z9NbM/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=19kync2Xz6Iq3TXaxKu_4EqGa5P3z9NbM', 
+    description: 'সমাজ ও মনস্তত্ত্বের চমৎকার বিশ্লেষণ।' 
   },
 ];
