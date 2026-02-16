@@ -903,5 +903,245 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1zIgPlQOCYxk_wh6YCJDCg6m53Q-zuOyO/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1zIgPlQOCYxk_wh6YCJDCg6m53Q-zuOyO', 
     description: 'হুদাইবিয়ার সন্ধির প্রেক্ষাপট ও এখান থেকে প্রাপ্ত শিক্ষণীয় বিষয়সমূহ।' 
-  }
+  },
+  { 
+    id: '91', 
+    title: 'গল্পে গল্পে খালিদ বিন ওয়ালীদ (রাঃ)', 
+    author: 'মুহাম্মদ সিদ্দিক আল মানশাবী', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://wafilife-media.wafilife.com/uploads/2020/09/%E0%A6%97%E0%A6%B2%E0%A7%8D%E0%A6%AA%E0%A7%87-%E0%A6%97%E0%A6%B2%E0%A7%8D%E0%A6%AA%E0%A7%87-%E0%A6%96%E0%A6%BE%E0%A6%B2%E0%A6%BF%E0%A6%A6-%E0%A6%AC%E0%A6%BF%E0%A6%A8-%E0%A6%93%E0%A6%AF%E0%A6%BC%E0%A6%BE%E0%A6%B2%E0%A7%80%E0%A6%A6.jpg', 
+    readLink: 'https://drive.google.com/file/d/1in3glpv2RSKcE8pFLB1OrPLAjIKWjtVg/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1in3glpv2RSKcE8pFLB1OrPLAjIKWjtVg', 
+    description: 'মুসলিম জাহানের মহান সেনাপতি খালিদ বিন ওয়ালীদ (রাঃ)-এর বীরত্বগাথা।' 
+  },
+  { 
+    id: '92', 
+    title: 'গল্পে আঁকা মহীয়সী খাদিজা (রাঃ)', 
+    author: 'ইয়াহইয়া ইউসুফ নদভী', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://boimate.com/media/1495/Golpe-Aka-Mohioshi-Khadija-PDF.webp', 
+    readLink: 'https://drive.google.com/file/d/1aIvZO4OuLWSRLLPTpXwSDROMQgDUN-JV/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1aIvZO4OuLWSRLLPTpXwSDROMQgDUN-JV', 
+    description: 'উম্মুল মুমিনীন হযরত খাদিজা (রাঃ)-এর পুণ্যময় জীবনের গল্প।' 
+  },
+  { 
+    id: '93', 
+    title: 'জবাব', 
+    author: 'আরিফ আজাদ', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://baatighar.com/web/image/product.template/65680/image_1024?unique=07cb24a', 
+    readLink: 'https://drive.google.com/file/d/1HRWG0KiByP4I65yiCUy5lXSuJrbXFv8g/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1HRWG0KiByP4I65yiCUy5lXSuJrbXFv8g', 
+    description: 'ইসলাম নিয়ে বিভিন্ন প্রশ্নের যৌক্তিক ও তাত্ত্বিক উত্তর।' 
+  },
+ { 
+    id: '94', 
+    title: 'প্যারাডক্সিকাল সাজিদ ১', 
+    author: 'আরিফ আজাদ', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://static-01.daraz.com.bd/p/862faf13e9e4404236178739bebcb79c.jpg', 
+    readLink: 'https://drive.google.com/file/d/1L5eY5mbJFJ1PciBh_hTueoaPeMYVVvyB/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1L5eY5mbJFJ1PciBh_hTueoaPeMYVVvyB', 
+    description: 'বিশ্বাসের কথাগুলোকে যুক্তি দিয়ে সাজানো এক অনন্য বই।' 
+  },
+  { 
+    id: '95', 
+    title: 'প্যারাডক্সিকাল সাজিদ ২', 
+    author: 'আরিফ আজাদ', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://wafilife-media.wafilife.com/uploads/2019/02/84626090_2399142990190983_5991892351910412288_o-1.png', 
+    readLink: 'https://drive.google.com/file/d/1vk6oTqt65fqBI5SgAxJa851GO0qh_ttn/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1vk6oTqt65fqBI5SgAxJa851GO0qh_ttn', 
+    description: 'প্যারাডক্সিকাল সাজিদ সিরিজের দ্বিতীয় খণ্ড।' 
+  },
+  { 
+    id: '96', 
+    title: 'প্রত্যাবর্তন', 
+    author: 'আরিফ আজাদ', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://allboi.com/wp-content/uploads/2023/01/Prottaborton-1-by-Arif-Azad.jpg', 
+    readLink: 'https://drive.google.com/file/d/1dvX5dl1lsO9rhueFZsFCDcPS8Rd_Z_eu/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1dvX5dl1lsO9rhueFZsFCDcPS8Rd_Z_eu', 
+    description: 'অন্ধকার থেকে আলোর পথে ফিরে আসার গল্প।' 
+  },
+  { 
+    id: '97', 
+    title: 'প্রত্যাবর্তন ২', 
+    author: 'আরিফ আজাদ', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://wafilife-media.wafilife.com/uploads/2022/02/Prottaborton-2.jpg', 
+    readLink: 'https://drive.google.com/file/d/1b6uO54AU_DUixTk8j3S19gPtV0bKgl5d/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1b6uO54AU_DUixTk8j3S19gPtV0bKgl5d', 
+    description: 'প্রত্যাবর্তন সিরিজের দ্বিতীয় খণ্ড।' 
+  },
+  { 
+    id: '98', 
+    title: 'সোনালী যুগের চার খলিফা', 
+    author: 'মুফতি মুহাম্মদ শফিউল আলম', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://rokbucket.rokomari.io/ProductNew20190903/260X372/Sonali_Jugar_Char_Kholipa-Mufti_Muhammod_Shafiul_Alam-e4f34-47868.jpg', 
+    readLink: 'https://drive.google.com/file/d/1FTU1XJLV9nEo_GK8xjid2hrr3rBMo7sT/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1FTU1XJLV9nEo_GK8xjid2hrr3rBMo7sT', 
+    description: 'খোলাফায়ে রাশেদীনের শাসনকাল ও জীবনী।' 
+  },
+  { 
+    id: '99', 
+    title: 'হিন্দু শাস্ত্রে ইসলাম', 
+    author: 'এ. জেড. এম. শামসুল আলম', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://boimate.com/wp-content/uploads/2024/01/Hindu-Shashre-Islam-PDF.jpg', 
+    readLink: 'https://drive.google.com/file/d/120YNTWTdjqEz-anC2lZ_qPsl60V7hLVB/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=120YNTWTdjqEz-anC2lZ_qPsl60V7hLVB', 
+    description: 'হিন্দু ধর্মগ্রন্থের আলোকে ইসলামের বিভিন্ন দিক নিয়ে তুলনামূলক আলোচনা।' 
+  },
+  { 
+    id: '100', 
+    title: 'সত্যকথন (১-৩০০ পর্ব)', 
+    author: 'ইসলামী দাওয়াহ ইনস্টিটিউট', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://wafilife-media.wafilife.com/uploads/2017/10/sotto-kothon.jpeg', 
+    readLink: 'https://drive.google.com/file/d/1uwjbeFO7axQC4tWyQQNffiaGR8EuucrM/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1uwjbeFO7axQC4tWyQQNffiaGR8EuucrM', 
+    description: 'ইসলাম বিদ্বেষীদের বিভিন্ন সংশয় ও অপপ্রচারের দাঁতভাঙ্গা জবাব।' 
+  },
+  { 
+    id: '101', 
+    title: 'সত্যকথন ২', 
+    author: 'ইসলামী দাওয়াহ ইনস্টিটিউট', 
+    category: 'ইসলামিক', 
+    coverImage: 'https://wafilife-media.wafilife.com/uploads/2022/02/Sottokothon-2-front-1.png', 
+    readLink: 'https://drive.google.com/file/d/1sHONHKY9OPuSGRQkSr0LTfuzqvlThyhk/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1sHONHKY9OPuSGRQkSr0LTfuzqvlThyhk', 
+    description: 'সত্যকথন সিরিজের দ্বিতীয় খণ্ড।' 
+  },
+  { 
+    id: '102', 
+    title: 'বিভূতি রচনাবলী ১-১২ (সকল খণ্ড)', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'সাহিত্য', 
+    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLzVcOW-z-_rY-SAZNHwEyHyhnVudJkDsERg&s', 
+    readLink: 'https://drive.google.com/file/d/1_xjPkS6wRvpeZ0_Nm5FqTat0XKNrh8Ve/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1_xjPkS6wRvpeZ0_Nm5FqTat0XKNrh8Ve', 
+    description: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়ের কালজয়ী রচনাবলীর পূর্ণাঙ্গ সংগ্রহ।' 
+  },
+  { 
+    id: '103', 
+    title: 'তারানাথ তান্ত্রিক', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'ভৌতিক', 
+    coverImage: 'https://www.versoz.com/cdn/shop/files/WLUYSQ9OTPB6.jpg?v=1764783746', 
+    readLink: 'https://drive.google.com/file/d/1BdK80Fp-oIhCnWb0PNUjcB5u_S8Hykir/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1BdK80Fp-oIhCnWb0PNUjcB5u_S8Hykir', 
+    description: 'রহস্যময় তান্ত্রিক তারানাথের অলৌকিক অভিজ্ঞতার গল্প।' 
+  },
+  { 
+    id: '104', 
+    title: 'অপরাজিত', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'উপন্যাস', 
+    coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiuUH4vZ84H7gG843hdB2A2Qu4xsbTxUX2rw&s', 
+    readLink: 'https://drive.google.com/file/d/13hpFsLOueKk-DRmsUJlQ3eP9CeWAszh6/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=13hpFsLOueKk-DRmsUJlQ3eP9CeWAszh6', 
+    description: 'পথের পাঁচালীর অপুর বড় হয়ে ওঠার মহাকাব্যিক উপাখ্যান।' 
+  },
+  { 
+    id: '105', 
+    title: 'আদর্শ হিন্দু হোটেল', 
+    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'উপন্যাস', 
+    coverImage: 'https://wafilife-media.wafilife.com/uploads/2024/08/WhatsApp-Image-2024-08-21-at-17.47.38_ad4120cf.jpg', 
+    readLink: 'https://drive.google.com/file/d/1-e-Kht2PBhkkv0gMorNZ8RzJ54lsGi1s/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1-e-Kht2PBhkkv0gMorNZ8RzJ54lsGi1s', 
+    description: 'হাজারী ঠাকুর ও তার হোটেলের সংগ্রামের বাস্তবধর্মী কাহিনী।' 
+  },
+  { 
+    id: '106', 
+    title: 'আরণ্যক', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'উপন্যাস', 
+    coverImage: 'https://jukash.com/public/uploads/all/bNqCvUFQ93J5GUKLWMzXQUfJIv9k3Hf9WFhmsCV3.png', 
+    readLink: 'https://drive.google.com/file/d/1HUuvvU0kqGebFhCwtownPNSnVP444RVu/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1HUuvvU0kqGebFhCwtownPNSnVP444RVu', 
+    description: 'প্রকৃতি ও অরণ্য জীবনের এক মুগ্ধকর চিরায়ত উপন্যাস।' 
+  },
+  { 
+    id: '107', 
+    title: 'ইছামতী', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'উপন্যাস', 
+    coverImage: 'https://static-01.daraz.com.bd/p/8865b37ba312bd442c0650929f936b23.jpg', 
+    readLink: 'https://drive.google.com/file/d/1tyPhuXM_vTYupEjJ45UYZWT0n2GHmHvZ/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1tyPhuXM_vTYupEjJ45UYZWT0n2GHmHvZ', 
+    description: 'ইছামতী নদী সংলগ্ন মানুষের জীবন ও নীলকরদের ইতিহাসের পটভূমি।' 
+  },
+  { 
+    id: '108', 
+    title: 'চাঁদের পাহাড়', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'সাহিত্য', 
+    coverImage: 'https://fs.pbs.com.bd/DIR/Com/PBS/Product/ImageDetails/2205717.jpg', 
+    readLink: 'https://drive.google.com/file/d/10pHltTtUPSF0tZqU2qZauj8B1FybyM1r/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=10pHltTtUPSF0tZqU2qZauj8B1FybyM1r', 
+    description: 'আফ্রিকার দুর্গম পথে শঙ্করের রোমাঞ্চকর অ্যাডভেঞ্চার।' 
+  },
+  { 
+    id: '109', 
+    title: 'দৃষ্টি-প্রদীপ', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'উপন্যাস', 
+    coverImage: 'https://pbs.com.bd/_next/image?url=https%3A%2F%2Ffs.pbs.com.bd%2FDIR%2FCom%2FPBS%2FProduct%2FImageDetails%2F1904246.jpg&w=640&q=75', 
+    readLink: 'https://drive.google.com/file/d/1kkenBsXRV3zqcs6eFAQmF_qZeap8GvTc/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1kkenBsXRV3zqcs6eFAQmF_qZeap8GvTc', 
+    description: 'জিতু নামের এক যুবকের আধ্যাত্মিক ও জাগতিক জীবনের উপাখ্যান।' 
+  },
+  { 
+    id: '110', 
+    title: 'দেবযান', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'উপন্যাস', 
+    coverImage: 'https://wafilife-media.wafilife.com/uploads/2025/07/WhatsApp-Image-2025-07-06-at-10.18.36-PM-1.jpeg', 
+    readLink: 'https://drive.google.com/file/d/1XDBSZv9YbuD_gvryz-VCmObIJ9zbRDef/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1XDBSZv9YbuD_gvryz-VCmObIJ9zbRDef', 
+    description: 'মৃত্যু-পরবর্তী জগত ও আধ্যাত্মিক চেতনার এক অনন্য উপন্যাস।' 
+  },
+  { 
+    id: '111', 
+    title: 'পথের পাঁচালী', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'উপন্যাস', 
+    coverImage: 'https://www.haritbooks.com/wp-content/uploads/2022/03/pother_panchali.jpg', 
+    readLink: 'https://drive.google.com/file/d/1z7oTbc-KJ3BtJtq_dcS5OH06N1fp_hWq/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1z7oTbc-KJ3BtJtq_dcS5OH06N1fp_hWq', 
+    description: 'অপু ও দুর্গার শৈশব এবং গ্রাম বাংলার মায়াবী জীবনের কালজয়ী গল্প।' 
+  },
+  { 
+    id: '112', 
+    title: 'বাঙালি মুসলমানের মন', 
+    author: 'আহমদ শরীফ', 
+    category: 'অন্যান্য', 
+    coverImage: 'https://ruperhat.com/wp-content/uploads/2021/12/bangali-musulmaner-mon.jpg', 
+    readLink: 'https://drive.google.com/file/d/19kync2Xz6Iq3TXaxKu_4EqGa5P3z9NbM/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=19kync2Xz6Iq3TXaxKu_4EqGa5P3z9NbM', 
+    description: 'বাঙালি মুসলমান সমাজের চিন্তা ও মনস্তত্ত্বের বিশ্লেষণ।' 
+  },
+  { 
+    id: '113', 
+    title: 'মরণের ডঙ্কা বাজে (১ ও ২)', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'সাহিত্য', 
+    coverImage: 'https://wafilife-media.wafilife.com/uploads/2024/07/moroner_donka.png', 
+    readLink: 'https://drive.google.com/file/d/1rPRepU_9_zAbN8kOXztJo46gwqv88miC/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1rPRepU_9_zAbN8kOXztJo46gwqv88miC', 
+    description: 'কিশোরদের উপযোগী রোমাঞ্চকর অভিযানের গল্প।' 
+  },
+  { 
+    id: '114', 
+    title: 'দম্পতি', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়', 
+    category: 'উপন্যাস', 
+    coverImage: 'https://rokbucket.rokomari.io/ProductNew20190903/260X372/Dompoti-Bibhutibhushan_Bandyopadhyay-96197-359646.jpg', 
+    readLink: 'https://drive.google.com/file/d/1eJxQAZoX7AoSaoaSCVe1hGG31YZ5AIKB/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1eJxQAZoX7AoSaoaSCVe1hGG31YZ5AIKB', 
+    description: 'সংসার ও দাম্পত্য জীবনের বাস্তব চিত্র নিয়ে রচিত উপন্যাস।' 
+  },
 ];
