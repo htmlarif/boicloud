@@ -889,7 +889,7 @@ window.BOOKS_DATA = [
     title: 'হালাল হারাম বিদআত ও ইজতিহাদ', 
     author: 'হযরত মাওলানা শামসুল হক ফরিদপুরী (রহ.)', 
     category: 'ইসলামিক', 
-    coverImage: 'https://wafilife-media.wafilife.com/uploads/2024/04/23.-%E0%A6%B9%E0%A6%BE%E0%A6%B2%E0%A6%BE%E0%A6%B2-%E0%A6%B9%E0%A6%BE%E0%A6%B0%E0%A6%BE%E0%A6%AE-%E0%A6%AC%E0%A6%BF%E0%A6%B7%E0%A7%9F%E0%A6%B8%E0%A6%AE%E0%A7%82%E0%A6%B9-250x389.jpg', 
+    coverImage: 'https://assets.mamunbooks.com/public/frontend/thumbnail/67aeb73d64b33.jpg', 
     readLink: 'https://drive.google.com/file/d/1I7kVw5At7clDsBQ1DpzwoD4NyapX5fQY/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1I7kVw5At7clDsBQ1DpzwoD4NyapX5fQY', 
     description: 'হালাল-হারাম চেনা ও বিদআত বর্জনের প্রয়োজনীয় আলোচনা।' 
