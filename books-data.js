@@ -1534,6 +1534,26 @@ window.BOOKS_DATA = [
     downloadLink: 'https://drive.google.com/uc?export=download&id=1BzJbj-5lqfM9IWB1buFTm4QUaTkEJeza', 
     description: 'হেঁয়ালির মতো বুনে রাখা এক অপরাধের কূল-কিনারা করা।' 
   },
+  { 
+    id: '169', 
+    title: 'শার্লক হোমস সমগ্র (২য় খণ্ড)', 
+    author: 'স্যার আর্থার কোনান ডয়েল', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://boier-haat.s3.ap-south-1.amazonaws.com/uploads/all/kFFwAvvlToEU3GXCif0N2T1DRggS9VsQsbub13Tb.jpg', 
+    readLink: 'https://drive.google.com/file/d/1V9pMc3nO_0G3Z7AWqEP_H6G6BhQMFt_p/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1V9pMc3nO_0G3Z7AWqEP_H6G6BhQMFt_p', 
+    description: 'শার্লক হোমস ও ডাক্তার ওয়াটসনের টানটান উত্তেজনাপূর্ণ রহস্যের অভিযান - ২য় খণ্ড।' 
+  },
+  { 
+    id: '168', 
+    title: 'শার্লক হোমস সমগ্র (১ম খণ্ড)', 
+    author: 'স্যার আর্থার কোনান ডয়েল', 
+    category: 'থ্রিলার', 
+    coverImage: 'https://boichitro.in/wp-content/uploads/2024/06/Screenshot-2023-01-03-193452.png', 
+    readLink: 'https://drive.google.com/file/d/1O2Nv02so1I-xsisK2cT-vaFbXFHhidff/view?usp=sharing', 
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1O2Nv02so1I-xsisK2cT-vaFbXFHhidff', 
+    description: 'বিশ্ববিখ্যাত গোয়েন্দা শার্লক হোমসের রহস্যভেদের অসাধারণ গল্প সংকলন - ১ম খণ্ড।' 
+  },
  { 
     id: '127', 
     title: 'অলাতচক্র', 
