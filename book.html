@@ -452,33 +452,33 @@
       tag.setAttribute('content', value);
     }
 
-    function updateSocialMeta(book) {
-  // ১. টাইটেলে আগে বইয়ের নাম ও লেখকের নাম দিন (SEO এর জন্য সেরা)
-  const title = `${book.title} - ${book.author} | BoiCloud`;
-  
-  const desc = (book.description && String(book.description).trim())
-    ? String(book.description).trim().slice(0, 180)
-    : `${book.title} — ${book.author} | BoiCloud এ অনলাইনে পড়ুন বা ফ্রি ডাউনলোড করুন।`;
+   function updateSocialMeta(book) {
+      // ১. টাইটেলে আগে বইয়ের নাম ও লেখকের নাম দিন (SEO এর জন্য সেরা)
+      const title = `${book.title} - ${book.author} | BoiCloud`;
+      
+      const desc = (book.description && String(book.description).trim())
+        ? String(book.description).trim().slice(0, 180)
+        : `${book.title} — ${book.author} | BoiCloud এ অনলাইনে পড়ুন বা ফ্রি ডাউনলোড করুন।`;
 
-  const url = location.href;
-  const img = book.coverImage || '';
+      const url = location.href;
+      const img = book.coverImage || '';
 
-  // ২. ব্রাউজার ট্যাবের নাম পরিবর্তন
-  document.title = title;
+      // ২. ব্রাউজার ট্যাবের নাম পরিবর্তন
+      document.title = title;
 
-  // ৩. গুগলের জন্য মেটা ডেসক্রিপশন সেট করা (এটি আপনার আগের কোডে হয়তো মিসিং ছিল)
-  setMeta('name', 'description', desc);
+      // ৩. গুগলের জন্য মেটা ডেসক্রিপশন সেট করা
+      setMeta('name', 'description', desc);
 
-  // ৪. বাকি মেটা ট্যাগগুলো (আপনার কোডে যা আছে)
-  setMeta('property', 'og:title', title);
-  setMeta('property', 'og:description', desc);
-  setMeta('property', 'og:url', url);
-  if (img) setMeta('property', 'og:image', img);
+      // ৪. বাকি মেটা ট্যাগগুলো
+      setMeta('property', 'og:title', title);
+      setMeta('property', 'og:description', desc);
+      setMeta('property', 'og:url', url);
+      if (img) setMeta('property', 'og:image', img);
 
-  setMeta('name', 'twitter:title', title);
-  setMeta('name', 'twitter:description', desc);
-  if (img) setMeta('name', 'twitter:image', img);
-}
+      setMeta('name', 'twitter:title', title);
+      setMeta('name', 'twitter:description', desc);
+      if (img) setMeta('name', 'twitter:image', img);
+    }
       const url = location.href;
       const img = book.coverImage || '';
 
