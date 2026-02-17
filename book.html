@@ -491,7 +491,9 @@
       document.getElementById('book-category').textContent = book.category;
       document.getElementById('book-desc').textContent =
         book.description || 'এই বইটির জন্য এখনো বিস্তারিত বর্ণনা যোগ করা হয়নি।';
-      document.getElementById('book-cover').src = book.coverImage;
+      const coverImgElement = document.getElementById('book-cover');
+      coverImgElement.src = book.coverImage;
+      coverImgElement.alt = book.altText || `${book.title} - ${book.author}`;
 
       // Buttons
       const readBtn = document.getElementById('read-btn');
