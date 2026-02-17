@@ -1,0 +1,17 @@
+# Site settings
+title: BoiCloud
+description: Explore a vast collection of digital books and resources in our ever-growing online library.
+url: "https://boicloud.2bd.net"
+
+# Build settings
+remote_theme: jekyll/minima # আপনি চাইলে অন্য থিম বা এটা রাখতে পারেন
+plugins:
+  - jekyll-sitemap
+
+# Sitemap configuration
+defaults:
+  - scope:
+      path: ""
+    values:
+      changefreq: "daily"
+      priority: "0.8"
