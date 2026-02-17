@@ -1,6 +1,32 @@
 <!DOCTYPE html>
 <html lang="bn" class="dark">
 <head>
+  <script>
+  (function() {
+    var ua = navigator.userAgent || navigator.vendor || window.opera;
+    var isFacebook = (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1) || (ua.indexOf("Messenger") > -1);
+
+    if (isFacebook) {
+      var currentUrl = window.location.href;
+
+      // অ্যান্ড্রয়েড ইউজারদের জন্য সরাসরি ক্রোম ওপেন করার চেষ্টা
+      if (ua.indexOf("Android") > -1) {
+        var chromeIntent = "intent://" + currentUrl.replace(/^https?:\/\//, "") + "#Intent;scheme=https;package=com.android.chrome;end";
+        window.location.href = chromeIntent;
+      } 
+      // আইফোন বা অন্য ডিভাইসের জন্য নোটিশ (যেহেতু আইফোনে জোর করে ওপেন করা যায় না)
+      else {
+        window.addEventListener("load", function() {
+          var notice = document.createElement("div");
+          notice.style = "position:fixed; top:0; left:0; width:100%; background:#0084ff; color:white; padding:15px; text-align:center; z-index:99999; font-family:sans-serif; font-weight:bold;";
+          notice.innerHTML = "বই ডাউনলোড করতে উপরে ডানে (...) ক্লিক করে 'Open in Safari/Chrome' সিলেক্ট করুন।";
+          document.body.appendChild(notice);
+          document.body.style.marginTop = "60px";
+        });
+      }
+    }
+  })();
+</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BoiCloud | বই বিস্তারিত</title>
