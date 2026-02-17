@@ -479,19 +479,7 @@
       setMeta('name', 'twitter:description', desc);
       if (img) setMeta('name', 'twitter:image', img);
     }
-      const url = location.href;
-      const img = book.coverImage || '';
-
-      document.title = title;
-
-      setMeta('property', 'og:title', title);
-      setMeta('property', 'og:description', desc);
-      setMeta('property', 'og:url', url);
-      if (img) setMeta('property', 'og:image', img);
-
-      setMeta('name', 'twitter:title', title);
-      setMeta('name', 'twitter:description', desc);
-      if (img) setMeta('name', 'twitter:image', img);
+     
     
 
     function renderBookDetails(book) {
