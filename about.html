@@ -1,49 +1,394 @@
 <!DOCTYPE html>
 <html lang="bn" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>আমাদের সম্পর্কে - BoiCloud</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        body { font-family: 'Hind Siliguri', sans-serif; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BoiCloud | About Us</title>
+
+  <!-- ✅ Same favicon (data svg) -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M17.5 19C20.5376 19 23 16.5376 23 13.5C23 10.4624 20.5376 8 17.5 8C17.2282 8 16.9632 8.01977 16.7042 8.05791C15.6841 5.64243 13.284 4 10.5 4C6.91015 4 4 6.91015 4 10.5C4 10.742 4.0133 10.9809 4.03914 11.2158C2.26425 12.0232 1 13.8152 1 15.9C1 18.7167 3.28335 21 6.1 21H17.5V19Z' fill='%2310b981'/%3E%3Cpath d='M8 13.5C8 12.9477 8.44772 12.5 9 12.5H12V16.5H9C8.44772 16.5 8 16.0523 8 15.5V13.5Z' fill='%23059669'/%3E%3Cpath d='M16 13.5C16 12.9477 15.5523 12.5 15 12.5H12V16.5H15C15.5523 16.5 16 16.0523 16 15.5V13.5Z' fill='%232dd4bf'/%3E%3C/svg%3E" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          screens: { xs: '480px' },
+          fontFamily: { bengali: ['"Hind Siliguri"', 'sans-serif'] },
+          colors: {
+            brand: { 50:'#f0fdf4', 100:'#dcfce7', 500:'#10b981', 600:'#059669', 700:'#047857' }
+          },
+          animation: {
+            'slow-zoom':'slow-zoom 20s infinite alternate',
+            'fade-in-up':'fade-in-up .85s ease-out forwards',
+            'pop-in':'pop-in .18s ease-out forwards',
+          },
+          keyframes: {
+            'slow-zoom': { '0%':{transform:'scale(1) translate(0,0)'}, '100%':{transform:'scale(1.08) translate(-2%,-1%)'} },
+            'fade-in-up': { '0%':{opacity:'0',transform:'translateY(16px)'}, '100%':{opacity:'1',transform:'translateY(0)'} },
+            'pop-in': { '0%':{opacity:'0',transform:'translateY(8px) scale(.98)'}, '100%':{opacity:'1',transform:'translateY(0) scale(1)'} },
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { font-family: 'Hind Siliguri', sans-serif; -webkit-tap-highlight-color: transparent; }
+    .glass-effect { backdrop-filter: blur(12px); background: rgba(255, 255, 255, 0.80); }
+    .dark .glass-effect { background: rgba(15, 23, 42, 0.78); }
+    .hero-gradient { background: linear-gradient(to bottom, rgba(15,23,42,.78), rgba(15,23,42,.45), rgba(15,23,42,.88)); }
+    * { transition: background-color .3s ease, border-color .3s ease; }
+  </style>
 </head>
-<body class="bg-[#020617] text-slate-200">
-    <div class="fixed inset-0 overflow-hidden -z-10">
-        <div class="absolute -top-[10%] -right-[10%] w-[40%] h-[40%] bg-blue-600/10 blur-[120px] rounded-full"></div>
-    </div>
 
-    <div class="max-w-4xl mx-auto px-6 py-20">
-        <div class="text-center mb-16">
-            <h1 class="text-5xl font-black mb-6 text-white">Boi<span class="text-blue-500">Cloud</span> সম্পর্কে</h1>
-            <div class="h-1.5 w-24 bg-blue-600 mx-auto rounded-full"></div>
-        </div>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 antialiased overflow-x-hidden">
+  <!-- ========================= Header ========================= -->
+  <header class="sticky top-0 z-50 glass-effect border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16 sm:h-20">
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="relative flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
+            <!-- ✅ Your SVG logo -->
+            <svg class="w-10 h-10 sm:w-12 sm:h-12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="BoiCloud">
+              <path d="M17.5 19C20.5376 19 23 16.5376 23 13.5C23 10.4624 20.5376 8 17.5 8C17.2282 8 16.9632 8.01977 16.7042 8.05791C15.6841 5.64243 13.284 4 10.5 4C6.91015 4 4 6.91015 4 10.5C4 10.742 4.0133 10.9809 4.03914 11.2158C2.26425 12.0232 1 13.8152 1 15.9C1 18.7167 3.28335 21 6.1 21H17.5V19Z" class="fill-brand-50/50 stroke-brand-500 dark:fill-brand-700/20 dark:stroke-brand-500" stroke-width="1.5"/>
+              <path d="M8 13.5C8 12.9477 8.44772 12.5 9 12.5H12V16.5H9C8.44772 16.5 8 16.0523 8 15.5V13.5Z" class="fill-brand-600 dark:fill-brand-500"/>
+              <path d="M16 13.5C16 12.9477 15.5523 12.5 15 12.5H12V16.5H15C15.5523 16.5 16 16.0523 16 15.5V13.5Z" class="fill-teal-400 dark:fill-teal-300"/>
+            </svg>
+          </div>
 
-        <div class="glass p-10 rounded-[2.5rem] space-y-8 leading-relaxed text-lg text-slate-300">
-            <p>স্বাগতম <span class="text-white font-bold">BoiCloud</span>-এ। আমরা বিশ্বাস করি বই মানুষের শ্রেষ্ঠ বন্ধু এবং জ্ঞানের চিরন্তন উৎস। আমাদের এই প্ল্যাটফর্মটি তৈরি করা হয়েছে যাতে যে কেউ তাদের প্রিয় বইগুলো খুব সহজে খুঁজে পায় এবং একটি সুন্দর ডিজিটাল লাইব্রেরির অভিজ্ঞতা নিতে পারে।</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
-                <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
-                    <h3 class="text-blue-400 font-bold mb-2">আমাদের লক্ষ্য</h3>
-                    <p class="text-sm">বাংলা ও ইংরেজি সাহিত্যের এক বিশাল ভাণ্ডার সবার হাতের নাগালে পৌঁছে দেওয়া।</p>
-                </div>
-                <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
-                    <h3 class="text-blue-400 font-bold mb-2">কেন আমরা?</h3>
-                    <p class="text-sm">পরিচ্ছন্ন ডিজাইন, দ্রুত লোডিং এবং কোনো ঝামেলা ছাড়াই বই পড়ার অভিজ্ঞতা।</p>
-                </div>
+          <div class="leading-tight">
+            <div class="text-xl sm:text-3xl font-black tracking-tighter whitespace-nowrap">
+              <span class="text-slate-800 dark:text-white">Boi</span><span class="bg-gradient-to-r from-brand-600 to-teal-500 bg-clip-text text-transparent">Cloud</span>
             </div>
+            <div class="text-[10px] sm:text-xs font-bold tracking-[3px] text-slate-500 dark:text-slate-400 uppercase">
+              About Us
+            </div>
+          </div>
+        </a>
+
+        <div class="flex items-center gap-2 sm:gap-4">
+          <button id="dark-mode-toggle" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-400" aria-label="Toggle theme"></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================= Hero ========================= -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img
+        src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80&w=2000"
+        alt="Books Background"
+        class="w-full h-full object-cover animate-slow-zoom"
+      />
+      <div class="absolute inset-0 hero-gradient"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6 py-16 sm:py-24">
+      <div class="max-w-3xl animate-fade-in-up">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 backdrop-blur-md text-brand-200 text-[10px] sm:text-xs font-semibold border border-white/10 mb-5">
+          <i data-lucide="sparkles" class="w-4 h-4"></i>
+          <span>বইপ্রেমীদের জন্য একটি আধুনিক ডিজিটাল আশ্রয়</span>
         </div>
 
-        <div class="mt-12 text-center">
-            <a href="index.html" class="inline-flex items-center gap-2 text-slate-500 hover:text-blue-500 transition-colors font-bold">
-                <i data-lucide="home" class="w-5 h-5"></i> হোমে ফিরে যান
-            </a>
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white leading-tight drop-shadow-2xl">
+          BoiCloud সম্পর্কে
+        </h1>
+
+        <p class="mt-4 text-slate-200 text-sm sm:text-lg leading-relaxed max-w-2xl">
+          বই জ্ঞানের আলো—আর সেই আলোকে সবার মাঝে ছড়িয়ে দিতে আমাদের এই উদ্যোগ। এখানে আপনি পাবেন সুসংগঠিত সংগ্রহ, সহজ এক্সেস এবং ঝামেলাহীন অভিজ্ঞতা।
+        </p>
+
+        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+          <a href="index.html"
+             class="w-full sm:w-auto px-6 py-3 rounded-2xl font-black bg-brand-600 hover:bg-brand-700 text-white shadow-xl shadow-brand-500/30 active:scale-95 transition-all inline-flex items-center justify-center gap-2">
+            <i data-lucide="arrow-left" class="w-5 h-5"></i> হোমে ফিরে যান
+          </a>
+
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=html.arif@gmail.com"
+             target="_blank" rel="noopener"
+             class="w-full sm:w-auto px-6 py-3 rounded-2xl font-black bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-md active:scale-95 transition-all inline-flex items-center justify-center gap-2">
+            <i data-lucide="mail" class="w-5 h-5"></i> বই জমা দিন
+          </a>
         </div>
+      </div>
     </div>
-    <script>lucide.createIcons();</script>
+  </section>
+
+  <!-- ========================= Content ========================= -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+    <div class="grid lg:grid-cols-12 gap-6 lg:gap-10">
+      <!-- Left: Main narrative -->
+      <div class="lg:col-span-8 space-y-6">
+        <!-- Card 1 -->
+        <article class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-sm p-6 sm:p-8 animate-fade-in-up">
+          <div class="flex items-start gap-4">
+            <div class="p-3 rounded-2xl bg-brand-500/10 text-brand-600">
+              <i data-lucide="compass" class="w-7 h-7"></i>
+            </div>
+            <div class="min-w-0">
+              <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
+                আমাদের যাত্রা ও অনুপ্রেরণা
+              </h2>
+              <p class="mt-3 text-slate-600 dark:text-slate-300 leading-relaxed">
+                বই জ্ঞানের আলো, আর সেই আলোকে সবার মাঝে ছড়িয়ে দেওয়ার এক স্বপ্ন নিয়ে BoiCloud-এর যাত্রা শুরু।
+                আমরা বিশ্বাস করি, একটি ভালো বই মানুষের চিন্তা জগতকে বদলে দিতে পারে। ডিজিটাল যুগে বই যেন মানুষের হাতের নাগালেই থাকে
+                এবং মুহূর্তের মধ্যেই প্রিয় লেখকের সান্নিধ্য পাওয়া যায়—এই লক্ষ্যেই আমরা এই প্ল্যাটফর্মটি গড়ে তুলেছি।
+                এটি কেবল একটি ওয়েবসাইট নয়, এটি বইপ্রেমীদের জন্য একটি ডিজিটাল আশ্রয়স্থল।
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-sm p-6 sm:p-8 animate-fade-in-up">
+          <div class="flex items-start gap-4">
+            <div class="p-3 rounded-2xl bg-brand-500/10 text-brand-600">
+              <i data-lucide="library" class="w-7 h-7"></i>
+            </div>
+            <div class="min-w-0">
+              <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
+                আমরা কী অফার করি
+              </h2>
+
+              <p class="mt-3 text-slate-600 dark:text-slate-300 leading-relaxed">
+                BoiCloud কোনো সাধারণ ডাউনলোড সাইট নয়—এটি বইপ্রেমীদের জন্য একটি আধুনিক ডিজিটাল স্বর্গ।
+                আমাদের সংগ্রহে রয়েছে বিভিন্ন ঘরানার বই, সহজ এক্সেস এবং প্রতিটি বই সম্পর্কে দরকারি তথ্য।
+              </p>
+
+              <div class="mt-5 grid sm:grid-cols-2 gap-4">
+                <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-4 bg-slate-50 dark:bg-slate-950/40">
+                  <div class="flex items-center gap-2 font-black text-slate-900 dark:text-white">
+                    <i data-lucide="book-open" class="w-5 h-5 text-brand-600"></i>
+                    চিরায়ত সাহিত্য
+                  </div>
+                  <p class="mt-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                    বাংলা ও ইংরেজি সাহিত্যের কালজয়ী বইয়ের সংগ্রহ।
+                  </p>
+                </div>
+
+                <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-4 bg-slate-50 dark:bg-slate-950/40">
+                  <div class="flex items-center gap-2 font-black text-slate-900 dark:text-white">
+                    <i data-lucide="smartphone" class="w-5 h-5 text-brand-600"></i>
+                    সহজ এক্সেস
+                  </div>
+                  <p class="mt-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                    মোবাইল ও পিসি—দুই জায়গাতেই ঝামেলাহীন পড়ার অভিজ্ঞতা।
+                  </p>
+                </div>
+
+                <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-4 bg-slate-50 dark:bg-slate-950/40">
+                  <div class="flex items-center gap-2 font-black text-slate-900 dark:text-white">
+                    <i data-lucide="layout-grid" class="w-5 h-5 text-brand-600"></i>
+                    সুসংগঠিত ক্যাটাগরি
+                  </div>
+                  <p class="mt-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                    একাডেমিক, উপন্যাস, কবিতা, থ্রিলারসহ সবকিছু ক্যাটাগরি অনুযায়ী সাজানো।
+                  </p>
+                </div>
+
+                <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-4 bg-slate-50 dark:bg-slate-950/40">
+                  <div class="flex items-center gap-2 font-black text-slate-900 dark:text-white">
+                    <i data-lucide="info" class="w-5 h-5 text-brand-600"></i>
+                    বিস্তারিত তথ্য
+                  </div>
+                  <p class="mt-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                    প্রতিটি বইয়ের জন্য লেখক পরিচিতি ও সংক্ষিপ্ত বর্ণনা।
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-sm p-6 sm:p-8 animate-fade-in-up">
+          <div class="flex items-start gap-4">
+            <div class="p-3 rounded-2xl bg-brand-500/10 text-brand-600">
+              <i data-lucide="sparkles" class="w-7 h-7"></i>
+            </div>
+            <div class="min-w-0">
+              <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
+                কেন BoiCloud অনন্য
+              </h2>
+              <p class="mt-3 text-slate-600 dark:text-slate-300 leading-relaxed">
+                ইন্টারনেটে হাজারো ওয়েবসাইট থাকলেও, আমরা গুরুত্ব দেই ইউজার এক্সপেরিয়েন্সের ওপর।
+                আমরা চাই না পাঠকরা বিরক্তিকর বিজ্ঞাপন বা জটিল লিংকের গোলকধাঁধায় পড়ুক।
+                আমাদের ইন্টারফেস এমনভাবে তৈরি—যেন শিশু থেকে শুরু করে বয়স্ক পাঠকও খুব সহজে তার প্রিয় বইটি খুঁজে পায়।
+                প্রযুক্তির সাথে সাহিত্যের সুন্দর মেলবন্ধনই আমাদের লক্ষ্য।
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-sm p-6 sm:p-8 animate-fade-in-up">
+          <div class="flex items-start gap-4">
+            <div class="p-3 rounded-2xl bg-brand-500/10 text-brand-600">
+              <i data-lucide="target" class="w-7 h-7"></i>
+            </div>
+            <div class="min-w-0">
+              <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
+                আমাদের লক্ষ্য (Mission)
+              </h2>
+              <p class="mt-3 text-slate-600 dark:text-slate-300 leading-relaxed">
+                প্রতিটি মানুষের কাছে বই পড়ার সুযোগ পৌঁছে দেওয়া এবং নতুন প্রজন্মের মধ্যে বই পড়ার অভ্যাসকে আবার ফিরিয়ে আনা।
+                আমরা চাই প্রতিটি পাঠক যেন এখানে এসে তার মনের মতো বই খুঁজে পায় এবং জ্ঞানের তৃষ্ণা মেটাতে পারে।
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-sm p-6 sm:p-8 animate-fade-in-up">
+          <div class="flex items-start gap-4">
+            <div class="p-3 rounded-2xl bg-brand-500/10 text-brand-600">
+              <i data-lucide="telescope" class="w-7 h-7"></i>
+            </div>
+            <div class="min-w-0">
+              <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
+                আমাদের লক্ষ্য (Vision)
+              </h2>
+              <p class="mt-3 text-slate-600 dark:text-slate-300 leading-relaxed">
+                ভবিষ্যতে BoiCloud-কে দেশের সর্ববৃহৎ এবং সবচেয়ে বিশ্বস্ত ই-বুক ও লাইব্রেরি প্ল্যাটফর্ম হিসেবে প্রতিষ্ঠা করা—
+                যেখানে জ্ঞানচর্চা হবে সম্পূর্ণ বাধাহীন এবং সবার জন্য উন্মুক্ত।
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 6 -->
+        <article class="bg-gradient-to-r from-brand-600/12 via-teal-400/10 to-brand-600/12 border border-brand-500/20 rounded-3xl shadow-sm p-6 sm:p-8 animate-fade-in-up">
+          <div class="flex items-start gap-4">
+            <div class="p-3 rounded-2xl bg-white/60 dark:bg-slate-950/30 border border-white/30 dark:border-slate-800 text-brand-600">
+              <i data-lucide="quote" class="w-7 h-7"></i>
+            </div>
+            <div class="min-w-0">
+              <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
+                শেষ কথা
+              </h2>
+              <p class="mt-3 text-slate-700 dark:text-slate-200 leading-relaxed">
+                <span class="font-black">“একটি ভালো বই হলো একজন শ্রেষ্ঠ মানুষের জীবনের নির্যাস।”</span>
+                — এই কথাটিকে হৃদয়ে ধারণ করেই আমরা আমাদের কাজ চালিয়ে যাচ্ছি।
+                আমাদের এই পথচলায় আপনার সঙ্গী হওয়া আমাদের জন্য অনেক বড় অনুপ্রেরণা।
+                BoiCloud-এর সাথে থাকার জন্য আপনাকে অসংখ্য ধন্যবাদ।
+              </p>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Right: Premium side panel -->
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-sm p-6 sm:p-7 animate-fade-in-up">
+          <div class="flex items-center gap-3">
+            <div class="p-3 rounded-2xl bg-brand-500/10 text-brand-600">
+              <i data-lucide="shield-check" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-lg font-black text-slate-900 dark:text-white">আমাদের প্রতিশ্রুতি</h3>
+          </div>
+          <ul class="mt-4 space-y-3 text-sm text-slate-600 dark:text-slate-300">
+            <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-600 mt-0.5"></i> ঝামেলাহীন, পরিষ্কার ইন্টারফেস</li>
+            <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-600 mt-0.5"></i> মোবাইল-ফার্স্ট পড়ার অভিজ্ঞতা</li>
+            <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-600 mt-0.5"></i> সুসংগঠিত ক্যাটাগরি ও সার্চ</li>
+          </ul>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-sm p-6 sm:p-7 animate-fade-in-up">
+          <div class="flex items-center gap-3">
+            <div class="p-3 rounded-2xl bg-brand-500/10 text-brand-600">
+              <i data-lucide="mail" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-lg font-black text-slate-900 dark:text-white">বই জমা দিতে চান?</h3>
+          </div>
+          <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            আপনার কাছে কোনো ভালো বই (PDF) থাকলে আমাদের কাছে পাঠাতে পারেন। আমরা যাচাই করে সংগ্রহে যুক্ত করার চেষ্টা করবো।
+          </p>
+
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=html.arif@gmail.com"
+             target="_blank" rel="noopener"
+             class="mt-5 w-full px-5 py-3 rounded-2xl font-black bg-brand-600 hover:bg-brand-700 text-white shadow-xl shadow-brand-500/25 active:scale-95 transition-all inline-flex items-center justify-center gap-2">
+            <i data-lucide="send" class="w-5 h-5"></i> এখনই মেইল করুন
+          </a>
+
+          <div class="mt-4 text-[11px] text-slate-500 dark:text-slate-400 font-semibold">
+            <i data-lucide="info" class="w-4 h-4 inline mr-1"></i>
+            লিংকে ক্লিক করলে Gmail-এ Compose ওপেন হবে (To: html.arif@gmail.com)
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- ========================= Footer ========================= -->
+  <footer class="bg-white dark:bg-slate-900 border-t dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 py-8">
+      <div class="flex flex-col md:flex-row items-center md:justify-between gap-4">
+        <div class="text-sm text-slate-500 dark:text-slate-400 font-medium text-center md:text-left">
+          &copy; <span id="current-year">2026</span> <span class="font-black text-slate-800 dark:text-white">Boi</span><span class="font-black text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-teal-500">Cloud</span> • All rights reserved.
+        </div>
+
+        <div class="flex items-center gap-2 text-xs font-bold text-slate-500 dark:text-slate-400">
+          <i data-lucide="sparkles" class="w-4 h-4 text-brand-600"></i>
+          Premium reading experience
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================= Scripts ========================= -->
+  <script>
+    lucide.createIcons();
+
+    function initializeDarkMode() {
+      const savedTheme = localStorage.getItem('boicloud-theme');
+      if (savedTheme === null) {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('boicloud-theme', 'dark');
+        return true;
+      }
+      const isDark = savedTheme === 'dark';
+      document.documentElement.classList.toggle('dark', isDark);
+      return isDark;
+    }
+
+    function updateDarkModeToggle(isDark) {
+      const toggleBtn = document.getElementById('dark-mode-toggle');
+      if (!toggleBtn) return;
+      toggleBtn.innerHTML = isDark
+        ? '<i data-lucide="sun" class="w-5 h-5 text-yellow-300"></i>'
+        : '<i data-lucide="moon" class="w-5 h-5 text-slate-700 dark:text-slate-200"></i>';
+      lucide.createIcons();
+    }
+
+    function toggleDarkMode() {
+      const html = document.documentElement;
+      const isDark = html.classList.contains('dark');
+      html.classList.toggle('dark', !isDark);
+      localStorage.setItem('boicloud-theme', !isDark ? 'dark' : 'light');
+      updateDarkModeToggle(!isDark);
+    }
+
+    // init
+    const isDark = initializeDarkMode();
+    updateDarkModeToggle(isDark);
+    document.getElementById('dark-mode-toggle')?.addEventListener('click', toggleDarkMode);
+
+    const y = document.getElementById('current-year');
+    if (y) y.textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
