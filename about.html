@@ -6,15 +6,44 @@
     <title>আমাদের সম্পর্কে - BoiCloud</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Hind Siliguri', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+    </style>
 </head>
-<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200">
-    <div class="max-w-3xl mx-auto px-6 py-12 text-center">
-        <h1 class="text-4xl font-black mb-6 text-slate-900 dark:text-white">BoiCloud সম্পর্কে</h1>
-        <p class="text-xl leading-relaxed mb-6">স্বাগতম BoiCloud-এ। আমরা বিশ্বাস করি বই মানুষের শ্রেষ্ঠ বন্ধু। আমাদের এই প্ল্যাটফর্মটি তৈরি করা হয়েছে যাতে যে কেউ তাদের প্রিয় বইগুলো খুব সহজে খুঁজে পায় এবং ডিজিটাল লাইব্রেরির স্বাদ নিতে পারে।</p>
-        <p class="text-lg text-slate-500">আমাদের লক্ষ্য হলো বাংলা ও ইংরেজি সাহিত্যের এক বিশাল ভাণ্ডার আপনাদের হাতের নাগালে পৌঁছে দেওয়া।</p>
-        <div class="mt-10">
-            <a href="index.html" class="px-8 py-3 bg-blue-600 text-white rounded-full font-bold">বই দেখতে ক্লিক করুন</a>
+<body class="bg-[#020617] text-slate-200">
+    <div class="fixed inset-0 overflow-hidden -z-10">
+        <div class="absolute -top-[10%] -right-[10%] w-[40%] h-[40%] bg-blue-600/10 blur-[120px] rounded-full"></div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-6 py-20">
+        <div class="text-center mb-16">
+            <h1 class="text-5xl font-black mb-6 text-white">Boi<span class="text-blue-500">Cloud</span> সম্পর্কে</h1>
+            <div class="h-1.5 w-24 bg-blue-600 mx-auto rounded-full"></div>
+        </div>
+
+        <div class="glass p-10 rounded-[2.5rem] space-y-8 leading-relaxed text-lg text-slate-300">
+            <p>স্বাগতম <span class="text-white font-bold">BoiCloud</span>-এ। আমরা বিশ্বাস করি বই মানুষের শ্রেষ্ঠ বন্ধু এবং জ্ঞানের চিরন্তন উৎস। আমাদের এই প্ল্যাটফর্মটি তৈরি করা হয়েছে যাতে যে কেউ তাদের প্রিয় বইগুলো খুব সহজে খুঁজে পায় এবং একটি সুন্দর ডিজিটাল লাইব্রেরির অভিজ্ঞতা নিতে পারে।</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
+                <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
+                    <h3 class="text-blue-400 font-bold mb-2">আমাদের লক্ষ্য</h3>
+                    <p class="text-sm">বাংলা ও ইংরেজি সাহিত্যের এক বিশাল ভাণ্ডার সবার হাতের নাগালে পৌঁছে দেওয়া।</p>
+                </div>
+                <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
+                    <h3 class="text-blue-400 font-bold mb-2">কেন আমরা?</h3>
+                    <p class="text-sm">পরিচ্ছন্ন ডিজাইন, দ্রুত লোডিং এবং কোনো ঝামেলা ছাড়াই বই পড়ার অভিজ্ঞতা।</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-12 text-center">
+            <a href="index.html" class="inline-flex items-center gap-2 text-slate-500 hover:text-blue-500 transition-colors font-bold">
+                <i data-lucide="home" class="w-5 h-5"></i> হোমে ফিরে যান
+            </a>
         </div>
     </div>
+    <script>lucide.createIcons();</script>
 </body>
 </html>
