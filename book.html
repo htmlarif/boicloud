@@ -156,16 +156,20 @@
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
     <div class="container mx-auto p-4">
 
-  <div id="loading-skeleton" class="space-y-4">
-    <div class="skeleton h-64 w-44 rounded-xl mx-auto"></div> <div class="skeleton h-6 w-3/4 rounded mx-auto"></div>    <div class="skeleton h-4 w-1/2 rounded mx-auto"></div>    </div>
+      <div id="loading-skeleton" class="space-y-4">
+        <div class="skeleton h-64 w-44 rounded-xl mx-auto"></div>
+        <div class="skeleton h-6 w-3/4 rounded mx-auto"></div>
+        <div class="skeleton h-4 w-1/2 rounded mx-auto"></div>
+      </div>
 
-  <div id="main-content" class="hidden">
-    <img id="display-cover" src="" class="mx-auto rounded-xl shadow-lg" />
-    <h1 id="display-title" class="text-2xl font-bold text-center mt-4"></h1>
-    <p id="display-author" class="text-center text-slate-500"></p>
+      <div id="main-content" class="hidden">
+        <img id="display-cover" src="" class="mx-auto rounded-xl shadow-lg" />
+        <h1 id="display-title" class="text-2xl font-bold text-center mt-4"></h1>
+        <p id="display-author" class="text-center text-slate-500"></p>
+      </div>
+
     </div>
 
-</div>
     <div id="not-found" class="hidden text-center py-16">
       <div class="w-20 h-20 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6">
         <i data-lucide="alert-triangle" class="w-10 h-10 text-slate-400"></i>
@@ -177,7 +181,7 @@
       </a>
     </div>
 
-    <section id="book-section" class="space-y-6">
+    <section id="book-section" class="space-y-6 hidden">
 
       <!-- ✅ Cover Card -->
       <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden shadow-lg">
@@ -220,12 +224,12 @@
           </a>
 
           <a id="download-btn" 
-   href="https://drive.google.com/uc?export=download&id=আপনার_ফাইল_আইডি"
-   target="_blank" 
-   rel="noopener noreferrer"
-   class="w-full px-5 py-3 rounded-2xl font-black text-sm bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 inline-flex items-center justify-center gap-2">
-   <i data-lucide="download" class="w-5 h-5"></i> ডাউনলোড
-</a>
+             href="https://drive.google.com/uc?export=download&id=আপনার_ফাইল_আইডি"
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="w-full px-5 py-3 rounded-2xl font-black text-sm bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 inline-flex items-center justify-center gap-2">
+            <i data-lucide="download" class="w-5 h-5"></i> ডাউনলোড
+          </a>
 
           <a href="index.html"
              class="w-full px-5 py-3 rounded-2xl font-black text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500/40 inline-flex items-center justify-center gap-2">
@@ -310,16 +314,19 @@
         <span id="link-home" class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2"><i data-lucide="home" class="w-4 h-4"></i> হোম</span>
         <span id="link-books" class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2"><i data-lucide="book-open" class="w-4 h-4"></i> বইয়ের তালিকা</span>
         <span id="link-category" class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2"><i data-lucide="grid" class="w-4 h-4"></i> ক্যাটাগরি</span>
-<a href="mailto:html.arif@gmail.com?subject=যোগাযোগ - BoiCloud&body=আপনার বার্তা:%0A" 
-   class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2">
-  <i data-lucide="mail" class="w-4 h-4"></i> যোগাযোগ
-</a>
+
+        <a href="mailto:html.arif@gmail.com?subject=যোগাযোগ - BoiCloud&body=আপনার বার্তা:%0A" 
+           class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2">
+          <i data-lucide="mail" class="w-4 h-4"></i> যোগাযোগ
+        </a>
+
         <a href="https://forms.gle/4XdfJcvaYMfxPrmf8" target="_blank" class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2">
-    <i data-lucide="message-square-plus" class="w-4 h-4"></i> বইয়ের অনুরোধ
-  </a>
+          <i data-lucide="message-square-plus" class="w-4 h-4"></i> বইয়ের অনুরোধ
+        </a>
+
         <a href="https://forms.gle/XvUkcvWMTHBAHjEp6" target="_blank" class="hover:text-teal-500 transition-colors inline-flex items-center gap-2">
-    <i data-lucide="upload-cloud" class="w-4 h-4 text-teal-500"></i> বই পাঠান
-  </a>
+          <i data-lucide="upload-cloud" class="w-4 h-4 text-teal-500"></i> বই পাঠান
+        </a>
       </div>
     </div>
 
@@ -495,8 +502,7 @@
       tag.setAttribute('content', value);
     }
 
-   function updateSocialMeta(book) {
-      // ১. টাইটেলে আগে বইয়ের নাম ও লেখকের নাম দিন (SEO এর জন্য সেরা)
+    function updateSocialMeta(book) {
       const title = `${book.title} - ${book.author} | BoiCloud`;
       
       const desc = (book.description && String(book.description).trim())
@@ -506,13 +512,10 @@
       const url = location.href;
       const img = book.coverImage || '';
 
-      // ২. ব্রাউজার ট্যাবের নাম পরিবর্তন
       document.title = title;
 
-      // ৩. গুগলের জন্য মেটা ডেসক্রিপশন সেট করা
       setMeta('name', 'description', desc);
 
-      // ৪. বাকি মেটা ট্যাগগুলো
       setMeta('property', 'og:title', title);
       setMeta('property', 'og:description', desc);
       setMeta('property', 'og:url', url);
@@ -522,11 +525,8 @@
       setMeta('name', 'twitter:description', desc);
       if (img) setMeta('name', 'twitter:image', img);
     }
-     
-    
 
     function renderBookDetails(book) {
-      // Title/meta
       updateSocialMeta(book);
 
       document.getElementById('book-title').textContent = book.title;
@@ -534,6 +534,7 @@
       document.getElementById('book-category').textContent = book.category;
       document.getElementById('book-desc').textContent =
         book.description || 'এই বইটির জন্য এখনো বিস্তারিত বর্ণনা যোগ করা হয়নি।';
+
       const coverImgElement = document.getElementById('book-cover');
       coverImgElement.src = book.coverImage;
       coverImgElement.alt = book.altText || `${book.title} - ${book.author}`;
@@ -563,14 +564,10 @@
       const shareUrl = encodeURIComponent(shareUrlRaw);
       const shareText = encodeURIComponent(`${book.title} - ${book.author}`);
 
-      // Facebook share (post dialog)
       document.getElementById('share-fb').href =
         `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
 
-      // Messenger:
-      // ✅ If you have an FB App ID, put it here.
-      // Without App ID, fallback will open FB share (still usable).
-      const FB_APP_ID = ''; // <-- e.g. '123456789012345'
+      const FB_APP_ID = ''; // e.g. '123456789012345'
       const msBtn = document.getElementById('share-ms');
       if (FB_APP_ID) {
         msBtn.href = `https://www.facebook.com/dialog/send?link=${shareUrl}&redirect_uri=${shareUrl}&app_id=${encodeURIComponent(FB_APP_ID)}`;
@@ -578,15 +575,12 @@
         msBtn.href = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
       }
 
-      // WhatsApp
       document.getElementById('share-wa').href =
         `https://wa.me/?text=${shareText}%20${shareUrl}`;
 
-      // Telegram
       document.getElementById('share-tg').href =
         `https://t.me/share/url?url=${shareUrl}&text=${shareText}`;
 
-      // X
       document.getElementById('share-x').href =
         `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
     }
@@ -612,14 +606,12 @@
       lucide.createIcons();
     }
 
-    // ✅ One click copy (no extra)
     async function copyLinkInstant() {
       const url = location.href;
       try {
         await navigator.clipboard.writeText(url);
         showToast('লিংক কপি হয়েছে ✅');
       } catch {
-        // fallback if clipboard blocked
         const temp = document.createElement('input');
         temp.value = url;
         document.body.appendChild(temp);
@@ -634,12 +626,12 @@
       document.getElementById('link-home')?.addEventListener('click', () => location.href='index.html');
       document.getElementById('link-books')?.addEventListener('click', () => location.href='index.html#books-grid');
       document.getElementById('link-category')?.addEventListener('click', () => location.href='index.html#category-buttons');
+
+      // NOTE: HTML-এ link-contact id নেই, তাই এটা optional রাখছি (future-এ id দিলে কাজ করবে)
       document.getElementById('link-contact')?.addEventListener('click', () => location.href="https://mail.google.com/mail/?view=cm&fs=1&to=html.arif@gmail.com");
     }
 
-    // ... আপনার আগের সব ফাংশন (renderBookDetails, renderRelatedCarousel ইত্যাদি) এখানে থাকবে ...
-
-    // ✅ এই সেই নতুন অংশ যা আপনি আপডেট করেছেন
+    // ✅ FIXED init()
     function init() {
       const isDark = initializeDarkMode();
       updateDarkModeToggle(isDark);
@@ -665,20 +657,13 @@
       renderRelatedCarousel(buildRelatedBooks(book, allBooks, 50));
       lucide.createIcons();
 
-      // লোডিং স্কেলিটন সরানোর ম্যাজিক এখানে
       setTimeout(() => {
-          const skeleton = document.getElementById('loading-skeleton');
-          const bookSection = document.getElementById('book-section');
-          
-          if (skeleton) skeleton.classList.add('hidden');
-          if (bookSection) bookSection.classList.remove('hidden');
-      }, 500); 
-    }
+        const skeleton = document.getElementById('loading-skeleton');
+        const bookSection = document.getElementById('book-section');
 
-  
-      renderBookDetails(book);
-      renderRelatedCarousel(buildRelatedBooks(book, allBooks, 50));
-      lucide.createIcons();
+        if (skeleton) skeleton.classList.add('hidden');
+        if (bookSection) bookSection.classList.remove('hidden');
+      }, 500);
     }
 
     document.addEventListener('DOMContentLoaded', init);
