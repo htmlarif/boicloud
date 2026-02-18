@@ -637,6 +637,9 @@
       document.getElementById('link-contact')?.addEventListener('click', () => location.href="https://mail.google.com/mail/?view=cm&fs=1&to=html.arif@gmail.com");
     }
 
+    // ... আপনার আগের সব ফাংশন (renderBookDetails, renderRelatedCarousel ইত্যাদি) এখানে থাকবে ...
+
+    // ✅ এই সেই নতুন অংশ যা আপনি আপডেট করেছেন
     function init() {
       const isDark = initializeDarkMode();
       updateDarkModeToggle(isDark);
@@ -652,11 +655,27 @@
       const book = allBooks.find(b => String(b.id) === String(id));
 
       if (!book) {
+        document.getElementById('loading-skeleton')?.classList.add('hidden'); 
         document.getElementById('not-found')?.classList.remove('hidden');
         document.getElementById('book-section')?.classList.add('hidden');
         return;
       }
 
+      renderBookDetails(book);
+      renderRelatedCarousel(buildRelatedBooks(book, allBooks, 50));
+      lucide.createIcons();
+
+      // লোডিং স্কেলিটন সরানোর ম্যাজিক এখানে
+      setTimeout(() => {
+          const skeleton = document.getElementById('loading-skeleton');
+          const bookSection = document.getElementById('book-section');
+          
+          if (skeleton) skeleton.classList.add('hidden');
+          if (bookSection) bookSection.classList.remove('hidden');
+      }, 500); 
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
       renderBookDetails(book);
       renderRelatedCarousel(buildRelatedBooks(book, allBooks, 50));
       lucide.createIcons();
