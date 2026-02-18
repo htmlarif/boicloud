@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="bn" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আমাদের সম্পর্কে - BoiCloud</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200">
+    <div class="max-w-3xl mx-auto px-6 py-12 text-center">
+        <h1 class="text-4xl font-black mb-6 text-slate-900 dark:text-white">BoiCloud সম্পর্কে</h1>
+        <p class="text-xl leading-relaxed mb-6">স্বাগতম BoiCloud-এ। আমরা বিশ্বাস করি বই মানুষের শ্রেষ্ঠ বন্ধু। আমাদের এই প্ল্যাটফর্মটি তৈরি করা হয়েছে যাতে যে কেউ তাদের প্রিয় বইগুলো খুব সহজে খুঁজে পায় এবং ডিজিটাল লাইব্রেরির স্বাদ নিতে পারে।</p>
+        <p class="text-lg text-slate-500">আমাদের লক্ষ্য হলো বাংলা ও ইংরেজি সাহিত্যের এক বিশাল ভাণ্ডার আপনাদের হাতের নাগালে পৌঁছে দেওয়া।</p>
+        <div class="mt-10">
+            <a href="index.html" class="px-8 py-3 bg-blue-600 text-white rounded-full font-bold">বই দেখতে ক্লিক করুন</a>
+        </div>
+    </div>
+</body>
+</html>
