@@ -1005,20 +1005,52 @@
         </div>
       </div>
 
-      <div>
-        <h3 class="font-bold text-slate-900 dark:text-white mb-5 text-lg">
-          <i data-lucide="mail" class="w-5 h-5 inline mr-2"></i> সাবস্ক্রাইব
-        </h3>
-        <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">
-          <i data-lucide="bell" class="w-4 h-4 inline mr-1"></i> নতুন বইয়ের খবরের জন্য যোগ দিন।
-        </p>
-        <div class="flex gap-2">
-          <input type="email" placeholder="ইমেইল..." class="bg-slate-50 dark:bg-slate-950 border dark:border-slate-800 rounded-xl px-4 py-2 text-xs w-full focus:ring-1 focus:ring-brand-500 outline-none" />
-          <button class="bg-brand-600 text-white p-2.5 rounded-xl hover:bg-brand-700 transition-colors" onclick="showToast('ধন্যবাদ! (ডেমো)')">
-            <i data-lucide="send" class="w-5 h-5"></i>
-          </button>
-        </div>
-      </div>
+     <div>
+  <h3 class="font-bold text-slate-900 dark:text-white mb-5 text-lg">
+    <i data-lucide="mail" class="w-5 h-5 inline mr-2"></i> সাবস্ক্রাইব
+  </h3>
+  <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">
+    <i data-lucide="bell" class="w-4 h-4 inline mr-1"></i> নতুন বইয়ের খবরের জন্য যোগ দিন।
+  </p>
+  
+  <form id="subscribe-form" action="https://formspree.io/f/xzdaveyg" method="POST" class="flex gap-2">
+    <input type="email" name="email" required placeholder="আপনার ইমেইল..." 
+           class="bg-slate-50 dark:bg-slate-950 border dark:border-slate-800 rounded-xl px-4 py-2 text-xs w-full focus:ring-1 focus:ring-brand-500 outline-none text-slate-800 dark:text-slate-200" />
+    <button type="submit" id="subscribe-btn" class="bg-brand-600 text-white p-2.5 rounded-xl hover:bg-brand-700 transition-colors flex items-center justify-center">
+      <i data-lucide="send" class="w-5 h-5"></i>
+    </button>
+  </form>
+</div>
+
+<script>
+  const subForm = document.getElementById('subscribe-form');
+  const subBtn = document.getElementById('subscribe-btn');
+
+  subForm.onsubmit = async (e) => {
+    e.preventDefault();
+    subBtn.disabled = true;
+    subBtn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i>';
+    lucide.createIcons(); // আইকন লোড করার জন্য
+
+    const formData = new FormData(subForm);
+    const response = await fetch(subForm.action, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      showToast('ধন্যবাদ! সাবস্ক্রিপশন সফল হয়েছে।');
+      subForm.reset();
+    } else {
+      showToast('উফ! কিছু একটা ভুল হয়েছে। আবার চেষ্টা করুন।');
+    }
+
+    subBtn.disabled = false;
+    subBtn.innerHTML = '<i data-lucide="send" class="w-5 h-5"></i>';
+    lucide.createIcons();
+  };
+</script>
 
     </div>
 
