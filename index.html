@@ -17,12 +17,8 @@
       else {
         window.addEventListener("load", function() {
           var notice = document.createElement("div");
-          // স্টাইলটা একটু মডার্ন করে দিলাম
           notice.style = "position:fixed; top:0; left:0; width:100%; background:#2f3542; color:#ffffff; padding:12px; text-align:center; z-index:99999; font-family:sans-serif; font-size:14px; border-bottom:2px solid #3742fa;";
-          
-          // আপনার পছন্দের মেসেজ
           notice.innerHTML = "Use <strong>Chrome/Safari</strong> for a better experience and easy downloads.";
-          
           document.body.appendChild(notice);
           document.body.style.marginTop = "50px";
         });
@@ -30,29 +26,24 @@
     }
   })();
 </script>
- <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+ <meta name="robots" content="index, follow, max-image-preview:large, max-snippet=-1, max-video-preview=-1" />
  <meta name="google-site-verification" content="dKuoqjOGQ3HaaASgN2DydGhgAurPvvTacR21KzA2_Ko" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>BoiCloud | বইক্লাউড - অনলাইন লাইব্রেরি</title>
 
-  <!-- ✅ Same favicon (data svg) -->
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M17.5 19C20.5376 19 23 16.5376 23 13.5C23 10.4624 20.5376 8 17.5 8C17.2282 8 16.9632 8.01977 16.7042 8.05791C15.6841 5.64243 13.284 4 10.5 4C6.91015 4 4 6.91015 4 10.5C4 10.742 4.0133 10.9809 4.03914 11.2158C2.26425 12.0232 1 13.8152 1 15.9C1 18.7167 3.28335 21 6.1 21H17.5V19Z' fill='%2310b981'/%3E%3Cpath d='M8 13.5C8 12.9477 8.44772 12.5 9 12.5H12V16.5H9C8.44772 16.5 8 16.0523 8 15.5V13.5Z' fill='%23059669'/%3E%3Cpath d='M16 13.5C16 12.9477 15.5523 12.5 15 12.5H12V16.5H15C15.5523 16.5 16 16.0523 16 15.5V13.5Z' fill='%232dd4bf'/%3E%3C/svg%3E">
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Lucide -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <script>
@@ -92,25 +83,18 @@
     .hero-gradient { background: linear-gradient(to bottom, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.8)); }
     * { transition: background-color .3s ease, border-color .3s ease; }
 
-    /* Category hover blink */
     .category-btn:hover { box-shadow: 0 12px 30px -16px rgba(16,185,129,.45); }
     .category-btn:hover:not(.active) {
       animation: blink-soft 1.2s ease-in-out infinite;
       border-color: rgba(16,185,129,.45) !important;
     }
 
-    /* Suggestions */
     .suggestions { position:absolute; top: calc(100% + 10px); left:0; right:0; z-index:60; border-radius:16px; overflow:hidden; transform-origin:top; }
     mark { padding:0 2px; border-radius:4px; background: rgba(16,185,129,.18); color: inherit; }
     .dark mark { background: rgba(16,185,129,.22); }
 
     .toast { position:fixed; left:50%; transform:translateX(-50%); bottom: calc(22px + env(safe-area-inset-bottom)); z-index:999; max-width:92vw; }
 
-    /* =========================================================
-      ✅ Slider (User-friendly + Mobile-friendly)
-      - NO center-focus / NO up-down animation
-      - Smooth & NATURAL feel (slightly slower easing)
-    ========================================================= */
     .slider{
       scroll-snap-type: x proximity;
       scroll-padding-left: 20px;
@@ -144,15 +128,11 @@
 <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 antialiased overflow-x-hidden">
   <div id="root"></div>
 
-  <!-- ✅ বই ডেটা আলাদা ফাইল -->
   <script src="books-data.js"></script>
 
   <script>
     lucide.createIcons();
 
-    /* =========================
-      Helpers
-    ========================= */
     const escapeHtml = (s) => String(s ?? '')
       .replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')
       .replaceAll('"','&quot;').replaceAll("'",'&#039;');
@@ -213,24 +193,18 @@
       });
     }
 
-   function scrollToEl(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
+    function scrollToEl(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
 
-  const header = document.querySelector('header.sticky');
-  const headerH = header ? header.getBoundingClientRect().height : 0;
+      const header = document.querySelector('header.sticky');
+      const headerH = header ? header.getBoundingClientRect().height : 0;
+      const extra = 10;
 
-  // একটু extra gap (8-12px) nice লাগে
-  const extra = 10;
-
-  const y = window.scrollY + el.getBoundingClientRect().top - headerH - extra;
-
-  window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+      const y = window.scrollY + el.getBoundingClientRect().top - headerH - extra;
+      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
     }
 
-    /* =========================
-      Theme
-    ========================= */
     function initializeDarkMode() {
       const savedTheme = localStorage.getItem('boicloud-theme');
       if (savedTheme === null) {
@@ -262,16 +236,11 @@
       }
     }
 
-    /* =========================
-      Data
-    ========================= */
     const BOOKS_DATA = window.BOOKS_DATA || [];
     let ALL_BOOKS = normalizeBooks(BOOKS_DATA);
 
-    // ✅ audio books list (ytId থাকলে)
     const AUDIO_BOOKS = () => ALL_BOOKS.filter(b => b.ytId && String(b.ytId).trim() !== '');
 
-    // ✅ "সবগুলো" এর ঠিক পরে "Audio Books" যুক্ত করা হলো
     const CATEGORIES = [
       'সবগুলো',
       'Audio Books',
@@ -287,25 +256,27 @@
     ];
 
     /* =========================================================
-      ✅ Slider Card (smooth + stable)
-      + ✅ Audio badge on cover (ytId থাকলে)
+      ✅ Compact Audio Badge (mobile-friendly)
+      - small round badge + glow dot + old blink
+      - moved a bit right (right-1.5)
     ========================================================= */
-   function audioBadgeHTML(book) {
-  if (!book?.ytId || !String(book.ytId).trim()) return '';
+    function audioBadgeHTML(book) {
+      if (!book?.ytId || !String(book.ytId).trim()) return '';
 
-  return `
-    <div class="absolute top-2 right-2 z-10">
-      <span class="px-2.5 py-1 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm
-                   text-brand-600 text-[10px] font-black rounded-full
-                   border border-slate-100 dark:border-slate-800
-                   inline-flex items-center gap-1.5
-                   animate-blink-soft">
-        <i data-lucide="headphones" class="w-3.5 h-3.5"></i>
-        AUDIO
-      </span>
-    </div>
-  `;
-}
+      return `
+        <div class="absolute top-2 right-1.5 z-10">
+          <span class="relative inline-flex items-center justify-center w-6 h-6 rounded-full
+                       bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm
+                       border border-slate-100 dark:border-slate-800 shadow-sm
+                       animate-blink-soft">
+            <span class="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-brand-500">
+              <span class="absolute inset-0 rounded-full bg-brand-500 opacity-70 animate-ping"></span>
+            </span>
+            <i data-lucide="headphones" class="w-3.5 h-3.5 text-brand-600"></i>
+          </span>
+        </div>
+      `;
+    }
 
     function bookCardHTML(book, q='') {
       const catLabel = book.categories?.[0] || book.category || 'অন্যান্য';
@@ -323,7 +294,6 @@
                 </span>
               </div>
 
-              <!-- ✅ audio badge -->
               ${audioBadgeHTML(book)}
             </div>
 
@@ -344,15 +314,10 @@
       const wrap = document.getElementById(containerId);
       if (!wrap) return;
       wrap.innerHTML = books.map(b => bookCardHTML(b, q)).join('');
-      lucide.createIcons(); // ✅ new icons in row
+      lucide.createIcons();
     }
 
-    /* =========================
-      ✅ Sticky Grid Header (Title + Back)
-      - category grid + all books grid + search grid: all share same header
-    ========================= */
     const DEFAULT_GRID_TITLE_HTML = `<i data-lucide="layout-grid" class="w-5 h-5 text-brand-600"></i> সব বই`;
-
     let GRID_BACK_TARGET_ID = 'row-samprotik';
 
     function setGridTitle(html) {
@@ -375,7 +340,6 @@
 
       GRID_BACK_TARGET_ID = backTargetId;
 
-      // clear search (if any)
       const mainSearch = document.getElementById('search-input');
       const mobileSearch = document.getElementById('search-input-mobile');
       const clearMain = document.getElementById('search-clear');
@@ -394,10 +358,6 @@
       scrollToEl('grid-area');
     }
 
-    /* =========================
-      ✅ Category "সব দেখুন"
-      + ✅ Audio Books special-case
-    ========================= */
     function showCategoryGrid(category) {
       if (category === 'Audio Books') {
         const filtered = AUDIO_BOOKS();
@@ -419,10 +379,6 @@
       );
     }
 
-    /* =========================
-      Grid renderer
-      + ✅ audio badge on grid cards
-    ========================= */
     function renderAllBooksGrid(books, q='') {
       const container = document.getElementById('books-container');
       if (!container) return;
@@ -520,7 +476,6 @@
         return;
       }
 
-      // search active -> open grid with sticky header
       const filtered = ALL_BOOKS.filter(book => {
         const hay = [book.title, book.author, book.description || '', (book.categories || []).join(' ')].join(' ').toLowerCase();
         return hay.includes(q);
@@ -539,10 +494,6 @@
 
     const applySearchDebounced = debounce(applySearchAndToggleLayout, 140);
 
-    /* =========================
-      Category pills (same)
-      + ✅ Audio Books button insert after সবগুলো (already in CATEGORIES)
-    ========================= */
     function initializeCategoryButtons() {
       const container = document.getElementById('category-buttons');
       if (!container) return;
@@ -598,18 +549,12 @@
       lucide.createIcons();
     }
 
-    /* =========================
-      Build Rows
-      + ✅ Audio Books row render
-    ========================= */
     function buildRows() {
       const samprotik = [...ALL_BOOKS].reverse();
       renderRow('samprotik-slider', samprotik);
 
-      // ✅ Audio Books row
       renderRow('slider-Audio Books', AUDIO_BOOKS());
 
-      // ✅ normal category rows
       CATEGORIES
         .filter(c => c !== 'সবগুলো' && c !== 'Audio Books')
         .forEach(cat => {
@@ -618,9 +563,6 @@
         });
     }
 
-    /* =========================
-      Search UX binding
-    ========================= */
     function bindSearchUX() {
       const mobileSearch = document.getElementById('search-input-mobile');
       const mainSearch = document.getElementById('search-input');
@@ -708,7 +650,6 @@
         scrollToEl('row-samprotik');
       });
 
-      // ✅ All books grid -> uses same sticky header + back
       document.getElementById('show-all-grid-btn')?.addEventListener('click', () => {
         openGridWith(
           ALL_BOOKS,
@@ -718,7 +659,6 @@
         );
       });
 
-      // back button (sticky header)
       document.getElementById('grid-back-btn')?.addEventListener('click', closeGridAndBack);
 
       const y = document.getElementById('current-year');
@@ -750,7 +690,6 @@
           </h1>
         </div>
 
-        <!-- Desktop search -->
         <div class="hidden md:flex flex-1 max-w-md mx-6 relative">
           <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
             <i data-lucide="search" class="w-5 h-5"></i>
@@ -778,7 +717,6 @@
         </div>
       </div>
 
-      <!-- Mobile search -->
       <div class="md:hidden pb-4">
         <div class="relative">
           <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
@@ -801,7 +739,6 @@
   </header>
 
   <main class="flex-grow">
-    <!-- ✅ HERO -->
     <section class="relative h-[50vh] sm:h-[70vh] flex items-center justify-center overflow-hidden">
       <div class="absolute inset-0 z-0">
         <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=2000"
@@ -832,19 +769,16 @@
           </button>
 
           <a href="https://forms.gle/XvUkcvWMTHBAHjEp6" 
-   target="_blank" 
-   rel="noopener"
-   class="w-full sm:w-auto px-8 py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-2xl font-bold text-base sm:text-lg transition-all hover:bg-white/20 active:scale-95 flex items-center justify-center gap-2">
-  <i data-lucide="upload-cloud" class="w-5 h-5"></i> 
-  বই জমা দিন
-</a>
+             target="_blank" 
+             rel="noopener"
+             class="w-full sm:w-auto px-8 py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-2xl font-bold text-base sm:text-lg transition-all hover:bg-white/20 active:scale-95 flex items-center justify-center gap-2">
+            <i data-lucide="upload-cloud" class="w-5 h-5"></i> 
+            বই জমা দিন
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- =========================================================
-      ✅ Rows Area
-    ========================================================= -->
     <section id="rows-area" class="max-w-7xl mx-auto px-4 py-10 sm:py-16">
 
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
@@ -862,7 +796,6 @@
         </div>
       </div>
 
-      <!-- ✅ Samprotik -->
       <div id="row-samprotik" class="mb-10 scroll-mt-24">
         <div class="flex items-center justify-between mb-4">
           <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
@@ -876,7 +809,6 @@
         <div class="slider no-scrollbar flex gap-4 overflow-x-auto pb-3" data-slider="true" id="samprotik-slider"></div>
       </div>
 
-      <!-- ✅ Category pills -->
       <div class="mb-8">
         <div class="flex items-center gap-2 mb-3 text-xs font-bold text-slate-500 dark:text-slate-400">
           <i data-lucide="grid" class="w-4 h-4"></i> ক্যাটাগরি (ক্লিক করলে row তে যাবে)
@@ -884,10 +816,8 @@
         <div id="category-buttons" class="flex gap-3 overflow-x-auto pb-2 no-scrollbar scroll-smooth px-1"></div>
       </div>
 
-      <!-- ✅ Category rows -->
       <div class="space-y-10">
 
-        <!-- ✅ Audio Books row (NEW) -->
         <div id="row-Audio Books" class="scroll-mt-24">
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
@@ -998,7 +928,6 @@
           <div class="slider no-scrollbar flex gap-4 overflow-x-auto pb-3" data-slider="true" id="slider-অন্যান্য"></div>
         </div>
 
-        <!-- ✅ “সব বই দেখুন” at last -->
         <div class="pt-4">
           <div class="flex justify-center sm:justify-end">
             <button id="show-all-grid-btn"
@@ -1011,9 +940,7 @@
       </div>
     </section>
 
-    <!-- ✅ Grid Area (UPDATED: Sticky Title + Back always visible) -->
     <section id="grid-area" class="hidden max-w-7xl mx-auto px-4 pb-16 scroll-mt-24">
-      <!-- ✅ Sticky header inside grid -->
       <div class="sticky top-[72px] md:top-[88px] z-40 -mx-4 px-4 py-3 glass-effect border-b border-slate-200 dark:border-slate-800">
         <div class="flex items-center justify-between gap-3">
           <div class="min-w-0">
@@ -1038,9 +965,7 @@
     </section>
   </main>
 
-  <!-- ✅ Footer (same) -->
   <footer class="bg-white dark:bg-slate-900 border-t dark:border-slate-800 pt-12 pb-0">
-
     <div class="max-w-7xl mx-auto px-8 grid md:grid-cols-4 gap-10 text-center md:text-left pb-8">
 
       <div class="col-span-1 md:col-span-2">
@@ -1074,67 +999,67 @@
           <span id="link-home" class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2"><i data-lucide="home" class="w-4 h-4"></i> হোম</span>
           <span id="link-books" class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2"><i data-lucide="book-open" class="w-4 h-4"></i> বই</span>
           <span id="link-category" class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2"><i data-lucide="grid" class="w-4 h-4"></i> ক্যাটাগরি</span>
-<a href="mailto:html.arif@gmail.com?subject=যোগাযোগ - BoiCloud&body=আপনার বার্তা:%0A" 
-   class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2">
-  <i data-lucide="mail" class="w-4 h-4"></i> যোগাযোগ
-</a>
-       <a href="https://forms.gle/4XdfJcvaYMfxPrmf8" target="_blank" class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2">
-    <i data-lucide="message-square-plus" class="w-4 h-4"></i> বইয়ের অনুরোধ
-  </a>
-       <a href="https://forms.gle/XvUkcvWMTHBAHjEp6" target="_blank" class="hover:text-teal-500 transition-colors inline-flex items-center gap-2">
-    <i data-lucide="upload-cloud" class="w-4 h-4 text-teal-500"></i> বই পাঠান
-  </a>
+          <a href="mailto:html.arif@gmail.com?subject=যোগাযোগ - BoiCloud&body=আপনার বার্তা:%0A" 
+             class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2">
+            <i data-lucide="mail" class="w-4 h-4"></i> যোগাযোগ
+          </a>
+          <a href="https://forms.gle/4XdfJcvaYMfxPrmf8" target="_blank" class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2">
+            <i data-lucide="message-square-plus" class="w-4 h-4"></i> বইয়ের অনুরোধ
+          </a>
+          <a href="https://forms.gle/XvUkcvWMTHBAHjEp6" target="_blank" class="hover:text-teal-500 transition-colors inline-flex items-center gap-2">
+            <i data-lucide="upload-cloud" class="w-4 h-4 text-teal-500"></i> বই পাঠান
+          </a>
         </div>
       </div>
 
-     <div>
-  <h3 class="font-bold text-slate-900 dark:text-white mb-5 text-lg">
-    <i data-lucide="mail" class="w-5 h-5 inline mr-2"></i> সাবস্ক্রাইব
-  </h3>
-  <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">
-    <i data-lucide="bell" class="w-4 h-4 inline mr-1"></i> নতুন বইয়ের খবরের জন্য যোগ দিন।
-  </p>
-  
-  <form id="subscribe-form" action="https://formspree.io/f/xzdaveyg" method="POST" class="flex gap-2">
-    <input type="email" name="email" required placeholder="আপনার ইমেইল..." 
-           class="bg-slate-50 dark:bg-slate-950 border dark:border-slate-800 rounded-xl px-4 py-2 text-xs w-full focus:ring-1 focus:ring-brand-500 outline-none text-slate-800 dark:text-slate-200" />
-    <button type="submit" id="subscribe-btn" class="bg-brand-600 text-white p-2.5 rounded-xl hover:bg-brand-700 transition-colors flex items-center justify-center">
-      <i data-lucide="send" class="w-5 h-5"></i>
-    </button>
-  </form>
-</div>
-
-<script>
-  const subForm = document.getElementById('subscribe-form');
-  const subBtn = document.getElementById('subscribe-btn');
-
-  subForm.onsubmit = async (e) => {
-    e.preventDefault();
-    subBtn.disabled = true;
-    subBtn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i>';
-    lucide.createIcons(); // আইকন লোড করার জন্য
-
-    const formData = new FormData(subForm);
-    const response = await fetch(subForm.action, {
-      method: 'POST',
-      body: formData,
-      headers: { 'Accept': 'application/json' }
-    });
-
-    if (response.ok) {
-      showToast('ধন্যবাদ! সাবস্ক্রিপশন সফল হয়েছে।');
-      subForm.reset();
-    } else {
-      showToast('উফ! কিছু একটা ভুল হয়েছে। আবার চেষ্টা করুন।');
-    }
-
-    subBtn.disabled = false;
-    subBtn.innerHTML = '<i data-lucide="send" class="w-5 h-5"></i>';
-    lucide.createIcons();
-  };
-</script>
+      <div>
+        <h3 class="font-bold text-slate-900 dark:text-white mb-5 text-lg">
+          <i data-lucide="mail" class="w-5 h-5 inline mr-2"></i> সাবস্ক্রাইব
+        </h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">
+          <i data-lucide="bell" class="w-4 h-4 inline mr-1"></i> নতুন বইয়ের খবরের জন্য যোগ দিন।
+        </p>
+        
+        <form id="subscribe-form" action="https://formspree.io/f/xzdaveyg" method="POST" class="flex gap-2">
+          <input type="email" name="email" required placeholder="আপনার ইমেইল..." 
+                 class="bg-slate-50 dark:bg-slate-950 border dark:border-slate-800 rounded-xl px-4 py-2 text-xs w-full focus:ring-1 focus:ring-brand-500 outline-none text-slate-800 dark:text-slate-200" />
+          <button type="submit" id="subscribe-btn" class="bg-brand-600 text-white p-2.5 rounded-xl hover:bg-brand-700 transition-colors flex items-center justify-center">
+            <i data-lucide="send" class="w-5 h-5"></i>
+          </button>
+        </form>
+      </div>
 
     </div>
+
+    <script>
+      const subForm = document.getElementById('subscribe-form');
+      const subBtn = document.getElementById('subscribe-btn');
+
+      subForm.onsubmit = async (e) => {
+        e.preventDefault();
+        subBtn.disabled = true;
+        subBtn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i>';
+        lucide.createIcons();
+
+        const formData = new FormData(subForm);
+        const response = await fetch(subForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          showToast('ধন্যবাদ! সাবস্ক্রিপশন সফল হয়েছে।');
+          subForm.reset();
+        } else {
+          showToast('উফ! কিছু একটা ভুল হয়েছে। আবার চেষ্টা করুন।');
+        }
+
+        subBtn.disabled = false;
+        subBtn.innerHTML = '<i data-lucide="send" class="w-5 h-5"></i>';
+        lucide.createIcons();
+      };
+    </script>
 
     <div class="border-t border-slate-200 dark:border-slate-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-8 py-6">
