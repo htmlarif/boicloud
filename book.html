@@ -211,48 +211,71 @@
       </div>
 
       <div id="youtube-card" class="mt-8">
-        
         <div id="yt-available" class="hidden">
-          <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-3xl p-5 shadow-inner">
+          <div class="relative overflow-hidden bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 border border-slate-200 dark:border-slate-700 rounded-[2.5rem] p-6 shadow-xl">
             
             <div class="hidden"><div id="yt-player"></div></div>
 
-            <div class="flex flex-col gap-4">
+            <div class="relative z-10 flex flex-col gap-5">
               <div class="flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                  <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-                  </span>
-                  <span id="yt-source-name" class="text-[10px] font-black uppercase tracking-widest text-slate-400 italic">YouTube Audio</span>
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-2xl bg-brand-500 flex items-center justify-center shadow-lg shadow-brand-500/20">
+                    <i data-lucide="headphones" class="w-5 h-5 text-white"></i>
+                  </div>
+                  <div>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-brand-600 dark:text-brand-400 flex items-center gap-1">
+                      <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
+                      </span>
+                      Audio Mode
+                    </span>
+                    <p id="yt-source-name" class="text-[9px] text-slate-400 font-bold uppercase tracking-tighter italic">YouTube Source</p>
+                  </div>
                 </div>
-                <i data-lucide="music" class="w-4 h-4 text-slate-300"></i>
               </div>
 
-              <div class="flex items-center justify-center gap-8">
-                <button onclick="seekAudio(-10)" class="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 active:scale-90 transition-all shadow-sm">
-                  <i data-lucide="rotate-ccw" class="w-5 h-5 text-slate-600 dark:text-slate-300"></i>
+              <div class="space-y-2">
+                <div class="relative w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                  <div id="progress-bar" class="absolute top-0 left-0 h-full bg-gradient-to-r from-brand-600 to-brand-400 w-0 transition-all duration-300"></div>
+                </div>
+                <div class="flex justify-between text-[11px] font-bold font-mono text-slate-400 dark:text-slate-500">
+                  <span id="current-time">00:00</span>
+                  <span id="duration">00:00</span>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-center gap-10">
+                <button onclick="seekAudio(-10)" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 active:scale-90 transition-all shadow-sm group">
+                  <i data-lucide="rotate-ccw" class="w-6 h-6 text-slate-600 dark:text-slate-300 group-hover:text-brand-500"></i>
                 </button>
 
-                <button id="main-play-btn" onclick="togglePlay()" class="w-16 h-16 flex items-center justify-center rounded-full bg-brand-600 hover:bg-brand-700 text-white shadow-xl active:scale-95 transition-all">
-                  <i id="play-icon" data-lucide="play" class="w-8 h-8 fill-current"></i>
+                <button id="main-play-btn" onclick="togglePlay()" class="w-20 h-20 flex items-center justify-center rounded-[2rem] bg-brand-600 hover:bg-brand-700 text-white shadow-xl shadow-brand-600/30 active:scale-95 transition-all">
+                  <i id="play-icon" data-lucide="play" class="w-10 h-10 fill-current"></i>
                 </button>
 
-                <button onclick="seekAudio(10)" class="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 active:scale-90 transition-all shadow-sm">
-                  <i data-lucide="rotate-cw" class="w-5 h-5 text-slate-600 dark:text-slate-300"></i>
+                <button onclick="seekAudio(10)" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 active:scale-90 transition-all shadow-sm group">
+                  <i data-lucide="rotate-cw" class="w-6 h-6 text-slate-600 dark:text-slate-300 group-hover:text-brand-500"></i>
                 </button>
+              </div>
+
+              <div class="pt-3 border-t border-slate-200/50 dark:border-slate-700/50">
+                <p class="text-center text-[9px] text-slate-400 italic">
+                  <i data-lucide="info" class="w-3 h-3 inline mr-1"></i> 
+                  অডিওটি ইউটিউব থেকে সরাসরি প্লে হচ্ছে। সকল স্বত্ব মূল নির্মাতার।
+                </p>
               </div>
             </div>
           </div>
         </div>
 
-        <div id="yt-coming-soon" class="flex items-center gap-3 p-4 rounded-2xl border border-dashed border-slate-200 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-800/10">
-          <div class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400">
-            <i data-lucide="mic-off" class="w-5 h-5"></i>
+        <div id="yt-coming-soon" class="flex items-center gap-3 p-4 rounded-3xl border border-dashed border-slate-200 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-800/10">
+          <div class="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400">
+            <i data-lucide="mic-off" class="w-6 h-6"></i>
           </div>
           <div>
-            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Audio Book</p>
-            <p class="text-xs font-bold text-orange-500 italic">শীঘ্রই আসছে...</p>
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">Audio Book</p>
+            <p class="text-sm font-bold text-orange-500 italic mt-1">শীঘ্রই আসছে...</p>
           </div>
         </div>
       </div>
