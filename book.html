@@ -2,26 +2,26 @@
 <html lang="bn" class="dark">
 <head>
   <meta name="description" content="অনলাইনে ফ্রি বাংলা বই পড়ুন এবং ডাউনলোড করুন।">
+
   <script>
     (function() {
       var ua = navigator.userAgent || navigator.vendor || window.opera;
       var isFacebook = (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1) || (ua.indexOf("Messenger") > -1);
+      if (!isFacebook) return;
 
-      if (isFacebook) {
-        var currentUrl = window.location.href;
+      var currentUrl = window.location.href;
 
-        if (ua.indexOf("Android") > -1) {
-          var chromeIntent = "intent://" + currentUrl.replace(/^https?:\/\//, "") + "#Intent;scheme=https;package=com.android.chrome;end";
-          window.location.href = chromeIntent;
-        } else {
-          window.addEventListener("load", function() {
-            var notice = document.createElement("div");
-            notice.style = "position:fixed; top:0; left:0; width:100%; background:#2f3542; color:#ffffff; padding:12px; text-align:center; z-index:99999; font-family:sans-serif; font-size:14px; border-bottom:2px solid #3742fa;";
-            notice.innerHTML = "Use <strong>Chrome/Safari</strong> for a better experience and easy downloads.";
-            document.body.appendChild(notice);
-            document.body.style.marginTop = "50px";
-          });
-        }
+      if (ua.indexOf("Android") > -1) {
+        var chromeIntent = "intent://" + currentUrl.replace(/^https?:\/\//, "") + "#Intent;scheme=https;package=com.android.chrome;end";
+        window.location.href = chromeIntent;
+      } else {
+        window.addEventListener("load", function() {
+          var notice = document.createElement("div");
+          notice.style = "position:fixed; top:0; left:0; width:100%; background:#2f3542; color:#ffffff; padding:12px; text-align:center; z-index:99999; font-family:sans-serif; font-size:14px; border-bottom:2px solid #3742fa;";
+          notice.innerHTML = "Use <strong>Chrome/Safari</strong> for a better experience and easy downloads.";
+          document.body.appendChild(notice);
+          document.body.style.marginTop = "50px";
+        });
       }
     })();
   </script>
@@ -99,15 +99,12 @@
       position: fixed;
       left: 50%;
       transform: translateX(-50%);
-      bottom: calc(22px + env(safe-area-inset-bottom));
+      bottom: calc(18px + env(safe-area-inset-bottom));
       z-index: 999;
       max-width: 92vw;
     }
 
-    @keyframes blinkSoft { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
-    .blink-soft { animation: blinkSoft 1.15s infinite; }
-
-    /* ✅ Mini wave */
+    /* wave */
     .wave {
       display:inline-flex;
       align-items:flex-end;
@@ -132,7 +129,6 @@
     .bar:nth-child(3){ animation-delay: .24s; }
     .bar:nth-child(4){ animation-delay: .36s; }
     .bar:nth-child(5){ animation-delay: .48s; }
-
     @keyframes wave {
       0%,100% { transform: scaleY(.45); opacity:.6; }
       50% { transform: scaleY(1.35); opacity:1; }
@@ -180,6 +176,7 @@
 
   <!-- ================= MAIN ================= -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+
     <div class="container mx-auto p-4">
       <div id="loading-skeleton" class="space-y-4">
         <div class="skeleton h-64 w-44 rounded-xl mx-auto"></div>
@@ -199,7 +196,7 @@
       </a>
     </div>
 
-    <section id="book-section" class="space-y-6 hidden">
+    <section id="book-section" class="space-y-5 hidden">
 
       <!-- ✅ Cover Card -->
       <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden shadow-lg">
@@ -227,128 +224,103 @@
           <span id="book-author">—</span>
         </p>
 
-        <div class="mt-6">
+        <div class="mt-5">
           <h3 class="text-sm font-black flex items-center gap-2">
             <i data-lucide="info" class="w-4 h-4"></i> বিস্তারিত
           </h3>
           <p id="book-desc" class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed break-words">—</p>
         </div>
 
-        <!-- ================= AUDIO PLAYER (COMPACT + PREMIUM) ================= -->
-        <div id="youtube-card" class="mt-6">
+        <!-- ================= AUDIO PLAYER (COMPACT) ================= -->
+        <div id="youtube-card" class="mt-5">
           <div id="yt-available" class="hidden">
             <div class="relative overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2rem] p-4 shadow-xl">
+
+              <!-- hidden real player -->
               <div class="hidden"><div id="yt-player"></div></div>
 
-              <div class="relative z-10 flex flex-col gap-4">
-                <div class="flex items-center justify-between gap-3">
-                  <div class="flex items-center gap-2">
-                    <div class="w-9 h-9 rounded-2xl bg-brand-500 flex items-center justify-center shadow-lg shadow-brand-500/20">
-                      <i data-lucide="headphones" class="w-4.5 h-4.5 text-white"></i>
-                    </div>
-                    <div class="leading-tight">
-                      <div class="text-[10px] font-black uppercase tracking-widest text-brand-600">Audio Mode</div>
-                      <div class="text-[11px] font-bold text-slate-500 dark:text-slate-400">
-                        <span id="yt-source-label">Audio</span>
-                      </div>
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2">
+                  <div class="w-9 h-9 rounded-2xl bg-brand-500 flex items-center justify-center shadow-lg shadow-brand-500/20">
+                    <i data-lucide="headphones" class="w-4.5 h-4.5 text-white"></i>
+                  </div>
+                  <div class="leading-tight">
+                    <div class="text-[10px] font-black uppercase tracking-widest text-brand-600">Audio</div>
+                    <div class="text-[11px] font-bold text-slate-500 dark:text-slate-400">
+                      <span id="yt-source-label">YouTube Source</span>
                     </div>
                   </div>
+                </div>
 
-                  <div class="flex items-center gap-2">
-                    <div class="wave paused" id="mini-wave" title="Playing indicator">
-                      <span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
-                    </div>
-                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-[3px]">BoiCloud</div>
+                <div class="flex items-center gap-2">
+                  <div class="wave paused" id="mini-wave">
+                    <span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
+                  </div>
+                  <span id="player-mini-spinner" class="hidden">
+                    <i data-lucide="loader-2" class="w-4 h-4 text-yellow-400 mini-spin"></i>
+                  </span>
+                </div>
+              </div>
+
+              <!-- ✅ Parts (auto hide if single) -->
+              <div id="parts-wrap" class="hidden mt-3">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="text-[10px] font-black uppercase tracking-widest text-slate-400">Parts</div>
+                  <div id="part-now" class="text-[10px] font-black text-slate-400 uppercase tracking-[3px]">Part</div>
+                </div>
+                <div id="parts-chips" class="flex gap-2 overflow-x-auto no-scrollbar pb-1"></div>
+              </div>
+
+              <!-- ✅ Progress -->
+              <div class="mt-3 space-y-2">
+                <div class="relative group h-5 flex items-center">
+                  <div class="absolute w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full border border-slate-200/60 dark:border-slate-700/60"></div>
+                  <div id="progress-fill" class="absolute h-1.5 bg-brand-600 rounded-full pointer-events-none" style="width:0%;"></div>
+
+                  <input
+                    type="range"
+                    id="progress-slider"
+                    min="0"
+                    max="1000"
+                    value="0"
+                    class="absolute w-full h-5 opacity-0 cursor-pointer z-20"
+                    aria-label="Playback progress"
+                  />
+
+                  <div id="progress-thumb"
+                    class="absolute h-3.5 w-3.5 bg-white dark:bg-slate-900 border-2 border-brand-600 rounded-full shadow-md z-10 pointer-events-none transition-transform group-hover:scale-110"
+                    style="left:0%; transform: translateX(-50%);">
                   </div>
                 </div>
 
-                <!-- ✅ Parts row (auto hidden if single) -->
-                <div id="parts-wrap" class="hidden">
-                  <div class="flex items-center justify-between gap-3">
-                    <div class="text-[10px] font-black uppercase tracking-widest text-slate-400">Parts</div>
-                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-[3px]" id="part-now">Part</div>
-                  </div>
-                  <div id="parts-chips" class="flex gap-2 overflow-x-auto no-scrollbar pb-1"></div>
+                <div class="flex justify-between text-[11px] font-bold font-mono text-slate-400">
+                  <span id="current-time">00:00</span>
+                  <span id="total-time">00:00</span>
                 </div>
 
-                <!-- ✅ Compact premium controls (NO YouTube button) -->
-                <div class="flex items-center justify-between gap-2">
-                  <button id="btn-speed"
-                    class="px-3 py-2 rounded-2xl text-[11px] font-black bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 active:scale-95 transition-all inline-flex items-center gap-2">
-                    <i data-lucide="gauge" class="w-4 h-4"></i>
-                    <span id="speed-label">1x</span>
-                  </button>
+                <p id="drag-hint" class="text-[11px] text-slate-400 dark:text-slate-500 hidden">
+                  Release to seek…
+                </p>
+              </div>
 
-                  <button id="btn-sleep"
-                    class="px-3 py-2 rounded-2xl text-[11px] font-black bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 active:scale-95 transition-all inline-flex items-center gap-2">
-                    <i data-lucide="moon" class="w-4 h-4"></i>
-                    <span id="sleep-label">Off</span>
-                  </button>
+              <!-- ✅ Controls -->
+              <div class="mt-3 flex items-center justify-center gap-7">
+                <button id="btn-rewind" class="w-11 h-11 flex items-center justify-center rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm active:scale-95 transition-all">
+                  <i data-lucide="rotate-ccw" class="w-5.5 h-5.5 text-slate-600 dark:text-slate-300"></i>
+                </button>
 
-                  <div class="text-[11px] font-black text-slate-400 px-3 py-2 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-slate-900/40">
-                    <span id="resume-label">—</span>
-                  </div>
-                </div>
+                <button id="main-play-btn" class="w-16 h-16 flex items-center justify-center rounded-[1.9rem] bg-brand-600 hover:bg-brand-700 text-white shadow-[0_10px_20px_-5px_rgba(79,70,229,0.3)] active:scale-95 transition-all">
+                  <span id="play-pause-icon" class="inline-flex items-center justify-center"></span>
+                </button>
 
-                <div class="space-y-2">
-                  <div class="relative group h-5 flex items-center">
-                    <div class="absolute w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full border border-slate-200/60 dark:border-slate-700/60"></div>
+                <button id="btn-forward" class="w-11 h-11 flex items-center justify-center rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm active:scale-95 transition-all">
+                  <i data-lucide="rotate-cw" class="w-5.5 h-5.5 text-slate-600 dark:text-slate-300"></i>
+                </button>
+              </div>
 
-                    <div id="progress-fill" class="absolute h-1.5 bg-brand-600 rounded-full pointer-events-none" style="width:0%;"></div>
-
-                    <input
-                      type="range"
-                      id="progress-slider"
-                      min="0"
-                      max="1000"
-                      value="0"
-                      class="absolute w-full h-5 opacity-0 cursor-pointer z-20"
-                      aria-label="Playback progress"
-                    />
-
-                    <div id="progress-thumb"
-                      class="absolute h-3.5 w-3.5 bg-white dark:bg-slate-900 border-2 border-brand-600 rounded-full shadow-md z-10 pointer-events-none transition-transform group-hover:scale-110"
-                      style="left:0%; transform: translateX(-50%);">
-                    </div>
-                  </div>
-
-                  <div class="flex justify-between text-[11px] font-bold font-mono text-slate-400">
-                    <span id="current-time">00:00</span>
-                    <span id="total-time">00:00</span>
-                  </div>
-
-                  <p id="drag-hint" class="text-[11px] text-slate-400 dark:text-slate-500 hidden">
-                    Release to seek…
-                  </p>
-                </div>
-
-                <div class="flex items-center justify-center gap-7">
-                  <button id="btn-rewind" class="w-11 h-11 flex items-center justify-center rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm active:scale-95 transition-all">
-                    <i data-lucide="rotate-ccw" class="w-5.5 h-5.5 text-slate-600 dark:text-slate-300"></i>
-                  </button>
-
-                  <button id="main-play-btn" class="w-16 h-16 flex items-center justify-center rounded-[1.9rem] bg-brand-600 hover:bg-brand-700 text-white shadow-[0_10px_20px_-5px_rgba(79,70,229,0.3)] active:scale-95 transition-all">
-                    <span id="play-pause-icon" class="inline-flex items-center justify-center"></span>
-                  </button>
-
-                  <button id="btn-forward" class="w-11 h-11 flex items-center justify-center rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm active:scale-95 transition-all">
-                    <i data-lucide="rotate-cw" class="w-5.5 h-5.5 text-slate-600 dark:text-slate-300"></i>
-                  </button>
-                </div>
-
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-                    <span id="player-status-dot" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600"></span>
-                    <span id="player-status">Ready</span>
-                    <span id="player-mini-spinner" class="hidden">
-                      <i data-lucide="loader-2" class="w-4 h-4 text-yellow-400 mini-spin"></i>
-                    </span>
-                  </div>
-                </div>
-
-                <div class="text-[11px] leading-relaxed text-slate-500 dark:text-slate-400">
-                  অডিওটি YouTube সোর্স থেকে সম্প্রচারিত • সকল স্বত্ব মূল নির্মাতার সংরক্ষিত
-                </div>
+              <div class="mt-2 flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+                <span id="player-status-dot" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                <span id="player-status">Ready</span>
               </div>
             </div>
           </div>
@@ -357,14 +329,10 @@
             <div class="flex items-center gap-4 p-4 rounded-[2rem] border border-dashed border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20">
               <div class="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-700">
                 <i data-lucide="mic-off" class="w-6 h-6 text-slate-300"></i>
-                <span class="absolute -top-1 -right-1 flex h-3 w-3">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
-                </span>
               </div>
               <div>
                 <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">Status</p>
-                <p class="text-sm font-bold text-orange-600 dark:text-orange-500 italic mt-1.5 blink-soft">
+                <p class="text-sm font-bold text-orange-600 dark:text-orange-500 italic mt-1.5">
                   অডিও বুক শীঘ্রই আসছে...
                 </p>
               </div>
@@ -374,7 +342,7 @@
         <!-- ================= /AUDIO PLAYER ================= -->
 
         <!-- ✅ Buttons -->
-        <div class="mt-6 grid grid-cols-1 xs:grid-cols-3 gap-3">
+        <div class="mt-5 grid grid-cols-1 xs:grid-cols-3 gap-3">
           <a id="read-btn" href="#"
              class="w-full px-5 py-3 rounded-2xl font-black text-sm bg-brand-600 hover:bg-brand-700 text-white inline-flex items-center justify-center gap-2">
             <i data-lucide="book-open" class="w-5 h-5"></i> পড়ুন
@@ -510,7 +478,7 @@
     </div>
   </footer>
 
-  <!-- ========================= CORE UI SCRIPTS ========================= -->
+  <!-- ========================= UI + DATA ========================= -->
   <script>
     lucide.createIcons();
 
@@ -546,7 +514,7 @@
       document.body.appendChild(toast);
       lucide.createIcons();
       toast.querySelector('button')?.addEventListener('click', () => toast.remove());
-      setTimeout(() => toast.remove(), 2200);
+      setTimeout(() => toast.remove(), 1800);
     }
 
     function initializeDarkMode() {
@@ -672,9 +640,8 @@
     }
 
     function getYoutubeIdFromBook(book) {
-      const candidates = [
-        book?.ytId, book?.youtubeId, book?.audioYtId, book?.audioId, book?.youtube, book?.yt
-      ].filter(Boolean).map(v => String(v).trim());
+      const candidates = [book?.ytId, book?.youtubeId, book?.audioYtId, book?.audioId, book?.youtube, book?.yt]
+        .filter(Boolean).map(v => String(v).trim());
       return candidates[0] || '';
     }
 
@@ -702,6 +669,12 @@
       if (!parts.length && single) parts.push({ id: single, title: 'Part 1' });
 
       return parts;
+    }
+
+    function getSourceNameFromBook(book) {
+      const candidates = [book?.sourceId, book?.sourceName, book?.channelName, book?.source]
+        .filter(Boolean).map(v => String(v).trim());
+      return candidates[0] || '';
     }
 
     function renderRelatedCarousel(list) {
@@ -753,7 +726,8 @@
       document.getElementById('book-title').textContent = book.title;
       document.getElementById('book-author').textContent = book.author;
       document.getElementById('book-category').textContent = book.category;
-      document.getElementById('book-desc').textContent = book.description || 'এই বইটির জন্য এখনো বিস্তারিত বর্ণনা যোগ করা হয়নি।';
+      document.getElementById('book-desc').textContent =
+        book.description || 'এই বইটির জন্য এখনো বিস্তারিত বর্ণনা যোগ করা হয়নি।';
 
       const coverImgElement = document.getElementById('book-cover');
       coverImgElement.src = book.coverImage;
@@ -780,11 +754,18 @@
         if (!downOk) { e.preventDefault(); showToast('দুঃখিত! এই বইয়ের ডাউনলোড লিংক এখনো আপডেট করা হয়নি।', 'error'); }
       });
 
+      // Source label
+      const sourceName = getSourceNameFromBook(book);
+      const labelEl = document.getElementById('yt-source-label');
+      if (labelEl) labelEl.textContent = sourceName ? sourceName : 'YouTube Source';
+
+      // Audio init
       const parts = getPartsFromBook(book);
       if (typeof window.handleYoutubeAudio === 'function') {
         window.handleYoutubeAudio({ bookKey: String(book.id ?? ''), parts });
       }
 
+      // Share links
       const shareUrlRaw = location.href;
       const shareUrl = encodeURIComponent(shareUrlRaw);
       const shareText = encodeURIComponent(`${book.title} - ${book.author}`);
@@ -829,13 +810,13 @@
       setTimeout(() => {
         document.getElementById('loading-skeleton')?.classList.add('hidden');
         document.getElementById('book-section')?.classList.remove('hidden');
-      }, 250);
+      }, 200);
     }
 
     document.addEventListener('DOMContentLoaded', init);
   </script>
 
-  <!-- ========================= YouTube Audio Player Script (Fixed) ========================= -->
+  <!-- ========================= YouTube Audio Player Script (Parts Fixed) ========================= -->
   <script>
   (() => {
     const SKIP_SECONDS = 5;
@@ -863,16 +844,9 @@
     const miniSpinner = document.getElementById("player-mini-spinner");
     const miniWave = document.getElementById("mini-wave");
 
-    const btnSpeed = document.getElementById("btn-speed");
-    const speedLabel = document.getElementById("speed-label");
-
-    const btnSleep = document.getElementById("btn-sleep");
-    const sleepLabel = document.getElementById("sleep-label");
-
     const partsWrap = document.getElementById("parts-wrap");
     const partsChips = document.getElementById("parts-chips");
     const partNow = document.getElementById("part-now");
-    const resumeLabel = document.getElementById("resume-label");
 
     let player = null;
     let isReady = false;
@@ -886,15 +860,8 @@
     let parts = [];
     let activePartIndex = 0;
 
-    const SPEEDS = [1, 1.25, 1.5, 1.75, 2];
-    let speedIndex = 0;
-
-    const SLEEP_PRESETS = [0, 10, 15, 30, 45, 60];
-    let sleepIndex = 0;
-    let sleepEndAt = 0;
-    let sleepTicker = null;
-
-    let saveTicker = null;
+    // ✅ KEY FIX: click before player ready => queue it
+    let pendingPartIndex = null;
 
     const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
 
@@ -916,8 +883,8 @@
       const v = map[mode] || map.ready;
       statusDot.className = "w-2 h-2 rounded-full " + v.dot;
       statusText.textContent = v.text;
-      if (miniSpinner) miniSpinner.classList.toggle("hidden", !v.spin);
 
+      if (miniSpinner) miniSpinner.classList.toggle("hidden", !v.spin);
       if (miniWave) {
         if (mode === 'playing') miniWave.classList.remove('paused');
         else miniWave.classList.add('paused');
@@ -949,27 +916,6 @@
       totalTimeEl.textContent = formatTime(totalSec);
     }
 
-    function resumeKey(videoId) {
-      const b = (bookKey || 'book').replace(/\s+/g,'_');
-      return `boicloud_resume__${b}__${videoId}`;
-    }
-
-    function readResume(videoId) {
-      try {
-        const raw = localStorage.getItem(resumeKey(videoId));
-        const t = Number(raw || 0);
-        return Number.isFinite(t) ? t : 0;
-      } catch { return 0; }
-    }
-
-    function writeResume(videoId, t) {
-      try { localStorage.setItem(resumeKey(videoId), String(Math.floor(t || 0))); } catch {}
-    }
-
-    function clearResume(videoId) {
-      try { localStorage.removeItem(resumeKey(videoId)); } catch {}
-    }
-
     function currentVid() {
       return parts?.[activePartIndex]?.id || '';
     }
@@ -992,17 +938,6 @@
       } catch { return 0; }
     }
 
-    function safeSetRate(rate) {
-      try { player?.setPlaybackRate?.(rate); } catch {}
-    }
-
-    function showResumeBadge() {
-      const vid = currentVid();
-      if (!resumeLabel) return;
-      const saved = vid ? readResume(vid) : 0;
-      resumeLabel.textContent = saved > 3 ? `Resume ${formatTime(saved)}` : '—';
-    }
-
     function renderPartsUI() {
       if (!partsWrap || !partsChips || !partNow) return;
 
@@ -1013,10 +948,11 @@
       }
 
       partsWrap.classList.remove('hidden');
+
       partsChips.innerHTML = parts.map((p, idx) => {
         const active = idx === activePartIndex;
         return `
-          <button data-idx="${idx}"
+          <button type="button" data-idx="${idx}"
             class="px-3 py-2 rounded-2xl text-[11px] font-black whitespace-nowrap border active:scale-95 transition-all
               ${active
                 ? 'bg-brand-600 text-white border-brand-600 shadow-lg shadow-brand-500/20'
@@ -1040,95 +976,10 @@
       lucide.createIcons();
     }
 
-    function stopResumeSaver() {
-      if (saveTicker) clearInterval(saveTicker);
-      saveTicker = null;
-    }
-
-    function startResumeSaver() {
-      stopResumeSaver();
-      saveTicker = setInterval(() => {
-        if (!player || !isReady) return;
-        const vid = currentVid();
-        if (!vid) return;
-        const t = safeCurrentTime();
-        if (Number.isFinite(t) && t > 1) writeResume(vid, t);
-      }, 5000);
-    }
-
-    function setSpeedByIndex(i) {
-      speedIndex = clamp(i, 0, SPEEDS.length - 1);
-      const rate = SPEEDS[speedIndex];
-      safeSetRate(rate);
-      if (speedLabel) speedLabel.textContent = `${rate}x`;
-      showToast(`Speed: ${rate}x`);
-    }
-
-    function cycleSpeed() {
-      setSpeedByIndex((speedIndex + 1) % SPEEDS.length);
-    }
-
-    function stopSleepTicker() {
-      if (sleepTicker) clearInterval(sleepTicker);
-      sleepTicker = null;
-    }
-
-    function startSleepTicker() {
-      stopSleepTicker();
-      sleepTicker = setInterval(() => {
-        if (!sleepEndAt) return;
-        const left = sleepEndAt - Date.now();
-        if (left <= 0) {
-          sleepEndAt = 0;
-          stopSleepTicker();
-          if (player && isReady) player.pauseVideo();
-          if (sleepLabel) sleepLabel.textContent = 'Off';
-          showToast('Sleep timer done ✅');
-          return;
-        }
-        const m = Math.ceil(left / 60000);
-        if (sleepLabel) sleepLabel.textContent = `${m}m`;
-      }, 12000);
-    }
-
-    function setSleepMinutes(min) {
-      if (!sleepLabel) return;
-      if (!min) {
-        sleepEndAt = 0;
-        sleepLabel.textContent = 'Off';
-        stopSleepTicker();
-        showToast('Sleep timer: Off');
-        return;
-      }
-      sleepEndAt = Date.now() + min * 60 * 1000;
-      sleepLabel.textContent = `${min}m`;
-      startSleepTicker();
-      showToast(`Sleep: ${min} min`);
-    }
-
-    function cycleSleep() {
-      sleepIndex = (sleepIndex + 1) % SLEEP_PRESETS.length;
-      setSleepMinutes(SLEEP_PRESETS[sleepIndex]);
-    }
-
-    function ensurePlayer(videoId, autoplay=false) {
+    function ensurePlayer(videoId) {
       if (!window.YT || !window.YT.Player) return;
 
-      if (player) {
-        isReady = false;
-        setStatus("buffering");
-        setPlayIcon(false);
-        lastKnownTime = 0;
-        duration = 0;
-        setTimesUI(0,0);
-        renderProgress(0);
-
-        // ✅ always load on part switch
-        if (autoplay) player.loadVideoById(videoId);
-        else player.cueVideoById(videoId);
-
-        return;
-      }
+      if (player) return;
 
       setStatus("buffering");
       player = new YT.Player("yt-player", {
@@ -1142,124 +993,76 @@
             duration = safeDuration();
             setTimesUI(0, duration);
             renderProgress(0);
-
-            safeSetRate(SPEEDS[speedIndex] || 1);
             setStatus("ready");
             setPlayIcon(false);
-
-            const vid = currentVid();
-            const saved = vid ? readResume(vid) : 0;
-            if (saved > 5) {
-              // seek later (duration sometimes 0 at first)
-              setTimeout(() => {
-                try {
-                  const d = safeDuration();
-                  if (d && saved < (d - 5)) {
-                    player.seekTo(saved, true);
-                    lastKnownTime = saved;
-                    setTimesUI(saved, d);
-                    renderProgress(saved / d);
-                    showToast('Resume ✅');
-                  }
-                  showResumeBadge();
-                } catch {}
-              }, 600);
-            } else {
-              showResumeBadge();
-            }
-
             startTick();
-            startResumeSaver();
+
+            // ✅ if user clicked part before ready, load it now
+            if (pendingPartIndex !== null) {
+              const idx = pendingPartIndex;
+              pendingPartIndex = null;
+              forceLoadPart(idx, true);
+            }
           },
           onStateChange: (e) => {
             if (e.data === 1) { setStatus("playing"); setPlayIcon(true); }
             else if (e.data === 2) { setStatus("paused"); setPlayIcon(false); }
             else if (e.data === 3) setStatus("buffering");
-            else if (e.data === 0) {
-              setStatus("paused");
-              setPlayIcon(false);
-              const vid = currentVid();
-              if (vid) clearResume(vid);
-              showResumeBadge();
-            }
+            else if (e.data === 0) { setStatus("paused"); setPlayIcon(false); }
           },
           onError: () => { setStatus("error"); setPlayIcon(false); }
         }
       });
     }
 
-    function teardownPlayer() {
-      stopTick();
-      stopSleepTicker();
-      stopResumeSaver();
-
-      isReady = false;
-      duration = 0;
+    function forceLoadVideo(videoId, autoplay) {
+      if (!player) return;
+      isReady = true; // player exists
+      setStatus("buffering");
+      setPlayIcon(false);
       lastKnownTime = 0;
-      setTimesUI(0, 0);
+      duration = 0;
+      setTimesUI(0,0);
       renderProgress(0);
 
-      if (player && player.destroy) {
-        try { player.destroy(); } catch (e) {}
-      }
-      player = null;
-      setStatus("ready");
-      setPlayIcon(false);
+      try {
+        if (autoplay) player.loadVideoById(videoId);
+        else player.cueVideoById(videoId);
+      } catch {}
     }
 
-    function switchPart(idx) {
-      // ✅ save current before switching
-      const vidPrev = currentVid();
-      if (vidPrev && player && isReady) {
-        const t = safeCurrentTime();
-        if (t > 1) writeResume(vidPrev, t);
-      }
+    function forceLoadPart(idx, autoplay) {
+      if (!parts[idx]?.id) return;
 
       activePartIndex = idx;
       renderPartsUI();
-      showResumeBadge();
 
       const vid = currentVid();
-      if (!vid) return;
 
-      // keep play state: if currently playing => autoplay new part
-      const shouldAutoplay = isPlayingState();
-      ensurePlayer(vid, shouldAutoplay);
-      showToast(`${parts[idx]?.title || `Part ${idx+1}`}`);
-    }
-
-    window.handleYoutubeAudio = function handleYoutubeAudio(input) {
-      let payload = input;
-
-      if (typeof payload === 'string') {
-        payload = { bookKey: '', parts: payload ? [{ id: String(payload).trim(), title: 'Part 1' }] : [] };
-      }
-
-      bookKey = String(payload?.bookKey || '');
-      parts = Array.isArray(payload?.parts) ? payload.parts.filter(p => String(p?.id||'').trim()) : [];
-      if (!parts.length) {
-        elAvailable.classList.add("hidden");
-        elComing.classList.remove("hidden");
-        teardownPlayer();
+      // player not created yet? queue it
+      if (!player) {
+        pendingPartIndex = idx;
+        ensurePlayer(vid); // create player with initial video
         return;
       }
 
-      activePartIndex = 0;
-      elComing.classList.add("hidden");
-      elAvailable.classList.remove("hidden");
+      // player created but not ready? queue and wait
+      if (!isReady) {
+        pendingPartIndex = idx;
+        return;
+      }
 
-      renderPartsUI();
-      showResumeBadge();
-      ensurePlayer(currentVid(), false);
-      lucide.createIcons();
-    };
+      forceLoadVideo(vid, autoplay);
+      setStatus(autoplay ? 'buffering' : 'ready');
+    }
 
-    window.onYouTubeIframeAPIReady = function() {
-      if (parts?.length) ensurePlayer(currentVid(), false);
-    };
+    function switchPart(idx) {
+      // Always autoplay on part switch (simple + reliable)
+      forceLoadPart(idx, true);
+    }
 
     function tick() {
-      if (player && isReady) {
+      if (player) {
         const d = safeDuration();
         if (d && d !== duration) {
           duration = d;
@@ -1282,29 +1085,20 @@
       if (rafId) return;
       rafId = requestAnimationFrame(tick);
     }
-    function stopTick() {
-      if (!rafId) return;
-      cancelAnimationFrame(rafId);
-      rafId = null;
-    }
 
     btnPlay.addEventListener("click", () => {
-      if (!player || !isReady) return;
+      if (!player) return;
       if (isPlayingState()) player.pauseVideo();
       else player.playVideo();
     });
 
     function seekToSeconds(sec) {
-      if (!player || !isReady || !duration) return;
+      if (!player || !duration) return;
       const target = clamp(sec, 0, duration);
-      player.seekTo(target, true);
+      try { player.seekTo(target, true); } catch {}
       lastKnownTime = target;
       setTimesUI(target, duration);
       renderProgress(target / duration);
-
-      const vid = currentVid();
-      if (vid) writeResume(vid, target);
-      showResumeBadge();
     }
 
     function skipBy(deltaSec) {
@@ -1315,7 +1109,7 @@
     function setupHoldSkip(button, deltaSec) {
       const start = (e) => {
         e.preventDefault();
-        if (!player || !isReady) return;
+        if (!player) return;
         skipBy(deltaSec);
         clearInterval(holdTimer);
         holdTimer = setInterval(() => skipBy(deltaSec), HOLD_INTERVAL_MS);
@@ -1352,14 +1146,15 @@
     });
 
     progressSlider.addEventListener("change", () => {
-      if (!player || !isReady || !duration) {
+      if (!player || !duration) {
         isDragging = false;
         dragHint.classList.add("hidden");
         return;
       }
+
       const ratio = getRatioFromSlider();
       const target = ratio * duration;
-      player.seekTo(target, true);
+      try { player.seekTo(target, true); } catch {}
 
       isDragging = false;
       dragHint.classList.add("hidden");
@@ -1367,10 +1162,6 @@
       lastKnownTime = target;
       setTimesUI(target, duration);
       renderProgress(ratio);
-
-      const vid = currentVid();
-      if (vid) writeResume(vid, target);
-      showResumeBadge();
     });
 
     progressSlider.addEventListener("pointercancel", () => {
@@ -1378,34 +1169,45 @@
       dragHint.classList.add("hidden");
     });
 
-    btnSpeed?.addEventListener('click', () => {
-      if (!player || !isReady) { showToast('Player not ready', 'error'); return; }
-      cycleSpeed();
-    });
+    // ✅ Public handler
+    window.handleYoutubeAudio = function handleYoutubeAudio(input) {
+      let payload = input;
+      if (typeof payload === 'string') {
+        payload = { bookKey: '', parts: payload ? [{ id: String(payload).trim(), title: 'Part 1' }] : [] };
+      }
 
-    btnSleep?.addEventListener('click', () => {
-      cycleSleep();
-    });
+      bookKey = String(payload?.bookKey || '');
+      parts = Array.isArray(payload?.parts) ? payload.parts.filter(p => String(p?.id||'').trim()) : [];
 
-    window.addEventListener('beforeunload', () => {
-      try {
-        const vid = currentVid();
-        if (!vid) return;
-        const t = safeCurrentTime();
-        if (t > 1) writeResume(vid, t);
-      } catch {}
-    });
+      pendingPartIndex = null;
+      activePartIndex = 0;
 
-    // init defaults
+      if (!parts.length) {
+        elAvailable.classList.add("hidden");
+        elComing.classList.remove("hidden");
+        return;
+      }
+
+      elComing.classList.add("hidden");
+      elAvailable.classList.remove("hidden");
+
+      renderPartsUI();
+
+      // Create player with part 1
+      ensurePlayer(parts[0].id);
+      lucide.createIcons();
+    };
+
+    window.onYouTubeIframeAPIReady = function() {
+      if (parts?.length && !player) ensurePlayer(parts[activePartIndex].id);
+    };
+
+    // init visuals
     setTimesUI(0, 0);
     renderProgress(0);
     setStatus("ready");
     setPlayIcon(false);
-    if (speedLabel) speedLabel.textContent = '1x';
-    if (sleepLabel) sleepLabel.textContent = 'Off';
-    if (resumeLabel) resumeLabel.textContent = '—';
   })();
   </script>
-
 </body>
 </html>
