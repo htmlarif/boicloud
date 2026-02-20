@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="bn" class="dark">
 <head>
@@ -14,8 +13,7 @@
         if (ua.indexOf("Android") > -1) {
           var chromeIntent = "intent://" + currentUrl.replace(/^https?:\/\//, "") + "#Intent;scheme=https;package=com.android.chrome;end";
           window.location.href = chromeIntent;
-        }
-        else {
+        } else {
           window.addEventListener("load", function() {
             var notice = document.createElement("div");
             notice.style = "position:fixed; top:0; left:0; width:100%; background:#2f3542; color:#ffffff; padding:12px; text-align:center; z-index:99999; font-family:sans-serif; font-size:14px; border-bottom:2px solid #3742fa;";
@@ -109,7 +107,7 @@
     @keyframes blinkSoft { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
     .blink-soft { animation: blinkSoft 1.15s infinite; }
 
-    /* ✅ Premium mini wave bars */
+    /* ✅ Mini wave */
     .wave {
       display:inline-flex;
       align-items:flex-end;
@@ -139,10 +137,8 @@
       0%,100% { transform: scaleY(.45); opacity:.6; }
       50% { transform: scaleY(1.35); opacity:1; }
     }
-
     .wave.paused .bar { animation: none; opacity:.45; transform: scaleY(.55); }
 
-    /* ✅ tiny spinner */
     @keyframes spin { to { transform: rotate(360deg); } }
     .mini-spin { animation: spin .9s linear infinite; }
   </style>
@@ -189,12 +185,6 @@
         <div class="skeleton h-64 w-44 rounded-xl mx-auto"></div>
         <div class="skeleton h-6 w-3/4 rounded mx-auto"></div>
         <div class="skeleton h-4 w-1/2 rounded mx-auto"></div>
-      </div>
-
-      <div id="main-content" class="hidden">
-        <img id="display-cover" src="" class="mx-auto rounded-xl shadow-lg" />
-        <h1 id="display-title" class="text-2xl font-bold text-center mt-4"></h1>
-        <p id="display-author" class="text-center text-slate-500"></p>
       </div>
     </div>
 
@@ -246,7 +236,6 @@
 
         <!-- ================= AUDIO PLAYER (COMPACT + PREMIUM) ================= -->
         <div id="youtube-card" class="mt-6">
-          <!-- ✅ Available -->
           <div id="yt-available" class="hidden">
             <div class="relative overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2rem] p-4 shadow-xl">
               <div class="hidden"><div id="yt-player"></div></div>
@@ -260,7 +249,7 @@
                     <div class="leading-tight">
                       <div class="text-[10px] font-black uppercase tracking-widest text-brand-600">Audio Mode</div>
                       <div class="text-[11px] font-bold text-slate-500 dark:text-slate-400">
-                        <span id="yt-source-label">YouTube Source</span>
+                        <span id="yt-source-label">Audio</span>
                       </div>
                     </div>
                   </div>
@@ -282,7 +271,7 @@
                   <div id="parts-chips" class="flex gap-2 overflow-x-auto no-scrollbar pb-1"></div>
                 </div>
 
-                <!-- ✅ Premium compact controls row -->
+                <!-- ✅ Compact premium controls (NO YouTube button) -->
                 <div class="flex items-center justify-between gap-2">
                   <button id="btn-speed"
                     class="px-3 py-2 rounded-2xl text-[11px] font-black bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 active:scale-95 transition-all inline-flex items-center gap-2">
@@ -296,14 +285,9 @@
                     <span id="sleep-label">Off</span>
                   </button>
 
-                  <a id="btn-youtube"
-                     href="#"
-                     target="_blank"
-                     rel="noopener noreferrer"
-                     class="px-3 py-2 rounded-2xl text-[11px] font-black bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500/40 active:scale-95 transition-all inline-flex items-center gap-2">
-                    <i data-lucide="external-link" class="w-4 h-4"></i>
-                    YouTube
-                  </a>
+                  <div class="text-[11px] font-black text-slate-400 px-3 py-2 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-slate-900/40">
+                    <span id="resume-label">—</span>
+                  </div>
                 </div>
 
                 <div class="space-y-2">
@@ -360,18 +344,15 @@
                       <i data-lucide="loader-2" class="w-4 h-4 text-yellow-400 mini-spin"></i>
                     </span>
                   </div>
-
-                  <div class="text-[11px] font-bold text-slate-400" id="resume-badge" class="hidden"></div>
                 </div>
 
                 <div class="text-[11px] leading-relaxed text-slate-500 dark:text-slate-400">
-                  ইউটিউব সোর্স থেকে অডিওটি সম্প্রচারিত • সকল স্বত্ব মূল নির্মাতার সংরক্ষিত
+                  অডিওটি YouTube সোর্স থেকে সম্প্রচারিত • সকল স্বত্ব মূল নির্মাতার সংরক্ষিত
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- ✅ Coming Soon -->
           <div id="yt-coming-soon" class="hidden">
             <div class="flex items-center gap-4 p-4 rounded-[2rem] border border-dashed border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20">
               <div class="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-700">
@@ -529,11 +510,10 @@
     </div>
   </footer>
 
+  <!-- ========================= CORE UI SCRIPTS ========================= -->
   <script>
-    // ========================= ICONS INIT =========================
     lucide.createIcons();
 
-    // ========================= TOAST =========================
     const escapeHtml = (s) => String(s ?? '')
       .replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')
       .replaceAll('"','&quot;').replaceAll("'",'&#039;');
@@ -569,7 +549,6 @@
       setTimeout(() => toast.remove(), 2200);
     }
 
-    // ========================= THEME =========================
     function initializeDarkMode() {
       const savedTheme = localStorage.getItem('boicloud-theme');
       if (savedTheme === null) {
@@ -597,7 +576,6 @@
       updateDarkModeToggle(!isDark);
     }
 
-    // ========================= HELPERS =========================
     function normalizeBooks(list) {
       return (list || []).map(b => {
         const book = { ...b };
@@ -648,7 +626,6 @@
       });
 
       shuffle(others).forEach(pushUnique);
-
       return result.slice(0, total);
     }
 
@@ -674,7 +651,6 @@
 
     function updateSocialMeta(book) {
       const title = `${book.title} - ${book.author} | BoiCloud`;
-
       const desc = (book.description && String(book.description).trim())
         ? String(book.description).trim().slice(0, 180)
         : `${book.title} — ${book.author} | BoiCloud এ অনলাইনে পড়ুন বা ফ্রি ডাউনলোড করুন।`;
@@ -703,7 +679,6 @@
     }
 
     function getPartsFromBook(book) {
-      // ✅ supports: ytParts:[{id,title}], ytIds:[...], ytIdParts / parts
       const parts = [];
 
       if (Array.isArray(book?.ytParts) && book.ytParts.length) {
@@ -723,83 +698,10 @@
         });
       }
 
-      // fallback single
       const single = getYoutubeIdFromBook(book);
       if (!parts.length && single) parts.push({ id: single, title: 'Part 1' });
 
       return parts;
-    }
-
-    function getSourceNameFromBook(book) {
-      const candidates = [ book?.sourceId, book?.sourceName, book?.channelName, book?.source ]
-        .filter(Boolean).map(v => String(v).trim());
-      return candidates[0] || '';
-    }
-
-    function renderBookDetails(book) {
-      updateSocialMeta(book);
-
-      document.getElementById('book-title').textContent = book.title;
-      document.getElementById('book-author').textContent = book.author;
-      document.getElementById('book-category').textContent = book.category;
-      document.getElementById('book-desc').textContent =
-        book.description || 'এই বইটির জন্য এখনো বিস্তারিত বর্ণনা যোগ করা হয়নি।';
-
-      const coverImgElement = document.getElementById('book-cover');
-      coverImgElement.src = book.coverImage;
-      coverImgElement.alt = book.altText || `${book.title} - ${book.author}`;
-
-      // Buttons
-      const readBtn = document.getElementById('read-btn');
-      const downBtn = document.getElementById('download-btn');
-
-      const readOk = isValidLink(book.readLink);
-      const downOk = isValidLink(book.downloadLink);
-
-      readBtn.href = readOk ? book.readLink : 'javascript:void(0)';
-      downBtn.href = downOk ? book.downloadLink : 'javascript:void(0)';
-
-      readBtn.classList.toggle('opacity-60', !readOk);
-      readBtn.classList.toggle('cursor-not-allowed', !readOk);
-      downBtn.classList.toggle('opacity-60', !downOk);
-      downBtn.classList.toggle('cursor-not-allowed', !downOk);
-
-      readBtn.addEventListener('click', (e) => {
-        if (!readOk) { e.preventDefault(); showToast('দুঃখিত! এই বইয়ের পড়ার লিংক এখনো আপডেট করা হয়নি।', 'error'); }
-      });
-      downBtn.addEventListener('click', (e) => {
-        if (!downOk) { e.preventDefault(); showToast('দুঃখিত! এই বইয়ের ডাউনলোড লিংক এখনো আপডেট করা হয়নি।', 'error'); }
-      });
-
-      // Source label
-      const sourceName = getSourceNameFromBook(book);
-      const labelEl = document.getElementById('yt-source-label');
-      if (labelEl) labelEl.textContent = sourceName ? sourceName : 'YouTube Source';
-
-      // Audio init (premium payload)
-      const parts = getPartsFromBook(book);
-      const payload = {
-        bookKey: String(book.id ?? ''),
-        parts
-      };
-      if (typeof window.handleYoutubeAudio === 'function') window.handleYoutubeAudio(payload);
-
-      // Share links
-      const shareUrlRaw = location.href;
-      const shareUrl = encodeURIComponent(shareUrlRaw);
-      const shareText = encodeURIComponent(`${book.title} - ${book.author}`);
-
-      document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
-
-      const FB_APP_ID = '';
-      const msBtn = document.getElementById('share-ms');
-      msBtn.href = FB_APP_ID
-        ? `https://www.facebook.com/dialog/send?link=${shareUrl}&redirect_uri=${shareUrl}&app_id=${encodeURIComponent(FB_APP_ID)}`
-        : `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
-
-      document.getElementById('share-wa').href = `https://wa.me/?text=${shareText}%20${shareUrl}`;
-      document.getElementById('share-tg').href = `https://t.me/share/url?url=${shareUrl}&text=${shareText}`;
-      document.getElementById('share-x').href = `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
     }
 
     function renderRelatedCarousel(list) {
@@ -813,9 +715,9 @@
                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="">
             </div>
             <div class="p-2.5">
-              <div class="text-[10px] font-black text-brand-600 line-clamp-1">${b.category}</div>
-              <div class="text-[12px] sm:text-sm font-black text-slate-900 dark:text-white line-clamp-1 group-hover:text-brand-600 transition-colors">${b.title}</div>
-              <div class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 line-clamp-1">${b.author}</div>
+              <div class="text-[10px] font-black text-brand-600 line-clamp-1">${escapeHtml(b.category)}</div>
+              <div class="text-[12px] sm:text-sm font-black text-slate-900 dark:text-white line-clamp-1 group-hover:text-brand-600 transition-colors">${escapeHtml(b.title)}</div>
+              <div class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 line-clamp-1">${escapeHtml(b.author)}</div>
             </div>
           </div>
         </a>
@@ -843,7 +745,61 @@
       document.getElementById('link-home')?.addEventListener('click', () => location.href='index.html');
       document.getElementById('link-books')?.addEventListener('click', () => location.href='index.html#books-grid');
       document.getElementById('link-category')?.addEventListener('click', () => location.href='index.html#category-buttons');
-      document.getElementById('link-contact')?.addEventListener('click', () => location.href="https://mail.google.com/mail/?view=cm&fs=1&to=html.arif@gmail.com");
+    }
+
+    function renderBookDetails(book) {
+      updateSocialMeta(book);
+
+      document.getElementById('book-title').textContent = book.title;
+      document.getElementById('book-author').textContent = book.author;
+      document.getElementById('book-category').textContent = book.category;
+      document.getElementById('book-desc').textContent = book.description || 'এই বইটির জন্য এখনো বিস্তারিত বর্ণনা যোগ করা হয়নি।';
+
+      const coverImgElement = document.getElementById('book-cover');
+      coverImgElement.src = book.coverImage;
+      coverImgElement.alt = book.altText || `${book.title} - ${book.author}`;
+
+      const readBtn = document.getElementById('read-btn');
+      const downBtn = document.getElementById('download-btn');
+
+      const readOk = isValidLink(book.readLink);
+      const downOk = isValidLink(book.downloadLink);
+
+      readBtn.href = readOk ? book.readLink : 'javascript:void(0)';
+      downBtn.href = downOk ? book.downloadLink : 'javascript:void(0)';
+
+      readBtn.classList.toggle('opacity-60', !readOk);
+      readBtn.classList.toggle('cursor-not-allowed', !readOk);
+      downBtn.classList.toggle('opacity-60', !downOk);
+      downBtn.classList.toggle('cursor-not-allowed', !downOk);
+
+      readBtn.addEventListener('click', (e) => {
+        if (!readOk) { e.preventDefault(); showToast('দুঃখিত! এই বইয়ের পড়ার লিংক এখনো আপডেট করা হয়নি।', 'error'); }
+      });
+      downBtn.addEventListener('click', (e) => {
+        if (!downOk) { e.preventDefault(); showToast('দুঃখিত! এই বইয়ের ডাউনলোড লিংক এখনো আপডেট করা হয়নি।', 'error'); }
+      });
+
+      const parts = getPartsFromBook(book);
+      if (typeof window.handleYoutubeAudio === 'function') {
+        window.handleYoutubeAudio({ bookKey: String(book.id ?? ''), parts });
+      }
+
+      const shareUrlRaw = location.href;
+      const shareUrl = encodeURIComponent(shareUrlRaw);
+      const shareText = encodeURIComponent(`${book.title} - ${book.author}`);
+
+      document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
+
+      const FB_APP_ID = '';
+      const msBtn = document.getElementById('share-ms');
+      msBtn.href = FB_APP_ID
+        ? `https://www.facebook.com/dialog/send?link=${shareUrl}&redirect_uri=${shareUrl}&app_id=${encodeURIComponent(FB_APP_ID)}`
+        : `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
+
+      document.getElementById('share-wa').href = `https://wa.me/?text=${shareText}%20${shareUrl}`;
+      document.getElementById('share-tg').href = `https://t.me/share/url?url=${shareUrl}&text=${shareText}`;
+      document.getElementById('share-x').href = `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
     }
 
     function init() {
@@ -873,13 +829,13 @@
       setTimeout(() => {
         document.getElementById('loading-skeleton')?.classList.add('hidden');
         document.getElementById('book-section')?.classList.remove('hidden');
-      }, 500);
+      }, 250);
     }
 
     document.addEventListener('DOMContentLoaded', init);
   </script>
 
-  <!-- ========================= YouTube Audio Player Script (Premium Pack) ========================= -->
+  <!-- ========================= YouTube Audio Player Script (Fixed) ========================= -->
   <script>
   (() => {
     const SKIP_SECONDS = 5;
@@ -913,11 +869,10 @@
     const btnSleep = document.getElementById("btn-sleep");
     const sleepLabel = document.getElementById("sleep-label");
 
-    const btnYoutube = document.getElementById("btn-youtube");
-
     const partsWrap = document.getElementById("parts-wrap");
     const partsChips = document.getElementById("parts-chips");
     const partNow = document.getElementById("part-now");
+    const resumeLabel = document.getElementById("resume-label");
 
     let player = null;
     let isReady = false;
@@ -927,20 +882,18 @@
     let holdTimer = null;
     let lastKnownTime = 0;
 
-    // ✅ premium state
     let bookKey = "";
-    let parts = [];              // [{id,title}]
+    let parts = [];
     let activePartIndex = 0;
 
-    const SPEEDS = [1, 1.25, 1.5, 2];
+    const SPEEDS = [1, 1.25, 1.5, 1.75, 2];
     let speedIndex = 0;
 
-    const SLEEP_PRESETS = [0, 15, 30, 45, 60]; // minutes (0=off)
+    const SLEEP_PRESETS = [0, 10, 15, 30, 45, 60];
     let sleepIndex = 0;
     let sleepEndAt = 0;
     let sleepTicker = null;
 
-    // resume save
     let saveTicker = null;
 
     const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
@@ -996,27 +949,29 @@
       totalTimeEl.textContent = formatTime(totalSec);
     }
 
-    function getResumeKey(videoId) {
+    function resumeKey(videoId) {
       const b = (bookKey || 'book').replace(/\s+/g,'_');
       return `boicloud_resume__${b}__${videoId}`;
     }
 
     function readResume(videoId) {
       try {
-        const raw = localStorage.getItem(getResumeKey(videoId));
+        const raw = localStorage.getItem(resumeKey(videoId));
         const t = Number(raw || 0);
         return Number.isFinite(t) ? t : 0;
       } catch { return 0; }
     }
 
     function writeResume(videoId, t) {
-      try {
-        localStorage.setItem(getResumeKey(videoId), String(Math.floor(t || 0)));
-      } catch {}
+      try { localStorage.setItem(resumeKey(videoId), String(Math.floor(t || 0))); } catch {}
     }
 
     function clearResume(videoId) {
-      try { localStorage.removeItem(getResumeKey(videoId)); } catch {}
+      try { localStorage.removeItem(resumeKey(videoId)); } catch {}
+    }
+
+    function currentVid() {
+      return parts?.[activePartIndex]?.id || '';
     }
 
     function isPlayingState() {
@@ -1041,9 +996,11 @@
       try { player?.setPlaybackRate?.(rate); } catch {}
     }
 
-    function updateYoutubeLink(videoId) {
-      if (!btnYoutube) return;
-      btnYoutube.href = videoId ? `https://www.youtube.com/watch?v=${encodeURIComponent(videoId)}` : '#';
+    function showResumeBadge() {
+      const vid = currentVid();
+      if (!resumeLabel) return;
+      const saved = vid ? readResume(vid) : 0;
+      resumeLabel.textContent = saved > 3 ? `Resume ${formatTime(saved)}` : '—';
     }
 
     function renderPartsUI() {
@@ -1083,45 +1040,20 @@
       lucide.createIcons();
     }
 
-    function switchPart(idx) {
-      if (!parts[idx]?.id) return;
-      activePartIndex = idx;
-
-      // Save current before switching
-      const currentVid = parts[activePartIndex]?.id;
-      const prevVid = currentVid; // for clarity
-
-      // load
-      isReady = false;
-      setStatus('buffering');
-      setPlayIcon(false);
-      lastKnownTime = 0;
-      duration = 0;
-      setTimesUI(0,0);
-      renderProgress(0);
-
-      ensurePlayer(parts[activePartIndex].id, true);
-      renderPartsUI();
-      updateYoutubeLink(parts[activePartIndex].id);
-
-      showToast(`Switch: ${parts[activePartIndex]?.title || 'Part'}`);
+    function stopResumeSaver() {
+      if (saveTicker) clearInterval(saveTicker);
+      saveTicker = null;
     }
 
     function startResumeSaver() {
       stopResumeSaver();
       saveTicker = setInterval(() => {
         if (!player || !isReady) return;
-        const vid = parts?.[activePartIndex]?.id;
+        const vid = currentVid();
         if (!vid) return;
-
         const t = safeCurrentTime();
         if (Number.isFinite(t) && t > 1) writeResume(vid, t);
       }, 5000);
-    }
-
-    function stopResumeSaver() {
-      if (saveTicker) clearInterval(saveTicker);
-      saveTicker = null;
     }
 
     function setSpeedByIndex(i) {
@@ -1133,13 +1065,34 @@
     }
 
     function cycleSpeed() {
-      const next = (speedIndex + 1) % SPEEDS.length;
-      setSpeedByIndex(next);
+      setSpeedByIndex((speedIndex + 1) % SPEEDS.length);
+    }
+
+    function stopSleepTicker() {
+      if (sleepTicker) clearInterval(sleepTicker);
+      sleepTicker = null;
+    }
+
+    function startSleepTicker() {
+      stopSleepTicker();
+      sleepTicker = setInterval(() => {
+        if (!sleepEndAt) return;
+        const left = sleepEndAt - Date.now();
+        if (left <= 0) {
+          sleepEndAt = 0;
+          stopSleepTicker();
+          if (player && isReady) player.pauseVideo();
+          if (sleepLabel) sleepLabel.textContent = 'Off';
+          showToast('Sleep timer done ✅');
+          return;
+        }
+        const m = Math.ceil(left / 60000);
+        if (sleepLabel) sleepLabel.textContent = `${m}m`;
+      }, 12000);
     }
 
     function setSleepMinutes(min) {
       if (!sleepLabel) return;
-
       if (!min) {
         sleepEndAt = 0;
         sleepLabel.textContent = 'Off';
@@ -1158,68 +1111,22 @@
       setSleepMinutes(SLEEP_PRESETS[sleepIndex]);
     }
 
-    function startSleepTicker() {
-      stopSleepTicker();
-      sleepTicker = setInterval(() => {
-        if (!sleepEndAt) return;
-        const left = sleepEndAt - Date.now();
-        if (left <= 0) {
-          sleepEndAt = 0;
-          stopSleepTicker();
-          if (player && isReady) player.pauseVideo();
-          if (sleepLabel) sleepLabel.textContent = 'Off';
-          showToast('Sleep timer done ✅');
-          return;
-        }
-        // show remaining in compact style: e.g. 12m
-        const m = Math.ceil(left / 60000);
-        if (sleepLabel) sleepLabel.textContent = `${m}m`;
-      }, 12000);
-    }
-
-    function stopSleepTicker() {
-      if (sleepTicker) clearInterval(sleepTicker);
-      sleepTicker = null;
-    }
-
-    // ✅ Backward compatible handler
-    window.handleYoutubeAudio = function handleYoutubeAudio(input) {
-      // input: string ytId OR {bookKey, parts:[{id,title}]}
-      let payload = input;
-
-      if (typeof payload === 'string') {
-        payload = { bookKey: '', parts: payload ? [{ id: String(payload).trim(), title: 'Part 1' }] : [] };
-      }
-
-      bookKey = String(payload?.bookKey || '');
-      parts = Array.isArray(payload?.parts) ? payload.parts.filter(p => String(p?.id||'').trim()) : [];
-      if (!parts.length) {
-        elAvailable.classList.add("hidden");
-        elComing.classList.remove("hidden");
-        teardownPlayer();
-        return;
-      }
-
-      activePartIndex = 0;
-      elComing.classList.add("hidden");
-      elAvailable.classList.remove("hidden");
-
-      renderPartsUI();
-      updateYoutubeLink(parts[activePartIndex].id);
-
-      ensurePlayer(parts[activePartIndex].id);
-      lucide.createIcons();
-    };
-
-    function ensurePlayer(videoId, forceLoad=false) {
+    function ensurePlayer(videoId, autoplay=false) {
       if (!window.YT || !window.YT.Player) return;
 
       if (player) {
         isReady = false;
         setStatus("buffering");
         setPlayIcon(false);
-        if (forceLoad) player.loadVideoById(videoId);
+        lastKnownTime = 0;
+        duration = 0;
+        setTimesUI(0,0);
+        renderProgress(0);
+
+        // ✅ always load on part switch
+        if (autoplay) player.loadVideoById(videoId);
         else player.cueVideoById(videoId);
+
         return;
       }
 
@@ -1235,38 +1142,45 @@
             duration = safeDuration();
             setTimesUI(0, duration);
             renderProgress(0);
+
+            safeSetRate(SPEEDS[speedIndex] || 1);
             setStatus("ready");
             setPlayIcon(false);
 
-            // apply speed
-            safeSetRate(SPEEDS[speedIndex] || 1);
-
-            // ✅ Resume (auto)
-            const vid = parts?.[activePartIndex]?.id;
+            const vid = currentVid();
             const saved = vid ? readResume(vid) : 0;
-            if (saved > 5 && duration && saved < (duration - 5)) {
-              try {
-                player.seekTo(saved, true);
-                lastKnownTime = saved;
-                setTimesUI(saved, duration);
-                renderProgress(saved / duration);
-                showToast('Resume: last position ✅');
-              } catch {}
+            if (saved > 5) {
+              // seek later (duration sometimes 0 at first)
+              setTimeout(() => {
+                try {
+                  const d = safeDuration();
+                  if (d && saved < (d - 5)) {
+                    player.seekTo(saved, true);
+                    lastKnownTime = saved;
+                    setTimesUI(saved, d);
+                    renderProgress(saved / d);
+                    showToast('Resume ✅');
+                  }
+                  showResumeBadge();
+                } catch {}
+              }, 600);
+            } else {
+              showResumeBadge();
             }
 
             startTick();
             startResumeSaver();
           },
           onStateChange: (e) => {
-            if (e.data === 1) { setStatus("playing"); setPlayIcon(true); startResumeSaver(); }
-            else if (e.data === 2) { setStatus("paused"); setPlayIcon(false); startResumeSaver(); }
+            if (e.data === 1) { setStatus("playing"); setPlayIcon(true); }
+            else if (e.data === 2) { setStatus("paused"); setPlayIcon(false); }
             else if (e.data === 3) setStatus("buffering");
             else if (e.data === 0) {
               setStatus("paused");
               setPlayIcon(false);
-              // finished => clear resume for this part (optional)
-              const vid = parts?.[activePartIndex]?.id;
+              const vid = currentVid();
               if (vid) clearResume(vid);
+              showResumeBadge();
             }
           },
           onError: () => { setStatus("error"); setPlayIcon(false); }
@@ -1293,9 +1207,55 @@
       setPlayIcon(false);
     }
 
+    function switchPart(idx) {
+      // ✅ save current before switching
+      const vidPrev = currentVid();
+      if (vidPrev && player && isReady) {
+        const t = safeCurrentTime();
+        if (t > 1) writeResume(vidPrev, t);
+      }
+
+      activePartIndex = idx;
+      renderPartsUI();
+      showResumeBadge();
+
+      const vid = currentVid();
+      if (!vid) return;
+
+      // keep play state: if currently playing => autoplay new part
+      const shouldAutoplay = isPlayingState();
+      ensurePlayer(vid, shouldAutoplay);
+      showToast(`${parts[idx]?.title || `Part ${idx+1}`}`);
+    }
+
+    window.handleYoutubeAudio = function handleYoutubeAudio(input) {
+      let payload = input;
+
+      if (typeof payload === 'string') {
+        payload = { bookKey: '', parts: payload ? [{ id: String(payload).trim(), title: 'Part 1' }] : [] };
+      }
+
+      bookKey = String(payload?.bookKey || '');
+      parts = Array.isArray(payload?.parts) ? payload.parts.filter(p => String(p?.id||'').trim()) : [];
+      if (!parts.length) {
+        elAvailable.classList.add("hidden");
+        elComing.classList.remove("hidden");
+        teardownPlayer();
+        return;
+      }
+
+      activePartIndex = 0;
+      elComing.classList.add("hidden");
+      elAvailable.classList.remove("hidden");
+
+      renderPartsUI();
+      showResumeBadge();
+      ensurePlayer(currentVid(), false);
+      lucide.createIcons();
+    };
+
     window.onYouTubeIframeAPIReady = function() {
-      // if already has parts, load first
-      if (parts?.length) ensurePlayer(parts[activePartIndex].id);
+      if (parts?.length) ensurePlayer(currentVid(), false);
     };
 
     function tick() {
@@ -1341,9 +1301,10 @@
       lastKnownTime = target;
       setTimesUI(target, duration);
       renderProgress(target / duration);
-      // save quickly
-      const vid = parts?.[activePartIndex]?.id;
+
+      const vid = currentVid();
       if (vid) writeResume(vid, target);
+      showResumeBadge();
     }
 
     function skipBy(deltaSec) {
@@ -1407,8 +1368,9 @@
       setTimesUI(target, duration);
       renderProgress(ratio);
 
-      const vid = parts?.[activePartIndex]?.id;
+      const vid = currentVid();
       if (vid) writeResume(vid, target);
+      showResumeBadge();
     });
 
     progressSlider.addEventListener("pointercancel", () => {
@@ -1416,7 +1378,6 @@
       dragHint.classList.add("hidden");
     });
 
-    // ✅ Premium buttons
     btnSpeed?.addEventListener('click', () => {
       if (!player || !isReady) { showToast('Player not ready', 'error'); return; }
       cycleSpeed();
@@ -1426,10 +1387,9 @@
       cycleSleep();
     });
 
-    // Save resume on leaving page
     window.addEventListener('beforeunload', () => {
       try {
-        const vid = parts?.[activePartIndex]?.id;
+        const vid = currentVid();
         if (!vid) return;
         const t = safeCurrentTime();
         if (t > 1) writeResume(vid, t);
@@ -1441,10 +1401,9 @@
     renderProgress(0);
     setStatus("ready");
     setPlayIcon(false);
-
-    // default labels
     if (speedLabel) speedLabel.textContent = '1x';
     if (sleepLabel) sleepLabel.textContent = 'Off';
+    if (resumeLabel) resumeLabel.textContent = '—';
   })();
   </script>
 
