@@ -1,36 +1,32 @@
-
 <!DOCTYPE html>
 <html lang="bn" class="dark">
 <head>
   <meta name="description" content="অনলাইনে ফ্রি বাংলা বই পড়ুন এবং ডাউনলোড করুন।">
   <script>
-  (function() {
-    var ua = navigator.userAgent || navigator.vendor || window.opera;
-    var isFacebook = (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1) || (ua.indexOf("Messenger") > -1);
+    (function() {
+      var ua = navigator.userAgent || navigator.vendor || window.opera;
+      var isFacebook = (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1) || (ua.indexOf("Messenger") > -1);
 
-    if (isFacebook) {
-      var currentUrl = window.location.href;
+      if (isFacebook) {
+        var currentUrl = window.location.href;
 
-      if (ua.indexOf("Android") > -1) {
-        var chromeIntent = "intent://" + currentUrl.replace(/^https?:\/\//, "") + "#Intent;scheme=https;package=com.android.chrome;end";
-        window.location.href = chromeIntent;
-      } 
-      else {
-        window.addEventListener("load", function() {
-          var notice = document.createElement("div");
-          // স্টাইলটা একটু মডার্ন করে দিলাম
-          notice.style = "position:fixed; top:0; left:0; width:100%; background:#2f3542; color:#ffffff; padding:12px; text-align:center; z-index:99999; font-family:sans-serif; font-size:14px; border-bottom:2px solid #3742fa;";
-          
-          // আপনার পছন্দের মেসেজ
-          notice.innerHTML = "Use <strong>Chrome/Safari</strong> for a better experience and easy downloads.";
-          
-          document.body.appendChild(notice);
-          document.body.style.marginTop = "50px";
-        });
+        if (ua.indexOf("Android") > -1) {
+          var chromeIntent = "intent://" + currentUrl.replace(/^https?:\/\//, "") + "#Intent;scheme=https;package=com.android.chrome;end";
+          window.location.href = chromeIntent;
+        }
+        else {
+          window.addEventListener("load", function() {
+            var notice = document.createElement("div");
+            notice.style = "position:fixed; top:0; left:0; width:100%; background:#2f3542; color:#ffffff; padding:12px; text-align:center; z-index:99999; font-family:sans-serif; font-size:14px; border-bottom:2px solid #3742fa;";
+            notice.innerHTML = "Use <strong>Chrome/Safari</strong> for a better experience and easy downloads.";
+            document.body.appendChild(notice);
+            document.body.style.marginTop = "50px";
+          });
+        }
       }
-    }
-  })();
-</script>
+    })();
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BoiCloud | বই বিস্তারিত</title>
@@ -45,6 +41,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- ✅ YouTube Iframe API (Audio Player) -->
+  <script src="https://www.youtube.com/iframe_api"></script>
 
   <!-- =========================
     ✅ OG / Social preview (default)
@@ -82,24 +81,23 @@
     .dark .glass-effect { background: rgba(15,23,42,.82); }
     .no-scrollbar::-webkit-scrollbar { display:none; }
     .no-scrollbar { -ms-overflow-style:none; scrollbar-width:none; }
+
     /* ✅ Skeleton Loading Effect */
     .skeleton {
-        background: #e2e8f0; 
-        background-image: linear-gradient(90deg, rgba(226,232,240,0) 0, rgba(241,245,249,.5) 50%, rgba(226,232,240,0) 100%);
-        background-size: 200% 100%;
-        animation: loading 1.5s infinite;
-        position: relative;
-        overflow: hidden;
+      background: #e2e8f0;
+      background-image: linear-gradient(90deg, rgba(226,232,240,0) 0, rgba(241,245,249,.5) 50%, rgba(226,232,240,0) 100%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+      position: relative;
+      overflow: hidden;
     }
-
     .dark .skeleton {
-        background: #1e293b;
-        background-image: linear-gradient(90deg, rgba(30,41,59,0) 0, rgba(51,65,85,.5) 50%, rgba(30,41,59,0) 100%);
+      background: #1e293b;
+      background-image: linear-gradient(90deg, rgba(30,41,59,0) 0, rgba(51,65,85,.5) 50%, rgba(30,41,59,0) 100%);
     }
-
     @keyframes loading {
-        0% { background-position: 200% 0; }
-        100% { background-position: -200% 0; }
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
     }
 
     /* ✅ swipe snap */
@@ -154,92 +152,240 @@
   </header>
 
   <!-- ================= MAIN ================= -->
- <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
-  <div class="container mx-auto p-4">
-    <div id="loading-skeleton" class="space-y-4">
-      <div class="skeleton h-64 w-44 rounded-xl mx-auto"></div>
-      <div class="skeleton h-6 w-3/4 rounded mx-auto"></div>
-      <div class="skeleton h-4 w-1/2 rounded mx-auto"></div>
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+    <div class="container mx-auto p-4">
+
+      <div id="loading-skeleton" class="space-y-4">
+        <div class="skeleton h-64 w-44 rounded-xl mx-auto"></div>
+        <div class="skeleton h-6 w-3/4 rounded mx-auto"></div>
+        <div class="skeleton h-4 w-1/2 rounded mx-auto"></div>
+      </div>
+
+      <div id="main-content" class="hidden">
+        <img id="display-cover" src="" class="mx-auto rounded-xl shadow-lg" />
+        <h1 id="display-title" class="text-2xl font-bold text-center mt-4"></h1>
+        <p id="display-author" class="text-center text-slate-500"></p>
+      </div>
+
     </div>
 
-    <div id="main-content" class="hidden">
-      <img id="display-cover" src="" class="mx-auto rounded-xl shadow-lg" />
-      <h1 id="display-title" class="text-2xl font-bold text-center mt-4"></h1>
-      <p id="display-author" class="text-center text-slate-500"></p>
+    <div id="not-found" class="hidden text-center py-16">
+      <div class="w-20 h-20 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6">
+        <i data-lucide="alert-triangle" class="w-10 h-10 text-slate-400"></i>
+      </div>
+      <h2 class="text-2xl font-black mb-2">বই পাওয়া যায়নি</h2>
+      <p class="text-slate-500 dark:text-slate-400 mb-6">লিংকটি ভুল হতে পারে।</p>
+      <a href="index.html" class="inline-flex items-center gap-2 px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white rounded-2xl font-black">
+        <i data-lucide="arrow-left" class="w-5 h-5"></i> হোমে ফিরে যান
+      </a>
     </div>
-  </div>
 
-  <section id="book-section" class="space-y-6 hidden">
-    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 sm:p-7 shadow-lg">
-      <h2 id="book-title" class="text-2xl sm:text-4xl font-black leading-tight break-words">—</h2>
-      <p class="mt-2 text-slate-500 dark:text-slate-400 font-bold break-words">
-        <i data-lucide="user" class="w-4 h-4 inline mr-1"></i>
-        <span id="book-author">—</span>
-      </p>
+    <section id="book-section" class="space-y-6 hidden">
 
-      <div id="youtube-card" class="mt-8">
-        <div id="yt-available" class="hidden">
-          <div class="relative overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-6 shadow-xl">
-            <div class="hidden"><div id="yt-player"></div></div>
+      <!-- ✅ Cover Card -->
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden shadow-lg">
+        <div class="px-4 pt-4 pb-3 flex items-center justify-between gap-3">
+          <span id="book-category"
+                class="px-3 py-1 rounded-full text-[11px] font-black bg-brand-500/10 text-brand-600 border border-brand-500/20 whitespace-nowrap">—</span>
+          <span class="text-[10px] uppercase tracking-[3px] text-slate-400">details</span>
+        </div>
 
-            <div class="relative z-10 flex flex-col gap-6">
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-2xl bg-brand-500 flex items-center justify-center shadow-lg shadow-brand-500/20">
-                    <i data-lucide="headphones" class="w-5 h-5 text-white"></i>
+        <div class="px-4 pb-4">
+          <div class="mx-auto max-w-[340px] sm:max-w-[380px]">
+            <div class="aspect-[2/3] rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800">
+              <img id="book-cover" src="" alt="" class="w-full h-full object-cover">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ✅ Details + Actions -->
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 sm:p-7 shadow-lg">
+        <h2 id="book-title" class="text-2xl sm:text-4xl font-black leading-tight break-words">—</h2>
+
+        <p class="mt-2 text-slate-500 dark:text-slate-400 font-bold break-words">
+          <i data-lucide="user" class="w-4 h-4 inline mr-1"></i>
+          <span id="book-author">—</span>
+        </p>
+
+        <div class="mt-6">
+          <h3 class="text-sm font-black flex items-center gap-2">
+            <i data-lucide="info" class="w-4 h-4"></i> বিস্তারিত
+          </h3>
+          <p id="book-desc" class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed break-words">—</p>
+        </div>
+
+        <!-- ✅ Buttons: Home + পড়ুন + ডাউনলোড -->
+        <div class="mt-6 grid grid-cols-1 xs:grid-cols-3 gap-3">
+          <a id="read-btn" href="#"
+             class="w-full px-5 py-3 rounded-2xl font-black text-sm bg-brand-600 hover:bg-brand-700 text-white inline-flex items-center justify-center gap-2">
+            <i data-lucide="book-open" class="w-5 h-5"></i> পড়ুন
+          </a>
+
+          <a id="download-btn"
+             href="javascript:void(0)"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="w-full px-5 py-3 rounded-2xl font-black text-sm bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 inline-flex items-center justify-center gap-2">
+            <i data-lucide="download" class="w-5 h-5"></i> ডাউনলোড
+          </a>
+
+          <a href="index.html"
+             class="w-full px-5 py-3 rounded-2xl font-black text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500/40 inline-flex items-center justify-center gap-2">
+            <i data-lucide="arrow-left" class="w-5 h-5"></i> Home
+          </a>
+        </div>
+
+        <!-- ✅ Category jump -->
+        <div class="mt-3">
+          <a href="index.html#category-buttons"
+             class="w-full xs:w-auto px-5 py-3 rounded-2xl font-black text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500/40 inline-flex items-center justify-center gap-2">
+            <i data-lucide="grid" class="w-5 h-5"></i> Category তে যান
+          </a>
+        </div>
+
+        <!-- ================= AUDIO PLAYER (NEW) ================= -->
+        <div id="youtube-card" class="mt-8">
+          <!-- ✅ Available -->
+          <div id="yt-available" class="hidden">
+            <div class="relative overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-6 shadow-xl">
+              <div class="hidden"><div id="yt-player"></div></div>
+
+              <div class="relative z-10 flex flex-col gap-6">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-brand-500 flex items-center justify-center shadow-lg shadow-brand-500/20">
+                      <i data-lucide="headphones" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-brand-600">Audio Mode</span>
                   </div>
-                  <span class="text-[10px] font-black uppercase tracking-widest text-brand-600">Audio Mode</span>
+
+                  <button id="btn-open-youtube"
+                    class="text-[11px] font-bold text-brand-600 hover:opacity-80 transition"
+                    type="button">
+                    Open on YouTube
+                  </button>
                 </div>
+
+                <div class="space-y-3">
+                  <div class="relative group h-6 flex items-center">
+                    <div class="absolute w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full border border-slate-200/60 dark:border-slate-700/60"></div>
+
+                    <div id="progress-fill" class="absolute h-1.5 bg-brand-600 rounded-full pointer-events-none" style="width:0%;"></div>
+
+                    <input
+                      type="range"
+                      id="progress-slider"
+                      min="0"
+                      max="1000"
+                      value="0"
+                      class="absolute w-full h-6 opacity-0 cursor-pointer z-20"
+                      aria-label="Playback progress"
+                    />
+
+                    <div id="progress-thumb"
+                      class="absolute h-4 w-4 bg-white dark:bg-slate-900 border-2 border-brand-600 rounded-full shadow-md z-10 pointer-events-none transition-transform group-hover:scale-125"
+                      style="left:0%; transform: translateX(-50%);">
+                    </div>
+                  </div>
+
+                  <div class="flex justify-between text-[11px] font-bold font-mono text-slate-400">
+                    <span id="current-time">00:00</span>
+                    <span id="total-time">00:00</span>
+                  </div>
+
+                  <p id="drag-hint" class="text-[11px] text-slate-400 dark:text-slate-500 hidden">
+                    Release to seek…
+                  </p>
+                </div>
+
+                <div class="flex items-center justify-center gap-10">
+                  <button id="btn-rewind" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm active:scale-95 transition-all">
+                    <i data-lucide="rotate-ccw" class="w-6 h-6 text-slate-600 dark:text-slate-300"></i>
+                  </button>
+
+                  <button id="main-play-btn" class="w-20 h-20 flex items-center justify-center rounded-[2.2rem] bg-brand-600 hover:bg-brand-700 text-white shadow-[0_10px_20px_-5px_rgba(79,70,229,0.3)] active:scale-95 transition-all">
+                    <i id="play-icon" data-lucide="play" class="w-10 h-10 fill-current"></i>
+                  </button>
+
+                  <button id="btn-forward" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm active:scale-95 transition-all">
+                    <i data-lucide="rotate-cw" class="w-6 h-6 text-slate-600 dark:text-slate-300"></i>
+                  </button>
+                </div>
+
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+                    <span id="player-status-dot" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                    <span id="player-status">Ready</span>
+                  </div>
+                </div>
+
               </div>
+            </div>
+          </div>
 
-              <div class="space-y-3">
-                <div class="relative group h-6 flex items-center">
-                  <div class="absolute w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full"></div>
-                  <div id="progress-bar-fill" class="absolute h-1.5 bg-brand-500 rounded-full pointer-events-none" style="width: 0%;"></div>
-                  <input type="range" id="progress-slider" min="0" max="100" value="0" step="0.1" 
-                    class="absolute w-full h-6 opacity-0 cursor-pointer z-20">
-                  <div id="slider-thumb" class="absolute h-4 w-4 bg-white border-2 border-brand-500 rounded-full shadow-md z-10 pointer-events-none transition-transform group-hover:scale-125" style="left: 0%; transform: translateX(-50%);"></div>
-                </div>
-                <div class="flex justify-between text-[11px] font-bold font-mono text-slate-400">
-                  <span id="current-time">00:00</span>
-                  <span id="duration">00:00</span>
-                </div>
+          <!-- ✅ Coming Soon -->
+          <div id="yt-coming-soon" class="hidden">
+            <div class="flex items-center gap-4 p-5 rounded-[2rem] border border-dashed border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20">
+              <div class="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-700">
+                <i data-lucide="mic-off" class="w-6 h-6 text-slate-300"></i>
+                <span class="absolute -top-1 -right-1 flex h-3 w-3">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
+                </span>
               </div>
-
-              <div class="flex items-center justify-center gap-10">
-                <button id="btn-rewind" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 active:scale-90 transition-all">
-                  <i data-lucide="rotate-ccw" class="w-6 h-6 text-slate-600 dark:text-slate-300"></i>
-                </button>
-
-                <button id="main-play-btn" onclick="togglePlay()" class="w-20 h-20 flex items-center justify-center rounded-[2.2rem] bg-brand-600 hover:bg-brand-700 text-white shadow-[0_10px_20px_-5px_rgba(79,70,229,0.3)] active:scale-95 transition-all">
-                  <i id="play-icon" data-lucide="play" class="w-10 h-10 fill-current"></i>
-                </button>
-
-                <button id="btn-forward" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 active:scale-90 transition-all">
-                  <i data-lucide="rotate-cw" class="w-6 h-6 text-slate-600 dark:text-slate-300"></i>
-                </button>
+              <div>
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">Status</p>
+                <p class="text-sm font-bold text-orange-600 dark:text-orange-500 italic mt-1.5">অডিও বুক শীঘ্রই আসছে...</p>
               </div>
             </div>
           </div>
         </div>
+        <!-- ================= /AUDIO PLAYER ================= -->
 
-        <div id="yt-coming-soon" class="hidden">
-          <div class="flex items-center gap-4 p-5 rounded-[2rem] border border-dashed border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20">
-            <div class="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-700">
-              <i data-lucide="mic-off" class="w-6 h-6 text-slate-300"></i>
-              <span class="absolute -top-1 -right-1 flex h-3 w-3">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
-              </span>
-            </div>
-            <div>
-              <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">Status</p>
-              <p class="text-sm font-bold text-orange-600 dark:text-orange-500 italic mt-1.5">অডিও বুক শীঘ্রই আসছে...</p>
-            </div>
-          </div>
+      </div>
+
+      <!-- ✅ Share + Copy -->
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 shadow-sm">
+        <div class="flex items-center justify-between gap-3">
+          <h3 class="text-sm font-black flex items-center gap-2">
+            <i data-lucide="share-2" class="w-4 h-4"></i> Share
+          </h3>
+
+          <button id="copy-link"
+            class="px-3 py-2 rounded-xl text-xs font-black bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors inline-flex items-center gap-2 whitespace-nowrap">
+            <i data-lucide="copy" class="w-4 h-4"></i> Copy link
+          </button>
+        </div>
+
+        <div class="mt-4 grid grid-cols-2 sm:grid-cols-5 gap-2">
+          <a id="share-fb" target="_blank"
+             class="px-3 py-2 rounded-xl text-xs font-black bg-slate-100 dark:bg-slate-800 hover:bg-blue-600 hover:text-white transition-colors inline-flex items-center justify-center gap-2">
+            <i class="fab fa-facebook-f"></i> Facebook
+          </a>
+
+          <a id="share-ms" target="_blank"
+             class="px-3 py-2 rounded-xl text-xs font-black bg-slate-100 dark:bg-slate-800 hover:bg-indigo-600 hover:text-white transition-colors inline-flex items-center justify-center gap-2">
+            <i class="fab fa-facebook-messenger"></i> Messenger
+          </a>
+
+          <a id="share-wa" target="_blank"
+             class="px-3 py-2 rounded-xl text-xs font-black bg-slate-100 dark:bg-slate-800 hover:bg-green-600 hover:text-white transition-colors inline-flex items-center justify-center gap-2">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+
+          <a id="share-tg" target="_blank"
+             class="px-3 py-2 rounded-xl text-xs font-black bg-slate-100 dark:bg-slate-800 hover:bg-sky-500 hover:text-white transition-colors inline-flex items-center justify-center gap-2">
+            <i class="fab fa-telegram-plane"></i> Telegram
+          </a>
+
+          <a id="share-x" target="_blank"
+             class="px-3 py-2 rounded-xl text-xs font-black bg-slate-100 dark:bg-slate-800 hover:bg-black hover:text-white transition-colors inline-flex items-center justify-center gap-2">
+            <i class="fab fa-x-twitter"></i> X
+          </a>
         </div>
       </div>
-      </div>
+
       <!-- ✅ Related carousel -->
       <div>
         <div class="flex items-end justify-between gap-4 mb-3">
@@ -266,7 +412,7 @@
         <span id="link-books" class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2"><i data-lucide="book-open" class="w-4 h-4"></i> বইয়ের তালিকা</span>
         <span id="link-category" class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2"><i data-lucide="grid" class="w-4 h-4"></i> ক্যাটাগরি</span>
 
-        <a href="mailto:html.arif@gmail.com?subject=যোগাযোগ - BoiCloud&body=আপনার বার্তা:%0A" 
+        <a href="mailto:html.arif@gmail.com?subject=যোগাযোগ - BoiCloud&body=আপনার বার্তা:%0A"
            class="hover:text-brand-600 cursor-pointer transition-colors inline-flex items-center gap-2">
           <i data-lucide="mail" class="w-4 h-4"></i> যোগাযোগ
         </a>
@@ -307,6 +453,7 @@
   </footer>
 
   <script>
+    // ========================= ICONS INIT =========================
     lucide.createIcons();
 
     // ========================= TOAST =========================
@@ -400,7 +547,6 @@
       return a;
     }
 
-    // ✅ Related: same category 3 + mix all categories + fill up to 50
     function buildRelatedBooks(currentBook, allBooks, total = 50) {
       const currentId = currentBook.id;
       const currentCat = currentBook.category;
@@ -415,10 +561,8 @@
         result.push(b);
       };
 
-      // 1) same category 3
       shuffle(others.filter(b => b.category === currentCat)).slice(0, 3).forEach(pushUnique);
 
-      // 2) every category bring 1~2
       const cats = shuffle([...new Set(others.map(b => b.category))]);
       cats.forEach(cat => {
         const pool = shuffle(others.filter(b => b.category === cat));
@@ -426,7 +570,6 @@
         if (pool[1] && result.length < total && Math.random() > 0.5) pushUnique(pool[1]);
       });
 
-      // 3) fill remaining
       shuffle(others).forEach(pushUnique);
 
       return result.slice(0, total);
@@ -438,7 +581,6 @@
       return !(u === '#' || u === '');
     }
 
-    // ✅ Update meta tags for social preview (best-effort)
     function setMeta(attr, key, value) {
       if (!value) return;
       const selector = attr === 'property'
@@ -455,7 +597,7 @@
 
     function updateSocialMeta(book) {
       const title = `${book.title} - ${book.author} | BoiCloud`;
-      
+
       const desc = (book.description && String(book.description).trim())
         ? String(book.description).trim().slice(0, 180)
         : `${book.title} — ${book.author} | BoiCloud এ অনলাইনে পড়ুন বা ফ্রি ডাউনলোড করুন।`;
@@ -477,6 +619,20 @@
       if (img) setMeta('name', 'twitter:image', img);
     }
 
+    // ✅ helper: book থেকে yt id বের করা (যে নামেই থাকুক)
+    function getYoutubeIdFromBook(book) {
+      const candidates = [
+        book?.ytId,
+        book?.youtubeId,
+        book?.audioYtId,
+        book?.audioId,
+        book?.youtube,
+        book?.yt
+      ].filter(Boolean).map(v => String(v).trim());
+
+      return candidates[0] || '';
+    }
+
     function renderBookDetails(book) {
       updateSocialMeta(book);
 
@@ -485,13 +641,11 @@
       document.getElementById('book-category').textContent = book.category;
       document.getElementById('book-desc').textContent =
         book.description || 'এই বইটির জন্য এখনো বিস্তারিত বর্ণনা যোগ করা হয়নি।';
-      handleYoutubeAudio(book.youtubeId, book.audioSource || "YouTube Source");
 
       const coverImgElement = document.getElementById('book-cover');
       coverImgElement.src = book.coverImage;
       coverImgElement.alt = book.altText || `${book.title} - ${book.author}`;
 
-      // Buttons
       const readBtn = document.getElementById('read-btn');
       const downBtn = document.getElementById('download-btn');
 
@@ -501,8 +655,11 @@
       readBtn.href = readOk ? book.readLink : 'javascript:void(0)';
       downBtn.href = downOk ? book.downloadLink : 'javascript:void(0)';
 
-      if (!readOk) readBtn.classList.add('opacity-60', 'cursor-not-allowed');
-      if (!downOk) downBtn.classList.add('opacity-60', 'cursor-not-allowed');
+      readBtn.classList.toggle('opacity-60', !readOk);
+      readBtn.classList.toggle('cursor-not-allowed', !readOk);
+
+      downBtn.classList.toggle('opacity-60', !downOk);
+      downBtn.classList.toggle('cursor-not-allowed', !downOk);
 
       readBtn.addEventListener('click', (e) => {
         if (!readOk) { e.preventDefault(); showToast('দুঃখিত! এই বইয়ের পড়ার লিংক এখনো আপডেট করা হয়নি।', 'error'); }
@@ -510,6 +667,12 @@
       downBtn.addEventListener('click', (e) => {
         if (!downOk) { e.preventDefault(); showToast('দুঃখিত! এই বইয়ের ডাউনলোড লিংক এখনো আপডেট করা হয়নি।', 'error'); }
       });
+
+      // ✅ Audio: yt id থাকলে player দেখাও, না থাকলে coming soon
+      const ytId = getYoutubeIdFromBook(book);
+      if (typeof window.handleYoutubeAudio === 'function') {
+        window.handleYoutubeAudio(ytId);
+      }
 
       // Share links
       const shareUrlRaw = location.href;
@@ -519,7 +682,7 @@
       document.getElementById('share-fb').href =
         `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
 
-      const FB_APP_ID = ''; // e.g. '123456789012345'
+      const FB_APP_ID = '';
       const msBtn = document.getElementById('share-ms');
       if (FB_APP_ID) {
         msBtn.href = `https://www.facebook.com/dialog/send?link=${shareUrl}&redirect_uri=${shareUrl}&app_id=${encodeURIComponent(FB_APP_ID)}`;
@@ -578,12 +741,9 @@
       document.getElementById('link-home')?.addEventListener('click', () => location.href='index.html');
       document.getElementById('link-books')?.addEventListener('click', () => location.href='index.html#books-grid');
       document.getElementById('link-category')?.addEventListener('click', () => location.href='index.html#category-buttons');
-
-      // NOTE: HTML-এ link-contact id নেই, তাই এটা optional রাখছি (future-এ id দিলে কাজ করবে)
       document.getElementById('link-contact')?.addEventListener('click', () => location.href="https://mail.google.com/mail/?view=cm&fs=1&to=html.arif@gmail.com");
     }
 
-    // ✅ FIXED init()
     function init() {
       const isDark = initializeDarkMode();
       updateDarkModeToggle(isDark);
@@ -591,7 +751,6 @@
 
       document.getElementById('current-year').textContent = new Date().getFullYear();
       bindFooterLinks();
-
       document.getElementById('copy-link')?.addEventListener('click', copyLinkInstant);
 
       const allBooks = normalizeBooks(window.BOOKS_DATA || []);
@@ -599,7 +758,7 @@
       const book = allBooks.find(b => String(b.id) === String(id));
 
       if (!book) {
-        document.getElementById('loading-skeleton')?.classList.add('hidden'); 
+        document.getElementById('loading-skeleton')?.classList.add('hidden');
         document.getElementById('not-found')?.classList.remove('hidden');
         document.getElementById('book-section')?.classList.add('hidden');
         return;
@@ -612,336 +771,317 @@
       setTimeout(() => {
         const skeleton = document.getElementById('loading-skeleton');
         const bookSection = document.getElementById('book-section');
-
         if (skeleton) skeleton.classList.add('hidden');
         if (bookSection) bookSection.classList.remove('hidden');
       }, 500);
     }
 
     document.addEventListener('DOMContentLoaded', init);
-function handleYoutubeAudio(ytId, sourceName = "YouTube") {
-    const available = document.getElementById('yt-available');
-    const comingSoon = document.getElementById('yt-coming-soon');
-    const ytPlayer = document.getElementById('yt-player');
-    const sourceLabel = document.getElementById('yt-source-name');
-
-    if (ytId && ytId.trim() !== "") {
-        // এখানে সাধারণ কোটেশন ব্যবহার করা হয়েছে যা নিরাপদ
-        ytPlayer.src = "https://www.youtube.com/embed/" + ytId.trim();
-        sourceLabel.textContent = sourceName;
-        available.classList.remove('hidden');
-        comingSoon.classList.add('hidden');
-    } else {
-        ytPlayer.src = "";
-        available.classList.add('hidden');
-        comingSoon.classList.remove('hidden');
-    }
-}
-    // ১. ইউটিউব এপিআই (API) লোড করা
-var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-var player;
-var isPlaying = false;
-
-// ২. অডিও সেটআপ করার মেইন ফাংশন
-function handleYoutubeAudio(ytId, sourceName = "YouTube Audio") {
-    const available = document.getElementById('yt-available');
-    const comingSoon = document.getElementById('yt-coming-soon');
-    const sourceLabel = document.getElementById('yt-source-name');
-
-    if (ytId && ytId.trim() !== "") {
-        sourceLabel.textContent = sourceName;
-        available.classList.remove('hidden');
-        comingSoon.classList.add('hidden');
-
-        // যদি প্লেয়ার আগে থেকে থাকে তবে নতুন ভিডিও লোড করো
-        if (player && typeof player.loadVideoById === 'function') {
-            player.loadVideoById(ytId);
-            player.pauseVideo();
-        } else {
-            // ইউটিউব এপিআই রেডি হলে প্লেয়ার তৈরি করো
-            window.onYouTubeIframeAPIReady = function() {
-                player = new YT.Player('yt-player', {
-                    height: '0',
-                    width: '0',
-                    videoId: ytId,
-                    playerVars: { 'controls': 0, 'disablekb': 1, 'rel': 0 },
-                    events: { 'onStateChange': onPlayerStateChange }
-                });
-            };
-        }
-    } else {
-        available.classList.add('hidden');
-        comingSoon.classList.remove('hidden');
-    }
-}
-
-// ৩. প্লে এবং পজ বাটন নিয়ন্ত্রণ
-function togglePlay() {
-    if (!player) return;
-    if (isPlaying) {
-        player.pauseVideo();
-    } else {
-        player.playVideo();
-    }
-}
-
-// ৪. ১০ সেকেন্ড আগে-পিছে যাওয়ার ফাংশন
-function seekAudio(seconds) {
-    if (!player) return;
-    var currentTime = player.getCurrentTime();
-    player.seekTo(currentTime + seconds, true);
-}
-
-// ৫. প্লেয়ারের অবস্থা অনুযায়ী আইকন পরিবর্তন করা
-function onPlayerStateChange(event) {
-    const playIcon = document.getElementById('play-icon');
-    if (event.data == YT.PlayerState.PLAYING) {
-        isPlaying = true;
-        playIcon.setAttribute('data-lucide', 'pause');
-    } else {
-        isPlaying = false;
-        playIcon.setAttribute('data-lucide', 'play');
-    }
-    // আইকনগুলো রিফ্রেশ করা (Lucide Icons)
-    if (window.lucide) {
-        window.lucide.createIcons();
-    }
-}
-    // ১. ইউটিউব আইফ্রেম এপিআই (IFrame API) লোড করা
-var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-var player;
-var isPlaying = false;
-var progressInterval;
-
-// ২. অডিও সেটআপ করার মেইন ফাংশন
-function handleYoutubeAudio(ytId, sourceName = "YouTube Audio") {
-    const available = document.getElementById('yt-available');
-    const comingSoon = document.getElementById('yt-coming-soon');
-    const sourceLabel = document.getElementById('yt-source-name');
-
-    if (ytId && ytId.trim() !== "") {
-        if (sourceLabel) sourceLabel.textContent = sourceName;
-        available.classList.remove('hidden');
-        comingSoon.classList.add('hidden');
-
-        // ইউটিউব প্লেয়ার তৈরি বা আপডেট করা
-        if (player && typeof player.loadVideoById === 'function') {
-            player.loadVideoById(ytId);
-            player.pauseVideo();
-            resetUI();
-        } else {
-            window.onYouTubeIframeAPIReady = function() {
-                player = new YT.Player('yt-player', {
-                    height: '0',
-                    width: '0',
-                    videoId: ytId,
-                    playerVars: { 
-                        'controls': 0, 
-                        'disablekb': 1, 
-                        'rel': 0,
-                        'playsinline': 1 
-                    },
-                    events: { 
-                        'onStateChange': onPlayerStateChange,
-                        'onReady': onPlayerReady 
-                    }
-                });
-            };
-        }
-    } else {
-        available.classList.add('hidden');
-        comingSoon.classList.remove('hidden');
-    }
-}
-
-// ৩. প্লেয়ার রেডি হলে ডিউরেশন সেট করা
-function onPlayerReady() {
-    updateProgressBar();
-}
-
-// ৪. প্লে/পজ সুইচ করা
-function togglePlay() {
-    if (!player || typeof player.getPlayerState !== 'function') return;
-    
-    if (isPlaying) {
-        player.pauseVideo();
-    } else {
-        player.playVideo();
-    }
-}
-
-// ৫. ১০ সেকেন্ড স্কিপ করা
-function seekAudio(seconds) {
-    if (!player || typeof player.getCurrentTime !== 'function') return;
-    var currentTime = player.getCurrentTime();
-    player.seekTo(currentTime + seconds, true);
-    updateProgressBar(); // সাথে সাথে বার আপডেট
-}
-
-// ৬. প্লেয়ারের অবস্থা পরিবর্তন হলে আইকন ও প্রোগ্রেস আপডেট
-function onPlayerStateChange(event) {
-    const playIcon = document.getElementById('play-icon');
-    
-    if (event.data == YT.PlayerState.PLAYING) {
-        isPlaying = true;
-        if (playIcon) playIcon.setAttribute('data-lucide', 'pause');
-        startProgressUpdate();
-    } else {
-        isPlaying = false;
-        if (playIcon) playIcon.setAttribute('data-lucide', 'play');
-        stopProgressUpdate();
-    }
-    
-    if (window.lucide) window.lucide.createIcons();
-}
-
-// ৭. প্রোগ্রেস বার এবং সময় আপডেট লজিক
-function startProgressUpdate() {
-    stopProgressUpdate(); // আগের ইন্টারভাল ক্লিয়ার করা
-    progressInterval = setInterval(updateProgressBar, 1000);
-}
-
-function stopProgressUpdate() {
-    clearInterval(progressInterval);
-}
-
-function updateProgressBar() {
-    if (!player || typeof player.getCurrentTime !== 'function') return;
-
-    const current = player.getCurrentTime();
-    const total = player.getDuration();
-    
-    if (total > 0) {
-        const progressPercent = (current / total) * 100;
-        const progressBar = document.getElementById('progress-bar');
-        const currentTimeEl = document.getElementById('current-time');
-        const durationEl = document.getElementById('duration');
-
-        if (progressBar) progressBar.style.width = progressPercent + "%";
-        if (currentTimeEl) currentTimeEl.textContent = formatTime(current);
-        if (durationEl) durationEl.textContent = formatTime(total);
-    }
-}
-
-// ৮. সময় ফরম্যাট করা (00:00)
-function formatTime(time) {
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    return (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
-}
-
-// ৯. নতুন বই লোড হলে UI রিসেট করা
-function resetUI() {
-    document.getElementById('progress-bar').style.width = "0%";
-    document.getElementById('current-time').textContent = "00:00";
-    document.getElementById('duration').textContent = "00:00";
-}
-    var player;
-var isPlaying = false;
-var skipInterval;
-var progressInterval;
-
-function handleYoutubeAudio(ytId) {
-    const available = document.getElementById('yt-available');
-    if (ytId) {
-        available.classList.remove('hidden');
-        if (!player) {
-            window.onYouTubeIframeAPIReady = function() {
-                player = new YT.Player('yt-player', {
-                    height: '0', width: '0', videoId: ytId,
-                    playerVars: { 'controls': 0, 'playsinline': 1 },
-                    events: { 'onStateChange': onPlayerStateChange }
-                });
-            };
-        } else {
-            player.loadVideoById(ytId);
-            player.pauseVideo();
-        }
-    }
-}
-
-// ১. প্রোগ্রেস বার টেনে সরানো (Seek)
-const slider = document.getElementById('progress-slider');
-slider.addEventListener('input', function() {
-    if (player && player.getDuration()) {
-        const seekTo = player.getDuration() * (this.value / 100);
-        player.seekTo(seekTo, true);
-        updateUI();
-    }
-});
-
-// ২. চেপে ধরলে স্কিপ হওয়ার লজিক (Long Press)
-function setupHoldToSkip(btnId, seconds) {
-    const btn = document.getElementById(btnId);
-    const startAction = () => {
-        seekAudio(seconds);
-        skipInterval = setInterval(() => seekAudio(seconds), 200);
-    };
-    const stopAction = () => clearInterval(skipInterval);
-
-    btn.addEventListener('mousedown', startAction);
-    btn.addEventListener('mouseup', stopAction);
-    btn.addEventListener('mouseleave', stopAction);
-    // মোবাইলের জন্য টাচ সাপোর্ট
-    btn.addEventListener('touchstart', (e) => { e.preventDefault(); startAction(); });
-    btn.addEventListener('touchend', stopAction);
-}
-
-setupHoldToSkip('btn-rewind', -5); // চেপে ধরলে ৫ সেকেন্ড করে কমবে
-setupHoldToSkip('btn-forward', 5);  // চেপে ধরলে ৫ সেকেন্ড করে বাড়বে
-
-function seekAudio(seconds) {
-    if (player && player.getCurrentTime) {
-        player.seekTo(player.getCurrentTime() + seconds, true);
-        updateUI();
-    }
-}
-
-function onPlayerStateChange(event) {
-    const playIcon = document.getElementById('play-icon');
-    if (event.data == YT.PlayerState.PLAYING) {
-        isPlaying = true;
-        playIcon.setAttribute('data-lucide', 'pause');
-        progressInterval = setInterval(updateUI, 500);
-    } else {
-        isPlaying = false;
-        playIcon.setAttribute('data-lucide', 'play');
-        clearInterval(progressInterval);
-    }
-    if (window.lucide) lucide.createIcons();
-}
-
-function updateUI() {
-    if (!player || !player.getCurrentTime) return;
-    const current = player.getCurrentTime();
-    const total = player.getDuration();
-    if (total > 0) {
-        const percent = (current / total) * 100;
-        slider.value = percent;
-        document.getElementById('progress-bar-fill').style.width = percent + "%";
-        document.getElementById('current-time').textContent = formatTime(current);
-        document.getElementById('duration').textContent = formatTime(total);
-    }
-}
-
-function formatTime(time) {
-    const min = Math.floor(time / 60);
-    const sec = Math.floor(time % 60);
-    return (min < 10 ? '0' : '') + min + ':' + (sec < 10 ? '0' : '') + sec;
-}
-
-function togglePlay() {
-    if (!player) return;
-    isPlaying ? player.pauseVideo() : player.playVideo();
-}
   </script>
+
+  <!-- =========================
+    ✅ YouTube Audio Player Script (Ultra Smooth + Hold Skip)
+  ========================= -->
+  <script>
+  (() => {
+    const SKIP_SECONDS = 5;
+    const HOLD_INTERVAL_MS = 150;
+
+    const elAvailable = document.getElementById("yt-available");
+    const elComing = document.getElementById("yt-coming-soon");
+
+    const btnPlay = document.getElementById("main-play-btn");
+    const playIcon = document.getElementById("play-icon");
+
+    const btnRewind = document.getElementById("btn-rewind");
+    const btnForward = document.getElementById("btn-forward");
+
+    const progressSlider = document.getElementById("progress-slider");
+    const progressFill = document.getElementById("progress-fill");
+    const progressThumb = document.getElementById("progress-thumb");
+
+    const currentTimeEl = document.getElementById("current-time");
+    const totalTimeEl = document.getElementById("total-time");
+    const dragHint = document.getElementById("drag-hint");
+
+    const statusDot = document.getElementById("player-status-dot");
+    const statusText = document.getElementById("player-status");
+    const btnOpenYouTube = document.getElementById("btn-open-youtube");
+
+    let player = null;
+    let ytIdActive = "";
+    let isReady = false;
+    let isDragging = false;
+    let duration = 0;
+    let rafId = null;
+    let holdTimer = null;
+    let lastKnownTime = 0;
+
+    const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
+
+    function formatTime(sec) {
+      sec = Math.max(0, Math.floor(sec || 0));
+      const m = String(Math.floor(sec / 60)).padStart(2, "0");
+      const s = String(sec % 60).padStart(2, "0");
+      return `${m}:${s}`;
+    }
+
+    function setStatus(mode) {
+      const map = {
+        ready:  { dot: "bg-slate-300 dark:bg-slate-600", text: "Ready" },
+        playing:{ dot: "bg-brand-600", text: "Playing" },
+        paused: { dot: "bg-slate-400 dark:bg-slate-500", text: "Paused" },
+        buffering:{ dot: "bg-yellow-400", text: "Buffering" },
+        error:  { dot: "bg-red-500", text: "Error" }
+      };
+      const v = map[mode] || map.ready;
+      statusDot.className = "w-2 h-2 rounded-full " + v.dot;
+      statusText.textContent = v.text;
+    }
+
+    function renderProgress(ratio) {
+      ratio = clamp(ratio, 0, 1);
+      const pct = ratio * 100;
+      progressFill.style.width = pct + "%";
+      progressThumb.style.left = pct + "%";
+      progressSlider.value = String(Math.round(ratio * 1000));
+    }
+
+    function getRatioFromSlider() {
+      const v = Number(progressSlider.value || 0);
+      return clamp(v / 1000, 0, 1);
+    }
+
+    function setTimesUI(currentSec, totalSec) {
+      currentTimeEl.textContent = formatTime(currentSec);
+      totalTimeEl.textContent = formatTime(totalSec);
+    }
+
+    window.handleYoutubeAudio = function handleYoutubeAudio(ytId) {
+      ytIdActive = (ytId || "").trim();
+
+      if (!ytIdActive) {
+        elAvailable.classList.add("hidden");
+        elComing.classList.remove("hidden");
+        teardownPlayer();
+        return;
+      }
+
+      elComing.classList.add("hidden");
+      elAvailable.classList.remove("hidden");
+      ensurePlayer(ytIdActive);
+      lucide.createIcons();
+    };
+
+    function ensurePlayer(videoId) {
+      if (!window.YT || !window.YT.Player) return;
+
+      if (player) {
+        isReady = false;
+        setStatus("buffering");
+        player.loadVideoById(videoId);
+        return;
+      }
+
+      setStatus("buffering");
+      player = new YT.Player("yt-player", {
+        height: "0",
+        width: "0",
+        videoId,
+        playerVars: { playsinline: 1, rel: 0, modestbranding: 1, controls: 0 },
+        events: {
+          onReady: () => {
+            isReady = true;
+            duration = safeDuration();
+            setTimesUI(0, duration);
+            renderProgress(0);
+            setStatus("ready");
+            setPlayIcon(false);
+            startTick();
+          },
+          onStateChange: (e) => {
+            if (e.data === 1) { setStatus("playing"); setPlayIcon(true); }
+            else if (e.data === 2) { setStatus("paused"); setPlayIcon(false); }
+            else if (e.data === 3) setStatus("buffering");
+            else if (e.data === 0) { setStatus("paused"); setPlayIcon(false); }
+          },
+          onError: () => setStatus("error")
+        }
+      });
+
+      btnOpenYouTube.onclick = () => {
+        if (!ytIdActive) return;
+        window.open("https://www.youtube.com/watch?v=" + ytIdActive, "_blank", "noopener,noreferrer");
+      };
+    }
+
+    function teardownPlayer() {
+      stopTick();
+      isReady = false;
+      duration = 0;
+      lastKnownTime = 0;
+      setTimesUI(0, 0);
+      renderProgress(0);
+
+      if (player && player.destroy) {
+        try { player.destroy(); } catch (e) {}
+      }
+      player = null;
+      setStatus("ready");
+      setPlayIcon(false);
+    }
+
+    function safeDuration() {
+      try {
+        const d = player?.getDuration?.() || 0;
+        return Number.isFinite(d) ? d : 0;
+      } catch { return 0; }
+    }
+
+    function safeCurrentTime() {
+      try {
+        const t = player?.getCurrentTime?.() || 0;
+        return Number.isFinite(t) ? t : 0;
+      } catch { return 0; }
+    }
+
+    // YouTube callback
+    window.onYouTubeIframeAPIReady = function() {
+      if (ytIdActive) ensurePlayer(ytIdActive);
+    };
+
+    function tick() {
+      if (player && isReady) {
+        const d = safeDuration();
+        if (d && d !== duration) {
+          duration = d;
+          totalTimeEl.textContent = formatTime(duration);
+        }
+
+        // ✅ dragging হলে UI jump-back বন্ধ
+        if (!isDragging) {
+          const t = safeCurrentTime();
+          lastKnownTime = t;
+          setTimesUI(t, duration);
+          if (duration > 0) renderProgress(t / duration);
+        } else {
+          dragHint.classList.remove("hidden");
+        }
+      }
+      rafId = requestAnimationFrame(tick);
+    }
+
+    function startTick() {
+      if (rafId) return;
+      rafId = requestAnimationFrame(tick);
+    }
+    function stopTick() {
+      if (!rafId) return;
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+
+    function isPlayingState() {
+      try { return player?.getPlayerState?.() === 1; } catch { return false; }
+    }
+
+    function setPlayIcon(isPlaying) {
+      playIcon.setAttribute("data-lucide", isPlaying ? "pause" : "play");
+      lucide.createIcons();
+    }
+
+    btnPlay.addEventListener("click", () => {
+      if (!player || !isReady) return;
+      if (isPlayingState()) player.pauseVideo();
+      else player.playVideo();
+    });
+
+    function seekToSeconds(sec) {
+      if (!player || !isReady || !duration) return;
+      const target = clamp(sec, 0, duration);
+      player.seekTo(target, true);
+      lastKnownTime = target;
+      setTimesUI(target, duration);
+      renderProgress(target / duration);
+    }
+
+    function skipBy(deltaSec) {
+      const now = isDragging ? (getRatioFromSlider() * (duration || 0)) : lastKnownTime;
+      seekToSeconds(now + deltaSec);
+    }
+
+    function setupHoldSkip(button, deltaSec) {
+      const start = (e) => {
+        e.preventDefault();
+        if (!player || !isReady) return;
+
+        skipBy(deltaSec);
+        clearInterval(holdTimer);
+        holdTimer = setInterval(() => skipBy(deltaSec), HOLD_INTERVAL_MS);
+      };
+
+      const end = () => {
+        clearInterval(holdTimer);
+        holdTimer = null;
+      };
+
+      button.addEventListener("mousedown", start);
+      window.addEventListener("mouseup", end);
+
+      button.addEventListener("touchstart", start, { passive: false });
+      button.addEventListener("touchend", end);
+      button.addEventListener("touchcancel", end);
+
+      button.addEventListener("mouseleave", end);
+    }
+
+    setupHoldSkip(btnRewind, -SKIP_SECONDS);
+    setupHoldSkip(btnForward, +SKIP_SECONDS);
+
+    // ✅ input: UI update only (seek নয়)
+    progressSlider.addEventListener("pointerdown", () => {
+      isDragging = true;
+      dragHint.classList.remove("hidden");
+    });
+
+    progressSlider.addEventListener("input", () => {
+      isDragging = true;
+      const ratio = getRatioFromSlider();
+      renderProgress(ratio);
+      if (duration) currentTimeEl.textContent = formatTime(ratio * duration);
+    });
+
+    // ✅ change: release এ seekTo
+    progressSlider.addEventListener("change", () => {
+      if (!player || !isReady || !duration) {
+        isDragging = false;
+        dragHint.classList.add("hidden");
+        return;
+      }
+      const ratio = getRatioFromSlider();
+      const target = ratio * duration;
+      player.seekTo(target, true);
+
+      isDragging = false;
+      dragHint.classList.add("hidden");
+
+      lastKnownTime = target;
+      setTimesUI(target, duration);
+      renderProgress(ratio);
+    });
+
+    progressSlider.addEventListener("pointercancel", () => {
+      isDragging = false;
+      dragHint.classList.add("hidden");
+    });
+
+    // init UI defaults
+    setTimesUI(0, 0);
+    renderProgress(0);
+    setStatus("ready");
+    setPlayIcon(false);
+  })();
+  </script>
+
 </body>
 </html>
