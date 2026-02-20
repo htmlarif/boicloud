@@ -1681,7 +1681,7 @@ window.BOOKS_DATA = [
     coverImage: 'https://jukash.com/public/uploads/all/bNqCvUFQ93J5GUKLWMzXQUfJIv9k3Hf9WFhmsCV3.png', 
     readLink: 'https://drive.google.com/file/d/1HUuvvU0kqGebFhCwtownPNSnVP444RVu/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1HUuvvU0kqGebFhCwtownPNSnVP444RVu', 
-    description: 'প্রকৃতি ও মানুষের সম্পর্কের এক অমোঘ বর্ণনা এই উপন্যাস।' 
+    description: 'প্রকৃতি ও মানুষের সম্পর্কের এক অমোঘ বর্ণনা এই উপন্যাস।',
     ytParts: [
   { id: "zCbrDypevJI", title: "Part 1" },
   { id: "slBpQh7IM18", title: "Part 2" }
