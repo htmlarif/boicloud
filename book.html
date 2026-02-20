@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="bn" class="dark">
 <head>
@@ -153,7 +154,7 @@
   </header>
 
   <!-- ================= MAIN ================= -->
-<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
   <div class="container mx-auto p-4">
 
     <div id="loading-skeleton" class="space-y-4">
@@ -543,7 +544,6 @@
       document.getElementById('book-category').textContent = book.category;
       document.getElementById('book-desc').textContent =
         book.description || 'এই বইটির জন্য এখনো বিস্তারিত বর্ণনা যোগ করা হয়নি।';
-      handleAudio(book.audioId);
 
       const coverImgElement = document.getElementById('book-cover');
       coverImgElement.src = book.coverImage;
@@ -677,22 +677,6 @@
     }
 
     document.addEventListener('DOMContentLoaded', init);
- function handleAudio(audioId) {
-    const available = document.getElementById('audio-available');
-    const comingSoon = document.getElementById('audio-coming-soon');
-    const player = document.getElementById('main-audio-player');
-    const source = document.getElementById('audio-source');
-
-    if (audioId && audioId.trim() !== "") {
-        source.src = `https://drive.google.com/uc?export=download&id=${audioId}`;
-        player.load();
-        available.classList.remove('hidden');
-        comingSoon.classList.add('hidden');
-    } else {
-        available.classList.add('hidden');
-        comingSoon.classList.remove('hidden');
-    }
-}
   </script>
 </body>
 </html>
