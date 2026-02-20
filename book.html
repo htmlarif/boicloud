@@ -231,116 +231,127 @@
           <p id="book-desc" class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed break-words">—</p>
         </div>
 
-        <!-- ================= AUDIO PLAYER (COMPACT) ================= -->
-        <div id="youtube-card" class="mt-5">
-          <div id="yt-available" class="hidden">
-            <div class="relative overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2rem] p-4 shadow-xl">
+       <!-- ================= AUDIO PLAYER (COMPACT) ================= -->
+<div id="youtube-card" class="mt-5">
 
-              <!-- hidden real player -->
-              <div class="hidden"><div id="yt-player"></div></div>
+  <!-- ✅ Audio Available -->
+  <div id="yt-available" class="hidden">
+    <div class="relative overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2rem] p-4 shadow-xl">
 
-              <div class="flex items-center justify-between gap-3">
-                <div class="flex items-center gap-2">
-                  <div class="w-9 h-9 rounded-2xl bg-brand-500 flex items-center justify-center shadow-lg shadow-brand-500/20">
-                    <i data-lucide="headphones" class="w-4.5 h-4.5 text-white"></i>
-                  </div>
-                  <div class="leading-tight">
-                    <div class="text-[10px] font-black uppercase tracking-widest text-brand-600">Audio</div>
-                    <div class="text-[11px] font-bold text-slate-500 dark:text-slate-400">
-                      <span id="yt-source-label">YouTube Source</span>
-                    </div>
-                  </div>
-                </div>
+      <!-- hidden real player -->
+      <div class="hidden"><div id="yt-player"></div></div>
 
-                <div class="flex items-center gap-2">
-                  <div class="wave paused" id="mini-wave">
-                    <span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
-                  </div>
-                  <span id="player-mini-spinner" class="hidden">
-                    <i data-lucide="loader-2" class="w-4 h-4 text-yellow-400 mini-spin"></i>
-                  </span>
-                </div>
-              </div>
-
-              <!-- ✅ Parts (auto hide if single) -->
-              <div id="parts-wrap" class="hidden mt-3">
-                <div class="flex items-center justify-between mb-2">
-                  <div class="text-[10px] font-black uppercase tracking-widest text-slate-400">Parts</div>
-                  <div id="part-now" class="text-[10px] font-black text-slate-400 uppercase tracking-[3px]">Part</div>
-                </div>
-                <div id="parts-chips" class="flex gap-2 overflow-x-auto no-scrollbar pb-1"></div>
-              </div>
-
-              <!-- ✅ Progress -->
-              <div class="mt-3 space-y-2">
-                <div class="relative group h-5 flex items-center">
-                  <div class="absolute w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full border border-slate-200/60 dark:border-slate-700/60"></div>
-                  <div id="progress-fill" class="absolute h-1.5 bg-brand-600 rounded-full pointer-events-none" style="width:0%;"></div>
-
-                  <input
-                    type="range"
-                    id="progress-slider"
-                    min="0"
-                    max="1000"
-                    value="0"
-                    class="absolute w-full h-5 opacity-0 cursor-pointer z-20"
-                    aria-label="Playback progress"
-                  />
-
-                  <div id="progress-thumb"
-                    class="absolute h-3.5 w-3.5 bg-white dark:bg-slate-900 border-2 border-brand-600 rounded-full shadow-md z-10 pointer-events-none transition-transform group-hover:scale-110"
-                    style="left:0%; transform: translateX(-50%);">
-                  </div>
-                </div>
-
-                <div class="flex justify-between text-[11px] font-bold font-mono text-slate-400">
-                  <span id="current-time">00:00</span>
-                  <span id="total-time">00:00</span>
-                </div>
-
-                <p id="drag-hint" class="text-[11px] text-slate-400 dark:text-slate-500 hidden">
-                  Release to seek…
-                </p>
-              </div>
-
-              <!-- ✅ Controls -->
-              <div class="mt-3 flex items-center justify-center gap-7">
-                <button id="btn-rewind" class="w-11 h-11 flex items-center justify-center rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm active:scale-95 transition-all">
-                  <i data-lucide="rotate-ccw" class="w-5.5 h-5.5 text-slate-600 dark:text-slate-300"></i>
-                </button>
-
-                <button id="main-play-btn" class="w-16 h-16 flex items-center justify-center rounded-[1.9rem] bg-brand-600 hover:bg-brand-700 text-white shadow-[0_10px_20px_-5px_rgba(79,70,229,0.3)] active:scale-95 transition-all">
-                  <span id="play-pause-icon" class="inline-flex items-center justify-center"></span>
-                </button>
-
-                <button id="btn-forward" class="w-11 h-11 flex items-center justify-center rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm active:scale-95 transition-all">
-                  <i data-lucide="rotate-cw" class="w-5.5 h-5.5 text-slate-600 dark:text-slate-300"></i>
-                </button>
-              </div>
-
-              <div class="mt-2 flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-                <span id="player-status-dot" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600"></span>
-                <span id="player-status">Ready</span>
-              </div>
-            </div>
+      <!-- Header -->
+      <div class="flex items-center justify-between gap-3">
+        <div class="flex items-center gap-2">
+          <div class="w-9 h-9 rounded-2xl bg-brand-500 flex items-center justify-center shadow-lg shadow-brand-500/20">
+            <i data-lucide="headphones" class="w-4.5 h-4.5 text-white"></i>
           </div>
-
-          <div id="yt-coming-soon" class="hidden">
-            <div class="flex items-center gap-4 p-4 rounded-[2rem] border border-dashed border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20">
-              <div class="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-700">
-                <i data-lucide="mic-off" class="w-6 h-6 text-slate-300"></i>
-              </div>
-              <div>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">Status</p>
-                <p class="text-sm font-bold text-orange-600 dark:text-orange-500 italic mt-1.5">
-                  অডিও বুক শীঘ্রই আসছে...
-                </p>
-              </div>
+          <div class="leading-tight">
+            <div class="text-[10px] font-black uppercase tracking-widest text-brand-600">Audio</div>
+            <div class="text-[11px] font-bold text-slate-500 dark:text-slate-400">
+              <span id="yt-source-label">YouTube Source</span>
             </div>
           </div>
         </div>
-        <!-- ================= /AUDIO PLAYER ================= -->
 
+        <div class="flex items-center gap-2">
+          <div class="wave paused" id="mini-wave">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
+          </div>
+          <span id="player-mini-spinner" class="hidden">
+            <i data-lucide="loader-2" class="w-4 h-4 text-yellow-400 mini-spin"></i>
+          </span>
+        </div>
+      </div>
+
+      <!-- ✅ Parts -->
+      <div id="parts-wrap" class="hidden mt-3">
+        <div class="flex items-center justify-between mb-2">
+          <div class="text-[10px] font-black uppercase tracking-widest text-slate-400">Parts</div>
+          <div id="part-now" class="text-[10px] font-black text-slate-400 uppercase tracking-[3px]">Part</div>
+        </div>
+        <div id="parts-chips" class="flex gap-2 overflow-x-auto no-scrollbar pb-1"></div>
+      </div>
+
+      <!-- ✅ Progress -->
+      <div class="mt-3 space-y-2">
+        <div class="relative group h-5 flex items-center">
+          <div class="absolute w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full border border-slate-200/60 dark:border-slate-700/60"></div>
+          <div id="progress-fill" class="absolute h-1.5 bg-brand-600 rounded-full pointer-events-none" style="width:0%;"></div>
+
+          <input
+            type="range"
+            id="progress-slider"
+            min="0"
+            max="1000"
+            value="0"
+            class="absolute w-full h-5 opacity-0 cursor-pointer z-20"
+            aria-label="Playback progress"
+          />
+
+          <div id="progress-thumb"
+            class="absolute h-3.5 w-3.5 bg-white dark:bg-slate-900 border-2 border-brand-600 rounded-full shadow-md z-10 pointer-events-none"
+            style="left:0%; transform: translateX(-50%);">
+          </div>
+        </div>
+
+        <div class="flex justify-between text-[11px] font-bold font-mono text-slate-400">
+          <span id="current-time">00:00</span>
+          <span id="total-time">00:00</span>
+        </div>
+
+        <p id="drag-hint" class="text-[11px] text-slate-400 dark:text-slate-500 hidden">
+          Release to seek…
+        </p>
+      </div>
+
+      <!-- ✅ Controls -->
+      <div class="mt-3 flex items-center justify-center gap-7">
+        <button id="btn-rewind" class="w-11 h-11 flex items-center justify-center rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm active:scale-95 transition-all">
+          <i data-lucide="rotate-ccw" class="w-5.5 h-5.5 text-slate-600 dark:text-slate-300"></i>
+        </button>
+
+        <button id="main-play-btn" class="w-16 h-16 flex items-center justify-center rounded-[1.9rem] bg-brand-600 hover:bg-brand-700 text-white shadow-md active:scale-95 transition-all">
+          <span id="play-pause-icon" class="inline-flex items-center justify-center"></span>
+        </button>
+
+        <button id="btn-forward" class="w-11 h-11 flex items-center justify-center rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm active:scale-95 transition-all">
+          <i data-lucide="rotate-cw" class="w-5.5 h-5.5 text-slate-600 dark:text-slate-300"></i>
+        </button>
+      </div>
+
+      <!-- ✅ Status -->
+      <div class="mt-2 flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+        <span id="player-status-dot" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+        <span id="player-status">Ready</span>
+      </div>
+
+      <!-- ✅ Copyright Notice -->
+      <div class="mt-1.5 text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
+        ইউটিউব সোর্স থেকে অডিওটি সম্প্রচারিত • সকল স্বত্ব মূল নির্মাতার সংরক্ষিত।
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ✅ Coming Soon -->
+  <div id="yt-coming-soon" class="hidden">
+    <div class="flex items-center gap-4 p-4 rounded-[2rem] border border-dashed border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20">
+      <div class="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-700">
+        <i data-lucide="mic-off" class="w-6 h-6 text-slate-300"></i>
+      </div>
+      <div>
+        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">Status</p>
+        <p class="text-sm font-bold text-orange-600 dark:text-orange-500 italic mt-1.5">
+          অডিও বুক শীঘ্রই আসছে...
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- ================= /AUDIO PLAYER ================= -->
         <!-- ✅ Buttons -->
         <div class="mt-5 grid grid-cols-1 xs:grid-cols-3 gap-3">
           <a id="read-btn" href="#"
