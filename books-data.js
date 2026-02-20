@@ -1691,7 +1691,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://static-01.daraz.com.bd/p/8865b37ba312bd442c0650929f936b23.jpg', 
     readLink: 'https://drive.google.com/file/d/1tyPhuXM_vTYupEjJ45UYZWT0n2GHmHvZ/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1tyPhuXM_vTYupEjJ45UYZWT0n2GHmHvZ', 
-    description: 'ইছামতী নদী কেন্দ্রিক সাধারণ মানুষের জীবন ও নীলকরদের পটভূমি।' 
+    description: 'ইছামতী নদী কেন্দ্রিক সাধারণ মানুষের জীবন ও নীলকরদের পটভূমি।',
+    ytId: "TrLbOsabFuU",
   },
   { 
     id: '119', 
