@@ -669,6 +669,22 @@
     }
 
     document.addEventListener('DOMContentLoaded', init);
+ function handleAudio(audioId) {
+    const available = document.getElementById('audio-available');
+    const comingSoon = document.getElementById('audio-coming-soon');
+    const player = document.getElementById('main-audio-player');
+    const source = document.getElementById('audio-source');
+
+    if (audioId && audioId.trim() !== "") {
+        source.src = `https://drive.google.com/uc?export=download&id=${audioId}`;
+        player.load();
+        available.classList.remove('hidden');
+        comingSoon.classList.add('hidden');
+    } else {
+        available.classList.add('hidden');
+        comingSoon.classList.remove('hidden');
+    }
+}
   </script>
 </body>
 </html>
