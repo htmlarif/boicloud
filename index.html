@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="bn" class="dark">
 <head>
@@ -269,11 +268,42 @@
     const BOOKS_DATA = window.BOOKS_DATA || [];
     let ALL_BOOKS = normalizeBooks(BOOKS_DATA);
 
-    const CATEGORIES = ['সবগুলো', 'উপন্যাস', 'থ্রিলার', 'কবিতা', 'ইসলামিক', 'বিজ্ঞান ও সায়েন্স ফিকশন', 'সাহিত্য', 'ভৌতিক', 'জীবনী', 'অন্যান্য'];
+    // ✅ audio books list (ytId থাকলে)
+    const AUDIO_BOOKS = () => ALL_BOOKS.filter(b => b.ytId && String(b.ytId).trim() !== '');
+
+    // ✅ "সবগুলো" এর ঠিক পরে "Audio Books" যুক্ত করা হলো
+    const CATEGORIES = [
+      'সবগুলো',
+      'Audio Books',
+      'উপন্যাস',
+      'থ্রিলার',
+      'কবিতা',
+      'ইসলামিক',
+      'বিজ্ঞান ও সায়েন্স ফিকশন',
+      'সাহিত্য',
+      'ভৌতিক',
+      'জীবনী',
+      'অন্যান্য'
+    ];
 
     /* =========================================================
       ✅ Slider Card (smooth + stable)
+      + ✅ Audio badge on cover (ytId থাকলে)
     ========================================================= */
+    function audioBadgeHTML(book) {
+      if (!book?.ytId || !String(book.ytId).trim()) return '';
+      return `
+        <div class="absolute top-2 right-2 z-10">
+          <div class="flex items-center gap-1 px-2.5 py-1 rounded-full
+                      bg-brand-600 text-white shadow-lg border border-white/20
+                      animate-pulse">
+            <i data-lucide="headphones" class="w-4 h-4"></i>
+            <span class="text-[10px] font-black tracking-wide">AUDIO</span>
+          </div>
+        </div>
+      `;
+    }
+
     function bookCardHTML(book, q='') {
       const catLabel = book.categories?.[0] || book.category || 'অন্যান্য';
       return `
@@ -283,11 +313,15 @@
             <div class="aspect-[2/3] relative overflow-hidden">
               <img src="${book.coverImage}" alt="${escapeHtml(book.title)}"
                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy">
+
               <div class="absolute top-2 left-2">
                 <span class="px-2.5 py-1 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm text-brand-600 text-[10px] font-black rounded-full border border-slate-100 dark:border-slate-800">
                   ${escapeHtml(catLabel)}
                 </span>
               </div>
+
+              <!-- ✅ audio badge -->
+              ${audioBadgeHTML(book)}
             </div>
 
             <div class="p-3">
@@ -307,6 +341,7 @@
       const wrap = document.getElementById(containerId);
       if (!wrap) return;
       wrap.innerHTML = books.map(b => bookCardHTML(b, q)).join('');
+      lucide.createIcons(); // ✅ new icons in row
     }
 
     /* =========================
@@ -358,8 +393,20 @@
 
     /* =========================
       ✅ Category "সব দেখুন"
+      + ✅ Audio Books special-case
     ========================= */
     function showCategoryGrid(category) {
+      if (category === 'Audio Books') {
+        const filtered = AUDIO_BOOKS();
+        openGridWith(
+          filtered,
+          `<i data-lucide="headphones" class="w-5 h-5 text-brand-600"></i> Audio Books`,
+          `row-Audio Books`,
+          ''
+        );
+        return;
+      }
+
       const filtered = ALL_BOOKS.filter(b => (b.categories || []).includes(category));
       openGridWith(
         filtered,
@@ -371,6 +418,7 @@
 
     /* =========================
       Grid renderer
+      + ✅ audio badge on grid cards
     ========================= */
     function renderAllBooksGrid(books, q='') {
       const container = document.getElementById('books-container');
@@ -393,9 +441,10 @@
       container.innerHTML = books.map(b => `
         <a href="book.html?id=${encodeURIComponent(b.id)}"
            class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1">
-          <div class="aspect-[2/3] overflow-hidden">
+          <div class="aspect-[2/3] overflow-hidden relative">
             <img src="${b.coverImage}" alt="${escapeHtml(b.title)}"
                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy">
+            ${audioBadgeHTML(b)}
           </div>
           <div class="p-3">
             <div class="text-sm font-black text-slate-900 dark:text-white line-clamp-1 group-hover:text-brand-600 transition-colors">${highlight(b.title, q)}</div>
@@ -489,6 +538,7 @@
 
     /* =========================
       Category pills (same)
+      + ✅ Audio Books button insert after সবগুলো (already in CATEGORIES)
     ========================= */
     function initializeCategoryButtons() {
       const container = document.getElementById('category-buttons');
@@ -500,7 +550,16 @@
             ? 'active bg-brand-600 text-white shadow-xl shadow-brand-500/30'
             : 'bg-white dark:bg-slate-900 text-slate-500 border dark:border-slate-800 hover:border-brand-500/50'}"
           data-category="${escapeHtml(category)}">
-          ${category === 'সবগুলো' ? '<i data-lucide="grid" class="w-4 h-4 inline mr-2"></i>' : ''}
+
+          ${
+            category === 'সবগুলো'
+              ? '<i data-lucide="grid" class="w-4 h-4 inline mr-2"></i>'
+              : (category === 'Audio Books'
+                  ? '<i data-lucide="headphones" class="w-4 h-4 inline mr-2"></i>'
+                  : ''
+                )
+          }
+
           ${escapeHtml(category)}
         </button>
       `).join('');
@@ -538,15 +597,22 @@
 
     /* =========================
       Build Rows
+      + ✅ Audio Books row render
     ========================= */
     function buildRows() {
       const samprotik = [...ALL_BOOKS].reverse();
       renderRow('samprotik-slider', samprotik);
 
-      CATEGORIES.filter(c => c !== 'সবগুলো').forEach(cat => {
-        const list = ALL_BOOKS.filter(b => (b.categories || []).includes(cat));
-        renderRow(`slider-${cat}`, list);
-      });
+      // ✅ Audio Books row
+      renderRow('slider-Audio Books', AUDIO_BOOKS());
+
+      // ✅ normal category rows
+      CATEGORIES
+        .filter(c => c !== 'সবগুলো' && c !== 'Audio Books')
+        .forEach(cat => {
+          const list = ALL_BOOKS.filter(b => (b.categories || []).includes(cat));
+          renderRow(`slider-${cat}`, list);
+        });
     }
 
     /* =========================
@@ -817,6 +883,18 @@
 
       <!-- ✅ Category rows -->
       <div class="space-y-10">
+
+        <!-- ✅ Audio Books row (NEW) -->
+        <div id="row-Audio Books" class="scroll-mt-24">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white inline-flex items-center gap-2">
+              <i data-lucide="headphones" class="w-5 h-5 text-brand-600"></i> Audio Books
+            </h3>
+            <button class="text-xs font-black text-slate-500 hover:text-brand-600 transition-colors"
+                    onclick="showCategoryGrid('Audio Books')">সব দেখুন</button>
+          </div>
+          <div class="slider no-scrollbar flex gap-4 overflow-x-auto pb-3" data-slider="true" id="slider-Audio Books"></div>
+        </div>
 
         <div id="row-উপন্যাস" class="scroll-mt-24">
           <div class="flex items-center justify-between mb-4">
