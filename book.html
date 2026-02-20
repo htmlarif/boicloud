@@ -678,23 +678,24 @@
     }
 
     document.addEventListener('DOMContentLoaded', init);
- function handleYoutubeAudio(ytId, sourceName = "YouTube") {
-        const available = document.getElementById('yt-available');
-        const comingSoon = document.getElementById('yt-coming-soon');
-        const ytPlayer = document.getElementById('yt-player');
-        const sourceLabel = document.getElementById('yt-source-name');
+function handleYoutubeAudio(ytId, sourceName = "YouTube") {
+    const available = document.getElementById('yt-available');
+    const comingSoon = document.getElementById('yt-coming-soon');
+    const ytPlayer = document.getElementById('yt-player');
+    const sourceLabel = document.getElementById('yt-source-name');
 
-        if (ytId && ytId.trim() !== "") {
-            ytPlayer.src = `https://www.youtube.com/embed/${ytId}?rel=0&modestbranding=1`;
-            sourceLabel.textContent = sourceName;
-            available.classList.remove('hidden');
-            comingSoon.classList.add('hidden');
-        } else {
-            ytPlayer.src = "";
-            available.classList.add('hidden');
-            comingSoon.classList.remove('hidden');
-        }
+    if (ytId && ytId.trim() !== "") {
+        // এখানে সাধারণ কোটেশন ব্যবহার করা হয়েছে যা নিরাপদ
+        ytPlayer.src = "https://www.youtube.com/embed/" + ytId.trim();
+        sourceLabel.textContent = sourceName;
+        available.classList.remove('hidden');
+        comingSoon.classList.add('hidden');
+    } else {
+        ytPlayer.src = "";
+        available.classList.add('hidden');
+        comingSoon.classList.remove('hidden');
     }
+}
   </script>
 </body>
 </html>
