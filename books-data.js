@@ -1569,7 +1569,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://bengaliebook.com/wp-content/uploads/2021/07/%E0%A6%85%E0%A6%B2%E0%A6%BE%E0%A6%A4%E0%A6%9A%E0%A6%95%E0%A7%8D%E0%A6%B0-724x1024.jpg', 
     readLink: 'https://drive.google.com/file/d/1KE6nkwKOAeVHENf_17RhSMm-lgR2QPPy/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1KE6nkwKOAeVHENf_17RhSMm-lgR2QPPy', 
-    description: 'তারাশঙ্কর বন্দ্যোপাধ্যায়ের কালজয়ী একটি উপন্যাস।' 
+    description: 'তারাশঙ্কর বন্দ্যোপাধ্যায়ের কালজয়ী একটি উপন্যাস।',
+   ytID: "pVhKEN3ihro"
   },
   { 
     id: '114', 
@@ -1589,7 +1590,15 @@ window.BOOKS_DATA = [
     coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiuUH4vZ84H7gG843hdB2A2Qu4xsbTxUX2rw&s', 
     readLink: 'https://drive.google.com/file/d/13hpFsLOueKk-DRmsUJlQ3eP9CeWAszh6/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=13hpFsLOueKk-DRmsUJlQ3eP9CeWAszh6', 
-    description: 'অপুর বড় হয়ে ওঠার কাহিনী ও জীবনের নানামুখী সংগ্রাম।' 
+    description: 'অপুর বড় হয়ে ওঠার কাহিনী ও জীবনের নানামুখী সংগ্রাম।',
+    ytParts: [
+  { id: "DSF3cBC9TWI", title: "Part 1" },
+  { id: "WoWiLr1nwrA", title: "Part 2" },
+      { id: "Sf9ojCI8yBg", title: "Part 3" },
+  { id: "a442wkpiGDs", title: "Part 4" },
+        { id: "RAD2bTrjvWw", title: "Part 5" },
+        { id: "o3Aub7y6v5Y", title: "Part 6" },
+]
   },
   
   { 
@@ -1620,7 +1629,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://wafilife-media.wafilife.com/uploads/2025/07/WhatsApp-Image-2025-07-06-at-10.18.36-PM-1.jpeg', 
     readLink: 'https://drive.google.com/file/d/1XDBSZv9YbuD_gvryz-VCmObIJ9zbRDef/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1XDBSZv9YbuD_gvryz-VCmObIJ9zbRDef', 
-    description: 'মৃত্যু-পরবর্তী জগত ও জীবনের গভীর তত্ত্ব নিয়ে এক অসাধারণ রচনা।' 
+    description: 'মৃত্যু-পরবর্তী জগত ও জীবনের গভীর তত্ত্ব নিয়ে এক অসাধারণ রচনা।',
+    ytID: "6Lg5DY7ZK40"
   },
   { 
     id: '123', 
@@ -1630,7 +1640,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://www.haritbooks.com/wp-content/uploads/2022/03/pother_panchali.jpg', 
     readLink: 'https://drive.google.com/file/d/1z7oTbc-KJ3BtJtq_dcS5OH06N1fp_hWq/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1z7oTbc-KJ3BtJtq_dcS5OH06N1fp_hWq', 
-    description: 'অপু ও দুর্গার গ্রামীণ জীবনের মায়াবী রূপক ও কালজয়ী উপন্যাস।' 
+    description: 'অপু ও দুর্গার গ্রামীণ জীবনের মায়াবী রূপক ও কালজয়ী উপন্যাস।',
+    ytID: "ROKqa4xd1V4",
   },
   { 
     id: '124', 
@@ -1640,7 +1651,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://ruperhat.com/wp-content/uploads/2021/12/bangali-musulmaner-mon.jpg', 
     readLink: 'https://drive.google.com/file/d/19kync2Xz6Iq3TXaxKu_4EqGa5P3z9NbM/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=19kync2Xz6Iq3TXaxKu_4EqGa5P3z9NbM', 
-    description: 'বাঙালি মুসলমান সমাজের চিন্তাচেতনা ও সংস্কৃতির বিশ্লেষণ।' 
+    description: 'বাঙালি মুসলমান সমাজের চিন্তাচেতনা ও সংস্কৃতির বিশ্লেষণ।',
+    ytID: "dQry4_hqSrg",
   },
   { 
     id: '125', 
@@ -1650,7 +1662,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://wafilife-media.wafilife.com/uploads/2024/07/moroner_donka.png', 
     readLink: 'https://drive.google.com/file/d/1rPRepU_9_zAbN8kOXztJo46gwqv88miC/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1rPRepU_9_zAbN8kOXztJo46gwqv88miC', 
-    description: 'রোমাঞ্চকর ও অ্যাডভেঞ্চারধর্মী কিশোর কাহিনী - ১ম অংশ।' 
+    description: 'রোমাঞ্চকর ও অ্যাডভেঞ্চারধর্মী কিশোর কাহিনী - ১ম অংশ।',
+    ytId: "aeCtL3l1g1k",
   },
   { 
     id: '126', 
@@ -1660,7 +1673,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://rokbucket.rokomari.io/ProductNew20190903/260X372/Moroner_Donka_Baje-Bibhutibhusan_Bandopadhyay-fb21a-445733.jpg', 
     readLink: 'https://drive.google.com/file/d/1Q6BxGPFu0LPXVKvsBc7XuAMW_PtnS2Xk/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1Q6BxGPFu0LPXVKvsBc7XuAMW_PtnS2Xk', 
-    description: 'রোমাঞ্চকর ও অ্যাডভেঞ্চারধর্মী কিশোর কাহিনী - ২য় অংশ।' 
+    description: 'রোমাঞ্চকর ও অ্যাডভেঞ্চারধর্মী কিশোর কাহিনী - ২য় অংশ।',
+   ytId: "aeCtL3l1g1k",
   },
   { 
     id: '116', 
@@ -1670,7 +1684,11 @@ window.BOOKS_DATA = [
     coverImage: 'https://wafilife-media.wafilife.com/uploads/2024/08/WhatsApp-Image-2024-08-21-at-17.47.38_ad4120cf.jpg', 
     readLink: 'https://drive.google.com/file/d/1-e-Kht2PBhkkv0gMorNZ8RzJ54lsGi1s/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1-e-Kht2PBhkkv0gMorNZ8RzJ54lsGi1s', 
-    description: 'হাজারী ঠাকুর ও তার রাঁধুনি জীবনের সংগ্রামের বাস্তবধর্মী চিত্র।' 
+    description: 'হাজারী ঠাকুর ও তার রাঁধুনি জীবনের সংগ্রামের বাস্তবধর্মী চিত্র।',
+     ytParts: [
+  { id: "0l-ewF7fy7A", title: "Part 1" },
+  { id: "nhtEWf_sUIQ", title: "Part 2" }
+]
   },
   
   { 
