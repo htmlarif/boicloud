@@ -108,17 +108,42 @@
     @keyframes blinkSoft { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
     .blink-soft { animation: blinkSoft 1.15s infinite; }
 
-    /* ✅ tiny premium: active part underline */
-    .part-btn.active {
-      background: rgba(16,185,129,.14);
-      border-color: rgba(16,185,129,.35);
-      color: #059669;
+    /* ✅ Premium mini wave bars */
+    .wave {
+      display:inline-flex;
+      align-items:flex-end;
+      gap:2px;
+      height:12px;
+      padding: 2px 4px;
+      border-radius: 9999px;
+      border: 1px solid rgba(16,185,129,.18);
+      background: rgba(16,185,129,.08);
     }
-    .dark .part-btn.active {
-      background: rgba(16,185,129,.16);
-      border-color: rgba(16,185,129,.35);
-      color: #10b981;
+    .dark .wave { border-color: rgba(16,185,129,.22); background: rgba(16,185,129,.10); }
+    .bar {
+      width:2px;
+      height:3px;
+      border-radius:2px;
+      background: rgb(16 185 129);
+      opacity:.9;
+      transform-origin: bottom;
+      animation: wave 1.0s infinite ease-in-out;
     }
+    .bar:nth-child(2){ animation-delay: .12s; }
+    .bar:nth-child(3){ animation-delay: .24s; }
+    .bar:nth-child(4){ animation-delay: .36s; }
+    .bar:nth-child(5){ animation-delay: .48s; }
+
+    @keyframes wave {
+      0%,100% { transform: scaleY(.45); opacity:.6; }
+      50% { transform: scaleY(1.35); opacity:1; }
+    }
+
+    .wave.paused .bar { animation: none; opacity:.45; transform: scaleY(.55); }
+
+    /* ✅ tiny spinner */
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .mini-spin { animation: spin .9s linear infinite; }
   </style>
 </head>
 
@@ -218,46 +243,68 @@
           <p id="book-desc" class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed break-words">—</p>
         </div>
 
-        <!-- ================= AUDIO PLAYER (COMPACT + MULTI PART) ================= -->
+        <!-- ================= AUDIO PLAYER (COMPACT + PREMIUM) ================= -->
         <div id="youtube-card" class="mt-6">
           <!-- ✅ Available -->
           <div id="yt-available" class="hidden">
-            <div class="relative overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2rem] p-3.5 sm:p-4 shadow-xl">
+            <div class="relative overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2rem] p-4 shadow-xl">
               <div class="hidden"><div id="yt-player"></div></div>
 
-              <div class="relative z-10 flex flex-col gap-3.5">
-
-                <!-- top row -->
+              <div class="relative z-10 flex flex-col gap-4">
                 <div class="flex items-center justify-between gap-3">
-                  <div class="flex items-center gap-2 min-w-0">
-                    <!-- ✅ icon compact + slightly right -->
-                    <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-2xl bg-brand-500 flex items-center justify-center shadow-lg shadow-brand-500/20">
-                      <span class="inline-flex items-center justify-center translate-x-[1px]">
-                        <i data-lucide="headphones" class="w-4 h-4 text-white"></i>
-                      </span>
+                  <div class="flex items-center gap-2">
+                    <div class="w-9 h-9 rounded-2xl bg-brand-500 flex items-center justify-center shadow-lg shadow-brand-500/20">
+                      <i data-lucide="headphones" class="w-4.5 h-4.5 text-white"></i>
                     </div>
-                    <div class="leading-tight min-w-0">
+                    <div class="leading-tight">
                       <div class="text-[10px] font-black uppercase tracking-widest text-brand-600">Audio Mode</div>
-                      <div class="text-[11px] font-bold text-slate-500 dark:text-slate-400 truncate">
+                      <div class="text-[11px] font-bold text-slate-500 dark:text-slate-400">
                         <span id="yt-source-label">YouTube Source</span>
-                        <span id="yt-part-inline" class="hidden"> • <span class="text-brand-600 font-black" id="yt-part-name-inline"></span></span>
                       </div>
                     </div>
                   </div>
 
-                  <div class="text-[10px] font-black text-slate-400 uppercase tracking-[3px] shrink-0">BoiCloud</div>
-                </div>
-
-                <!-- ✅ parts row (only if multi-part) -->
-                <div id="yt-parts-wrap" class="hidden">
-                  <div class="flex items-center justify-between mb-1">
-                    <div class="text-[10px] uppercase tracking-[3px] text-slate-400 font-black">Parts</div>
-                    <div class="text-[10px] text-slate-400 font-bold">Tap to switch</div>
+                  <div class="flex items-center gap-2">
+                    <div class="wave paused" id="mini-wave" title="Playing indicator">
+                      <span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
+                    </div>
+                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-[3px]">BoiCloud</div>
                   </div>
-                  <div id="yt-parts" class="flex gap-2 overflow-x-auto no-scrollbar pb-1"></div>
                 </div>
 
-                <!-- progress -->
+                <!-- ✅ Parts row (auto hidden if single) -->
+                <div id="parts-wrap" class="hidden">
+                  <div class="flex items-center justify-between gap-3">
+                    <div class="text-[10px] font-black uppercase tracking-widest text-slate-400">Parts</div>
+                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-[3px]" id="part-now">Part</div>
+                  </div>
+                  <div id="parts-chips" class="flex gap-2 overflow-x-auto no-scrollbar pb-1"></div>
+                </div>
+
+                <!-- ✅ Premium compact controls row -->
+                <div class="flex items-center justify-between gap-2">
+                  <button id="btn-speed"
+                    class="px-3 py-2 rounded-2xl text-[11px] font-black bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 active:scale-95 transition-all inline-flex items-center gap-2">
+                    <i data-lucide="gauge" class="w-4 h-4"></i>
+                    <span id="speed-label">1x</span>
+                  </button>
+
+                  <button id="btn-sleep"
+                    class="px-3 py-2 rounded-2xl text-[11px] font-black bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 active:scale-95 transition-all inline-flex items-center gap-2">
+                    <i data-lucide="moon" class="w-4 h-4"></i>
+                    <span id="sleep-label">Off</span>
+                  </button>
+
+                  <a id="btn-youtube"
+                     href="#"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     class="px-3 py-2 rounded-2xl text-[11px] font-black bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500/40 active:scale-95 transition-all inline-flex items-center gap-2">
+                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                    YouTube
+                  </a>
+                </div>
+
                 <div class="space-y-2">
                   <div class="relative group h-5 flex items-center">
                     <div class="absolute w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full border border-slate-200/60 dark:border-slate-700/60"></div>
@@ -290,39 +337,30 @@
                   </p>
                 </div>
 
-                <!-- controls -->
-                <div class="flex items-center justify-center gap-6 sm:gap-7">
-                  <button id="btn-rewind" class="w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm active:scale-95 transition-all">
-                    <i data-lucide="rotate-ccw" class="w-5 h-5 text-slate-600 dark:text-slate-300"></i>
+                <div class="flex items-center justify-center gap-7">
+                  <button id="btn-rewind" class="w-11 h-11 flex items-center justify-center rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm active:scale-95 transition-all">
+                    <i data-lucide="rotate-ccw" class="w-5.5 h-5.5 text-slate-600 dark:text-slate-300"></i>
                   </button>
 
-                  <!-- ✅ play button slightly smaller on mobile -->
-                  <button id="main-play-btn" class="relative w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center rounded-[1.75rem] sm:rounded-[1.9rem] bg-brand-600 hover:bg-brand-700 text-white shadow-[0_10px_20px_-5px_rgba(79,70,229,0.3)] active:scale-95 transition-all">
+                  <button id="main-play-btn" class="w-16 h-16 flex items-center justify-center rounded-[1.9rem] bg-brand-600 hover:bg-brand-700 text-white shadow-[0_10px_20px_-5px_rgba(79,70,229,0.3)] active:scale-95 transition-all">
                     <span id="play-pause-icon" class="inline-flex items-center justify-center"></span>
-
-                    <!-- ✅ buffering overlay (hidden by default) -->
-                    <span id="btn-buffering" class="hidden absolute inset-0 rounded-[1.75rem] sm:rounded-[1.9rem] bg-black/10 backdrop-blur-[1px]">
-                      <span class="absolute inset-0 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" class="animate-spin">
-                          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" opacity=".25"/>
-                          <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                      </span>
-                    </span>
                   </button>
 
-                  <button id="btn-forward" class="w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm active:scale-95 transition-all">
-                    <i data-lucide="rotate-cw" class="w-5 h-5 text-slate-600 dark:text-slate-300"></i>
+                  <button id="btn-forward" class="w-11 h-11 flex items-center justify-center rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm active:scale-95 transition-all">
+                    <i data-lucide="rotate-cw" class="w-5.5 h-5.5 text-slate-600 dark:text-slate-300"></i>
                   </button>
                 </div>
 
-                <!-- status -->
                 <div class="flex items-center justify-between">
                   <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-                    <!-- ✅ glow-ish dot when playing/buffering via js class -->
                     <span id="player-status-dot" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600"></span>
                     <span id="player-status">Ready</span>
+                    <span id="player-mini-spinner" class="hidden">
+                      <i data-lucide="loader-2" class="w-4 h-4 text-yellow-400 mini-spin"></i>
+                    </span>
                   </div>
+
+                  <div class="text-[11px] font-bold text-slate-400" id="resume-badge" class="hidden"></div>
                 </div>
 
                 <div class="text-[11px] leading-relaxed text-slate-500 dark:text-slate-400">
@@ -663,12 +701,32 @@
       return candidates[0] || '';
     }
 
-    function getYoutubePartsFromBook(book) {
-      const parts = book?.ytParts;
-      if (!Array.isArray(parts) || parts.length < 2) return [];
-      return parts
-        .map(p => ({ title: String(p?.title || '').trim(), id: String(p?.id || '').trim() }))
-        .filter(p => p.title && p.id);
+    function getPartsFromBook(book) {
+      // ✅ supports: ytParts:[{id,title}], ytIds:[...], ytIdParts / parts
+      const parts = [];
+
+      if (Array.isArray(book?.ytParts) && book.ytParts.length) {
+        book.ytParts.forEach((p, idx) => {
+          const id = String(p?.id || '').trim();
+          if (id) parts.push({ id, title: String(p?.title || `Part ${idx+1}`) });
+        });
+      } else if (Array.isArray(book?.ytIds) && book.ytIds.length) {
+        book.ytIds.forEach((id, idx) => {
+          const vid = String(id || '').trim();
+          if (vid) parts.push({ id: vid, title: `Part ${idx+1}` });
+        });
+      } else if (Array.isArray(book?.parts) && book.parts.length) {
+        book.parts.forEach((id, idx) => {
+          const vid = String(id || '').trim();
+          if (vid) parts.push({ id: vid, title: `Part ${idx+1}` });
+        });
+      }
+
+      // fallback single
+      const single = getYoutubeIdFromBook(book);
+      if (!parts.length && single) parts.push({ id: single, title: 'Part 1' });
+
+      return parts;
     }
 
     function getSourceNameFromBook(book) {
@@ -717,13 +775,13 @@
       const labelEl = document.getElementById('yt-source-label');
       if (labelEl) labelEl.textContent = sourceName ? sourceName : 'YouTube Source';
 
-      // Audio init (single or multi-part)
-      const ytId = getYoutubeIdFromBook(book);
-      const parts = getYoutubePartsFromBook(book);
-
-      if (typeof window.handleYoutubeAudio === 'function') {
-        window.handleYoutubeAudio({ ytId, parts });
-      }
+      // Audio init (premium payload)
+      const parts = getPartsFromBook(book);
+      const payload = {
+        bookKey: String(book.id ?? ''),
+        parts
+      };
+      if (typeof window.handleYoutubeAudio === 'function') window.handleYoutubeAudio(payload);
 
       // Share links
       const shareUrlRaw = location.href;
@@ -820,7 +878,7 @@
     document.addEventListener('DOMContentLoaded', init);
   </script>
 
-  <!-- ========================= YouTube Audio Player Script (COMPACT + MULTI PART) ========================= -->
+  <!-- ========================= YouTube Audio Player Script (Premium Pack) ========================= -->
   <script>
   (() => {
     const SKIP_SECONDS = 5;
@@ -831,7 +889,6 @@
 
     const btnPlay = document.getElementById("main-play-btn");
     const iconWrap = document.getElementById("play-pause-icon");
-    const btnBuffering = document.getElementById("btn-buffering");
 
     const btnRewind = document.getElementById("btn-rewind");
     const btnForward = document.getElementById("btn-forward");
@@ -846,23 +903,44 @@
 
     const statusDot = document.getElementById("player-status-dot");
     const statusText = document.getElementById("player-status");
+    const miniSpinner = document.getElementById("player-mini-spinner");
+    const miniWave = document.getElementById("mini-wave");
 
-    const partsWrap = document.getElementById("yt-parts-wrap");
-    const partsEl = document.getElementById("yt-parts");
-    const partInline = document.getElementById("yt-part-inline");
-    const partNameInline = document.getElementById("yt-part-name-inline");
+    const btnSpeed = document.getElementById("btn-speed");
+    const speedLabel = document.getElementById("speed-label");
+
+    const btnSleep = document.getElementById("btn-sleep");
+    const sleepLabel = document.getElementById("sleep-label");
+
+    const btnYoutube = document.getElementById("btn-youtube");
+
+    const partsWrap = document.getElementById("parts-wrap");
+    const partsChips = document.getElementById("parts-chips");
+    const partNow = document.getElementById("part-now");
 
     let player = null;
-    let ytIdActive = "";
-    let parts = [];
-    let activePartIndex = 0;
-
     let isReady = false;
     let isDragging = false;
     let duration = 0;
     let rafId = null;
     let holdTimer = null;
     let lastKnownTime = 0;
+
+    // ✅ premium state
+    let bookKey = "";
+    let parts = [];              // [{id,title}]
+    let activePartIndex = 0;
+
+    const SPEEDS = [1, 1.25, 1.5, 2];
+    let speedIndex = 0;
+
+    const SLEEP_PRESETS = [0, 15, 30, 45, 60]; // minutes (0=off)
+    let sleepIndex = 0;
+    let sleepEndAt = 0;
+    let sleepTicker = null;
+
+    // resume save
+    let saveTicker = null;
 
     const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
 
@@ -873,31 +951,30 @@
       return `${m}:${s}`;
     }
 
-    function setBufferingOverlay(on) {
-      if (!btnBuffering) return;
-      btnBuffering.classList.toggle("hidden", !on);
-    }
-
     function setStatus(mode) {
       const map = {
-        ready:  { dot: "bg-slate-300 dark:bg-slate-600", text: "Ready", buffering: false },
-        playing:{ dot: "bg-brand-600 shadow-[0_0_10px_rgba(16,185,129,.45)]", text: "Playing", buffering: false },
-        paused: { dot: "bg-slate-400 dark:bg-slate-500", text: "Paused", buffering: false },
-        buffering:{ dot: "bg-yellow-400 shadow-[0_0_10px_rgba(250,204,21,.45)]", text: "Buffering", buffering: true },
-        error:  { dot: "bg-red-500 shadow-[0_0_10px_rgba(239,68,68,.45)]", text: "Error", buffering: false }
+        ready:  { dot: "bg-slate-300 dark:bg-slate-600", text: "Ready", spin:false },
+        playing:{ dot: "bg-brand-600", text: "Playing", spin:false },
+        paused: { dot: "bg-slate-400 dark:bg-slate-500", text: "Paused", spin:false },
+        buffering:{ dot: "bg-yellow-400", text: "Buffering", spin:true },
+        error:  { dot: "bg-red-500", text: "Error", spin:false }
       };
       const v = map[mode] || map.ready;
       statusDot.className = "w-2 h-2 rounded-full " + v.dot;
       statusText.textContent = v.text;
-      setBufferingOverlay(!!v.buffering);
+      if (miniSpinner) miniSpinner.classList.toggle("hidden", !v.spin);
+
+      if (miniWave) {
+        if (mode === 'playing') miniWave.classList.remove('paused');
+        else miniWave.classList.add('paused');
+      }
     }
 
-    // ✅ Play icon compact (smaller than before)
     function setPlayIcon(isPlaying) {
       if (!iconWrap) return;
       iconWrap.innerHTML = isPlaying
-        ? '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect></svg>'
-        : '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>';
+        ? '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect></svg>'
+        : '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>';
     }
 
     function renderProgress(ratio) {
@@ -918,6 +995,33 @@
       totalTimeEl.textContent = formatTime(totalSec);
     }
 
+    function getResumeKey(videoId) {
+      const b = (bookKey || 'book').replace(/\s+/g,'_');
+      return `boicloud_resume__${b}__${videoId}`;
+    }
+
+    function readResume(videoId) {
+      try {
+        const raw = localStorage.getItem(getResumeKey(videoId));
+        const t = Number(raw || 0);
+        return Number.isFinite(t) ? t : 0;
+      } catch { return 0; }
+    }
+
+    function writeResume(videoId, t) {
+      try {
+        localStorage.setItem(getResumeKey(videoId), String(Math.floor(t || 0)));
+      } catch {}
+    }
+
+    function clearResume(videoId) {
+      try { localStorage.removeItem(getResumeKey(videoId)); } catch {}
+    }
+
+    function isPlayingState() {
+      try { return player?.getPlayerState?.() === 1; } catch { return false; }
+    }
+
     function safeDuration() {
       try {
         const d = player?.getDuration?.() || 0;
@@ -932,137 +1036,189 @@
       } catch { return 0; }
     }
 
-    function isPlayingState() {
-      try { return player?.getPlayerState?.() === 1; } catch { return false; }
+    function safeSetRate(rate) {
+      try { player?.setPlaybackRate?.(rate); } catch {}
     }
 
-    function resetTimelineUI() {
-      isReady = false;
-      duration = 0;
-      lastKnownTime = 0;
-      setTimesUI(0, 0);
-      renderProgress(0);
-      setPlayIcon(false);
+    function updateYoutubeLink(videoId) {
+      if (!btnYoutube) return;
+      btnYoutube.href = videoId ? `https://www.youtube.com/watch?v=${encodeURIComponent(videoId)}` : '#';
     }
 
-    function applyPartsUI(newParts) {
-      parts = Array.isArray(newParts) ? newParts : [];
-      activePartIndex = 0;
+    function renderPartsUI() {
+      if (!partsWrap || !partsChips || !partNow) return;
 
-      if (!partsWrap || !partsEl) return;
-
-      // Only show if >= 2 parts
-      if (!parts.length) {
-        partsWrap.classList.add("hidden");
-        if (partInline) partInline.classList.add("hidden");
-        partsEl.innerHTML = "";
+      if (!parts || parts.length <= 1) {
+        partsWrap.classList.add('hidden');
+        partsChips.innerHTML = '';
         return;
       }
 
-      partsWrap.classList.remove("hidden");
-      partsEl.innerHTML = parts.map((p, idx) => `
-        <button class="part-btn shrink-0 px-3 py-2 rounded-xl text-[11px] font-black border border-slate-200 dark:border-slate-700 bg-white/70 dark:bg-slate-900/60 text-slate-600 dark:text-slate-300 active:scale-95 transition-all ${idx===0 ? 'active' : ''}"
-                data-part="${idx}">
-          ${escapeHtml(p.title)}
-        </button>
-      `).join("");
+      partsWrap.classList.remove('hidden');
+      partsChips.innerHTML = parts.map((p, idx) => {
+        const active = idx === activePartIndex;
+        return `
+          <button data-idx="${idx}"
+            class="px-3 py-2 rounded-2xl text-[11px] font-black whitespace-nowrap border active:scale-95 transition-all
+              ${active
+                ? 'bg-brand-600 text-white border-brand-600 shadow-lg shadow-brand-500/20'
+                : 'bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-brand-500/40'}">
+            ${escapeHtml(p.title || `Part ${idx+1}`)}
+          </button>
+        `;
+      }).join('');
 
-      if (partInline) partInline.classList.remove("hidden");
-      if (partNameInline) partNameInline.textContent = parts[0]?.title || "Part";
+      partNow.textContent = parts[activePartIndex]?.title || `Part ${activePartIndex+1}`;
 
-      // bind
-      partsEl.querySelectorAll("button[data-part]").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const idx = Number(btn.getAttribute("data-part"));
-          if (!Number.isFinite(idx) || !parts[idx]) return;
+      partsChips.querySelectorAll('button[data-idx]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = Number(btn.getAttribute('data-idx'));
+          if (!Number.isFinite(idx) || idx < 0 || idx >= parts.length) return;
+          if (idx === activePartIndex) return;
           switchPart(idx);
         });
       });
-    }
 
-    function setActivePartUI(idx) {
-      if (!partsEl) return;
-      partsEl.querySelectorAll("button[data-part]").forEach(b => {
-        const i = Number(b.getAttribute("data-part"));
-        b.classList.toggle("active", i === idx);
-      });
-
-      if (partInline) partInline.classList.remove("hidden");
-      if (partNameInline) partNameInline.textContent = parts[idx]?.title || "Part";
+      lucide.createIcons();
     }
 
     function switchPart(idx) {
-      if (!parts[idx]) return;
+      if (!parts[idx]?.id) return;
       activePartIndex = idx;
-      ytIdActive = String(parts[idx].id || "").trim();
-      setActivePartUI(idx);
 
-      if (!ytIdActive) return;
+      // Save current before switching
+      const currentVid = parts[activePartIndex]?.id;
+      const prevVid = currentVid; // for clarity
 
-      resetTimelineUI();
-      setStatus("buffering");
+      // load
+      isReady = false;
+      setStatus('buffering');
+      setPlayIcon(false);
+      lastKnownTime = 0;
+      duration = 0;
+      setTimesUI(0,0);
+      renderProgress(0);
 
-      // preserve play intention: if user was playing, continue after load
-      const shouldAutoPlay = isPlayingState();
+      ensurePlayer(parts[activePartIndex].id, true);
+      renderPartsUI();
+      updateYoutubeLink(parts[activePartIndex].id);
 
-      if (player && window.YT && window.YT.Player) {
-        try {
-          player.loadVideoById(ytIdActive);
-          if (shouldAutoPlay) {
-            // some devices need a tiny delay
-            setTimeout(() => { try { player.playVideo(); } catch {} }, 120);
-          }
-        } catch {}
-      } else {
-        ensurePlayer(ytIdActive);
-      }
+      showToast(`Switch: ${parts[activePartIndex]?.title || 'Part'}`);
     }
 
-    // ✅ Main API: now accepts {ytId, parts}
-    window.handleYoutubeAudio = function handleYoutubeAudio(payload) {
-      const ytId = (payload?.ytId || "").trim();
-      const partsInput = Array.isArray(payload?.parts) ? payload.parts : [];
+    function startResumeSaver() {
+      stopResumeSaver();
+      saveTicker = setInterval(() => {
+        if (!player || !isReady) return;
+        const vid = parts?.[activePartIndex]?.id;
+        if (!vid) return;
 
-      // normalize parts: only if 2+ valid
-      const validParts = partsInput
-        .map(p => ({ title: String(p?.title||"").trim(), id: String(p?.id||"").trim() }))
-        .filter(p => p.title && p.id);
-      const useParts = validParts.length >= 2 ? validParts : [];
+        const t = safeCurrentTime();
+        if (Number.isFinite(t) && t > 1) writeResume(vid, t);
+      }, 5000);
+    }
 
-      if (!ytId && !useParts.length) {
+    function stopResumeSaver() {
+      if (saveTicker) clearInterval(saveTicker);
+      saveTicker = null;
+    }
+
+    function setSpeedByIndex(i) {
+      speedIndex = clamp(i, 0, SPEEDS.length - 1);
+      const rate = SPEEDS[speedIndex];
+      safeSetRate(rate);
+      if (speedLabel) speedLabel.textContent = `${rate}x`;
+      showToast(`Speed: ${rate}x`);
+    }
+
+    function cycleSpeed() {
+      const next = (speedIndex + 1) % SPEEDS.length;
+      setSpeedByIndex(next);
+    }
+
+    function setSleepMinutes(min) {
+      if (!sleepLabel) return;
+
+      if (!min) {
+        sleepEndAt = 0;
+        sleepLabel.textContent = 'Off';
+        stopSleepTicker();
+        showToast('Sleep timer: Off');
+        return;
+      }
+      sleepEndAt = Date.now() + min * 60 * 1000;
+      sleepLabel.textContent = `${min}m`;
+      startSleepTicker();
+      showToast(`Sleep: ${min} min`);
+    }
+
+    function cycleSleep() {
+      sleepIndex = (sleepIndex + 1) % SLEEP_PRESETS.length;
+      setSleepMinutes(SLEEP_PRESETS[sleepIndex]);
+    }
+
+    function startSleepTicker() {
+      stopSleepTicker();
+      sleepTicker = setInterval(() => {
+        if (!sleepEndAt) return;
+        const left = sleepEndAt - Date.now();
+        if (left <= 0) {
+          sleepEndAt = 0;
+          stopSleepTicker();
+          if (player && isReady) player.pauseVideo();
+          if (sleepLabel) sleepLabel.textContent = 'Off';
+          showToast('Sleep timer done ✅');
+          return;
+        }
+        // show remaining in compact style: e.g. 12m
+        const m = Math.ceil(left / 60000);
+        if (sleepLabel) sleepLabel.textContent = `${m}m`;
+      }, 12000);
+    }
+
+    function stopSleepTicker() {
+      if (sleepTicker) clearInterval(sleepTicker);
+      sleepTicker = null;
+    }
+
+    // ✅ Backward compatible handler
+    window.handleYoutubeAudio = function handleYoutubeAudio(input) {
+      // input: string ytId OR {bookKey, parts:[{id,title}]}
+      let payload = input;
+
+      if (typeof payload === 'string') {
+        payload = { bookKey: '', parts: payload ? [{ id: String(payload).trim(), title: 'Part 1' }] : [] };
+      }
+
+      bookKey = String(payload?.bookKey || '');
+      parts = Array.isArray(payload?.parts) ? payload.parts.filter(p => String(p?.id||'').trim()) : [];
+      if (!parts.length) {
         elAvailable.classList.add("hidden");
         elComing.classList.remove("hidden");
         teardownPlayer();
-        applyPartsUI([]);
         return;
       }
 
+      activePartIndex = 0;
       elComing.classList.add("hidden");
       elAvailable.classList.remove("hidden");
 
-      // parts > single
-      if (useParts.length) {
-        applyPartsUI(useParts);
-        ytIdActive = String(useParts[0].id).trim();
-        setActivePartUI(0);
-      } else {
-        applyPartsUI([]);
-        ytIdActive = ytId;
-        if (partInline) partInline.classList.add("hidden");
-      }
+      renderPartsUI();
+      updateYoutubeLink(parts[activePartIndex].id);
 
-      ensurePlayer(ytIdActive);
+      ensurePlayer(parts[activePartIndex].id);
       lucide.createIcons();
     };
 
-    function ensurePlayer(videoId) {
-      if (!videoId) return;
+    function ensurePlayer(videoId, forceLoad=false) {
       if (!window.YT || !window.YT.Player) return;
 
       if (player) {
-        resetTimelineUI();
+        isReady = false;
         setStatus("buffering");
-        try { player.loadVideoById(videoId); } catch {}
+        setPlayIcon(false);
+        if (forceLoad) player.loadVideoById(videoId);
+        else player.cueVideoById(videoId);
         return;
       }
 
@@ -1080,13 +1236,37 @@
             renderProgress(0);
             setStatus("ready");
             setPlayIcon(false);
+
+            // apply speed
+            safeSetRate(SPEEDS[speedIndex] || 1);
+
+            // ✅ Resume (auto)
+            const vid = parts?.[activePartIndex]?.id;
+            const saved = vid ? readResume(vid) : 0;
+            if (saved > 5 && duration && saved < (duration - 5)) {
+              try {
+                player.seekTo(saved, true);
+                lastKnownTime = saved;
+                setTimesUI(saved, duration);
+                renderProgress(saved / duration);
+                showToast('Resume: last position ✅');
+              } catch {}
+            }
+
             startTick();
+            startResumeSaver();
           },
           onStateChange: (e) => {
-            if (e.data === 1) { setStatus("playing"); setPlayIcon(true); }
-            else if (e.data === 2) { setStatus("paused"); setPlayIcon(false); }
+            if (e.data === 1) { setStatus("playing"); setPlayIcon(true); startResumeSaver(); }
+            else if (e.data === 2) { setStatus("paused"); setPlayIcon(false); startResumeSaver(); }
             else if (e.data === 3) setStatus("buffering");
-            else if (e.data === 0) { setStatus("paused"); setPlayIcon(false); }
+            else if (e.data === 0) {
+              setStatus("paused");
+              setPlayIcon(false);
+              // finished => clear resume for this part (optional)
+              const vid = parts?.[activePartIndex]?.id;
+              if (vid) clearResume(vid);
+            }
           },
           onError: () => { setStatus("error"); setPlayIcon(false); }
         }
@@ -1095,17 +1275,26 @@
 
     function teardownPlayer() {
       stopTick();
-      resetTimelineUI();
+      stopSleepTicker();
+      stopResumeSaver();
+
+      isReady = false;
+      duration = 0;
+      lastKnownTime = 0;
+      setTimesUI(0, 0);
+      renderProgress(0);
+
       if (player && player.destroy) {
         try { player.destroy(); } catch (e) {}
       }
       player = null;
       setStatus("ready");
-      setBufferingOverlay(false);
+      setPlayIcon(false);
     }
 
     window.onYouTubeIframeAPIReady = function() {
-      if (ytIdActive) ensurePlayer(ytIdActive);
+      // if already has parts, load first
+      if (parts?.length) ensurePlayer(parts[activePartIndex].id);
     };
 
     function tick() {
@@ -1121,7 +1310,6 @@
           lastKnownTime = t;
           setTimesUI(t, duration);
           if (duration > 0) renderProgress(t / duration);
-          dragHint.classList.add("hidden");
         } else {
           dragHint.classList.remove("hidden");
         }
@@ -1148,10 +1336,13 @@
     function seekToSeconds(sec) {
       if (!player || !isReady || !duration) return;
       const target = clamp(sec, 0, duration);
-      try { player.seekTo(target, true); } catch {}
+      player.seekTo(target, true);
       lastKnownTime = target;
       setTimesUI(target, duration);
       renderProgress(target / duration);
+      // save quickly
+      const vid = parts?.[activePartIndex]?.id;
+      if (vid) writeResume(vid, target);
     }
 
     function skipBy(deltaSec) {
@@ -1206,7 +1397,7 @@
       }
       const ratio = getRatioFromSlider();
       const target = ratio * duration;
-      try { player.seekTo(target, true); } catch {}
+      player.seekTo(target, true);
 
       isDragging = false;
       dragHint.classList.add("hidden");
@@ -1214,6 +1405,9 @@
       lastKnownTime = target;
       setTimesUI(target, duration);
       renderProgress(ratio);
+
+      const vid = parts?.[activePartIndex]?.id;
+      if (vid) writeResume(vid, target);
     });
 
     progressSlider.addEventListener("pointercancel", () => {
@@ -1221,11 +1415,35 @@
       dragHint.classList.add("hidden");
     });
 
+    // ✅ Premium buttons
+    btnSpeed?.addEventListener('click', () => {
+      if (!player || !isReady) { showToast('Player not ready', 'error'); return; }
+      cycleSpeed();
+    });
+
+    btnSleep?.addEventListener('click', () => {
+      cycleSleep();
+    });
+
+    // Save resume on leaving page
+    window.addEventListener('beforeunload', () => {
+      try {
+        const vid = parts?.[activePartIndex]?.id;
+        if (!vid) return;
+        const t = safeCurrentTime();
+        if (t > 1) writeResume(vid, t);
+      } catch {}
+    });
+
     // init defaults
     setTimesUI(0, 0);
     renderProgress(0);
     setStatus("ready");
     setPlayIcon(false);
+
+    // default labels
+    if (speedLabel) speedLabel.textContent = '1x';
+    if (sleepLabel) sleepLabel.textContent = 'Off';
   })();
   </script>
 
