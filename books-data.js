@@ -1499,7 +1499,9 @@ window.BOOKS_DATA = [
     coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7yCysXgpGLLxSbDCB-OBYymTI1gdLfGenXw&s', 
     readLink: 'https://drive.google.com/file/d/1esjIawIhCV94E690AXANk3mRfmBBl_3G/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1esjIawIhCV94E690AXANk3mRfmBBl_3G', 
-    description: 'মাকড়সার জালের মতো জটিল এক হত্যার তদন্ত।' 
+    description: 'মাকড়সার জালের মতো জটিল এক হত্যার তদন্ত।',
+         ytID: "PlKCVeT2gRA",
+    
   },
   { 
     id: '167', 
@@ -1509,7 +1511,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1RRG-Ji1o6CrGXbUUZTG9riRjhEb5PHfdEA&s', 
     readLink: 'https://drive.google.com/file/d/1BzJbj-5lqfM9IWB1buFTm4QUaTkEJeza/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1BzJbj-5lqfM9IWB1buFTm4QUaTkEJeza', 
-    description: 'হেঁয়ালির মতো বুনে রাখা এক অপরাধের কূল-কিনারা করা।' 
+    description: 'হেঁয়ালির মতো বুনে রাখা এক অপরাধের কূল-কিনারা করা।',
+   
   },
    { 
     id: '139', 
@@ -1519,7 +1522,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://www.amarbooks.org/thumbs/1573733080.jpg', 
     readLink: 'https://drive.google.com/file/d/1t5-5IT2A9zk-0jBSEHm_RvI8bV8oNjVb/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1t5-5IT2A9zk-0jBSEHm_RvI8bV8oNjVb', 
-    description: 'গোলাপ কলোনির বিচিত্র মানুষদের রহস্য নিয়ে ব্যোমকেশের কালজয়ী উপন্যাস।' 
+    description: 'গোলাপ কলোনির বিচিত্র মানুষদের রহস্য নিয়ে ব্যোমকেশের কালজয়ী উপন্যাস।',
+     ytID: "xqxSuebkwHI",
   },
   { 
     id: '140', 
@@ -1539,7 +1543,9 @@ window.BOOKS_DATA = [
     coverImage: 'https://www.amarbooks.org/thumbs/1573733159.jpg', 
     readLink: 'https://drive.google.com/file/d/1fWiOnZIlkCUiyOLCyaTg8sN6j27kbugF/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1fWiOnZIlkCUiyOLCyaTg8sN6j27kbugF', 
-    description: 'চোরবালির মতো গ্রাস করা এক অপরাধের রহস্য।' 
+    description: 'চোরবালির মতো গ্রাস করা এক অপরাধের রহস্য।',
+    ytID: "iGOWuhnfRkc",
+  
   },
   { 
     id: '169', 
