@@ -169,32 +169,7 @@
     </div>
   </div>
 
-  <div id="not-found" class="hidden text-center py-16">
-    <div class="w-20 h-20 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6">
-      <i data-lucide="alert-triangle" class="w-10 h-10 text-slate-400"></i>
-    </div>
-    <h2 class="text-2xl font-black mb-2">বই পাওয়া যায়নি</h2>
-    <p class="text-slate-500 dark:text-slate-400 mb-6">লিংকটি ভুল হতে পারে।</p>
-    <a href="index.html" class="inline-flex items-center gap-2 px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white rounded-2xl font-black">
-      <i data-lucide="arrow-left" class="w-5 h-5"></i> হোমে ফিরে যান
-    </a>
-  </div>
-
   <section id="book-section" class="space-y-6 hidden">
-    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden shadow-lg">
-      <div class="px-4 pt-4 pb-3 flex items-center justify-between gap-3">
-        <span id="book-category" class="px-3 py-1 rounded-full text-[11px] font-black bg-brand-500/10 text-brand-600 border border-brand-500/20 whitespace-nowrap">—</span>
-        <span class="text-[10px] uppercase tracking-[3px] text-slate-400">details</span>
-      </div>
-      <div class="px-4 pb-4">
-        <div class="mx-auto max-w-[340px] sm:max-w-[380px]">
-          <div class="aspect-[2/3] rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800">
-            <img id="book-cover" src="" alt="" class="w-full h-full object-cover">
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 sm:p-7 shadow-lg">
       <h2 id="book-title" class="text-2xl sm:text-4xl font-black leading-tight break-words">—</h2>
       <p class="mt-2 text-slate-500 dark:text-slate-400 font-bold break-words">
@@ -202,15 +177,7 @@
         <span id="book-author">—</span>
       </p>
 
-      <div class="mt-6">
-        <h3 class="text-sm font-black flex items-center gap-2">
-          <i data-lucide="info" class="w-4 h-4"></i> বিস্তারিত
-        </h3>
-        <p id="book-desc" class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed break-words">—</p>
-      </div>
-
       <div id="youtube-card" class="mt-8">
-        
         <div id="yt-available" class="hidden">
           <div class="relative overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-6 shadow-xl">
             <div class="hidden"><div id="yt-player"></div></div>
@@ -221,16 +188,7 @@
                   <div class="w-10 h-10 rounded-2xl bg-brand-500 flex items-center justify-center shadow-lg shadow-brand-500/20">
                     <i data-lucide="headphones" class="w-5 h-5 text-white"></i>
                   </div>
-                  <div>
-                    <span class="text-[10px] font-black uppercase tracking-widest text-brand-600 dark:text-brand-400 flex items-center gap-1">
-                      <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
-                      </span>
-                      Audio Mode
-                    </span>
-                    <p id="yt-source-name" class="text-[9px] text-slate-400 font-bold uppercase tracking-tighter italic">YouTube Source</p>
-                  </div>
+                  <span class="text-[10px] font-black uppercase tracking-widest text-brand-600">Audio Mode</span>
                 </div>
               </div>
 
@@ -238,90 +196,50 @@
                 <div class="relative group h-6 flex items-center">
                   <div class="absolute w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full"></div>
                   <div id="progress-bar-fill" class="absolute h-1.5 bg-brand-500 rounded-full pointer-events-none" style="width: 0%;"></div>
-                  <input type="range" id="progress-slider" min="0" max="100" value="0" class="absolute w-full h-6 opacity-0 cursor-pointer z-20">
+                  <input type="range" id="progress-slider" min="0" max="100" value="0" step="0.1" 
+                    class="absolute w-full h-6 opacity-0 cursor-pointer z-20">
                   <div id="slider-thumb" class="absolute h-4 w-4 bg-white border-2 border-brand-500 rounded-full shadow-md z-10 pointer-events-none transition-transform group-hover:scale-125" style="left: 0%; transform: translateX(-50%);"></div>
                 </div>
-                <div class="flex justify-between text-[11px] font-bold font-mono text-slate-400 dark:text-slate-500">
+                <div class="flex justify-between text-[11px] font-bold font-mono text-slate-400">
                   <span id="current-time">00:00</span>
                   <span id="duration">00:00</span>
                 </div>
               </div>
 
               <div class="flex items-center justify-center gap-10">
-                <button id="btn-rewind" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 active:scale-90 transition-all shadow-sm group">
-                  <i data-lucide="rotate-ccw" class="w-6 h-6 text-slate-600 dark:text-slate-300 group-hover:text-brand-500"></i>
+                <button id="btn-rewind" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 active:scale-90 transition-all">
+                  <i data-lucide="rotate-ccw" class="w-6 h-6 text-slate-600 dark:text-slate-300"></i>
                 </button>
 
                 <button id="main-play-btn" onclick="togglePlay()" class="w-20 h-20 flex items-center justify-center rounded-[2.2rem] bg-brand-600 hover:bg-brand-700 text-white shadow-[0_10px_20px_-5px_rgba(79,70,229,0.3)] active:scale-95 transition-all">
                   <i id="play-icon" data-lucide="play" class="w-10 h-10 fill-current"></i>
                 </button>
 
-                <button id="btn-forward" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 active:scale-90 transition-all shadow-sm group">
-                  <i data-lucide="rotate-cw" class="w-6 h-6 text-slate-600 dark:text-slate-300 group-hover:text-brand-500"></i>
+                <button id="btn-forward" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 active:scale-90 transition-all">
+                  <i data-lucide="rotate-cw" class="w-6 h-6 text-slate-600 dark:text-slate-300"></i>
                 </button>
               </div>
             </div>
           </div>
         </div>
 
-        <div id="yt-coming-soon" class="flex items-center gap-4 p-5 rounded-[2rem] border border-dashed border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20">
-          <div class="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-white dark:bg-slate-900 shadow-sm">
-            <i data-lucide="mic-off" class="w-6 h-6 text-slate-400"></i>
-            <span class="absolute -top-1 -right-1 flex h-3 w-3">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
-            </span>
-          </div>
-          <div>
-            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">Status</p>
-            <p class="text-sm font-bold text-orange-600 dark:text-orange-500 italic mt-1.5 flex items-center gap-2">
-              অডিও বুক শীঘ্রই আসছে...
-            </p>
+        <div id="yt-coming-soon" class="hidden">
+          <div class="flex items-center gap-4 p-5 rounded-[2rem] border border-dashed border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20">
+            <div class="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-700">
+              <i data-lucide="mic-off" class="w-6 h-6 text-slate-300"></i>
+              <span class="absolute -top-1 -right-1 flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
+              </span>
+            </div>
+            <div>
+              <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">Status</p>
+              <p class="text-sm font-bold text-orange-600 dark:text-orange-500 italic mt-1.5">অডিও বুক শীঘ্রই আসছে...</p>
+            </div>
           </div>
         </div>
       </div>
-
-      <div class="mt-8 grid grid-cols-1 xs:grid-cols-3 gap-3">
-        <a id="read-btn" href="#" class="w-full px-5 py-3 rounded-2xl font-black text-sm bg-brand-600 hover:bg-brand-700 text-white inline-flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg shadow-brand-600/20">
-          <i data-lucide="book-open" class="w-5 h-5"></i> পড়ুন
-        </a>
-        <a id="download-btn" href="#" target="_blank" rel="noopener noreferrer" class="w-full px-5 py-3 rounded-2xl font-black text-sm bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 inline-flex items-center justify-center gap-2 transition-all active:scale-95">
-          <i data-lucide="download" class="w-5 h-5"></i> ডাউনলোড
-        </a>
-        <a href="index.html" class="w-full px-5 py-3 rounded-2xl font-black text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500/40 inline-flex items-center justify-center gap-2 transition-all active:scale-95">
-          <i data-lucide="arrow-left" class="w-5 h-5"></i> Home
-        </a>
       </div>
-    </div>
-
-    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 shadow-sm">
-      <div class="flex items-center justify-between gap-3 pb-4 border-b border-slate-100 dark:border-slate-800">
-        <h3 class="text-sm font-black flex items-center gap-2 uppercase tracking-tight">
-          <i data-lucide="share-2" class="w-4 h-4 text-brand-500"></i> Share this book
-        </h3>
-        <button id="copy-link" class="px-3 py-2 rounded-xl text-xs font-black bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors inline-flex items-center gap-2 active:scale-90">
-          <i data-lucide="copy" class="w-4 h-4"></i> Copy link
-        </button>
-      </div>
-
-      <div class="mt-4 grid grid-cols-2 sm:grid-cols-5 gap-2">
-        <a id="share-fb" target="_blank" class="px-3 py-2 rounded-xl text-[11px] font-black bg-slate-50 dark:bg-slate-800/50 hover:bg-blue-600 hover:text-white transition-all inline-flex items-center justify-center gap-2">
-          <i class="fab fa-facebook-f"></i> Facebook
-        </a>
-        <a id="share-ms" target="_blank" class="px-3 py-2 rounded-xl text-[11px] font-black bg-slate-50 dark:bg-slate-800/50 hover:bg-indigo-600 hover:text-white transition-all inline-flex items-center justify-center gap-2">
-          <i class="fab fa-facebook-messenger"></i> Messenger
-        </a>
-        <a id="share-wa" target="_blank" class="px-3 py-2 rounded-xl text-[11px] font-black bg-slate-50 dark:bg-slate-800/50 hover:bg-green-600 hover:text-white transition-all inline-flex items-center justify-center gap-2">
-          <i class="fab fa-whatsapp"></i> WhatsApp
-        </a>
-        <a id="share-tg" target="_blank" class="px-3 py-2 rounded-xl text-[11px] font-black bg-slate-50 dark:bg-slate-800/50 hover:bg-sky-500 hover:text-white transition-all inline-flex items-center justify-center gap-2">
-          <i class="fab fa-telegram-plane"></i> Telegram
-        </a>
-        <a id="share-x" target="_blank" class="px-3 py-2 rounded-xl text-[11px] font-black bg-slate-50 dark:bg-slate-800/50 hover:bg-black hover:text-white transition-all inline-flex items-center justify-center gap-2">
-          <i class="fab fa-x-twitter"></i> X
-        </a>
-      </div>
-    </div>
       <!-- ✅ Related carousel -->
       <div>
         <div class="flex items-end justify-between gap-4 mb-3">
