@@ -1701,6 +1701,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://fs.pbs.com.bd/DIR/Com/PBS/Product/ImageDetails/2205717.jpg', 
     readLink: 'https://drive.google.com/file/d/10pHltTtUPSF0tZqU2qZauj8B1FybyM1r/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=10pHltTtUPSF0tZqU2qZauj8B1FybyM1r', 
-    description: 'শঙ্করের আফ্রিকার দুর্গম জঙ্গল ও পাহাড় অভিযানের রোমাঞ্চকর কাহিনী।' 
+    description: 'শঙ্করের আফ্রিকার দুর্গম জঙ্গল ও পাহাড় অভিযানের রোমাঞ্চকর কাহিনী।',
+    youtubeId: "wnbfJc9aEII",
+  audioSource: "Mirchi Bangla"
   },
 ];
