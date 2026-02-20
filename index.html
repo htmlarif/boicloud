@@ -290,19 +290,22 @@
       ✅ Slider Card (smooth + stable)
       + ✅ Audio badge on cover (ytId থাকলে)
     ========================================================= */
-    function audioBadgeHTML(book) {
-      if (!book?.ytId || !String(book.ytId).trim()) return '';
-      return `
-        <div class="absolute top-2 right-2 z-10">
-          <div class="flex items-center gap-1 px-2.5 py-1 rounded-full
-                      bg-brand-600 text-white shadow-lg border border-white/20
-                      animate-pulse">
-            <i data-lucide="headphones" class="w-4 h-4"></i>
-            <span class="text-[10px] font-black tracking-wide">AUDIO</span>
-          </div>
-        </div>
-      `;
-    }
+   function audioBadgeHTML(book) {
+  if (!book?.ytId || !String(book.ytId).trim()) return '';
+
+  return `
+    <div class="absolute top-2 right-2 z-10">
+      <span class="px-2.5 py-1 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm
+                   text-brand-600 text-[10px] font-black rounded-full
+                   border border-slate-100 dark:border-slate-800
+                   inline-flex items-center gap-1.5
+                   animate-blink-soft">
+        <i data-lucide="headphones" class="w-3.5 h-3.5"></i>
+        AUDIO
+      </span>
+    </div>
+  `;
+}
 
     function bookCardHTML(book, q='') {
       const catLabel = book.categories?.[0] || book.category || 'অন্যান্য';
