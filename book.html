@@ -42,13 +42,10 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- ✅ YouTube Iframe API (Audio Player) -->
+  <!-- ✅ YouTube Iframe API -->
   <script src="https://www.youtube.com/iframe_api"></script>
 
-  <!-- =========================
-    ✅ OG / Social preview (default)
-    NOTE: JS will update these per-book after load
-  ========================= -->
+  <!-- OG default -->
   <meta property="og:site_name" content="BoiCloud" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="BoiCloud | বই বিস্তারিত" />
@@ -82,7 +79,6 @@
     .no-scrollbar::-webkit-scrollbar { display:none; }
     .no-scrollbar { -ms-overflow-style:none; scrollbar-width:none; }
 
-    /* ✅ Skeleton Loading Effect */
     .skeleton {
       background: #e2e8f0;
       background-image: linear-gradient(90deg, rgba(226,232,240,0) 0, rgba(241,245,249,.5) 50%, rgba(226,232,240,0) 100%);
@@ -100,11 +96,9 @@
       100% { background-position: -200% 0; }
     }
 
-    /* ✅ swipe snap */
     .snap-x { scroll-snap-type: x mandatory; }
     .snap-start { scroll-snap-align: start; }
 
-    /* toast safe bottom */
     .toast {
       position: fixed;
       left: 50%;
@@ -113,6 +107,13 @@
       z-index: 999;
       max-width: 92vw;
     }
+
+    /* ✅ Coming soon text blink */
+    @keyframes blinkSoft {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .35; }
+    }
+    .blink-soft { animation: blinkSoft 1.15s infinite; }
   </style>
 </head>
 
@@ -154,7 +155,6 @@
   <!-- ================= MAIN ================= -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
     <div class="container mx-auto p-4">
-
       <div id="loading-skeleton" class="space-y-4">
         <div class="skeleton h-64 w-44 rounded-xl mx-auto"></div>
         <div class="skeleton h-6 w-3/4 rounded mx-auto"></div>
@@ -166,7 +166,6 @@
         <h1 id="display-title" class="text-2xl font-bold text-center mt-4"></h1>
         <p id="display-author" class="text-center text-slate-500"></p>
       </div>
-
     </div>
 
     <div id="not-found" class="hidden text-center py-16">
@@ -215,36 +214,7 @@
           <p id="book-desc" class="mt-2 text-slate-600 dark:text-slate-300 leading-relaxed break-words">—</p>
         </div>
 
-        <!-- ✅ Buttons: Home + পড়ুন + ডাউনলোড -->
-        <div class="mt-6 grid grid-cols-1 xs:grid-cols-3 gap-3">
-          <a id="read-btn" href="#"
-             class="w-full px-5 py-3 rounded-2xl font-black text-sm bg-brand-600 hover:bg-brand-700 text-white inline-flex items-center justify-center gap-2">
-            <i data-lucide="book-open" class="w-5 h-5"></i> পড়ুন
-          </a>
-
-          <a id="download-btn"
-             href="javascript:void(0)"
-             target="_blank"
-             rel="noopener noreferrer"
-             class="w-full px-5 py-3 rounded-2xl font-black text-sm bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 inline-flex items-center justify-center gap-2">
-            <i data-lucide="download" class="w-5 h-5"></i> ডাউনলোড
-          </a>
-
-          <a href="index.html"
-             class="w-full px-5 py-3 rounded-2xl font-black text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500/40 inline-flex items-center justify-center gap-2">
-            <i data-lucide="arrow-left" class="w-5 h-5"></i> Home
-          </a>
-        </div>
-
-        <!-- ✅ Category jump -->
-        <div class="mt-3">
-          <a href="index.html#category-buttons"
-             class="w-full xs:w-auto px-5 py-3 rounded-2xl font-black text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500/40 inline-flex items-center justify-center gap-2">
-            <i data-lucide="grid" class="w-5 h-5"></i> Category তে যান
-          </a>
-        </div>
-
-        <!-- ================= AUDIO PLAYER (NEW) ================= -->
+        <!-- ================= AUDIO PLAYER (NOW ABOVE READ BUTTON) ================= -->
         <div id="youtube-card" class="mt-8">
           <!-- ✅ Available -->
           <div id="yt-available" class="hidden">
@@ -260,11 +230,11 @@
                     <span class="text-[10px] font-black uppercase tracking-widest text-brand-600">Audio Mode</span>
                   </div>
 
-                  <button id="btn-open-youtube"
-                    class="text-[11px] font-bold text-brand-600 hover:opacity-80 transition"
-                    type="button">
-                    Open on YouTube
-                  </button>
+                  <!-- ✅ Source label (YouTube Source / channel name) -->
+                  <div class="px-3 py-1 rounded-full text-[11px] font-black bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 inline-flex items-center gap-2">
+                    <i data-lucide="youtube" class="w-4 h-4 text-red-500"></i>
+                    <span id="yt-source-label">YouTube Source</span>
+                  </div>
                 </div>
 
                 <div class="space-y-3">
@@ -304,8 +274,10 @@
                     <i data-lucide="rotate-ccw" class="w-6 h-6 text-slate-600 dark:text-slate-300"></i>
                   </button>
 
+                  <!-- ✅ play/pause icons: toggle hidden (fixes stuck triangle) -->
                   <button id="main-play-btn" class="w-20 h-20 flex items-center justify-center rounded-[2.2rem] bg-brand-600 hover:bg-brand-700 text-white shadow-[0_10px_20px_-5px_rgba(79,70,229,0.3)] active:scale-95 transition-all">
-                    <i id="play-icon" data-lucide="play" class="w-10 h-10 fill-current"></i>
+                    <i id="icon-play" data-lucide="play" class="w-10 h-10 fill-current"></i>
+                    <i id="icon-pause" data-lucide="pause" class="w-10 h-10 fill-current hidden"></i>
                   </button>
 
                   <button id="btn-forward" class="w-12 h-12 flex items-center justify-center rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm active:scale-95 transition-all">
@@ -318,6 +290,11 @@
                     <span id="player-status-dot" class="w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600"></span>
                     <span id="player-status">Ready</span>
                   </div>
+                </div>
+
+                <!-- ✅ Copyright disclaimer -->
+                <div class="text-[11px] leading-relaxed text-slate-500 dark:text-slate-400">
+                  অডিওটি ইউটিউব থেকে সরাসরি প্লে হচ্ছে • সকল স্বত্ব মূল নির্মাতার
                 </div>
 
               </div>
@@ -336,12 +313,42 @@
               </div>
               <div>
                 <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">Status</p>
-                <p class="text-sm font-bold text-orange-600 dark:text-orange-500 italic mt-1.5">অডিও বুক শীঘ্রই আসছে...</p>
+                <p class="text-sm font-bold text-orange-600 dark:text-orange-500 italic mt-1.5 blink-soft">
+                  অডিও বুক শীঘ্রই আসছে...
+                </p>
               </div>
             </div>
           </div>
         </div>
         <!-- ================= /AUDIO PLAYER ================= -->
+
+        <!-- ✅ Buttons: Home + পড়ুন + ডাউনলোড -->
+        <div class="mt-6 grid grid-cols-1 xs:grid-cols-3 gap-3">
+          <a id="read-btn" href="#"
+             class="w-full px-5 py-3 rounded-2xl font-black text-sm bg-brand-600 hover:bg-brand-700 text-white inline-flex items-center justify-center gap-2">
+            <i data-lucide="book-open" class="w-5 h-5"></i> পড়ুন
+          </a>
+
+          <a id="download-btn"
+             href="javascript:void(0)"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="w-full px-5 py-3 rounded-2xl font-black text-sm bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 inline-flex items-center justify-center gap-2">
+            <i data-lucide="download" class="w-5 h-5"></i> ডাউনলোড
+          </a>
+
+          <a href="index.html"
+             class="w-full px-5 py-3 rounded-2xl font-black text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500/40 inline-flex items-center justify-center gap-2">
+            <i data-lucide="arrow-left" class="w-5 h-5"></i> Home
+          </a>
+        </div>
+
+        <div class="mt-3">
+          <a href="index.html#category-buttons"
+             class="w-full xs:w-auto px-5 py-3 rounded-2xl font-black text-sm bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500/40 inline-flex items-center justify-center gap-2">
+            <i data-lucide="grid" class="w-5 h-5"></i> Category তে যান
+          </a>
+        </div>
 
       </div>
 
@@ -404,7 +411,7 @@
     </section>
   </main>
 
-  <!-- ================= FOOTER (inline links) ================= -->
+  <!-- ================= FOOTER ================= -->
   <footer class="bg-white dark:bg-slate-900 border-t dark:border-slate-800 pt-8 pb-0">
     <div class="max-w-7xl mx-auto px-6 pb-8">
       <div class="flex flex-wrap gap-x-6 gap-y-3 justify-center md:justify-start text-sm text-slate-500 dark:text-slate-400">
@@ -581,6 +588,7 @@
       return !(u === '#' || u === '');
     }
 
+    // Social meta
     function setMeta(attr, key, value) {
       if (!value) return;
       const selector = attr === 'property'
@@ -619,7 +627,7 @@
       if (img) setMeta('name', 'twitter:image', img);
     }
 
-    // ✅ helper: book থেকে yt id বের করা (যে নামেই থাকুক)
+    // ✅ ytId key যেকোনো নামে থাকুক (ytId / youtubeId / audioYtId / audioId)
     function getYoutubeIdFromBook(book) {
       const candidates = [
         book?.ytId,
@@ -628,6 +636,18 @@
         book?.audioId,
         book?.youtube,
         book?.yt
+      ].filter(Boolean).map(v => String(v).trim());
+
+      return candidates[0] || '';
+    }
+
+    // ✅ sourceId = channel name (তুমি books-data তে দিলে দেখাবে)
+    function getSourceNameFromBook(book) {
+      const candidates = [
+        book?.sourceId,      // তুমি বলেছ "source id" নামে রাখবে
+        book?.sourceName,
+        book?.channelName,
+        book?.source
       ].filter(Boolean).map(v => String(v).trim());
 
       return candidates[0] || '';
@@ -646,6 +666,7 @@
       coverImgElement.src = book.coverImage;
       coverImgElement.alt = book.altText || `${book.title} - ${book.author}`;
 
+      // Buttons
       const readBtn = document.getElementById('read-btn');
       const downBtn = document.getElementById('download-btn');
 
@@ -657,7 +678,6 @@
 
       readBtn.classList.toggle('opacity-60', !readOk);
       readBtn.classList.toggle('cursor-not-allowed', !readOk);
-
       downBtn.classList.toggle('opacity-60', !downOk);
       downBtn.classList.toggle('cursor-not-allowed', !downOk);
 
@@ -668,8 +688,14 @@
         if (!downOk) { e.preventDefault(); showToast('দুঃখিত! এই বইয়ের ডাউনলোড লিংক এখনো আপডেট করা হয়নি।', 'error'); }
       });
 
-      // ✅ Audio: yt id থাকলে player দেখাও, না থাকলে coming soon
+      // ✅ Audio init
       const ytId = getYoutubeIdFromBook(book);
+      const sourceName = getSourceNameFromBook(book);
+
+      // source label সেট
+      const labelEl = document.getElementById('yt-source-label');
+      if (labelEl) labelEl.textContent = sourceName ? sourceName : 'YouTube Source';
+
       if (typeof window.handleYoutubeAudio === 'function') {
         window.handleYoutubeAudio(ytId);
       }
@@ -679,25 +705,17 @@
       const shareUrl = encodeURIComponent(shareUrlRaw);
       const shareText = encodeURIComponent(`${book.title} - ${book.author}`);
 
-      document.getElementById('share-fb').href =
-        `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
+      document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
 
       const FB_APP_ID = '';
       const msBtn = document.getElementById('share-ms');
-      if (FB_APP_ID) {
-        msBtn.href = `https://www.facebook.com/dialog/send?link=${shareUrl}&redirect_uri=${shareUrl}&app_id=${encodeURIComponent(FB_APP_ID)}`;
-      } else {
-        msBtn.href = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
-      }
+      msBtn.href = FB_APP_ID
+        ? `https://www.facebook.com/dialog/send?link=${shareUrl}&redirect_uri=${shareUrl}&app_id=${encodeURIComponent(FB_APP_ID)}`
+        : `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
 
-      document.getElementById('share-wa').href =
-        `https://wa.me/?text=${shareText}%20${shareUrl}`;
-
-      document.getElementById('share-tg').href =
-        `https://t.me/share/url?url=${shareUrl}&text=${shareText}`;
-
-      document.getElementById('share-x').href =
-        `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
+      document.getElementById('share-wa').href = `https://wa.me/?text=${shareText}%20${shareUrl}`;
+      document.getElementById('share-tg').href = `https://t.me/share/url?url=${shareUrl}&text=${shareText}`;
+      document.getElementById('share-x').href = `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
     }
 
     function renderRelatedCarousel(list) {
@@ -791,7 +809,8 @@
     const elComing = document.getElementById("yt-coming-soon");
 
     const btnPlay = document.getElementById("main-play-btn");
-    const playIcon = document.getElementById("play-icon");
+    const iconPlay = document.getElementById("icon-play");
+    const iconPause = document.getElementById("icon-pause");
 
     const btnRewind = document.getElementById("btn-rewind");
     const btnForward = document.getElementById("btn-forward");
@@ -806,7 +825,6 @@
 
     const statusDot = document.getElementById("player-status-dot");
     const statusText = document.getElementById("player-status");
-    const btnOpenYouTube = document.getElementById("btn-open-youtube");
 
     let player = null;
     let ytIdActive = "";
@@ -837,6 +855,12 @@
       const v = map[mode] || map.ready;
       statusDot.className = "w-2 h-2 rounded-full " + v.dot;
       statusText.textContent = v.text;
+    }
+
+    function setPlayUI(isPlaying) {
+      if (!iconPlay || !iconPause) return;
+      iconPlay.classList.toggle('hidden', isPlaying);
+      iconPause.classList.toggle('hidden', !isPlaying);
     }
 
     function renderProgress(ratio) {
@@ -896,23 +920,18 @@
             setTimesUI(0, duration);
             renderProgress(0);
             setStatus("ready");
-            setPlayIcon(false);
+            setPlayUI(false);
             startTick();
           },
           onStateChange: (e) => {
-            if (e.data === 1) { setStatus("playing"); setPlayIcon(true); }
-            else if (e.data === 2) { setStatus("paused"); setPlayIcon(false); }
+            if (e.data === 1) { setStatus("playing"); setPlayUI(true); }
+            else if (e.data === 2) { setStatus("paused"); setPlayUI(false); }
             else if (e.data === 3) setStatus("buffering");
-            else if (e.data === 0) { setStatus("paused"); setPlayIcon(false); }
+            else if (e.data === 0) { setStatus("paused"); setPlayUI(false); }
           },
-          onError: () => setStatus("error")
+          onError: () => { setStatus("error"); setPlayUI(false); }
         }
       });
-
-      btnOpenYouTube.onclick = () => {
-        if (!ytIdActive) return;
-        window.open("https://www.youtube.com/watch?v=" + ytIdActive, "_blank", "noopener,noreferrer");
-      };
     }
 
     function teardownPlayer() {
@@ -928,7 +947,7 @@
       }
       player = null;
       setStatus("ready");
-      setPlayIcon(false);
+      setPlayUI(false);
     }
 
     function safeDuration() {
@@ -945,7 +964,6 @@
       } catch { return 0; }
     }
 
-    // YouTube callback
     window.onYouTubeIframeAPIReady = function() {
       if (ytIdActive) ensurePlayer(ytIdActive);
     };
@@ -985,11 +1003,6 @@
       try { return player?.getPlayerState?.() === 1; } catch { return false; }
     }
 
-    function setPlayIcon(isPlaying) {
-      playIcon.setAttribute("data-lucide", isPlaying ? "pause" : "play");
-      lucide.createIcons();
-    }
-
     btnPlay.addEventListener("click", () => {
       if (!player || !isReady) return;
       if (isPlayingState()) player.pauseVideo();
@@ -1014,7 +1027,6 @@
       const start = (e) => {
         e.preventDefault();
         if (!player || !isReady) return;
-
         skipBy(deltaSec);
         clearInterval(holdTimer);
         holdTimer = setInterval(() => skipBy(deltaSec), HOLD_INTERVAL_MS);
@@ -1079,7 +1091,7 @@
     setTimesUI(0, 0);
     renderProgress(0);
     setStatus("ready");
-    setPlayIcon(false);
+    setPlayUI(false);
   })();
   </script>
 
