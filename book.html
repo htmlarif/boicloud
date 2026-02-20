@@ -798,6 +798,139 @@ function onPlayerStateChange(event) {
         window.lucide.createIcons();
     }
 }
+    // ১. ইউটিউব আইফ্রেম এপিআই (IFrame API) লোড করা
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+var player;
+var isPlaying = false;
+var progressInterval;
+
+// ২. অডিও সেটআপ করার মেইন ফাংশন
+function handleYoutubeAudio(ytId, sourceName = "YouTube Audio") {
+    const available = document.getElementById('yt-available');
+    const comingSoon = document.getElementById('yt-coming-soon');
+    const sourceLabel = document.getElementById('yt-source-name');
+
+    if (ytId && ytId.trim() !== "") {
+        if (sourceLabel) sourceLabel.textContent = sourceName;
+        available.classList.remove('hidden');
+        comingSoon.classList.add('hidden');
+
+        // ইউটিউব প্লেয়ার তৈরি বা আপডেট করা
+        if (player && typeof player.loadVideoById === 'function') {
+            player.loadVideoById(ytId);
+            player.pauseVideo();
+            resetUI();
+        } else {
+            window.onYouTubeIframeAPIReady = function() {
+                player = new YT.Player('yt-player', {
+                    height: '0',
+                    width: '0',
+                    videoId: ytId,
+                    playerVars: { 
+                        'controls': 0, 
+                        'disablekb': 1, 
+                        'rel': 0,
+                        'playsinline': 1 
+                    },
+                    events: { 
+                        'onStateChange': onPlayerStateChange,
+                        'onReady': onPlayerReady 
+                    }
+                });
+            };
+        }
+    } else {
+        available.classList.add('hidden');
+        comingSoon.classList.remove('hidden');
+    }
+}
+
+// ৩. প্লেয়ার রেডি হলে ডিউরেশন সেট করা
+function onPlayerReady() {
+    updateProgressBar();
+}
+
+// ৪. প্লে/পজ সুইচ করা
+function togglePlay() {
+    if (!player || typeof player.getPlayerState !== 'function') return;
+    
+    if (isPlaying) {
+        player.pauseVideo();
+    } else {
+        player.playVideo();
+    }
+}
+
+// ৫. ১০ সেকেন্ড স্কিপ করা
+function seekAudio(seconds) {
+    if (!player || typeof player.getCurrentTime !== 'function') return;
+    var currentTime = player.getCurrentTime();
+    player.seekTo(currentTime + seconds, true);
+    updateProgressBar(); // সাথে সাথে বার আপডেট
+}
+
+// ৬. প্লেয়ারের অবস্থা পরিবর্তন হলে আইকন ও প্রোগ্রেস আপডেট
+function onPlayerStateChange(event) {
+    const playIcon = document.getElementById('play-icon');
+    
+    if (event.data == YT.PlayerState.PLAYING) {
+        isPlaying = true;
+        if (playIcon) playIcon.setAttribute('data-lucide', 'pause');
+        startProgressUpdate();
+    } else {
+        isPlaying = false;
+        if (playIcon) playIcon.setAttribute('data-lucide', 'play');
+        stopProgressUpdate();
+    }
+    
+    if (window.lucide) window.lucide.createIcons();
+}
+
+// ৭. প্রোগ্রেস বার এবং সময় আপডেট লজিক
+function startProgressUpdate() {
+    stopProgressUpdate(); // আগের ইন্টারভাল ক্লিয়ার করা
+    progressInterval = setInterval(updateProgressBar, 1000);
+}
+
+function stopProgressUpdate() {
+    clearInterval(progressInterval);
+}
+
+function updateProgressBar() {
+    if (!player || typeof player.getCurrentTime !== 'function') return;
+
+    const current = player.getCurrentTime();
+    const total = player.getDuration();
+    
+    if (total > 0) {
+        const progressPercent = (current / total) * 100;
+        const progressBar = document.getElementById('progress-bar');
+        const currentTimeEl = document.getElementById('current-time');
+        const durationEl = document.getElementById('duration');
+
+        if (progressBar) progressBar.style.width = progressPercent + "%";
+        if (currentTimeEl) currentTimeEl.textContent = formatTime(current);
+        if (durationEl) durationEl.textContent = formatTime(total);
+    }
+}
+
+// ৮. সময় ফরম্যাট করা (00:00)
+function formatTime(time) {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+}
+
+// ৯. নতুন বই লোড হলে UI রিসেট করা
+function resetUI() {
+    document.getElementById('progress-bar').style.width = "0%";
+    document.getElementById('current-time').textContent = "00:00";
+    document.getElementById('duration').textContent = "00:00";
+}
   </script>
 </body>
 </html>
