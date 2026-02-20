@@ -536,6 +536,7 @@
       document.getElementById('book-category').textContent = book.category;
       document.getElementById('book-desc').textContent =
         book.description || 'এই বইটির জন্য এখনো বিস্তারিত বর্ণনা যোগ করা হয়নি।';
+      handleAudio(book.audioId);
 
       const coverImgElement = document.getElementById('book-cover');
       coverImgElement.src = book.coverImage;
