@@ -701,6 +701,80 @@ function handleYoutubeAudio(ytId, sourceName = "YouTube") {
         comingSoon.classList.remove('hidden');
     }
 }
+    // ১. ইউটিউব এপিআই (API) লোড করা
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+var player;
+var isPlaying = false;
+
+// ২. অডিও সেটআপ করার মেইন ফাংশন
+function handleYoutubeAudio(ytId, sourceName = "YouTube Audio") {
+    const available = document.getElementById('yt-available');
+    const comingSoon = document.getElementById('yt-coming-soon');
+    const sourceLabel = document.getElementById('yt-source-name');
+
+    if (ytId && ytId.trim() !== "") {
+        sourceLabel.textContent = sourceName;
+        available.classList.remove('hidden');
+        comingSoon.classList.add('hidden');
+
+        // যদি প্লেয়ার আগে থেকে থাকে তবে নতুন ভিডিও লোড করো
+        if (player && typeof player.loadVideoById === 'function') {
+            player.loadVideoById(ytId);
+            player.pauseVideo();
+        } else {
+            // ইউটিউব এপিআই রেডি হলে প্লেয়ার তৈরি করো
+            window.onYouTubeIframeAPIReady = function() {
+                player = new YT.Player('yt-player', {
+                    height: '0',
+                    width: '0',
+                    videoId: ytId,
+                    playerVars: { 'controls': 0, 'disablekb': 1, 'rel': 0 },
+                    events: { 'onStateChange': onPlayerStateChange }
+                });
+            };
+        }
+    } else {
+        available.classList.add('hidden');
+        comingSoon.classList.remove('hidden');
+    }
+}
+
+// ৩. প্লে এবং পজ বাটন নিয়ন্ত্রণ
+function togglePlay() {
+    if (!player) return;
+    if (isPlaying) {
+        player.pauseVideo();
+    } else {
+        player.playVideo();
+    }
+}
+
+// ৪. ১০ সেকেন্ড আগে-পিছে যাওয়ার ফাংশন
+function seekAudio(seconds) {
+    if (!player) return;
+    var currentTime = player.getCurrentTime();
+    player.seekTo(currentTime + seconds, true);
+}
+
+// ৫. প্লেয়ারের অবস্থা অনুযায়ী আইকন পরিবর্তন করা
+function onPlayerStateChange(event) {
+    const playIcon = document.getElementById('play-icon');
+    if (event.data == YT.PlayerState.PLAYING) {
+        isPlaying = true;
+        playIcon.setAttribute('data-lucide', 'pause');
+    } else {
+        isPlaying = false;
+        playIcon.setAttribute('data-lucide', 'play');
+    }
+    // আইকনগুলো রিফ্রেশ করা (Lucide Icons)
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
+}
   </script>
 </body>
 </html>
