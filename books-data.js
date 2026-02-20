@@ -1301,7 +1301,7 @@ window.BOOKS_DATA = [
   { 
     id: '104', 
     title: 'বিভূতি রচনাবলী ৩', 
-    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়',
     category: 'সাহিত্য', 
     coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2_NmSM-EsCP_2U2vBeOREIecBbTS0lfjgVQ&s', 
     readLink: 'https://drive.google.com/file/d/1luSVQDdEhE0WKCozkeVSfXahJ2ZS5fww/view?usp=sharing', 
@@ -1311,7 +1311,7 @@ window.BOOKS_DATA = [
   { 
     id: '105', 
     title: 'বিভূতি রচনাবলী ৪', 
-    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়',
     category: 'সাহিত্য', 
     coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUHUg-idl-zl1vm2xlJCb5YJGW3MZELAPylQ&s', 
     readLink: 'https://drive.google.com/file/d/1kScgSmPzbzD85D7W5k2j_udf8R3vRrpf/view?usp=sharing', 
@@ -1341,7 +1341,7 @@ window.BOOKS_DATA = [
   { 
     id: '108', 
     title: 'বিভূতি রচনাবলী ৭', 
-    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়',
     category: 'সাহিত্য', 
     coverImage: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi8fqtDoTeyxCbhwGTjz9MyLX4tlCVwyzEVy1SoFrJljysxx3kx_Toj5zHi8vOnD-vwxr5Bd9ZpYgwuBR6gTgJPi3UhexTOkdFrRJ9MpxS8y5smeQWmToeWWbmQnmYCSSwgcSOoQZKPY8Y/s1600/Pages+from+Bibhuti+Rachanabali+2.jpg', 
     readLink: 'https://drive.google.com/file/d/1BP01venXl6andWrXO-3y5q4cnXKQKc0F/view?usp=sharing', 
@@ -1351,7 +1351,7 @@ window.BOOKS_DATA = [
   { 
     id: '109', 
     title: 'বিভূতি রচনাবলী ৮', 
-    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়',
     category: 'সাহিত্য', 
     coverImage: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi8fqtDoTeyxCbhwGTjz9MyLX4tlCVwyzEVy1SoFrJljysxx3kx_Toj5zHi8vOnD-vwxr5Bd9ZpYgwuBR6gTgJPi3UhexTOkdFrRJ9MpxS8y5smeQWmToeWWbmQnmYCSSwgcSOoQZKPY8Y/s1600/Pages+from+Bibhuti+Rachanabali+2.jpg', 
     readLink: 'https://drive.google.com/file/d/1oI02j-7UCiyAvYP5W_CnvIxyEt36c8-2/view?usp=sharing', 
@@ -1361,7 +1361,7 @@ window.BOOKS_DATA = [
   { 
     id: '110', 
     title: 'বিভূতি রচনাবলী ৯', 
-    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়',
     category: 'সাহিত্য', 
     coverImage: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi8fqtDoTeyxCbhwGTjz9MyLX4tlCVwyzEVy1SoFrJljysxx3kx_Toj5zHi8vOnD-vwxr5Bd9ZpYgwuBR6gTgJPi3UhexTOkdFrRJ9MpxS8y5smeQWmToeWWbmQnmYCSSwgcSOoQZKPY8Y/s1600/Pages+from+Bibhuti+Rachanabali+2.jpg', 
     readLink: 'https://drive.google.com/file/d/1CiH1kDI1Mg58oYmhtNUhZKul3lc-cMXR/view?usp=sharing', 
@@ -1371,7 +1371,7 @@ window.BOOKS_DATA = [
   { 
     id: '111', 
     title: 'বিভূতি রচনাবলী ১০', 
-    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়',
     category: 'সাহিত্য', 
     coverImage: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi8fqtDoTeyxCbhwGTjz9MyLX4tlCVwyzEVy1SoFrJljysxx3kx_Toj5zHi8vOnD-vwxr5Bd9ZpYgwuBR6gTgJPi3UhexTOkdFrRJ9MpxS8y5smeQWmToeWWbmQnmYCSSwgcSOoQZKPY8Y/s1600/Pages+from+Bibhuti+Rachanabali+2.jpg', 
     readLink: 'https://drive.google.com/file/d/19hkwKW8ZJjFH9cZdonOaNNH_Mfm1I-vN/view?usp=sharing', 
@@ -1381,7 +1381,7 @@ window.BOOKS_DATA = [
   { 
     id: '112', 
     title: 'বিভূতি রচনাবলী ১১', 
-    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়',
     category: 'সাহিত্য', 
     coverImage: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi8fqtDoTeyxCbhwGTjz9MyLX4tlCVwyzEVy1SoFrJljysxx3kx_Toj5zHi8vOnD-vwxr5Bd9ZpYgwuBR6gTgJPi3UhexTOkdFrRJ9MpxS8y5smeQWmToeWWbmQnmYCSSwgcSOoQZKPY8Y/s1600/Pages+from+Bibhuti+Rachanabali+2.jpg', 
     readLink: 'https://drive.google.com/file/d/1_Q8qx8hDXpzCZ5fzLfINwi0Qe3n2SCSY/view?usp=sharing', 
@@ -1391,7 +1391,7 @@ window.BOOKS_DATA = [
   { 
     id: '113', 
     title: 'বিভূতি রচনাবলী ১২', 
-    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়',
     category: 'সাহিত্য', 
     coverImage: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi8fqtDoTeyxCbhwGTjz9MyLX4tlCVwyzEVy1SoFrJljysxx3kx_Toj5zHi8vOnD-vwxr5Bd9ZpYgwuBR6gTgJPi3UhexTOkdFrRJ9MpxS8y5smeQWmToeWWbmQnmYCSSwgcSOoQZKPY8Y/s1600/Pages+from+Bibhuti+Rachanabali+2.jpg', 
     readLink: 'https://drive.google.com/file/d/1rSc6i35nCj51jb1wE1qdb8RPYFE-pWb3/view?usp=sharing', 
@@ -1584,7 +1584,7 @@ window.BOOKS_DATA = [
   { 
     id: '115', 
     title: 'অপরাজিত', 
-    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়',
     category: 'উপন্যাস', 
     coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiuUH4vZ84H7gG843hdB2A2Qu4xsbTxUX2rw&s', 
     readLink: 'https://drive.google.com/file/d/13hpFsLOueKk-DRmsUJlQ3eP9CeWAszh6/view?usp=sharing', 
@@ -1595,7 +1595,7 @@ window.BOOKS_DATA = [
   { 
     id: '120', 
     title: 'দম্পতি', 
-    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়',
     category: 'উপন্যাস', 
     coverImage: 'https://rokbucket.rokomari.io/ProductNew20190903/260X372/Dompoti-Bibhutibhushan_Bandyopadhyay-96197-359646.jpg', 
     readLink: 'https://drive.google.com/file/d/1eJxQAZoX7AoSaoaSCVe1hGG31YZ5AIKB/view?usp=sharing', 
@@ -1605,7 +1605,7 @@ window.BOOKS_DATA = [
   { 
     id: '121', 
     title: 'দৃষ্টি-প্রদীপ', 
-    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
+    author:'বিভূতিভূষণ বন্দ্যোপাধ্যায়',
     category: 'উপন্যাস', 
     coverImage: 'https://pbs.com.bd/_next/image?url=https%3A%2F%2Ffs.pbs.com.bd%2FDIR%2FCom%2FPBS%2FProduct%2FImageDetails%2F1904246.jpg&w=640&q=75', 
     readLink: 'https://drive.google.com/file/d/1kkenBsXRV3zqcs6eFAQmF_qZeap8GvTc/view?usp=sharing', 
@@ -1615,7 +1615,7 @@ window.BOOKS_DATA = [
   { 
     id: '122', 
     title: 'দেবযান', 
-    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়',
     category: 'উপন্যাস', 
     coverImage: 'https://wafilife-media.wafilife.com/uploads/2025/07/WhatsApp-Image-2025-07-06-at-10.18.36-PM-1.jpeg', 
     readLink: 'https://drive.google.com/file/d/1XDBSZv9YbuD_gvryz-VCmObIJ9zbRDef/view?usp=sharing', 
@@ -1625,7 +1625,7 @@ window.BOOKS_DATA = [
   { 
     id: '123', 
     title: 'পথের পাঁচালী', 
-    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়',
     category: 'উপন্যাস', 
     coverImage: 'https://www.haritbooks.com/wp-content/uploads/2022/03/pother_panchali.jpg', 
     readLink: 'https://drive.google.com/file/d/1z7oTbc-KJ3BtJtq_dcS5OH06N1fp_hWq/view?usp=sharing', 
@@ -1645,7 +1645,7 @@ window.BOOKS_DATA = [
   { 
     id: '125', 
     title: 'মরণের ডঙ্কা বাজে ১', 
-    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
+    author:'বিভূতিভূষণ বন্দ্যোপাধ্যায়',
     category: 'সাহিত্য', 
     coverImage: 'https://wafilife-media.wafilife.com/uploads/2024/07/moroner_donka.png', 
     readLink: 'https://drive.google.com/file/d/1rPRepU_9_zAbN8kOXztJo46gwqv88miC/view?usp=sharing', 
@@ -1655,7 +1655,7 @@ window.BOOKS_DATA = [
   { 
     id: '126', 
     title: 'মরণের ডঙ্কা বাজে ২', 
-    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়',
     category: 'সাহিত্য', 
     coverImage: 'https://rokbucket.rokomari.io/ProductNew20190903/260X372/Moroner_Donka_Baje-Bibhutibhusan_Bandopadhyay-fb21a-445733.jpg', 
     readLink: 'https://drive.google.com/file/d/1Q6BxGPFu0LPXVKvsBc7XuAMW_PtnS2Xk/view?usp=sharing', 
@@ -1665,7 +1665,7 @@ window.BOOKS_DATA = [
   { 
     id: '116', 
     title: 'আদর্শ হিন্দু হোটেল', 
-    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়',
     category: 'উপন্যাস', 
     coverImage: 'https://wafilife-media.wafilife.com/uploads/2024/08/WhatsApp-Image-2024-08-21-at-17.47.38_ad4120cf.jpg', 
     readLink: 'https://drive.google.com/file/d/1-e-Kht2PBhkkv0gMorNZ8RzJ54lsGi1s/view?usp=sharing', 
@@ -1676,7 +1676,7 @@ window.BOOKS_DATA = [
   { 
     id: '117', 
     title: 'আরণ্যক', 
-    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়',
     category: 'উপন্যাস', 
     coverImage: 'https://jukash.com/public/uploads/all/bNqCvUFQ93J5GUKLWMzXQUfJIv9k3Hf9WFhmsCV3.png', 
     readLink: 'https://drive.google.com/file/d/1HUuvvU0kqGebFhCwtownPNSnVP444RVu/view?usp=sharing', 
@@ -1690,7 +1690,7 @@ window.BOOKS_DATA = [
   { 
     id: '118', 
     title: 'ইছামতী', 
-    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়',
     category: 'উপন্যাস', 
     coverImage: 'https://static-01.daraz.com.bd/p/8865b37ba312bd442c0650929f936b23.jpg', 
     readLink: 'https://drive.google.com/file/d/1tyPhuXM_vTYupEjJ45UYZWT0n2GHmHvZ/view?usp=sharing', 
@@ -1701,7 +1701,7 @@ window.BOOKS_DATA = [
   { 
     id: '119', 
     title: 'চাঁদের পাহাড়', 
-    author: 'বিभूतिভূষণ বন্দ্যোপাধ্যায়', 
+    author: 'বিভূতিভূষণ বন্দ্যোপাধ্যায়',
     category: 'সাহিত্য', 
     coverImage: 'https://fs.pbs.com.bd/DIR/Com/PBS/Product/ImageDetails/2205717.jpg', 
     readLink: 'https://drive.google.com/file/d/10pHltTtUPSF0tZqU2qZauj8B1FybyM1r/view?usp=sharing', 
