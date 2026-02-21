@@ -17,7 +17,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1fojisnky5ARFTfFumD29ddKLMil0yAhM/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1fojisnky5ARFTfFumD29ddKLMil0yAhM', 
     description: 'ব্যোমকেশ বক্সী সিরিজের একটি টানটান রহস্য উপন্যাস।',
-   ytID: "1ZNTvea5qws"
+   ytId: "1ZNTvea5qws"
   },
   { 
     id: '129', 
@@ -80,7 +80,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1lFx4N5K2rw6KG5a1V6dRat_Ovao1Sk2v/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1lFx4N5K2rw6KG5a1V6dRat_Ovao1Sk2v', 
     description: 'অমৃতের রহস্যময় মৃত্যুর কারণ খুঁজতে সত্যান্বেষী।',
-    ytID:"BSaxmTqc85c"
+    ytId:"BSaxmTqc85c"
   },
   { 
     id: '135', 
@@ -91,7 +91,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1f5VU0unXbyozjbwjVDuPp-QJ7EsElpVn/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1f5VU0unXbyozjbwjVDuPp-QJ7EsElpVn', 
     description: 'মানুষের সহজাত প্রবৃত্তি বা আদিম রিপুকে কেন্দ্র করে গড়ে ওঠা রহস্য।',
-    ytID:"vuvaSvkQJw4"
+    ytId:"vuvaSvkQJw4"
   },
   { 
     id: '136', 
@@ -102,7 +102,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1zMnOzdqbhoeXMXBrxvEgJ-hsmUGVpR4J/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1zMnOzdqbhoeXMXBrxvEgJ-hsmUGVpR4J', 
     description: 'ব্যোমকেশ বক্সী সিরিজের অন্যতম একটি রহস্য গল্প।',
-    ytID:"y3tkhEI5Jqs"
+    ytId:"y3tkhEI5Jqs"
   },
   { 
     id: '137', 
@@ -113,7 +113,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1kDB4cXmsNvd2JkfAjfMLD5quLXZKMVAa/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1kDB4cXmsNvd2JkfAjfMLD5quLXZKMVAa', 
     description: 'কালিদাসের কবিতার ছলে লুকিয়ে থাকা রহস্যের উন্মোচন।',
-    ytID:"crNsOZ3MbhY"
+    ytId:"crNsOZ3MbhY"
   },
   { 
     id: '138', 
@@ -124,7 +124,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1b8tamfsUOncSNo0-TKTKC4VORwg5JzcD/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1b8tamfsUOncSNo0-TKTKC4VORwg5JzcD', 
     description: 'ব্যোমকেশ বক্সীর রহস্যের জালে এক নতুন মোড়।',
-    ytID:"4RgS4noHqQM"
+    ytId:"4RgS4noHqQM"
   },
  
   { 
@@ -136,7 +136,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1ADBIKll_puwiky0fTedHGfm0iVbeueLs/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1ADBIKll_puwiky0fTedHGfm0iVbeueLs', 
     description: 'ছলনা আর ছন্দের অন্তরালে থাকা অপরাধকে চিনে নেওয়া।',
-    ytID:"r4si2WDI9ko"
+    ytId:"r4si2WDI9ko"
   },
   { 
     id: '143', 
@@ -157,7 +157,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1KCBJ37jR_nAbzVZAfHkrUjGC9n44s3eQ/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1KCBJ37jR_nAbzVZAfHkrUjGC9n44s3eQ', 
     description: 'শরদিন্দু বন্দ্যোপাধ্যায়ের এক অনবদ্য এবং জনপ্রিয় সৃষ্টি।',
-    ytID:"AzMFPk5euxw"
+    ytId:"AzMFPk5euxw"
   },
   { 
     id: '145', 
@@ -168,7 +168,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1v4MFBW-0Q-0DHK9ANPW5A7nQ8KvaQOkc/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1v4MFBW-0Q-0DHK9ANPW5A7nQ8KvaQOkc', 
     description: 'এক দুর্গের ভেতরে লুকিয়ে থাকা প্রাচীন রহস্যের হাতছানি।',
-    ytID:"HfdnvBzOf4U"
+    ytId:"HfdnvBzOf4U"
   },
   { 
     id: '146', 
@@ -179,7 +179,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1Z8uit4-uLDs3Mfd0PqJrPHJjP29JQgp2/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1Z8uit4-uLDs3Mfd0PqJrPHJjP29JQgp2', 
     description: 'জটিল ষড়যন্ত্র বা দুষ্টচক্র থেকে সত্য বের করে আনা।',
-    ytID:"04e2ISt47F4"
+    ytId:"04e2ISt47F4"
   },
   { 
     id: '147', 
@@ -190,7 +190,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1enIleVJ-W40-LoTXi_TTCREoMRItIvC4/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1enIleVJ-W40-LoTXi_TTCREoMRItIvC4', 
     description: 'নিপুণ খুনি ও তার অভিনব অস্ত্রের রহস্যভেদে ব্যোমকেশ।',
-    ytID:"eCLie4mRvJA"
+    ytId:"eCLie4mRvJA"
   },
   { 
     id: '148', 
@@ -201,7 +201,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1jRAvTxI6XoK6ypfp4r5H2x7FQZnu6v7s/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1jRAvTxI6XoK6ypfp4r5H2x7FQZnu6v7s', 
     description: 'আগুনে পতঙ্গের মতো ঝাপিয়ে পড়া রহস্যের সমাধান।',
-    ytID:"5pG-Mi14tnY"
+    ytId:"5pG-Mi14tnY"
   },
   { 
     id: '149', 
@@ -241,7 +241,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1bEivcuI6DvGTFcj2bQs1nstDj-sGWn6I/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1bEivcuI6DvGTFcj2bQs1nstDj-sGWn6I', 
     description: 'ব্যোমকেশ বক্সীর রহস্যের এক চমৎকার কাহিনী।' ,
-    ytID:"SN4B9I_Lu7w"
+    ytId:"SN4B9I_Lu7w"
   },
  
   { 
@@ -253,7 +253,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1KM8_m6UVN9leXgkZPnttfd1tr0RRJx-w/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1KM8_m6UVN9leXgkZPnttfd1tr0RRJx-w', 
     description: 'গভীর রহস্যে মগ্ন এক ঘটনার তদন্তে ব্যোমকেশ বক্সী।',
-    ytID:"XF3iwmqQKOA"
+    ytId:"XF3iwmqQKOA"
   },
   { 
     id: '154', 
@@ -264,7 +264,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/13W_0WYfjmk6ecz8OlqbvzFpRbdaD8nUF/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=13W_0WYfjmk6ecz8OlqbvzFpRbdaD8nUF', 
     description: 'ব্যোমকেশ বক্সীর রহস্য সন্ধানের অনন্য এক পটভূমি।',
-    ytID:"38uNxEESknM"
+    ytId:"38uNxEESknM"
   },
   { 
     id: '155', 
@@ -275,7 +275,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1dfNG2q4S2S4E10qG60SBRV9DKazW5Euc/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1dfNG2q4S2S4E10qG60SBRV9DKazW5Euc', 
     description: 'রহস্য আর আবেগের এক দারুণ সংমিশ্রণ এই কাহিনীতে।',
-    ytID:"XF3iwmqQKOA"
+    ytId:"XF3iwmqQKOA"
   },
   
   { 
@@ -287,7 +287,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1uSDhR5G6_VWF8bWpTr1pZB2VtANDvVqA/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1uSDhR5G6_VWF8bWpTr1pZB2VtANDvVqA', 
     description: 'অভিশপ্ত এক নীলাকে কেন্দ্র করে জমে ওঠা রহস্য।',
-    ytID:"bgJCg9DJtzg"
+    ytId:"bgJCg9DJtzg"
     
   },
   { 
@@ -299,7 +299,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1EJcXcANQNPGRoxPJ7AaGMru88EbHv8Xp/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1EJcXcANQNPGRoxPJ7AaGMru88EbHv8Xp', 
     description: 'অস্পষ্ট এক রক্তের দাগ অনুসরণ করে অপরাধীকে শনাক্ত করা।' ,
-    ytID:"2RX6HQhWyXw"
+    ytId:"2RX6HQhWyXw"
   },
   { 
     id: '159', 
@@ -337,7 +337,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1Wakhgp3kxwq3xEz74Blf5XnOt9AuLvey/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1Wakhgp3kxwq3xEz74Blf5XnOt9AuLvey', 
     description: 'হোস্টেলের একটি কক্ষকে ঘিরে আবর্তিত রহস্যভেদে ব্যোমকেশ।' ,
-    ytID:"pj1OJUuj4gc"
+    ytId:"pj1OJUuj4gc"
   },
   { 
     id: '162', 
@@ -348,7 +348,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1E5fSdNuY5_OmBkB4DRK4ab3wx5uKOpou/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1E5fSdNuY5_OmBkB4DRK4ab3wx5uKOpou', 
     description: 'অদ্ভুত এক চুরির তদন্তে সত্যান্বেষীর তীক্ষ্ণ মেধার প্রকাশ।',
-    ytID:"SLruFHGyHpw"
+    ytId:"SLruFHGyHpw"
   },
   { 
     id: '163', 
@@ -359,7 +359,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1bqoecmAxq6zJWt-ztCTkQU-VHdUjJIFa/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1bqoecmAxq6zJWt-ztCTkQU-VHdUjJIFa', 
     description: 'শজারুর কাঁটা দিয়ে বিচিত্র খুনের রহস্যভেদে এক বৃদ্ধ ব্যোমকেশ।',
-    ytID:"fl1Zpipi5sY"
+    ytId:"fl1Zpipi5sY"
   },
   { 
     id: '164', 
@@ -370,7 +370,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1WTaKMTB1otCekl6fE2uGeItN6qW9Fh1t/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1WTaKMTB1otCekl6fE2uGeItN6qW9Fh1t', 
     description: 'পাহাড়ের পটভূমিতে এক শ্বাসরুদ্ধকর রহস্যের উন্মোচন।',
-    ytID:"prVz3lG3yxg"
+    ytId:"prVz3lG3yxg"
   },
   { 
     id: '165', 
@@ -381,7 +381,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1OOFhPKnRK7ha3gRey1zkBBEKa58UpWAX/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1OOFhPKnRK7ha3gRey1zkBBEKa58UpWAX', 
     description: 'ব্যোমকেশ বক্সী সিরিজের সূচনা ও এক অনন্য গোয়েন্দা যাত্রা।',
-    ytID:"eP2OhtE4qaw"
+    ytId:"eP2OhtE4qaw"
   },
   { 
     id: '166', 
@@ -392,7 +392,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1gN4J3nPwFL-AQatICwpQIuYh1035_5QQ/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1gN4J3nPwFL-AQatICwpQIuYh1035_5QQ', 
     description: 'সীমান্ত পেরিয়ে আসা এক দুর্মূল্য হীরা আর তাকে ঘিরে রহস্য।',
-    ytID:"ijFJQhMwLEA"
+    ytId:"ijFJQhMwLEA"
   },
   {
     id: '1',
@@ -1555,7 +1555,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1esjIawIhCV94E690AXANk3mRfmBBl_3G/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1esjIawIhCV94E690AXANk3mRfmBBl_3G', 
     description: 'মাকড়সার জালের মতো জটিল এক হত্যার তদন্ত।',
-         ytID: "PlKCVeT2gRA",
+         ytId: "PlKCVeT2gRA",
     
   },
   { 
@@ -1578,7 +1578,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1t5-5IT2A9zk-0jBSEHm_RvI8bV8oNjVb/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1t5-5IT2A9zk-0jBSEHm_RvI8bV8oNjVb', 
     description: 'গোলাপ কলোনির বিচিত্র মানুষদের রহস্য নিয়ে ব্যোমকেশের কালজয়ী উপন্যাস।',
-     ytID: "xqxSuebkwHI",
+     ytId: "xqxSuebkwHI",
   },
   { 
     id: '140', 
@@ -1599,7 +1599,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1fWiOnZIlkCUiyOLCyaTg8sN6j27kbugF/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1fWiOnZIlkCUiyOLCyaTg8sN6j27kbugF', 
     description: 'চোরবালির মতো গ্রাস করা এক অপরাধের রহস্য।',
-    ytID: "iGOWuhnfRkc",
+    ytId: "iGOWuhnfRkc",
   
   },
   { 
@@ -1631,7 +1631,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1KE6nkwKOAeVHENf_17RhSMm-lgR2QPPy/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1KE6nkwKOAeVHENf_17RhSMm-lgR2QPPy', 
     description: 'তারাশঙ্কর বন্দ্যোপাধ্যায়ের কালজয়ী একটি উপন্যাস।',
-   ytID: "pVhKEN3ihro"
+   ytId: "pVhKEN3ihro"
   },
   { 
     id: '114', 
@@ -1691,7 +1691,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1XDBSZv9YbuD_gvryz-VCmObIJ9zbRDef/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1XDBSZv9YbuD_gvryz-VCmObIJ9zbRDef', 
     description: 'মৃত্যু-পরবর্তী জগত ও জীবনের গভীর তত্ত্ব নিয়ে এক অসাধারণ রচনা।',
-    ytID: "6Lg5DY7ZK40"
+    ytId: "6Lg5DY7ZK40"
   },
   { 
     id: '123', 
@@ -1702,7 +1702,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1z7oTbc-KJ3BtJtq_dcS5OH06N1fp_hWq/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1z7oTbc-KJ3BtJtq_dcS5OH06N1fp_hWq', 
     description: 'অপু ও দুর্গার গ্রামীণ জীবনের মায়াবী রূপক ও কালজয়ী উপন্যাস।',
-    ytID: "ROKqa4xd1V4",
+    ytId: "ROKqa4xd1V4",
   },
   { 
     id: '124', 
@@ -1713,7 +1713,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/19kync2Xz6Iq3TXaxKu_4EqGa5P3z9NbM/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=19kync2Xz6Iq3TXaxKu_4EqGa5P3z9NbM', 
     description: 'বাঙালি মুসলমান সমাজের চিন্তাচেতনা ও সংস্কৃতির বিশ্লেষণ।',
-    ytID: "dQry4_hqSrg",
+    ytId: "dQry4_hqSrg",
   },
   { 
     id: '125', 
