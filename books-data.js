@@ -28,7 +28,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1M-sti9DYbbnZpD7qdp8uL7hDMKezcJZT/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1M-sti9DYbbnZpD7qdp8uL7hDMKezcJZT', 
     description: 'ব্যোমকেশ বক্সীর রহস্যভেদের এক রোমাঞ্চকর গল্প।',
-    ytiID: "ci06SNMkSVE",
+    ytId: "ci06SNMkSVE",
   },
   { 
     id: '130', 
@@ -39,7 +39,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1I0shCe4BxS4a6ucMNLLV3YONCJUFWSUZ/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1I0shCe4BxS4a6ucMNLLV3YONCJUFWSUZ', 
     description: 'ব্যোমকেশ বক্সীর বুদ্ধির দীপ্তিতে রহস্য উন্মোচনের কাহিনী।',
-    ytiID: "ci06SNMkSVE",
+    ytId: "ci06SNMkSVE",
   },
   { 
     id: '131', 
@@ -947,7 +947,7 @@ window.BOOKS_DATA = [
     category: 'থ্রিলার',
     coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVBEtqo6vM4Yd2udRT3AKNfgecQ2uwLl9J8A&s',
     readLink: 'https://drive.google.com/file/d/1EnCzqUd5Uflwm_tqVmnmx-4IpzXB2tFF/view?usp=sharing',
-    downloadLink: 'https://drive.google.com/uc?export=download&id=1EnCzqUd5O5G3oBs9w4H9NKTUHG2LKeSj', // NOTE: তোমার আগের ডেটাতে typo ছিল, চাইলে ঠিক করে দেবে
+    downloadLink: 'https://drive.google.com/uc?export=download&id=1EnCzqUd5Uflwm_tqVmnmx-4IpzXB2tFF', // NOTE: তোমার আগের ডেটাতে typo ছিল, চাইলে ঠিক করে দেবে
     description: 'সৈয়দ মুস্তাফা সিরাজের এক দারুণ রহস্য রোমাঞ্চকর বই।'
   },
   {
