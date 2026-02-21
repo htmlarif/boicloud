@@ -424,7 +424,15 @@ window.BOOKS_DATA = [
     coverImage: 'https://bengaliebook.com/wp-content/uploads/2022/02/%E0%A6%B9%E0%A6%BF%E0%A6%AE%E0%A7%81%E0%A6%B0-%E0%A6%B9%E0%A6%BE%E0%A6%A4%E0%A7%87-%E0%A6%95%E0%A6%AF%E0%A6%BC%E0%A7%87%E0%A6%95%E0%A6%9F%E0%A6%BF-%E0%A6%A8%E0%A7%80%E0%A6%B2%E0%A6%AA%E0%A6%A6%E0%A7%8D%E0%A6%AE-1086x1536.jpg',
     readLink: 'https://drive.google.com/file/d/127a_Z71ZCS6dgimTg0IeB6ist2rL6vmp/view?usp=sharing',
     downloadLink: 'https://drive.google.com/uc?export=download&id=127a_Z71ZCS6dgimTg0IeB6ist2rL6vmp',
-    description: 'হিমু সিরিজের এক জনপ্রিয় রহস্যময় উপন্যাস।'
+    description: 'হিমু সিরিজের এক জনপ্রিয় রহস্যময় উপন্যাস।',
+     ytParts: [
+  { id: "Wo3gavH8jDY", title: "Part 1" },
+  { id: "4KzgfR1RPPM", title: "Part 2" },
+         { id: "o16LGpD9hfI", title: "Part 3" },
+  { id: "YpKoxgWYels", title: "Part 4" },
+         { id: "DnGYVGh0n1U", title: "Part 5" },
+  { id: "X0UqPCAlAoU", title: "Part 6" },
+]
   },
   {
     id: '3',
