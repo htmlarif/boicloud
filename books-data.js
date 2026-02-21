@@ -124,7 +124,7 @@ window.BOOKS_DATA = [
     readLink: 'https://drive.google.com/file/d/1b8tamfsUOncSNo0-TKTKC4VORwg5JzcD/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1b8tamfsUOncSNo0-TKTKC4VORwg5JzcD', 
     description: 'ব্যোমকেশ বক্সীর রহস্যের জালে এক নতুন মোড়।',
-    ytId:"4RgS4noHqQM",,
+    ytId:"4RgS4noHqQM",
   },
  
   { 
