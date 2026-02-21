@@ -16,7 +16,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1533320297i/20746186.jpg', 
     readLink: 'https://drive.google.com/file/d/1fojisnky5ARFTfFumD29ddKLMil0yAhM/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1fojisnky5ARFTfFumD29ddKLMil0yAhM', 
-    description: 'ব্যোমকেশ বক্সী সিরিজের একটি টানটান রহস্য উপন্যাস।' 
+    description: 'ব্যোমকেশ বক্সী সিরিজের একটি টানটান রহস্য উপন্যাস।',
+   ytID: "1ZNTvea5qws"
   },
   { 
     id: '129', 
@@ -26,7 +27,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhcpxSq8oV7L8A31Kmh3cvxye2QvYQyZm01w&s', 
     readLink: 'https://drive.google.com/file/d/1M-sti9DYbbnZpD7qdp8uL7hDMKezcJZT/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1M-sti9DYbbnZpD7qdp8uL7hDMKezcJZT', 
-    description: 'ব্যোমকেশ বক্সীর রহস্যভেদের এক রোমাঞ্চকর গল্প।' 
+    description: 'ব্যোমকেশ বক্সীর রহস্যভেদের এক রোমাঞ্চকর গল্প।',
+    ytiID: "ci06SNMkSVE"
   },
   { 
     id: '130', 
@@ -36,7 +38,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoYq2uRdj1qQKmhoCAUhc9BGPwN1m4xTLu5A&s', 
     readLink: 'https://drive.google.com/file/d/1I0shCe4BxS4a6ucMNLLV3YONCJUFWSUZ/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1I0shCe4BxS4a6ucMNLLV3YONCJUFWSUZ', 
-    description: 'ব্যোমকেশ বক্সীর বুদ্ধির দীপ্তিতে রহস্য উন্মোচনের কাহিনী।' 
+    description: 'ব্যোমকেশ বক্সীর বুদ্ধির দীপ্তিতে রহস্য উন্মোচনের কাহিনী।',
+    ytiID: "ci06SNMkSVE"
   },
   { 
     id: '131', 
@@ -76,7 +79,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://www.amarbooks.org/thumbs/1573625274.jpg', 
     readLink: 'https://drive.google.com/file/d/1lFx4N5K2rw6KG5a1V6dRat_Ovao1Sk2v/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1lFx4N5K2rw6KG5a1V6dRat_Ovao1Sk2v', 
-    description: 'অমৃতের রহস্যময় মৃত্যুর কারণ খুঁজতে সত্যান্বেষী।' 
+    description: 'অমৃতের রহস্যময় মৃত্যুর কারণ খুঁজতে সত্যান্বেষী।',
+    ytID:"BSaxmTqc85c"
   },
   { 
     id: '135', 
@@ -86,7 +90,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://www.amarbooks.org/thumbs/1573625094.jpg', 
     readLink: 'https://drive.google.com/file/d/1f5VU0unXbyozjbwjVDuPp-QJ7EsElpVn/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1f5VU0unXbyozjbwjVDuPp-QJ7EsElpVn', 
-    description: 'মানুষের সহজাত প্রবৃত্তি বা আদিম রিপুকে কেন্দ্র করে গড়ে ওঠা রহস্য।' 
+    description: 'মানুষের সহজাত প্রবৃত্তি বা আদিম রিপুকে কেন্দ্র করে গড়ে ওঠা রহস্য।',
+    ytID:"vuvaSvkQJw4"
   },
   { 
     id: '136', 
@@ -96,7 +101,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhIVs8ecrxYV2MFew4wpNRuYDo5QK48Q6lFQ&s', 
     readLink: 'https://drive.google.com/file/d/1zMnOzdqbhoeXMXBrxvEgJ-hsmUGVpR4J/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1zMnOzdqbhoeXMXBrxvEgJ-hsmUGVpR4J', 
-    description: 'ব্যোমকেশ বক্সী সিরিজের অন্যতম একটি রহস্য গল্প।' 
+    description: 'ব্যোমকেশ বক্সী সিরিজের অন্যতম একটি রহস্য গল্প।',
+    ytID:"y3tkhEI5Jqs"
   },
   { 
     id: '137', 
@@ -106,7 +112,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://www.amarbooks.org/thumbs/1573733304.jpg', 
     readLink: 'https://drive.google.com/file/d/1kDB4cXmsNvd2JkfAjfMLD5quLXZKMVAa/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1kDB4cXmsNvd2JkfAjfMLD5quLXZKMVAa', 
-    description: 'কালিদাসের কবিতার ছলে লুকিয়ে থাকা রহস্যের উন্মোচন।' 
+    description: 'কালিদাসের কবিতার ছলে লুকিয়ে থাকা রহস্যের উন্মোচন।',
+    ytID:"crNsOZ3MbhY"
   },
   { 
     id: '138', 
@@ -116,7 +123,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://www.amarbooks.org/thumbs/1573952842.jpg', 
     readLink: 'https://drive.google.com/file/d/1b8tamfsUOncSNo0-TKTKC4VORwg5JzcD/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1b8tamfsUOncSNo0-TKTKC4VORwg5JzcD', 
-    description: 'ব্যোমকেশ বক্সীর রহস্যের জালে এক নতুন মোড়।' 
+    description: 'ব্যোমকেশ বক্সীর রহস্যের জালে এক নতুন মোড়।',
+    ytID:"4RgS4noHqQM"
   },
  
   { 
@@ -127,7 +135,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1590742312i/20746355.jpg', 
     readLink: 'https://drive.google.com/file/d/1ADBIKll_puwiky0fTedHGfm0iVbeueLs/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1ADBIKll_puwiky0fTedHGfm0iVbeueLs', 
-    description: 'ছলনা আর ছন্দের অন্তরালে থাকা অপরাধকে চিনে নেওয়া।' 
+    description: 'ছলনা আর ছন্দের অন্তরালে থাকা অপরাধকে চিনে নেওয়া।',
+    ytID:"r4si2WDI9ko"
   },
   { 
     id: '143', 
@@ -141,13 +150,14 @@ window.BOOKS_DATA = [
   },
   { 
     id: '144', 
-    title: 'দাদার কীর্তি (ব্যোমকেশ বক্সী)', 
+    title: 'দাদার কীর্তি', 
     author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
     category: 'থ্রিলার', 
     coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaA0wep_A6DnSSE_9YPsovooZe9jmjvAIHFQ&s', 
     readLink: 'https://drive.google.com/file/d/1KCBJ37jR_nAbzVZAfHkrUjGC9n44s3eQ/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1KCBJ37jR_nAbzVZAfHkrUjGC9n44s3eQ', 
-    description: 'শরদিন্দু বন্দ্যোপাধ্যায়ের এক অনবদ্য এবং জনপ্রিয় সৃষ্টি।' 
+    description: 'শরদিন্দু বন্দ্যোপাধ্যায়ের এক অনবদ্য এবং জনপ্রিয় সৃষ্টি।',
+    ytID:"AzMFPk5euxw"
   },
   { 
     id: '145', 
@@ -157,7 +167,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://www.amarbooks.org/thumbs/1573733195.jpg', 
     readLink: 'https://drive.google.com/file/d/1v4MFBW-0Q-0DHK9ANPW5A7nQ8KvaQOkc/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1v4MFBW-0Q-0DHK9ANPW5A7nQ8KvaQOkc', 
-    description: 'এক দুর্গের ভেতরে লুকিয়ে থাকা প্রাচীন রহস্যের হাতছানি।' 
+    description: 'এক দুর্গের ভেতরে লুকিয়ে থাকা প্রাচীন রহস্যের হাতছানি।',
+    ytID:"HfdnvBzOf4U"
   },
   { 
     id: '146', 
@@ -167,7 +178,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1590742408i/20746342.jpg', 
     readLink: 'https://drive.google.com/file/d/1Z8uit4-uLDs3Mfd0PqJrPHJjP29JQgp2/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1Z8uit4-uLDs3Mfd0PqJrPHJjP29JQgp2', 
-    description: 'জটিল ষড়যন্ত্র বা দুষ্টচক্র থেকে সত্য বের করে আনা।' 
+    description: 'জটিল ষড়যন্ত্র বা দুষ্টচক্র থেকে সত্য বের করে আনা।',
+    ytID:"04e2ISt47F4"
   },
   { 
     id: '147', 
@@ -177,7 +189,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQcUP9Li2t5I6j07Lp_waFc3g0MbLfGV8J6Q&s', 
     readLink: 'https://drive.google.com/file/d/1enIleVJ-W40-LoTXi_TTCREoMRItIvC4/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1enIleVJ-W40-LoTXi_TTCREoMRItIvC4', 
-    description: 'নিপুণ খুনি ও তার অভিনব অস্ত্রের রহস্যভেদে ব্যোমকেশ।' 
+    description: 'নিপুণ খুনি ও তার অভিনব অস্ত্রের রহস্যভেদে ব্যোমকেশ।',
+    ytID:"eCLie4mRvJA"
   },
   { 
     id: '148', 
@@ -187,7 +200,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://www.amarbooks.org/thumbs/1573625595.jpg', 
     readLink: 'https://drive.google.com/file/d/1jRAvTxI6XoK6ypfp4r5H2x7FQZnu6v7s/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1jRAvTxI6XoK6ypfp4r5H2x7FQZnu6v7s', 
-    description: 'আগুনে পতঙ্গের মতো ঝাপিয়ে পড়া রহস্যের সমাধান।' 
+    description: 'আগুনে পতঙ্গের মতো ঝাপিয়ে পড়া রহস্যের সমাধান।',
+    ytID:"5pG-Mi14tnY"
   },
   { 
     id: '149', 
@@ -201,13 +215,22 @@ window.BOOKS_DATA = [
   },
   { 
     id: '150', 
-    title: 'বিষের ধোঁয়া (ব্যোমকেশ বক্সী)', 
+    title: 'বিষের ধোঁয়া', 
     author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
     category: 'থ্রিলার', 
     coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTwMTo4ihqskeMU9VHHJw1TiUb0BHzrsMnUA&s', 
     readLink: 'https://drive.google.com/file/d/1cDti0N4XKBpyloKJI73refdJUDwaTimY/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1cDti0N4XKBpyloKJI73refdJUDwaTimY', 
-    description: 'ধোঁয়ার অন্তরালে থাকা বিষাক্ত রহস্যের সত্য উদ্ঘাটন।' 
+    description: 'ধোঁয়ার অন্তরালে থাকা বিষাক্ত রহস্যের সত্য উদ্ঘাটন।' ,
+     ytParts: [
+  { id: "KAIEmaVzFAg", title: "Part 1" },
+  { id: "yjp28C1Dgq8", title: "Part 2" },
+         { id: "O0bhTiuJnP0", title: "Part 3" },
+  { id: "2qijr7HfgMk", title: "Part 4" },
+         { id: "7s61w4GZ2_0", title: "Part 5" },
+  { id: "h2W6yi3Yb2A", title: "Part 6" },
+]
+    
   },
   { 
     id: '151', 
@@ -217,7 +240,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1590742256i/20746358.jpg', 
     readLink: 'https://drive.google.com/file/d/1bEivcuI6DvGTFcj2bQs1nstDj-sGWn6I/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1bEivcuI6DvGTFcj2bQs1nstDj-sGWn6I', 
-    description: 'ব্যোমকেশ বক্সীর রহস্যের এক চমৎকার কাহিনী।' 
+    description: 'ব্যোমকেশ বক্সীর রহস্যের এক চমৎকার কাহিনী।' ,
+    ytID:"SN4B9I_Lu7w"
   },
  
   { 
@@ -228,7 +252,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9TySw8E5c0Rh6sCSPxCYQEhXo7d4PHPjfRg&s', 
     readLink: 'https://drive.google.com/file/d/1KM8_m6UVN9leXgkZPnttfd1tr0RRJx-w/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1KM8_m6UVN9leXgkZPnttfd1tr0RRJx-w', 
-    description: 'গভীর রহস্যে মগ্ন এক ঘটনার তদন্তে ব্যোমকেশ বক্সী।' 
+    description: 'গভীর রহস্যে মগ্ন এক ঘটনার তদন্তে ব্যোমকেশ বক্সী।',
+    ytID:"XF3iwmqQKOA"
   },
   { 
     id: '154', 
@@ -238,7 +263,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1590588025i/20746298.jpg', 
     readLink: 'https://drive.google.com/file/d/13W_0WYfjmk6ecz8OlqbvzFpRbdaD8nUF/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=13W_0WYfjmk6ecz8OlqbvzFpRbdaD8nUF', 
-    description: 'ব্যোমকেশ বক্সীর রহস্য সন্ধানের অনন্য এক পটভূমি।' 
+    description: 'ব্যোমকেশ বক্সীর রহস্য সন্ধানের অনন্য এক পটভূমি।',
+    ytID:"38uNxEESknM"
   },
   { 
     id: '155', 
@@ -248,7 +274,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://m.media-amazon.com/images/M/MV5BM2JhOGNmMDUtYTJmMS00NjMyLTk3NDAtODA3NjZkMzQyZmNjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg', 
     readLink: 'https://drive.google.com/file/d/1dfNG2q4S2S4E10qG60SBRV9DKazW5Euc/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1dfNG2q4S2S4E10qG60SBRV9DKazW5Euc', 
-    description: 'রহস্য আর আবেগের এক দারুণ সংমিশ্রণ এই কাহিনীতে।' 
+    description: 'রহস্য আর আবেগের এক দারুণ সংমিশ্রণ এই কাহিনীতে।',
+    ytID:"XF3iwmqQKOA"
   },
   
   { 
@@ -259,7 +286,9 @@ window.BOOKS_DATA = [
     coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQw1Eo9y0x6vWAhOvz_CbussTTC25zCnBwHaA&s', 
     readLink: 'https://drive.google.com/file/d/1uSDhR5G6_VWF8bWpTr1pZB2VtANDvVqA/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1uSDhR5G6_VWF8bWpTr1pZB2VtANDvVqA', 
-    description: 'অভিশপ্ত এক নীলাকে কেন্দ্র করে জমে ওঠা রহস্য।' 
+    description: 'অভিশপ্ত এক নীলাকে কেন্দ্র করে জমে ওঠা রহস্য।',
+    ytID:"bgJCg9DJtzg"
+    
   },
   { 
     id: '158', 
@@ -269,7 +298,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://www.amarbooks.org/thumbs/1573953101.jpg', 
     readLink: 'https://drive.google.com/file/d/1EJcXcANQNPGRoxPJ7AaGMru88EbHv8Xp/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1EJcXcANQNPGRoxPJ7AaGMru88EbHv8Xp', 
-    description: 'অস্পষ্ট এক রক্তের দাগ অনুসরণ করে অপরাধীকে শনাক্ত করা।' 
+    description: 'অস্পষ্ট এক রক্তের দাগ অনুসরণ করে অপরাধীকে শনাক্ত করা।' ,
+    ytID:"2RX6HQhWyXw"
   },
   { 
     id: '159', 
@@ -283,13 +313,20 @@ window.BOOKS_DATA = [
   },
   { 
     id: '160', 
-    title: 'রিমঝিম (ব্যোমকেশ বক্সী)', 
+    title: 'রিমঝিম', 
     author: 'শরদিন্দু বন্দ্যোপাধ্যায়', 
     category: 'থ্রিলার', 
     coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvZp9RYl4rliK3ddczsJAGvQdtBv4H_UPiuw&s', 
     readLink: 'https://drive.google.com/file/d/1gzDaFiwhRNJ_xT7F4vpJtWwW7GxUTUzL/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1gzDaFiwhRNJ_xT7F4vpJtWwW7GxUTUzL', 
-    description: 'ব্যোমকেশ বক্সী সিরিজের এক রোমাঞ্চকর অ্যাডভেঞ্চার।' 
+    description: 'ব্যোমকেশ বক্সী সিরিজের এক রোমাঞ্চকর অ্যাডভেঞ্চার।',
+    ytParts: [
+  { id: "QLKWCDPT8s8", title: "Part 1" },
+  { id: "cNNeESSQ-yI", title: "Part 2" },
+         { id: "HR1bj5h-03w", title: "Part 3" },
+  { id: "gCoMjzSun5A", title: "Part 4" },
+    
+]
   },
   { 
     id: '161', 
@@ -299,7 +336,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1590742343i/26127442.jpg', 
     readLink: 'https://drive.google.com/file/d/1Wakhgp3kxwq3xEz74Blf5XnOt9AuLvey/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1Wakhgp3kxwq3xEz74Blf5XnOt9AuLvey', 
-    description: 'হোস্টেলের একটি কক্ষকে ঘিরে আবর্তিত রহস্যভেদে ব্যোমকেশ।' 
+    description: 'হোস্টেলের একটি কক্ষকে ঘিরে আবর্তিত রহস্যভেদে ব্যোমকেশ।' ,
+    ytID:"pj1OJUuj4gc"
   },
   { 
     id: '162', 
@@ -309,7 +347,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://allboi.com/wp-content/uploads/2023/01/Lohar-Biscuit-by-Sharadindu-Bandhapadhyay1.jpg', 
     readLink: 'https://drive.google.com/file/d/1E5fSdNuY5_OmBkB4DRK4ab3wx5uKOpou/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1E5fSdNuY5_OmBkB4DRK4ab3wx5uKOpou', 
-    description: 'অদ্ভুত এক চুরির তদন্তে সত্যান্বেষীর তীক্ষ্ণ মেধার প্রকাশ।' 
+    description: 'অদ্ভুত এক চুরির তদন্তে সত্যান্বেষীর তীক্ষ্ণ মেধার প্রকাশ।',
+    ytID:"SLruFHGyHpw"
   },
   { 
     id: '163', 
@@ -319,7 +358,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1590742285i/20746357.jpg', 
     readLink: 'https://drive.google.com/file/d/1bqoecmAxq6zJWt-ztCTkQU-VHdUjJIFa/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1bqoecmAxq6zJWt-ztCTkQU-VHdUjJIFa', 
-    description: 'শজারুর কাঁটা দিয়ে বিচিত্র খুনের রহস্যভেদে এক বৃদ্ধ ব্যোমকেশ।' 
+    description: 'শজারুর কাঁটা দিয়ে বিচিত্র খুনের রহস্যভেদে এক বৃদ্ধ ব্যোমকেশ।',
+    ytID:"fl1Zpipi5sY"
   },
   { 
     id: '164', 
@@ -329,7 +369,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://www.amarbooks.org/thumbs/1573953033.jpg', 
     readLink: 'https://drive.google.com/file/d/1WTaKMTB1otCekl6fE2uGeItN6qW9Fh1t/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1WTaKMTB1otCekl6fE2uGeItN6qW9Fh1t', 
-    description: 'পাহাড়ের পটভূমিতে এক শ্বাসরুদ্ধকর রহস্যের উন্মোচন।' 
+    description: 'পাহাড়ের পটভূমিতে এক শ্বাসরুদ্ধকর রহস্যের উন্মোচন।',
+    ytID:"prVz3lG3yxg"
   },
   { 
     id: '165', 
@@ -339,7 +380,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1729851738i/20746143.jpg', 
     readLink: 'https://drive.google.com/file/d/1OOFhPKnRK7ha3gRey1zkBBEKa58UpWAX/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1OOFhPKnRK7ha3gRey1zkBBEKa58UpWAX', 
-    description: 'ব্যোমকেশ বক্সী সিরিজের সূচনা ও এক অনন্য গোয়েন্দা যাত্রা।' 
+    description: 'ব্যোমকেশ বক্সী সিরিজের সূচনা ও এক অনন্য গোয়েন্দা যাত্রা।',
+    ytID:"eP2OhtE4qaw"
   },
   { 
     id: '166', 
@@ -349,7 +391,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1564688080i/20746164.jpg', 
     readLink: 'https://drive.google.com/file/d/1gN4J3nPwFL-AQatICwpQIuYh1035_5QQ/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1gN4J3nPwFL-AQatICwpQIuYh1035_5QQ', 
-    description: 'সীমান্ত পেরিয়ে আসা এক দুর্মূল্য হীরা আর তাকে ঘিরে রহস্য।' 
+    description: 'সীমান্ত পেরিয়ে আসা এক দুর্মূল্য হীরা আর তাকে ঘিরে রহস্য।',
+    ytID:"ijFJQhMwLEA"
   },
   {
     id: '1',
@@ -359,7 +402,19 @@ window.BOOKS_DATA = [
     coverImage: 'https://media.kitabghor.com/products/1022/24070/voqjr1678513345czycjt1.jpg',
     readLink: 'https://drive.google.com/file/d/19HyjCsZ6cT6pd15ksGfuahRbSx3iWQ9a/view?usp=sharing',
     downloadLink: 'https://drive.google.com/uc?export=download&id=19HyjCsZ6cT6pd15ksGfuahRbSx3iWQ9a',
-    description: 'বিশ্বনন্দিত সীরাত গ্রন্থ, যেখানে নবী করীম (সা.)-এর পবিত্র জীবন আখ্যান বিস্তারিতভাবে বর্ণিত হয়েছে।'
+    description: 'বিশ্বনন্দিত সীরাত গ্রন্থ, যেখানে নবী করীম (সা.)-এর পবিত্র জীবন আখ্যান বিস্তারিতভাবে বর্ণিত হয়েছে।',
+    ytParts: [
+  { id: "oSJQTIJjbOU", title: "Part 1" },
+  { id: "5WTWya7Lvpw", title: "Part 2" },
+         { id: "6y4KseX363g", title: "Part 3" },
+  { id: "2n95lSbBK3Y", title: "Part 4" },
+      { id: "bZ-Y0MLYTAM", title: "Part 5" },
+  { id: "VnRpRVffIQA", title: "Part 6" },
+         { id: "ZlMBuklVZCQ", title: "Part 7" },
+  { id: "JNnQRrD8l20", title: "Part 8" },
+    
+]
+    
   },
   {
     id: '2',
