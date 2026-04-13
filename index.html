@@ -174,32 +174,6 @@
     .dark .menu-dropdown hr {
       border-color: #334155;
     }
-
-    /* বাংলাদেশের প্রতীকসমূহের জন্য অ্যানিমেশন */
-@keyframes float-slow {
-  0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-12px) rotate(2deg); }
-  100% { transform: translateY(0px) rotate(0deg); }
-}
-@keyframes float-medium {
-  0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-8px) rotate(-2deg); }
-  100% { transform: translateY(0px) rotate(0deg); }
-}
-@keyframes pulse-slow {
-  0% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.1); }
-  100% { opacity: 0.6; transform: scale(1); }
-}
-.animate-float-slow {
-  animation: float-slow 6s ease-in-out infinite;
-}
-.animate-float-medium {
-  animation: float-medium 5s ease-in-out infinite;
-}
-.animate-pulse-slow {
-  animation: pulse-slow 4s ease-in-out infinite;
-}
   </style>
 </head>
 
@@ -912,6 +886,7 @@
   </header>
 
   <main class="flex-grow">
+    <section class="relative h-[50vh] sm:h-[70vh] flex items-center justify-center overflow-hidden">
     <section class="relative h-[40vh] sm:h-[50vh] flex items-center justify-center overflow-hidden">
       <div class="absolute inset-0 z-0">
         <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=2000"
@@ -920,34 +895,11 @@
         <div class="absolute inset-0 hero-gradient"></div>
       </div>
 
-    <!-- বাংলাদেশের প্রতীকসমূহ (অ্যানিমেটেড, চওড়া আকারে) -->
-<div class="absolute inset-x-0 top-0 bottom-0 pointer-events-none flex items-center justify-between px-4 md:px-12 z-5">
-  
-  <!-- বাম পাশের গ্রুপ -->
-  <div class="flex flex-col items-center gap-4 md:gap-6">
-    <div class="animate-float-slow">
-      <i class="fas fa-flag fa-2x md:fa-3x text-red-600 drop-shadow-lg"></i>
-    </div>
-    <div class="animate-float-medium">
-      <i class="fas fa-landmark fa-2x md:fa-3x text-gray-700 dark:text-gray-300"></i>
-    </div>
-  </div>
-
-  <!-- ডান পাশের গ্রুপ -->
-  <div class="flex flex-col items-center gap-4 md:gap-6">
-    <div class="animate-float-slow">
-      <i class="fas fa-building fa-2x md:fa-3x text-blue-800 dark:text-blue-300"></i>
-    </div>
-    <div class="animate-pulse-slow">
-      <i class="fas fa-book-open fa-2x md:fa-3x text-amber-700 dark:text-amber-400"></i>
-    </div>
-  </div>
-
-  <!-- কেন্দ্রে (ঐচ্ছিক) ছোট স্মৃতিসৌধ -->
-  <div class="absolute left-1/2 transform -translate-x-1/2 bottom-5 md:bottom-8 animate-float-medium hidden md:block">
-    <i class="fas fa-monument fa-2x text-gray-500 opacity-60"></i>
-  </div>
-</div>
+      <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 backdrop-blur-md text-brand-300 text-[10px] sm:text-xs font-medium mb-6 border border-white/10 animate-fade-in-up">
+          <i data-lucide="sparkles" class="w-4 h-4"></i>
+          <span>আপনার প্রিয় বইয়ের নতুন ডিজিটাল ঠিকানা</span>
+        </div>
 
         <h2 class="text-3xl sm:text-6xl lg:text-8xl font-black text-white mb-6 leading-tight drop-shadow-2xl animate-fade-in-up">
           <i data-lucide="book-open" class="w-12 h-12 sm:w-20 sm:h-20 inline mr-4 align-middle"></i>
@@ -958,7 +910,7 @@
           BoiCloud-এ পাবেন যেকোনো বইয়ের বিশাল সংগ্রহ। অনলাইনে পড়ুন, শুনুন অথবা ডাউনলোড করুন
         </p>
 
-       
+
     </section>
 
     <section id="rows-area" class="max-w-7xl mx-auto px-4 py-10 sm:py-16">
@@ -1201,7 +1153,7 @@
         <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">
           <i data-lucide="bell" class="w-4 h-4 inline mr-1"></i> নতুন বইয়ের খবরের জন্য যোগ দিন।
         </p>
-        
+
         <form id="subscribe-form" action="https://formspree.io/f/xeevqrzv" method="POST" class="flex gap-2">
           <input type="email" name="email" required placeholder="আপনার ইমেইল..." 
                  class="bg-slate-50 dark:bg-slate-950 border dark:border-slate-800 rounded-xl px-4 py-2 text-xs w-full focus:ring-1 focus:ring-brand-500 outline-none text-slate-800 dark:text-slate-200" />
