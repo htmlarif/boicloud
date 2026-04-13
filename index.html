@@ -122,6 +122,58 @@
     @media (hover:hover){
       .slide-card:hover{ transform: translateY(-2px); }
     }
+
+    /* NEW: three-dot menu dropdown - does not affect any existing style */
+    .menu-dropdown {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      min-width: 200px;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      border-radius: 1rem;
+      border: 1px solid rgba(203, 213, 225, 0.5);
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.2);
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    }
+    .dark .menu-dropdown {
+      background: rgba(15, 23, 42, 0.96);
+      border-color: rgba(51, 65, 85, 0.8);
+    }
+    .menu-dropdown.open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .menu-dropdown a, .menu-dropdown button {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      width: 100%;
+      text-align: left;
+      color: #1e293b;
+      transition: background 0.2s;
+    }
+    .dark .menu-dropdown a, .dark .menu-dropdown button {
+      color: #e2e8f0;
+    }
+    .menu-dropdown a:hover, .menu-dropdown button:hover {
+      background: rgba(16, 185, 129, 0.1);
+    }
+    .menu-dropdown hr {
+      margin: 0.25rem 0;
+      border-color: #e2e8f0;
+    }
+    .dark .menu-dropdown hr {
+      border-color: #334155;
+    }
   </style>
 </head>
 
@@ -230,7 +282,7 @@
           else book.categories = ['অন্যান্য'];
         }
 
-        // ✅ audio থাকলে Audio Books ক্যাটাগরি ঢুকিয়ে দাও (যাতে row + grid দুই জায়গায় কাজ করে)
+        // ✅ audio থাকলে Audio Books ক্যাটাগরি ঢুকিয়ে দাও (যাতে row + grid দুই জায়গায় কাজ করে)
         if (hasAudio(book) && !book.categories.includes('Audio Books')) {
           book.categories = ['Audio Books', ...book.categories];
         }
@@ -679,6 +731,34 @@
       });
     }
 
+    // NEW: three-dot menu toggle and actions (same as footer)
+    function initTopMenu() {
+      const menuBtn = document.getElementById('top-menu-btn');
+      const dropdown = document.getElementById('top-menu-dropdown');
+      if (!menuBtn || !dropdown) return;
+
+      function closeMenu() {
+        dropdown.classList.remove('open');
+      }
+      function toggleMenu(e) {
+        e.stopPropagation();
+        dropdown.classList.toggle('open');
+      }
+      menuBtn.addEventListener('click', toggleMenu);
+      document.addEventListener('click', (e) => {
+        if (!menuBtn.contains(e.target) && !dropdown.contains(e.target)) {
+          closeMenu();
+        }
+      });
+      // Actions
+      document.getElementById('menu-home')?.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); closeMenu(); });
+      document.getElementById('menu-books')?.addEventListener('click', () => { scrollToEl('row-samprotik'); closeMenu(); });
+      document.getElementById('menu-category')?.addEventListener('click', () => { scrollToEl('category-buttons'); closeMenu(); });
+      document.getElementById('menu-contact')?.addEventListener('click', () => { window.location.href = "https://mail.google.com/mail/?view=cm&fs=1&to=html.arif@gmail.com"; closeMenu(); });
+      document.getElementById('menu-book-request')?.addEventListener('click', () => { window.open('https://forms.gle/4XdfJcvaYMfxPrmf8', '_blank'); closeMenu(); });
+      document.getElementById('menu-book-submit')?.addEventListener('click', () => { window.open('https://forms.gle/XvUkcvWMTHBAHjEp6', '_blank'); closeMenu(); });
+    }
+
     function initializeApp() {
       const isDarkMode = initializeDarkMode();
       updateDarkModeToggle(isDarkMode);
@@ -687,6 +767,7 @@
       initializeCategoryButtons();
       bindSearchUX();
       bindFooterLinks();
+      initTopMenu();  // <-- new
 
       buildRows();
 
@@ -760,6 +841,22 @@
 
         <div class="flex items-center gap-2 sm:gap-4">
           <button id="dark-mode-toggle" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-400"></button>
+
+          <!-- NEW three-dot menu button -->
+          <div class="relative">
+            <button id="top-menu-btn" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-400" aria-label="মেনু">
+              <i data-lucide="more-vertical" class="w-5 h-5"></i>
+            </button>
+            <div id="top-menu-dropdown" class="menu-dropdown">
+              <a href="#" id="menu-home"><i data-lucide="home" class="w-4 h-4"></i> হোম</a>
+              <a href="#" id="menu-books"><i data-lucide="book-open" class="w-4 h-4"></i> বই</a>
+              <a href="#" id="menu-category"><i data-lucide="grid" class="w-4 h-4"></i> ক্যাটাগরি</a>
+              <a href="#" id="menu-contact"><i data-lucide="mail" class="w-4 h-4"></i> যোগাযোগ</a>
+              <hr class="my-1">
+              <a href="#" id="menu-book-request"><i data-lucide="message-square-plus" class="w-4 h-4"></i> বইয়ের অনুরোধ</a>
+              <a href="#" id="menu-book-submit"><i data-lucide="upload-cloud" class="w-4 h-4"></i> বই পাঠান</a>
+            </div>
+          </div>
         </div>
       </div>
 
