@@ -175,29 +175,7 @@
       border-color: #334155;
     }
 
-    /* ===== MOBILE CARD RESIZING ===== */
-    @media (max-width: 480px) {
-      #books-container {
-        gap: 0.75rem !important;
-      }
-      #books-container .group {
-        border-radius: 1rem !important;
-      }
-      #books-container .group .p-3 {
-        padding: 0.5rem !important;
-      }
-      #books-container .group .text-sm {
-        font-size: 0.7rem !important;
-        line-height: 1rem !important;
-      }
-      #books-container .group .text-xs {
-        font-size: 0.6rem !important;
-        line-height: 0.9rem !important;
-      }
-      #books-container .group .rounded-2xl {
-        border-radius: 0.75rem !important;
-      }
-    }
+    /* ===== NO MOBILE CARD RESIZING - keeping original card sizes ===== */
   </style>
 </head>
 
@@ -494,7 +472,7 @@
       );
     }
 
-    // MODIFIED: render grouped by category if groupBy=true
+    // MODIFIED: render grouped by category if groupBy=true, with original card sizes (no extra mobile shrinking)
     function renderAllBooksGrid(books, q='', groupBy=false) {
       const container = document.getElementById('books-container');
       if (!container) return;
@@ -514,7 +492,7 @@
       }
 
       if (!groupBy) {
-        // Flat layout (single category or search results)
+        // Flat layout (single category or search results) - original card sizes
         container.innerHTML = books.map(b => `
           <a href="book.html?id=${encodeURIComponent(b.id)}"
              class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1">
@@ -530,7 +508,7 @@
           </a>
         `).join('');
       } else {
-        // Group by primary category
+        // Group by primary category - original card sizes
         const grouped = new Map();
         books.forEach(book => {
           const cat = book.categories?.[0] || 'অন্যান্য';
@@ -552,7 +530,7 @@
         for (const cat of sortedCategories) {
           const catBooks = grouped.get(cat);
           html += `
-            <div class="mb-8 last:mb-0">
+            <div class="mb-10 last:mb-0">
               <div class="flex items-center gap-2 mb-4">
                 <i data-lucide="folder" class="w-5 h-5 text-brand-500"></i>
                 <h3 class="text-lg font-black text-slate-800 dark:text-white">${escapeHtml(cat)}</h3>
