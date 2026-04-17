@@ -49,7 +49,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://www.amarbooks.org/thumbs/1573952796.jpg', 
     readLink: 'https://drive.google.com/file/d/1Rp-hCUriKoduX3Y8ZK917B_O1-aOJNK1/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1Rp-hCUriKoduX3Y8ZK917B_O1-aOJNK1', 
-    description: 'অদৃশ্য এক ত্রিকোণকে ঘিরে জটিল রহস্যের সমাধান।' 
+    description: 'অদৃশ্য এক ত্রিকোণকে ঘিরে জটিল রহস্যের সমাধান।',
+    ytId: "k0qhJBZ3y70",
   },
   { 
     id: '132', 
@@ -59,7 +60,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://allboi.com/wp-content/uploads/2023/01/Adwitiya-by-Sharadindu-Bandhapadhyay.jpg', 
     readLink: 'https://drive.google.com/file/d/1K2fif5uvEFoN7r5t6goLHrUp_mnCH-Nq/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1K2fif5uvEFoN7r5t6goLHrUp_mnCH-Nq', 
-    description: 'ব্যোমকেশ বক্সীর তীক্ষ্ণ মেধার এক অনন্য পরিচয়।' 
+    description: 'ব্যোমকেশ বক্সীর তীক্ষ্ণ মেধার এক অনন্য পরিচয়।',
+    ytId: "HB5oqTdBwoo",
   },
   { 
     id: '133', 
@@ -69,7 +71,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTScZsEKVdyj3KIeI9XMePzM-Y7FLYpQugkDA&s', 
     readLink: 'https://drive.google.com/file/d/1F1m4y_20cZPIDgFEdxVtgXRlRr5XiTzP/view?usp=sharing', 
     downloadLink: 'https://drive.google.com/uc?export=download&id=1F1m4y_20cZPIDgFEdxVtgXRlRr5XiTzP', 
-    description: 'রহস্যময় ঘটনার অন্তরালে সত্যের সন্ধানে ব্যোমকেশ।' 
+    description: 'রহস্যময় ঘটনার অন্তরালে সত্যের সন্ধানে ব্যোমকেশ।' ,
+   
   },
   { 
     id: '134', 
@@ -482,7 +485,17 @@ window.BOOKS_DATA = [
     coverImage: 'https://www.amarbooks.org/thumbs/1468163668.jpg',
     readLink: 'https://drive.google.com/file/d/1C9LPULtTbq5uWqQZLdPfNFKee0XsKZoE/view?usp=sharing',
     downloadLink: 'https://drive.google.com/uc?export=download&id=1C9LPULtTbq5uWqQZLdPfNFKee0XsKZoE',
-    description: 'বাঙালি মুসলিম সমাজের ধর্মীয় অন্ধবিশ্বাস ও শোষণের এক গভীর জীবনধর্মী উপন্যাস।'
+    description: 'বাঙালি মুসলিম সমাজের ধর্মীয় অন্ধবিশ্বাস ও শোষণের এক গভীর জীবনধর্মী উপন্যাস।',
+    ytParts: [
+  { id: "a77yORYfUDI", title: "Part 1" },
+  { id: "tJxMWnhtBvw", title: "Part 2" },
+         { id: "QkFo18WgplA", title: "Part 3" },
+  { id: "onlLWr-ePKY", title: "Part 4" },
+         { id: "WPc-Uv941ZA", title: "Part 5" },
+  { id: "dcJq4gpVmGU", title: "Part 6" },
+      { id: "Vgs6_SldL1U", title: "Part 7" },
+      { id: "foU_M5BXgaQ", title: "Part 8" },
+]
   },
   {
     id: '8',
@@ -492,7 +505,8 @@ window.BOOKS_DATA = [
     coverImage: 'https://allbanglaboi.com/wp-content/uploads/2020/04/Agni-Pakkha-Atmajibani-by-APJ-Abdul-Kalam.jpg',
     readLink: 'https://drive.google.com/file/d/1LCTZMavEB59_a6e13S5aN3cqCmn9Jl3H/view?usp=sharing',
     downloadLink: 'https://drive.google.com/uc?export=download&id=1LCTZMavEB59_a6e13S5aN3cqCmn9Jl3H',
-    description: 'ভারতের প্রাক্তন রাষ্ট্রপতি এ পি জে আব্দুল কালামের অনুপ্রেরণামূলক আত্মজীবনী।'
+    description: 'ভারতের প্রাক্তন রাষ্ট্রপতি এ পি জে আব্দুল কালামের অনুপ্রেরণামূলক আত্মজীবনী।',
+    ytId:"5xDtDsQomdM",
   },
 
   // ====== Syed Mustafa Siraj set (তোমার যুক্ত করা বইগুলো অপরিবর্তিত রাখা হয়েছে) ======
